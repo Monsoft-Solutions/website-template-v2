@@ -2,6 +2,10 @@ import '@workspace/ui/globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 
 import { Providers } from '@/components/providers'
+import { seoConfig } from '@/lib/seo-config'
+import { toNextMetadata } from '@/lib/seo/metadata'
+
+export const metadata = toNextMetadata(seoConfig)
 
 const fontSans = Geist({
     subsets: ['latin'],

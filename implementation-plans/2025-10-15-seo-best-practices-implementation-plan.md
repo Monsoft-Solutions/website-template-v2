@@ -507,8 +507,7 @@ packages/
 
 1. **Create Base JSON-LD Component**
     - Implement `packages/seo/src/schemas/schema-props.type.ts` with base types
-    - Use `type` instead of `interface` for all schema prop types
-    - Create helper function `renderJsonLd<T>(schema: T)`
+    - Create helper function `JsonLd<T extends Thing>(json: WithContext<T>):` (https://www.npmjs.com/package/schema-dts)
     - Handle sanitization automatically
     - Use `dangerouslySetInnerHTML` with sanitized content
     - Add JSDoc comments
