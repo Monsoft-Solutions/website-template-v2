@@ -1,0 +1,39 @@
+import { glob } from 'glob'
+import _ from 'lodash'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { db } from '../client'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+async function seed() {
+    console.log('🌱 Starting to seed database...')
+
+    try {
+        const seedersDir = path.resolve(__dirname)
+        const files = await glob(`*.seed.ts`, {
+            cwd: seedersDir,
+            ignore: ['index.ts'],
+        })
+
+        const sortedSeeders = _.sortBy(files, (file) => file)
+
+        console.log('🌱 Discovered seeders:', sortedSeeders)
+
+        for (const file of sortedSeeders) {
+            const seeder = await import(path.resolve(seedersDir, file))
+            console.log(`\n🌱 Running seeder: ${file}`)
+            await seeder.run({ db })
+        }
+
+        console.log('\n✅ Database seeded successfully!')
+        process.exit(0)
+    } catch (error) {
+        console.error('❌ An error occurred while seeding the database:', error)
+        process.exit(1)
+    }
+}
+
+seed()
