@@ -12,17 +12,19 @@ import {
 } from '@workspace/seo'
 import type { MetadataRoute } from 'next'
 
+import { env } from '@/env'
+
 /**
  * Get the base URL for the site
  */
 function getBaseUrl(): string {
     // Priority order: NEXT_PUBLIC_BASE_URL -> VERCEL_URL -> localhost
-    if (process.env.NEXT_PUBLIC_BASE_URL) {
-        return process.env.NEXT_PUBLIC_BASE_URL
+    if (env.NEXT_PUBLIC_SITE_URL) {
+        return env.NEXT_PUBLIC_SITE_URL
     }
 
-    if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`
+    if (env.VERCEL_URL) {
+        return `https://${env.VERCEL_URL}`
     }
 
     return 'http://localhost:3000'

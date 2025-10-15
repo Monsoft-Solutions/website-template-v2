@@ -1,5 +1,7 @@
 import { put } from '@vercel/blob'
 
+import { env } from '@/env'
+
 /**
  * Download an image from a URL and upload it to Vercel Blob
  * @param imageUrl - The URL of the image to download
@@ -45,7 +47,7 @@ export async function uploadImageToBlobFormUrl(
         }
 
         // Upload to Vercel Blob
-        const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+        const blobToken = env.BLOB_READ_WRITE_TOKEN
         if (!blobToken) {
             throw new Error(
                 'BLOB_READ_WRITE_TOKEN environment variable not set'

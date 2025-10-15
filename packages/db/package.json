@@ -19,6 +19,7 @@
         "format": "pnpm -w format"
     },
     "dependencies": {
+        "@t3-oss/env-core": "^0.10.1",
         "drizzle-orm": "^0.38.3",
         "glob": "^11.0.3",
         "lodash": "^4.17.21",

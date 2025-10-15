@@ -85,7 +85,7 @@ export async function getPublishedPostCardsPage(options?: {
             .innerJoin(blogTag, eq(blogTag.id, blogPostTag.tagId))
     }
 
-    const rows = await (query as any)
+    const rows = await query
         .where(
             and(
                 whereExpr,
@@ -96,44 +96,29 @@ export async function getPublishedPostCardsPage(options?: {
         .orderBy(desc(blogPost.publishedAt), desc(blogPost.id))
         .limit(limit + 1)
 
-    type Row = {
-        id: string
-        slug: string
-        title: string
-        excerpt: string | null
-        publishedAt: Date | null
-        readingTime: number | null
-        authorName: string | null
-        imageUrl: string | null
-        imageAlt: string | null
-        imageBlur: string | null
-    }
-
-    const items: BlogPostCard[] = (rows as Row[])
-        .slice(0, limit)
-        .map((r: Row) => ({
-            id: r.id,
-            slug: r.slug,
-            title: r.title,
-            excerpt: r.excerpt,
-            publishedAt: r.publishedAt ? r.publishedAt.toISOString() : null,
-            readingTime: r.readingTime,
-            featuredImage: r.imageUrl
-                ? {
-                      url: r.imageUrl,
-                      alt: r.imageAlt ?? '',
-                      blurDataUrl: r.imageBlur,
-                  }
-                : null,
-            author: r.authorName ? { name: r.authorName } : null,
-        }))
+    const items: BlogPostCard[] = rows.slice(0, limit).map((r) => ({
+        id: r.id,
+        slug: r.slug,
+        title: r.title,
+        excerpt: r.excerpt,
+        publishedAt: r.publishedAt ? r.publishedAt.toISOString() : null,
+        readingTime: r.readingTime,
+        featuredImage: r.imageUrl
+            ? {
+                  url: r.imageUrl,
+                  alt: r.imageAlt ?? '',
+                  blurDataUrl: r.imageBlur,
+              }
+            : null,
+        author: r.authorName ? { name: r.authorName } : null,
+    }))
 
     let nextCursor: { publishedAt: Date; id: string } | undefined
     if (rows.length > limit) {
         const last = rows[limit - 1]!
         nextCursor = {
-            publishedAt: (last as any).publishedAt!,
-            id: (last as any).id,
+            publishedAt: last.publishedAt!,
+            id: last.id,
         }
     }
 

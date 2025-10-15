@@ -19,6 +19,15 @@ export const config = [
         },
         rules: {
             'turbo/no-undeclared-env-vars': 'warn',
+            'no-restricted-properties': [
+                'error',
+                {
+                    object: 'process',
+                    property: 'env',
+                    message:
+                        'Use env module instead (e.g., import { env } from "apps/web/env" or "packages/db/src/env")',
+                },
+            ],
         },
     },
     {
@@ -28,5 +37,19 @@ export const config = [
     },
     {
         ignores: ['dist/**'],
+    },
+    {
+        rules: {
+            // Allow env access in dedicated env modules
+            'no-restricted-properties': 'off',
+        },
+        files: ['**/*/env.ts', '**/*/env.mjs', '**/*/env.cjs'],
+    },
+    {
+        files: ['packages/seo/**'],
+        rules: {
+            // Temporarily allow process.env in SEO package until migrated
+            'no-restricted-properties': 'off',
+        },
     },
 ]

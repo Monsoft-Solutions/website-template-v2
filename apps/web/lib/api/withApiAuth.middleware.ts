@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { env } from '@/env'
+
 /**
  * API authentication middleware for validating bearer tokens.
  *
@@ -32,7 +34,7 @@ export function withApiAuth(
 
             // Validate against environment variable
             // Future: extend this to check database, secrets manager, etc.
-            const apiKey = process.env.BLOG_API_KEY
+            const apiKey = env.BLOG_API_KEY
             if (!apiKey) {
                 console.error(
                     'BLOG_API_KEY environment variable not configured'

@@ -9,11 +9,20 @@ import {
     createResourceSchema,
     images,
 } from '@workspace/db/schema'
-import { inArray } from 'drizzle-orm'
+import { type ExtractTablesWithRelations, inArray } from 'drizzle-orm'
+import type { PgTransaction } from 'drizzle-orm/pg-core'
+import type { PostgresJsQueryResultHKT } from 'drizzle-orm/postgres-js'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { uploadImageToBlobFormUrl } from '@/lib/api/upload-image.util'
 import { withApiAuth } from '@/lib/api/withApiAuth.middleware'
+
+// Type alias for Drizzle transaction
+type DbTransaction = PgTransaction<
+    PostgresJsQueryResultHKT,
+    typeof import('@workspace/db/schema'),
+    ExtractTablesWithRelations<typeof import('@workspace/db/schema')>
+>
 
 /**
  * POST /api/blog/posts/create
@@ -276,7 +285,7 @@ async function createBlogPostInTransaction(
  * Create blog post to category associations in transaction
  */
 async function createCategoryAssociations(
-    tx: any,
+    tx: DbTransaction,
     postId: string,
     categoryIds: string[]
 ) {
@@ -296,7 +305,7 @@ async function createCategoryAssociations(
  * Create blog post to tag associations in transaction
  */
 async function createTagAssociations(
-    tx: any,
+    tx: DbTransaction,
     postId: string,
     tagIds: string[]
 ) {

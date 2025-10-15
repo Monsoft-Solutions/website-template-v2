@@ -32,53 +32,55 @@ import { useReportWebVitals } from 'next/web-vitals'
  */
 export function WebVitals() {
     useReportWebVitals((metric) => {
-        // Log to console in development
-        if (process.env.NODE_ENV === 'development') {
-            console.log('📊 Web Vitals:', {
-                name: metric.name,
-                value: metric.value,
-                rating: metric.rating,
-                delta: metric.delta,
-                id: metric.id,
-            })
-        }
+        // Send to analytics - example implementations below (uncomment and configure as needed)
 
-        // Send to analytics in production
-        if (process.env.NODE_ENV === 'production') {
-            // Example: Send to Google Analytics
-            // window.gtag?.('event', metric.name, {
-            //     value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-            //     event_label: metric.id,
-            //     non_interaction: true,
-            // })
-            // Example: Send to custom analytics endpoint
-            // fetch('/api/analytics/web-vitals', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         name: metric.name,
-            //         value: metric.value,
-            //         rating: metric.rating,
-            //         delta: metric.delta,
-            //         id: metric.id,
-            //         navigationType: metric.navigationType,
-            //     }),
-            //     keepalive: true,
-            // }).catch((error) => {
-            //     console.error('Failed to send web vitals:', error)
-            // })
-            // Example: Send to Vercel Analytics
-            // if (window.va) {
-            //     window.va('event', {
-            //         name: 'web-vitals',
-            //         data: {
-            //             metric: metric.name,
-            //             value: metric.value,
-            //             rating: metric.rating,
-            //         },
-            //     })
-            // }
-        }
+        // Example: Log to console for debugging
+        // console.log('📊 Web Vitals:', {
+        //     name: metric.name,
+        //     value: metric.value,
+        //     rating: metric.rating,
+        //     delta: metric.delta,
+        //     id: metric.id,
+        // })
+
+        // Example: Send to Google Analytics
+        // window.gtag?.('event', metric.name, {
+        //     value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+        //     event_label: metric.id,
+        //     non_interaction: true,
+        // })
+
+        // Example: Send to custom analytics endpoint
+        // fetch('/api/analytics/web-vitals', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         name: metric.name,
+        //         value: metric.value,
+        //         rating: metric.rating,
+        //         delta: metric.delta,
+        //         id: metric.id,
+        //         navigationType: metric.navigationType,
+        //     }),
+        //     keepalive: true,
+        // }).catch((error) => {
+        //     console.error('Failed to send web vitals:', error)
+        // })
+
+        // Example: Send to Vercel Analytics
+        // if (window.va) {
+        //     window.va('event', {
+        //         name: 'web-vitals',
+        //         data: {
+        //             metric: metric.name,
+        //             value: metric.value,
+        //             rating: metric.rating,
+        //         },
+        //     })
+        // }
+
+        // Suppress unused variable warning - remove this when you implement analytics
+        void metric
     })
 
     return null
