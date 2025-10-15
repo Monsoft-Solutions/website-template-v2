@@ -49,3 +49,22 @@ export type {
     ImageConfig,
     ImageSectionButton,
 } from './image-section.type'
+
+// HeroSection types
+export type {
+    HeroSectionProps,
+    HeroCTAButton,
+    HeroImageConfig,
+} from './hero-section.type'
+
+// FeaturesSection types
+export type { FeaturesSectionProps, Feature } from './features-section.type'
+
+// AboutPreviewSection types
+export type { AboutPreviewSectionProps } from './about-preview-section.type'
+
+// TestimonialsSection types
+export type {
+    TestimonialsSectionProps,
+    Testimonial,
+} from './testimonials-section.type'

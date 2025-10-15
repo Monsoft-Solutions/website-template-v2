@@ -86,15 +86,6 @@ export function ImageSection({
                                 src={image.src}
                                 alt={image.alt}
                                 fill
-                                {...(image.width &&
-                                    image.height && {
-                                        width: image.width,
-                                        height: image.height,
-                                        style: {
-                                            width: '100%',
-                                            height: 'auto',
-                                        },
-                                    })}
                                 className='object-cover'
                                 priority={image.priority}
                                 sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
