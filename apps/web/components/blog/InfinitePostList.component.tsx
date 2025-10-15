@@ -10,6 +10,8 @@ type InfinitePostListProps = {
     initialCursor?: string
     className?: string
     pageSize?: number
+    categorySlug?: string
+    tagSlug?: string
 }
 
 export function InfinitePostList({
@@ -17,11 +19,15 @@ export function InfinitePostList({
     initialCursor,
     className = '',
     pageSize = 12,
+    categorySlug,
+    tagSlug,
 }: InfinitePostListProps) {
     const { posts, isLoading, hasMore, observerRef } = useInfiniteBlogPosts({
         initialPosts,
         pageSize,
         initialCursor,
+        categorySlug,
+        tagSlug,
     })
 
     if (posts.length === 0) {

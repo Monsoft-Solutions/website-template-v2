@@ -72,3 +72,41 @@ export async function listActiveTagsWithCounts(): Promise<BlogTagItem[]> {
         count: Number(r.count),
     }))
 }
+
+export async function getActiveCategoryBySlug(
+    slug: string
+): Promise<BlogCategoryItem | null> {
+    const row = await db
+        .select({
+            id: blogCategory.id,
+            name: blogCategory.name,
+            slug: blogCategory.slug,
+            isActive: blogCategory.isActive,
+        })
+        .from(blogCategory)
+        .where(eq(blogCategory.slug, slug))
+        .limit(1)
+        .then((rows) => rows[0])
+
+    if (!row || row.isActive !== true) return null
+    return { id: row.id, name: row.name, slug: row.slug }
+}
+
+export async function getActiveTagBySlug(
+    slug: string
+): Promise<BlogTagItem | null> {
+    const row = await db
+        .select({
+            id: blogTag.id,
+            name: blogTag.name,
+            slug: blogTag.slug,
+            isActive: blogTag.isActive,
+        })
+        .from(blogTag)
+        .where(eq(blogTag.slug, slug))
+        .limit(1)
+        .then((rows) => rows[0])
+
+    if (!row || row.isActive !== true) return null
+    return { id: row.id, name: row.name, slug: row.slug }
+}

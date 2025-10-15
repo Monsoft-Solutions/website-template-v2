@@ -7,6 +7,8 @@ type UseInfiniteBlogPostsOptions = {
     initialPosts: BlogPostCard[]
     pageSize?: number
     initialCursor?: string
+    categorySlug?: string
+    tagSlug?: string
 }
 
 type UseInfiniteBlogPostsReturn = {
@@ -25,6 +27,8 @@ export function useInfiniteBlogPosts({
     initialPosts,
     pageSize = 12,
     initialCursor,
+    categorySlug,
+    tagSlug,
 }: UseInfiniteBlogPostsOptions): UseInfiniteBlogPostsReturn {
     const [posts, setPosts] = useState<BlogPostCard[]>(initialPosts)
     const [isLoading, setIsLoading] = useState(false)
@@ -43,9 +47,9 @@ export function useInfiniteBlogPosts({
                 pageSize: pageSize.toString(),
             })
 
-            if (cursor) {
-                params.append('cursor', cursor)
-            }
+            if (cursor) params.append('cursor', cursor)
+            if (categorySlug) params.append('categorySlug', categorySlug)
+            if (tagSlug) params.append('tagSlug', tagSlug)
 
             const response = await fetch(`/api/blog/posts?${params.toString()}`)
 
@@ -64,7 +68,7 @@ export function useInfiniteBlogPosts({
         } finally {
             setIsLoading(false)
         }
-    }, [cursor, hasMore, isLoading, pageSize])
+    }, [cursor, hasMore, isLoading, pageSize, categorySlug, tagSlug])
 
     // Intersection Observer callback ref
     const observerRef = useCallback(

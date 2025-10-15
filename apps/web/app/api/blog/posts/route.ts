@@ -43,14 +43,15 @@ export async function GET(request: NextRequest) {
             }
         }
 
-        // TODO: categorySlug and tagSlug filters will be added in Phase 5
-        // const categorySlug = searchParams.get('categorySlug')
-        // const tagSlug = searchParams.get('tagSlug')
+        const categorySlug = searchParams.get('categorySlug') || undefined
+        const tagSlug = searchParams.get('tagSlug') || undefined
 
         // Fetch posts
         const { items, nextCursor } = await getPublishedPostCardsPage({
             limit: pageSize,
             cursor,
+            categorySlug,
+            tagSlug,
         })
 
         // Encode next cursor for client

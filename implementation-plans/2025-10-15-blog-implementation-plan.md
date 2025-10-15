@@ -58,7 +58,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
 
 ## Implementation Phases
 
-### Phase 1 — Query utilities and types
+### Phase 1 — Query utilities and types (DONE)
 
 - Objective: Minimal, efficient queries that return only necessary fields.
 - Deliverables:
@@ -70,7 +70,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
     - Card fields: id, slug, title, excerpt, publishedAt, readingTime, featured image minimal (url, alt), primary author name.
     - Only include `content` in detail query.
 
-### Phase 2 — Blog index page (SSR initial 12)
+### Phase 2 — Blog index page (SSR initial 12) (DONE)
 
 - Objective: `/blog` server page that renders 12 posts from server queries.
 - Deliverables:
@@ -80,7 +80,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
 - Validation:
     - Renders 12 posts, stable order by publishedAt DESC then id DESC.
 
-### Phase 3 — Infinite pagination via API
+### Phase 3 — Infinite pagination via API (DONE)
 
 - Objective: Client-side pagination fetching JSON.
 - Deliverables:
@@ -90,7 +90,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
 - Criteria:
     - Returns next slice and nextCursor; no duplicates; handles end-of-list.
 
-### Phase 4 — Post detail page with Markdown (SSR)
+### Phase 4 — Post detail page with Markdown (SSR) (DONE)
 
 - Objective: `/blog/[slug]` renders server-side with Markdown content.
 - Deliverables:
@@ -100,7 +100,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
 - Criteria:
     - Fast render; only Markdown for `content`.
 
-### Phase 5 — Categories & Tags pages
+### Phase 5 — Categories & Tags pages (DONE)
 
 - Objective: Index and detail pages for taxonomies.
 - Deliverables:
@@ -116,6 +116,7 @@ The plan emphasizes a minimal viable path while leaving room for incremental enh
 - Deliverables:
     - Use `@workspace/seo` to set `metadata` for blog index and posts
     - Add WebPage/Article JSON-LD in detail pages
+    - Use cache for the DB queries, so we don't duplicate the db requests
 
 ### Phase 7 — Performance, accessibility, and DX polish (initial)
 
