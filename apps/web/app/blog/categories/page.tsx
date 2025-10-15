@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
+import { Breadcrumbs } from '@/components/shared'
 import { listActiveCategoriesWithCounts } from '@/lib/blog/taxonomy.query'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
