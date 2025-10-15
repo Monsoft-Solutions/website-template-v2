@@ -29,6 +29,18 @@ import { mainNavigation } from '@/lib/data/navigation'
  * Main site header with responsive navigation, mobile menu, and theme toggle
  */
 
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
 export function Header() {
     const pathname = usePathname()
     const { theme, setTheme } = useTheme()
