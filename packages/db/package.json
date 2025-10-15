@@ -4,9 +4,10 @@
     "private": true,
     "type": "module",
     "exports": {
-        "./client": "./src/index.ts",
+        ".": "./src/index.ts",
+        "./client": "./src/client.ts",
         "./schema": "./src/schema/index.ts",
-        "./types": "./src/types.ts"
+        "./types": "./src/types/index.ts"
     },
     "scripts": {
         "db:generate": "drizzle-kit generate",
