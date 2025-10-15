@@ -102,17 +102,6 @@ Reference agents in requests:
 
 Agents automatically apply based on file types and contexts defined in their rule files.
 
-## Access the app on protected routes
-
-- To access the app on protected routes (_/app/_) you should use the chrome-dev MCP
-
-**Application Access Credentials:**
-Use these credentials:
-
-- **URL**: Navigate to `/sign-in`
-- **Email**: `admin@test.com`
-- **Password**: `admin123`
-
 ---
 
 _Last updated: 2025-10-08_  

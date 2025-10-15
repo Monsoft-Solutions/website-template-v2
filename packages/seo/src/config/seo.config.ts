@@ -215,42 +215,42 @@ export function mergeSEOConfig(
         ...base,
         ...override,
         defaultMetadata: {
-            ...base.defaultMetadata,
-            ...override.defaultMetadata,
+            ...(base.defaultMetadata ?? {}),
+            ...(override.defaultMetadata ?? {}),
         },
         twitter: override.twitter
             ? {
-                  ...base.twitter,
+                  ...(base.twitter ?? {}),
                   ...override.twitter,
               }
             : base.twitter,
         openGraph: override.openGraph
             ? {
-                  ...base.openGraph,
+                  ...(base.openGraph ?? {}),
                   ...override.openGraph,
               }
             : base.openGraph,
         organization: override.organization
             ? {
-                  ...base.organization,
+                  ...(base.organization ?? {}),
                   ...override.organization,
               }
             : base.organization,
         robots: override.robots
             ? {
-                  ...base.robots,
+                  ...(base.robots ?? {}),
                   ...override.robots,
               }
             : base.robots,
         environment: override.environment
             ? {
-                  ...base.environment,
+                  ...(base.environment ?? {}),
                   ...override.environment,
               }
             : base.environment,
         features: override.features
             ? {
-                  ...base.features,
+                  ...(base.features ?? {}),
                   ...override.features,
               }
             : base.features,
