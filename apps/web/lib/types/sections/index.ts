@@ -68,3 +68,19 @@ export type {
     TestimonialsSectionProps,
     Testimonial,
 } from './testimonials-section.type'
+
+// AboutHeroSection types
+export type { AboutHeroSectionProps } from './about-hero-section.type'
+
+// MissionSection types
+export type { MissionSectionProps, MissionItem } from './mission-section.type'
+
+// StorySection types
+export type { StorySectionProps } from './story-section.type'
+
+// TeamSection types
+export type {
+    TeamSectionProps,
+    TeamMember,
+    TeamMemberSocial,
+} from './team-section.type'

@@ -15,6 +15,9 @@ export { SectionContainer } from './SectionContainer.component'
 export { ContentWrapper } from './ContentWrapper.component'
 export { SectionHeader } from './SectionHeader.component'
 
+// Navigation Components
+export { Breadcrumbs } from './Breadcrumbs.component'
+
 // Content Components
 export { FeatureCard } from './FeatureCard.component'
 export { CTASection } from './CTASection.component'
