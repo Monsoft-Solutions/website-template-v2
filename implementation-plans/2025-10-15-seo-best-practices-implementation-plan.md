@@ -732,13 +732,6 @@ packages/
 
 **Tasks:**
 
-1. **Image Optimization Audit**
-    - Review all image usage in components
-    - Ensure all images use `next/image`
-    - Set proper priority for above-the-fold images
-    - Implement lazy loading for below-the-fold images
-    - Configure image sizes for responsive loading
-
 2. **Font Loading Optimization**
     - Already using `next/font` with Geist (optimized)
     - Verify font display strategy (swap, optional, etc.)
@@ -751,37 +744,31 @@ packages/
     - Use Suspense boundaries for metadata loading
     - Avoid blocking metadata generation
 
-4. **JSON-LD Performance**
-    - Ensure JSON-LD is rendered server-side
-    - Minimize JSON-LD payload size
-    - Remove unnecessary schema properties
-    - Compress JSON output
-
-5. **Critical CSS Strategy**
+4. **Critical CSS Strategy**
     - Ensure Tailwind CSS is optimized
     - Remove unused CSS classes
     - Inline critical CSS for above-the-fold content
     - Defer non-critical styles
 
-6. **Server Component Optimization**
+5. **Server Component Optimization**
     - Use Server Components for all SEO components
     - Minimize client-side JavaScript
     - Stream content when possible
     - Use Suspense for slow data fetching
 
-7. **Implement Resource Hints**
+6. **Implement Resource Hints**
     - Add `dns-prefetch` for external resources
     - Add `preconnect` for critical origins
     - Use `preload` for critical resources
     - Implement `fetchPriority` for important images
 
-8. **Core Web Vitals Monitoring Setup**
+7. **Core Web Vitals Monitoring Setup**
     - Add Web Vitals reporting (optional, using Next.js built-in)
     - Monitor LCP (Largest Contentful Paint)
     - Monitor FID (First Input Delay) / INP (Interaction to Next Paint)
     - Monitor CLS (Cumulative Layout Shift)
 
-9. **Create Performance Documentation**
+8. **Create Performance Documentation**
     - Document image optimization patterns
     - Document font loading strategy
     - Document caching strategies
