@@ -2,6 +2,7 @@ import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 
+import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
 import { getActiveTagBySlug } from '@/lib/blog/taxonomy.query'
@@ -66,20 +67,43 @@ export default async function TagDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <div className='container py-12'>
+        <div className='container py-12 lg:py-16'>
             <WebPageSchema
                 name={`${tag.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/tags/${tag.slug}`}
                 description={`Explore articles tagged with ${tag.name}. Find insights and tutorials on this topic.`}
             />
-            <div className='mb-12'>
-                <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
-                    {tag.name}
-                </h1>
-                <p className='text-muted-foreground mt-4 text-lg'>
-                    Posts with this tag
-                </p>
-            </div>
+
+            <Breadcrumbs
+                items={[
+                    { label: 'Home', href: '/' },
+                    { label: 'Blog', href: '/blog' },
+                    { label: 'Tags', href: '/blog/tags' },
+                    { label: tag.name },
+                ]}
+            />
+
+            <header className='mb-12 space-y-6'>
+                <div className='space-y-4'>
+                    <div className='flex flex-wrap items-center gap-3'>
+                        <span
+                            className='text-muted-foreground text-3xl sm:text-4xl lg:text-5xl'
+                            aria-hidden='true'
+                        >
+                            #
+                        </span>
+                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl'>
+                            {tag.name}
+                        </h1>
+                        <span className='bg-muted text-muted-foreground inline-flex h-8 items-center rounded-full px-3 text-sm font-semibold'>
+                            Tag
+                        </span>
+                    </div>
+                    <p className='text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl'>
+                        Posts with this tag
+                    </p>
+                </div>
+            </header>
 
             <InfinitePostList
                 initialPosts={initialPosts}

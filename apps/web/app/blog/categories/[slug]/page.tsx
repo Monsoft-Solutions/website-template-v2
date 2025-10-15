@@ -2,6 +2,7 @@ import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 
+import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
 import { getActiveCategoryBySlug } from '@/lib/blog/taxonomy.query'
@@ -66,20 +67,37 @@ export default async function CategoryDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <div className='container py-12'>
+        <div className='container py-12 lg:py-16'>
             <WebPageSchema
                 name={`${category.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/categories/${category.slug}`}
                 description={`Browse all articles in the ${category.name} category. Stay updated with our latest insights and tutorials.`}
             />
-            <div className='mb-12'>
-                <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
-                    {category.name}
-                </h1>
-                <p className='text-muted-foreground mt-4 text-lg'>
-                    Posts in this category
-                </p>
-            </div>
+
+            <Breadcrumbs
+                items={[
+                    { label: 'Home', href: '/' },
+                    { label: 'Blog', href: '/blog' },
+                    { label: 'Categories', href: '/blog/categories' },
+                    { label: category.name },
+                ]}
+            />
+
+            <header className='mb-12 space-y-6'>
+                <div className='space-y-4'>
+                    <div className='flex flex-wrap items-center gap-3'>
+                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl'>
+                            {category.name}
+                        </h1>
+                        <span className='bg-primary/10 text-primary inline-flex h-8 items-center rounded-full px-3 text-sm font-semibold'>
+                            Category
+                        </span>
+                    </div>
+                    <p className='text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl'>
+                        Posts in this category
+                    </p>
+                </div>
+            </header>
 
             <InfinitePostList
                 initialPosts={initialPosts}
