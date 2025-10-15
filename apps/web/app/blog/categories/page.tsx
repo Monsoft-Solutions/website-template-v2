@@ -1,12 +1,28 @@
+import { WebPageSchema } from '@workspace/seo/react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { listActiveCategoriesWithCounts } from '@/lib/blog/taxonomy.query'
+import { seoConfig } from '@/lib/seo-config'
+import { toNextMetadata } from '@/lib/seo/metadata'
+
+export const metadata: Metadata = toNextMetadata(seoConfig, {
+    title: 'Blog Categories',
+    description:
+        'Browse our blog posts by category. Find articles on web development, design, technology, and more.',
+    canonical: '/blog/categories',
+})
 
 export default async function CategoriesIndexPage() {
     const categories = await listActiveCategoriesWithCounts()
 
     return (
         <div className='container py-12'>
+            <WebPageSchema
+                name='Blog Categories'
+                url={`${seoConfig.siteUrl}/blog/categories`}
+                description='Browse our blog posts by category. Find articles on web development, design, technology, and more.'
+            />
             <div className='mb-12'>
                 <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
                     Categories

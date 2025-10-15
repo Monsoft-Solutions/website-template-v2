@@ -1,12 +1,28 @@
+import { WebPageSchema } from '@workspace/seo/react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { listActiveTagsWithCounts } from '@/lib/blog/taxonomy.query'
+import { seoConfig } from '@/lib/seo-config'
+import { toNextMetadata } from '@/lib/seo/metadata'
+
+export const metadata: Metadata = toNextMetadata(seoConfig, {
+    title: 'Blog Tags',
+    description:
+        'Browse our blog posts by tag. Discover content on specific topics and technologies.',
+    canonical: '/blog/tags',
+})
 
 export default async function TagsIndexPage() {
     const tags = await listActiveTagsWithCounts()
 
     return (
         <div className='container py-12'>
+            <WebPageSchema
+                name='Blog Tags'
+                url={`${seoConfig.siteUrl}/blog/tags`}
+                description='Browse our blog posts by tag. Discover content on specific topics and technologies.'
+            />
             <div className='mb-12'>
                 <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
                     Tags

@@ -1,30 +1,50 @@
+import { ArticleSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { cache } from 'react'
 
 import { PostMarkdown } from '@/components/blog/PostMarkdown.component'
 import { getPublishedPostBySlug } from '@/lib/blog/post-detail.query'
+import { seoConfig } from '@/lib/seo-config'
+import { toNextMetadata } from '@/lib/seo/metadata'
 
 type PageProps = {
     params: Promise<{ slug: string }>
 }
 
+const getCachedPostBySlug = cache(async (slug: string) =>
+    getPublishedPostBySlug(slug)
+)
+
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
     const { slug } = await params
-    const post = await getPublishedPostBySlug(slug)
+    const post = await getCachedPostBySlug(slug)
     if (!post) return { title: 'Post not found' }
 
-    return {
+    return toNextMetadata(seoConfig, {
         title: post.title,
         description: post.excerpt ?? undefined,
-    }
+        openGraph: {
+            type: 'article',
+            images: post.featuredImage
+                ? [
+                      {
+                          url: post.featuredImage.url,
+                          alt: post.featuredImage.alt,
+                      },
+                  ]
+                : undefined,
+        },
+        canonical: `/blog/${post.slug}`,
+    })
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
     const { slug } = await params
-    const post = await getPublishedPostBySlug(slug)
+    const post = await getCachedPostBySlug(slug)
     if (!post) notFound()
 
     const publishedDate = post.publishedAt
@@ -79,6 +99,22 @@ export default async function BlogPostPage({ params }: PageProps) {
             )}
 
             <PostMarkdown content={post.content} />
+
+            <ArticleSchema
+                type='BlogPosting'
+                headline={post.title}
+                description={post.excerpt ?? undefined}
+                author={post.author?.name ?? 'Unknown'}
+                datePublished={post.publishedAt ?? new Date().toISOString()}
+                dateModified={post.publishedAt ?? undefined}
+                image={post.featuredImage?.url}
+                mainEntityOfPage={`${seoConfig.siteUrl}/blog/${post.slug}`}
+                publisher={{
+                    name: seoConfig.organization?.name ?? seoConfig.siteName,
+                    logo: seoConfig.organization?.logo,
+                    url: seoConfig.organization?.url ?? seoConfig.siteUrl,
+                }}
+            />
 
             {(post.categories.length > 0 || post.tags.length > 0) && (
                 <footer className='not-prose mt-12 border-t pt-6'>

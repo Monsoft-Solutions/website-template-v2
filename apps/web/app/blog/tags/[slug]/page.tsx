@@ -1,28 +1,42 @@
+import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
+import { cache } from 'react'
 
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
 import { getActiveTagBySlug } from '@/lib/blog/taxonomy.query'
+import { seoConfig } from '@/lib/seo-config'
+import { toNextMetadata } from '@/lib/seo/metadata'
 
 type PageProps = {
     params: Promise<{ slug: string }>
 }
 
+const getCachedTagBySlug = cache(async (slug: string) =>
+    getActiveTagBySlug(slug)
+)
+
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
     const { slug } = await params
-    const tag = await getActiveTagBySlug(slug)
-    return {
-        title: tag ? `${tag.name} · Tags` : 'Tag',
-        description: tag ? `Posts tagged ${tag.name}.` : 'Tag posts',
+    const tag = await getCachedTagBySlug(slug)
+
+    if (!tag) {
+        return { title: 'Tag not found' }
     }
+
+    return toNextMetadata(seoConfig, {
+        title: `${tag.name} Articles`,
+        description: `Explore articles tagged with ${tag.name}. Find insights and tutorials on this topic.`,
+        canonical: `/blog/tags/${tag.slug}`,
+    })
 }
 
 export default async function TagDetailPage({ params }: PageProps) {
     const { slug } = await params
 
-    const tag = await getActiveTagBySlug(slug)
+    const tag = await getCachedTagBySlug(slug)
     if (!tag) {
         return (
             <div className='container py-12'>
@@ -53,6 +67,11 @@ export default async function TagDetailPage({ params }: PageProps) {
 
     return (
         <div className='container py-12'>
+            <WebPageSchema
+                name={`${tag.name} Articles`}
+                url={`${seoConfig.siteUrl}/blog/tags/${tag.slug}`}
+                description={`Explore articles tagged with ${tag.name}. Find insights and tutorials on this topic.`}
+            />
             <div className='mb-12'>
                 <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
                     {tag.name}
