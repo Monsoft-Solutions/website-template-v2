@@ -27,18 +27,18 @@ pnpm --filter @workspace/db db:migrate
 Import the database client and types in your app:
 
 ```typescript
-import { db, type User, type NewUser } from "@workspace/db/client";
-import { users } from "@workspace/db/schema";
+import { type NewUser, type User, db } from '@workspace/db/client'
+import { users } from '@workspace/db/schema'
 
 // Query users
-const allUsers = await db.select().from(users);
+const allUsers = await db.select().from(users)
 
 // Insert a user
 const newUser: NewUser = {
-  name: "John Doe",
-  email: "john@example.com",
-};
-await db.insert(users).values(newUser);
+    name: 'John Doe',
+    email: 'john@example.com',
+}
+await db.insert(users).values(newUser)
 ```
 
 ## Scripts
