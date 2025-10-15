@@ -44,25 +44,35 @@ export async function run({ db }: RunProps) {
     await db.insert(blogTag).values(tagsData).onConflictDoNothing()
     const tags = await db.select().from(blogTag)
 
+    // Clear existing blog posts for re-seeding
     const existingPosts = await db.select().from(blogPost).limit(1)
     if (existingPosts.length > 0) {
-        console.log('Skipping blog post seeding as data already exists.')
-        console.log('✅ Blog seeding complete!')
-        return
+        console.log('Clearing existing blog posts...')
+        await db.delete(blogPostTag)
+        await db.delete(blogPostCategory)
+        await db.delete(blogPost)
     }
 
-    const postsData = Array.from({ length: 5 }, (_, i) => ({
-        title: faker.lorem.sentence(5),
-        slug: faker.lorem.slug(),
-        metaDescription: faker.lorem.sentence(20),
-        content: faker.lorem.paragraphs(3),
-        authorId:
-            authors.length > 0
-                ? authors[Math.floor(Math.random() * authors.length)]!.id
-                : null,
-        publishedAt: new Date(),
-        status: 'published' as const,
-    }))
+    const postsData = Array.from({ length: 30 }, (_, i) => {
+        // Stagger publication dates for better ordering test
+        const publishedDate = new Date()
+        publishedDate.setDate(publishedDate.getDate() - i)
+
+        return {
+            title: faker.lorem.sentence(5),
+            slug: `${faker.lorem.slug()}-${i}`,
+            excerpt: faker.lorem.sentences(2),
+            metaDescription: faker.lorem.sentence(20),
+            content: faker.lorem.paragraphs(5),
+            readingTime: Math.floor(Math.random() * 10) + 3, // 3-12 minutes
+            authorId:
+                authors.length > 0
+                    ? authors[Math.floor(Math.random() * authors.length)]!.id
+                    : null,
+            publishedAt: publishedDate,
+            status: 'published' as const,
+        }
+    })
 
     await db.insert(blogPost).values(postsData)
     const posts = await db.select().from(blogPost)

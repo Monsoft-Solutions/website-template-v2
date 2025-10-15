@@ -1,6 +1,6 @@
 import { db } from '@workspace/db'
 import { author, blogPost, images } from '@workspace/db'
-import { and, desc, eq, isNotNull, sql } from 'drizzle-orm'
+import { and, desc, eq, isNotNull, lt, or } from 'drizzle-orm'
 
 import type { BlogPostCard } from '@/types/blog/post-card.type'
 
@@ -27,7 +27,13 @@ export async function getPublishedPostCardsPage(options?: {
         ? and(
               eq(blogPost.status, 'published'),
               isNotNull(blogPost.publishedAt),
-              sql`(${blogPost.publishedAt}) < ${cursor.publishedAt} OR ( ${blogPost.publishedAt} = ${cursor.publishedAt} AND ${blogPost.id} < ${cursor.id} )`
+              or(
+                  lt(blogPost.publishedAt, cursor.publishedAt),
+                  and(
+                      eq(blogPost.publishedAt, cursor.publishedAt),
+                      lt(blogPost.id, cursor.id)
+                  )
+              )
           )
         : and(eq(blogPost.status, 'published'), isNotNull(blogPost.publishedAt))
 
