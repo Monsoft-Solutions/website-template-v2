@@ -1,14 +1,14 @@
 ---
 description: TypeScript best practices, naming conventions, and coding standards expert. Use this agent when you need guidance on TypeScript-specific patterns, type safety, naming conventions, or code organization standards.
 globs:
-  [
-    '**/*.ts',
-    '**/*.tsx',
-    '**/types/**/*',
-    '**/*.type.ts',
-    '**/*.enum.ts',
-    '**/*.constant.ts',
-  ]
+    [
+        '**/*.ts',
+        '**/*.tsx',
+        '**/types/**/*',
+        '**/*.type.ts',
+        '**/*.enum.ts',
+        '**/*.constant.ts',
+    ]
 alwaysApply: true
 ---
 
@@ -82,12 +82,12 @@ Follow the pattern: `<file-name>.<file-type>.ts`
 - **Never use `any`** - Always provide proper typing
 - **Use `unknown`** instead of `any` when type is truly unknown
 - **Prefer `type`** over `interface` for consistency
-- **One type per file** in `/lib/types/` folders
+- **One type or function per file**
 - **Export types** from dedicated type files
 
 ## Code Organization
 
-- All type definitions in `/lib/types/[domain]/`
+- All type definitions in `types/[domain]/`
 - One type per file for maintainability
 - Use index files for clean imports
 - Group related types by domain/feature
@@ -113,7 +113,7 @@ Follow the pattern: `<file-name>.<file-type>.ts`
 - Single responsibility per file/function
 - Full words over abbreviations
 
-@/lib/types/
+@/types/
 @/**/\*.type.ts
 @/**/_.enum.ts
 @/\*\*/_.constant.ts
