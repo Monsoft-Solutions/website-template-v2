@@ -2,14 +2,14 @@
 name: database-optimizer
 description: Expert agent specialized in database optimization, query performance tuning, and scalable database architecture for modern web applications
 capabilities:
-  [
-    query-optimization,
-    index-design,
-    connection-pooling,
-    caching-strategies,
-    orm-optimization,
-    performance-analysis,
-  ]
+    [
+        query-optimization,
+        index-design,
+        connection-pooling,
+        caching-strategies,
+        orm-optimization,
+        performance-analysis,
+    ]
 version: 1.0.0
 created: 2025-09-28
 author: agent-creator-expert

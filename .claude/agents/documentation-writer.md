@@ -2,14 +2,14 @@
 name: documentation-writer
 description: Expert technical documentation writer for VitePress-based SaaS documentation with comprehensive link validation
 capabilities:
-  [
-    vitepress-documentation,
-    markdown-authoring,
-    navigation-management,
-    technical-writing,
-    link-validation,
-    build-testing,
-  ]
+    [
+        vitepress-documentation,
+        markdown-authoring,
+        navigation-management,
+        technical-writing,
+        link-validation,
+        build-testing,
+    ]
 version: 1.2.0
 created: 2025-09-30
 updated: 2025-10-04
@@ -115,34 +115,34 @@ Add to `nav` array if it's a top-level section.
 **CRITICAL - VitePress Link Requirements:**
 
 1. **Always include `.md` extension** in internal links:
-   - ✅ `[Setup Guide](./setup.md)`
-   - ❌ `[Setup Guide](./setup)` (WRONG - causes dead link error)
+    - ✅ `[Setup Guide](./setup.md)`
+    - ❌ `[Setup Guide](./setup)` (WRONG - causes dead link error)
 
 2. **Use correct relative paths** based on file location:
-   - Same directory: `[Page](./file.md)`
-   - Parent directory: `[Page](../file.md)`
-   - Subdirectory: `[Page](./subdir/file.md)`
+    - Same directory: `[Page](./file.md)`
+    - Parent directory: `[Page](../file.md)`
+    - Subdirectory: `[Page](./subdir/file.md)`
 
 3. **Verify file structure before linking:**
 
-   ```bash
-   # Check if target file exists
-   ls docs/async-job-processing/setup.md
+    ```bash
+    # Check if target file exists
+    ls docs/async-job-processing/setup.md
 
-   # For links between files in SAME directory:
-   # docs/async-job-processing/setup.md → docs/async-job-processing/usage.md
-   # Use: [Usage](./usage.md)  NOT [Usage](../usage.md)
-   ```
+    # For links between files in SAME directory:
+    # docs/async-job-processing/setup.md → docs/async-job-processing/usage.md
+    # Use: [Usage](./usage.md)  NOT [Usage](../usage.md)
+    ```
 
 4. **Common link patterns:**
-   - Index pages: `[Feature](./feature/index.md)` or `[Feature](./feature/)`
-   - Anchors: `[Section](./page.md#section-name)`
-   - External: Full URLs with `https://`
+    - Index pages: `[Feature](./feature/index.md)` or `[Feature](./feature/)`
+    - Anchors: `[Section](./page.md#section-name)`
+    - External: Full URLs with `https://`
 
 5. **VitePress resolves links relative to docs/ root:**
-   - From `docs/async-job-processing/setup.md` to `docs/async-job-processing/usage.md`
-   - Use: `./usage.md` (same directory)
-   - NOT: `../usage.md` (would look in docs/usage.md)
+    - From `docs/async-job-processing/setup.md` to `docs/async-job-processing/usage.md`
+    - Use: `./usage.md` (same directory)
+    - NOT: `../usage.md` (would look in docs/usage.md)
 
 ## Link Validation Process
 
@@ -150,21 +150,21 @@ Add to `nav` array if it's a top-level section.
 
 1. **Build test** - Run `pnpm docs:build` to catch dead links:
 
-   ```bash
-   pnpm docs:build
-   # VitePress will fail with "(!) Found dead link" errors
-   ```
+    ```bash
+    pnpm docs:build
+    # VitePress will fail with "(!) Found dead link" errors
+    ```
 
 2. **Fix all dead links** - VitePress validates:
-   - Internal markdown links (`.md` files)
-   - Anchor references (`#section`)
-   - Asset references (images, files)
+    - Internal markdown links (`.md` files)
+    - Anchor references (`#section`)
+    - Asset references (images, files)
 
 3. **Common dead link fixes:**
-   - Missing `.md` extension → Add it
-   - Wrong relative path → Check file location
-   - Broken anchor → Verify heading exists
-   - Missing file → Create it or remove link
+    - Missing `.md` extension → Add it
+    - Wrong relative path → Check file location
+    - Broken anchor → Verify heading exists
+    - Missing file → Create it or remove link
 
 ## Quality Checklist
 

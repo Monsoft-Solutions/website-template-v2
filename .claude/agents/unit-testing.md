@@ -4,20 +4,20 @@ version: 1.0.0
 title: Unit Testing Agent
 description: Comprehensive unit testing expert specializing in Vitest, TypeScript, and modern testing best practices
 capabilities:
-  - vitest-expert
-  - typescript-testing
-  - test-best-practices
-  - unit-testing
-  - test-coverage
-  - mocking-strategies
+    - vitest-expert
+    - typescript-testing
+    - test-best-practices
+    - unit-testing
+    - test-coverage
+    - mocking-strategies
 globs:
-  [
-    '**/*.test.ts',
-    '**/*.spec.ts',
-    '**/tests/**',
-    '**/test-setup.ts',
-    '**/vitest.config.ts',
-  ]
+    [
+        '**/*.test.ts',
+        '**/*.spec.ts',
+        '**/tests/**',
+        '**/test-setup.ts',
+        '**/vitest.config.ts',
+    ]
 alwaysApply: false
 ---
 
@@ -50,55 +50,58 @@ Comprehensive unit testing expert specializing in Vitest, TypeScript, and modern
 ### Database Tests
 
 ```typescript
-import { dbTest } from '../test-setup';
-import { user } from '@/lib/db/schemas';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest'
+
+import { user } from '@/lib/db/schemas'
+
+import { dbTest } from '../test-setup'
 
 describe('User Queries', () => {
-  beforeEach(async () => {
-    await dbTest.delete(user);
-  });
+    beforeEach(async () => {
+        await dbTest.delete(user)
+    })
 
-  it('should create and retrieve user', async () => {
-    await dbTest.insert(user).values(testUser);
-    const result = await dbTest.select().from(user);
-    expect(result).toHaveLength(1);
-  });
-});
+    it('should create and retrieve user', async () => {
+        await dbTest.insert(user).values(testUser)
+        const result = await dbTest.select().from(user)
+        expect(result).toHaveLength(1)
+    })
+})
 ```
 
 ### API Route Tests
 
 ```typescript
-import { describe, it, expect, vi } from 'vitest';
-import { POST } from '@/app/api/stripe/webhook/route';
+import { describe, expect, it, vi } from 'vitest'
+
+import { POST } from '@/app/api/stripe/webhook/route'
 
 vi.mock('@/lib/payments/stripe', () => ({
-  stripe: { webhooks: { constructEvent: vi.fn() } },
-}));
+    stripe: { webhooks: { constructEvent: vi.fn() } },
+}))
 
 describe('Webhook Handler', () => {
-  it('should handle subscription event', async () => {
-    const response = await POST(request);
-    expect(response.status).toBe(200);
-  });
-});
+    it('should handle subscription event', async () => {
+        const response = await POST(request)
+        expect(response.status).toBe(200)
+    })
+})
 ```
 
 ### Service Tests
 
 ```typescript
 describe('parseProductFeatures', () => {
-  it('should parse JSON features', () => {
-    const result = parseProductFeatures(metadata);
-    expect(result).toEqual(['Feature 1', 'Feature 2']);
-  });
+    it('should parse JSON features', () => {
+        const result = parseProductFeatures(metadata)
+        expect(result).toEqual(['Feature 1', 'Feature 2'])
+    })
 
-  it('should handle invalid input', () => {
-    const result = parseProductFeatures({});
-    expect(result).toEqual([]);
-  });
-});
+    it('should handle invalid input', () => {
+        const result = parseProductFeatures({})
+        expect(result).toEqual([])
+    })
+})
 ```
 
 ## Mocking Strategies
@@ -107,32 +110,32 @@ describe('parseProductFeatures', () => {
 
 ```typescript
 vi.mock('@/lib/db/drizzle', () => ({
-  db: {
-    select: vi.fn(),
-    insert: vi.fn(),
-    update: vi.fn(),
-  },
-}));
+    db: {
+        select: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+    },
+}))
 ```
 
 ### Function Mocking
 
 ```typescript
-const mockGetUser = vi.fn<[], Promise<User | null>>();
+const mockGetUser = vi.fn<[], Promise<User | null>>()
 vi.mock('@/lib/auth/server-context', () => ({
-  getServerContext: mockGetUser,
-}));
+    getServerContext: mockGetUser,
+}))
 ```
 
 ### Mock Factories
 
 ```typescript
 const createMockUser = (overrides?: Partial<User>): User => ({
-  id: 'user_test',
-  email: 'test@example.com',
-  name: 'Test User',
-  ...overrides,
-});
+    id: 'user_test',
+    email: 'test@example.com',
+    name: 'Test User',
+    ...overrides,
+})
 ```
 
 ## Best Practices
@@ -205,13 +208,13 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-      - run: pnpm install
-      - run: pnpm vitest --run --coverage
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: pnpm/action-setup@v2
+            - run: pnpm install
+            - run: pnpm vitest --run --coverage
 ```
 
 # Unit Testing Agent
@@ -243,55 +246,58 @@ Comprehensive unit testing expert specializing in Vitest, TypeScript, and modern
 ### Database Tests
 
 ```typescript
-import { dbTest } from '../test-setup';
-import { user } from '@/lib/db/schemas';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest'
+
+import { user } from '@/lib/db/schemas'
+
+import { dbTest } from '../test-setup'
 
 describe('User Queries', () => {
-  beforeEach(async () => {
-    await dbTest.delete(user);
-  });
+    beforeEach(async () => {
+        await dbTest.delete(user)
+    })
 
-  it('should create and retrieve user', async () => {
-    await dbTest.insert(user).values(testUser);
-    const result = await dbTest.select().from(user);
-    expect(result).toHaveLength(1);
-  });
-});
+    it('should create and retrieve user', async () => {
+        await dbTest.insert(user).values(testUser)
+        const result = await dbTest.select().from(user)
+        expect(result).toHaveLength(1)
+    })
+})
 ```
 
 ### API Route Tests
 
 ```typescript
-import { describe, it, expect, vi } from 'vitest';
-import { POST } from '@/app/api/stripe/webhook/route';
+import { describe, expect, it, vi } from 'vitest'
+
+import { POST } from '@/app/api/stripe/webhook/route'
 
 vi.mock('@/lib/payments/stripe', () => ({
-  stripe: { webhooks: { constructEvent: vi.fn() } },
-}));
+    stripe: { webhooks: { constructEvent: vi.fn() } },
+}))
 
 describe('Webhook Handler', () => {
-  it('should handle subscription event', async () => {
-    const response = await POST(request);
-    expect(response.status).toBe(200);
-  });
-});
+    it('should handle subscription event', async () => {
+        const response = await POST(request)
+        expect(response.status).toBe(200)
+    })
+})
 ```
 
 ### Service Tests
 
 ```typescript
 describe('parseProductFeatures', () => {
-  it('should parse JSON features', () => {
-    const result = parseProductFeatures(metadata);
-    expect(result).toEqual(['Feature 1', 'Feature 2']);
-  });
+    it('should parse JSON features', () => {
+        const result = parseProductFeatures(metadata)
+        expect(result).toEqual(['Feature 1', 'Feature 2'])
+    })
 
-  it('should handle invalid input', () => {
-    const result = parseProductFeatures({});
-    expect(result).toEqual([]);
-  });
-});
+    it('should handle invalid input', () => {
+        const result = parseProductFeatures({})
+        expect(result).toEqual([])
+    })
+})
 ```
 
 ## Mocking Strategies
@@ -300,32 +306,32 @@ describe('parseProductFeatures', () => {
 
 ```typescript
 vi.mock('@/lib/db/drizzle', () => ({
-  db: {
-    select: vi.fn(),
-    insert: vi.fn(),
-    update: vi.fn(),
-  },
-}));
+    db: {
+        select: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+    },
+}))
 ```
 
 ### Function Mocking
 
 ```typescript
-const mockGetUser = vi.fn<[], Promise<User | null>>();
+const mockGetUser = vi.fn<[], Promise<User | null>>()
 vi.mock('@/lib/auth/server-context', () => ({
-  getServerContext: mockGetUser,
-}));
+    getServerContext: mockGetUser,
+}))
 ```
 
 ### Mock Factories
 
 ```typescript
 const createMockUser = (overrides?: Partial<User>): User => ({
-  id: 'user_test',
-  email: 'test@example.com',
-  name: 'Test User',
-  ...overrides,
-});
+    id: 'user_test',
+    email: 'test@example.com',
+    name: 'Test User',
+    ...overrides,
+})
 ```
 
 ## Best Practices

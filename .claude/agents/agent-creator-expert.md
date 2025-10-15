@@ -2,13 +2,13 @@
 name: agent-creator-expert
 description: Expert agent specialized in creating, managing, and maintaining AI agents across multiple deployment locations with comprehensive quality standards
 capabilities:
-  [
-    agent-creation,
-    rule-management,
-    registry-maintenance,
-    multi-location-deployment,
-    best-practices-implementation,
-  ]
+    [
+        agent-creation,
+        rule-management,
+        registry-maintenance,
+        multi-location-deployment,
+        best-practices-implementation,
+    ]
 version: 1.0.0
 created: 2025-09-28
 author: system

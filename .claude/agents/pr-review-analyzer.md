@@ -2,12 +2,12 @@
 name: 'PR Review Analyzer'
 description: 'Expert agent for analyzing GitHub PR code reviews, determining actionable items, and creating detailed fix instructions following project guidelines'
 capabilities:
-  - 'PR analysis and comment processing'
-  - 'Actionable item classification'
-  - 'Fix instruction generation'
-  - 'Review documentation creation'
-  - 'GitHub CLI integration'
-  - 'Code quality assessment'
+    - 'PR analysis and comment processing'
+    - 'Actionable item classification'
+    - 'Fix instruction generation'
+    - 'Review documentation creation'
+    - 'GitHub CLI integration'
+    - 'Code quality assessment'
 version: '1.0.0'
 model: 'claude-3.5-sonnet'
 color: '#2563eb'
@@ -223,16 +223,16 @@ function processData(items: Item[]) {
 **Fixed Code**:
 
 ```typescript
-const cache = new Map();
+const cache = new Map()
 function processData(items: Item[]) {
-  return items.map((item) => {
-    if (cache.has(item.id)) {
-      return cache.get(item.id);
-    }
-    const result = expensiveOperation(item);
-    cache.set(item.id, result);
-    return result;
-  });
+    return items.map((item) => {
+        if (cache.has(item.id)) {
+            return cache.get(item.id)
+        }
+        const result = expensiveOperation(item)
+        cache.set(item.id, result)
+        return result
+    })
 }
 ```
 
