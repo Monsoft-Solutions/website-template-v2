@@ -275,9 +275,8 @@ export function validateSitemapEntries(entries: SitemapEntry[]): string[] {
 
         // Validate lastModified format
         if (entry.lastModified) {
-            try {
-                new Date(entry.lastModified)
-            } catch {
+            const d = new Date(entry.lastModified)
+            if (isNaN(d.getTime())) {
                 errors.push(
                     `Entry ${index}: Invalid lastModified date format: ${entry.lastModified}`
                 )

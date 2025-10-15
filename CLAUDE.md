@@ -175,7 +175,7 @@ import {
     getSiteUrl,
     mergeSEOConfig,
 } from '@workspace/seo/config'
-import type { SEOConfig } from '@workspace/seo/config'
+import type { SEOConfig } from '@workspace/seo/types'
 
 // Create default SEO configuration from environment variables
 const seoConfig = createDefaultSEOConfig()

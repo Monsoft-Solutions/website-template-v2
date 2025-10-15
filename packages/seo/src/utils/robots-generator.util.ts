@@ -48,6 +48,16 @@ export type RobotsRule = {
 }
 
 /**
+ * Local robots rule type for internal array building
+ */
+type LocalRule = {
+    userAgent: string | string[]
+    allow?: string | string[]
+    disallow?: string | string[]
+    crawlDelay?: number
+}
+
+/**
  * Generate robots.txt content based on environment and configuration
  *
  * @param config - Robots generation configuration
@@ -85,8 +95,8 @@ export function generateRobots(
         ...additionalDisallows,
     ]
 
-    // Environment-specific rules
-    const rules: MetadataRoute.Robots['rules'] = []
+    // Environment-specific rules - use LocalRule[] for array operations
+    const rules: LocalRule[] = []
 
     if (environment === 'production') {
         // Production: Allow most crawling with some restrictions
@@ -122,7 +132,7 @@ export function generateRobots(
         : `${baseUrl.replace(/\/$/, '')}/sitemap.xml`
 
     return {
-        rules,
+        rules: rules as MetadataRoute.Robots['rules'],
         sitemap: environment === 'production' ? finalSitemapUrl : undefined,
         host: environment === 'production' ? baseUrl : undefined,
     }
