@@ -25,6 +25,22 @@
         "dev": {
             "cache": false,
             "persistent": true
+        },
+        "db:generate": {
+            "cache": false,
+            "outputs": ["migrations/**"]
+        },
+        "db:migrate": {
+            "cache": false,
+            "outputs": []
+        },
+        "db:push": {
+            "cache": false,
+            "outputs": []
+        },
+        "db:studio": {
+            "cache": false,
+            "persistent": true
         }
     }
 }
