@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import type { Thing, WithContext } from 'schema-dts'
 
 import { sanitizeForJsonLd } from '../utils'
@@ -9,8 +10,9 @@ type JsonLdProps<T extends Thing> = {
 export function JsonLd<T extends Thing>({ data }: JsonLdProps<T>) {
     const json = sanitizeForJsonLd(data)
     return (
-        <script
+        <Script
             type='application/ld+json'
+            strategy='beforeInteractive'
             dangerouslySetInnerHTML={{ __html: json }}
         />
     )

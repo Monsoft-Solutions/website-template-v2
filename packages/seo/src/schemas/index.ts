@@ -1,12 +1,12 @@
-export { buildOrganizationJsonLd } from './organization.schema.js'
-export { buildWebSiteJsonLd } from './website.schema.js'
-export { buildWebPageJsonLd } from './webpage.schema.js'
-export { buildArticleJsonLd } from './article.schema.js'
-export { buildBreadcrumbJsonLd } from './breadcrumb.schema.js'
-export { buildFAQJsonLd } from './faq.schema.js'
-export { buildProductJsonLd } from './product.schema.js'
-export { buildReviewJsonLd } from './review.schema.js'
-export { buildLocalBusinessJsonLd } from './local-business.schema.js'
+export { buildOrganizationJsonLd } from './organization.schema'
+export { buildWebSiteJsonLd } from './website.schema'
+export { buildWebPageJsonLd } from './webpage.schema'
+export { buildArticleJsonLd } from './article.schema'
+export { buildBreadcrumbJsonLd } from './breadcrumb.schema'
+export { buildFAQJsonLd } from './faq.schema'
+export { buildProductJsonLd } from './product.schema'
+export { buildReviewJsonLd } from './review.schema'
+export { buildLocalBusinessJsonLd } from './local-business.schema'
 export type {
     OrganizationSchemaProps,
     ArticleSchemaProps,

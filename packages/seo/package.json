@@ -22,11 +22,15 @@
     "dependencies": {
         "schema-dts": "^1.1.2"
     },
+    "peerDependencies": {
+        "next": "^15.0.0"
+    },
     "devDependencies": {
         "@workspace/eslint-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
         "typescript": "^5.9.2",
         "@types/node": "^20.19.9",
-        "@types/react": "^19.1.9"
+        "@types/react": "^19.1.9",
+        "next": "^15.4.5"
     }
 }
