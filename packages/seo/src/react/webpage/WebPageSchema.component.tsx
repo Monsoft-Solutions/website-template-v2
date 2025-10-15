@@ -1,6 +1,6 @@
 import type { WebPage, WithContext } from 'schema-dts'
 
-import { buildWebPageJsonLd } from '../../schemas/webpage.schema.js'
+import { buildWebPageJsonLd } from '../../schemas/webpage.schema'
 import type { WebPageSchemaProps } from '../../types/schema'
 import { JsonLd } from '../JsonLd.component'
 

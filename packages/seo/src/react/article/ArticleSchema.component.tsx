@@ -1,6 +1,6 @@
 import type { Article, BlogPosting, WithContext } from 'schema-dts'
 
-import { buildArticleJsonLd } from '../../schemas/article.schema.js'
+import { buildArticleJsonLd } from '../../schemas/article.schema'
 import type { ArticleSchemaProps } from '../../types/schema'
 import { JsonLd } from '../JsonLd.component'
 

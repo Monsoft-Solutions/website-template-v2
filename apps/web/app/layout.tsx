@@ -1,3 +1,4 @@
+import { OrganizationSchema, WebSiteSchema } from '@workspace/seo/react'
 import '@workspace/ui/globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 
@@ -27,6 +28,20 @@ export default function RootLayout({
             <body
                 className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
             >
+                <OrganizationSchema
+                    name={seoConfig.siteName}
+                    url={seoConfig.siteUrl}
+                    logo={seoConfig.organization?.logo}
+                    legalName={seoConfig.organization?.legalName}
+                    founders={seoConfig.organization?.founders}
+                    sameAs={seoConfig.organization?.socialProfiles?.map(
+                        (s) => s.url
+                    )}
+                />
+                <WebSiteSchema
+                    name={seoConfig.siteName}
+                    url={seoConfig.siteUrl}
+                />
                 <Providers>{children}</Providers>
             </body>
         </html>

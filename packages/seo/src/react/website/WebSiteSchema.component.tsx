@@ -1,6 +1,6 @@
 import type { WebSite, WithContext } from 'schema-dts'
 
-import { buildWebSiteJsonLd } from '../../schemas/website.schema.js'
+import { buildWebSiteJsonLd } from '../../schemas/website.schema'
 import type { WebSiteSchemaProps } from '../../types/schema'
 import { JsonLd } from '../JsonLd.component'
 

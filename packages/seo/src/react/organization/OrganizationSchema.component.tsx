@@ -1,6 +1,6 @@
 import type { Organization, WithContext } from 'schema-dts'
 
-import { buildOrganizationJsonLd } from '../../schemas/organization.schema.js'
+import { buildOrganizationJsonLd } from '../../schemas/organization.schema'
 import type { OrganizationSchemaProps } from '../../types/schema'
 import { JsonLd } from '../JsonLd.component'
 

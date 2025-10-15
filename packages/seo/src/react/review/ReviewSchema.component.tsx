@@ -1,6 +1,6 @@
 import type { Review, WithContext } from 'schema-dts'
 
-import { buildReviewJsonLd } from '../../schemas/review.schema.js'
+import { buildReviewJsonLd } from '../../schemas/review.schema'
 import type { ReviewSchemaProps } from '../../types/schema'
 import { JsonLd } from '../JsonLd.component'
 
