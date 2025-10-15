@@ -13,7 +13,8 @@
     "db:migrate": "tsx src/migrate.ts",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\""
   },
   "dependencies": {
     "drizzle-orm": "^0.38.3",

@@ -2,15 +2,21 @@
   "name": "shadcn-ui-monorepo",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "typecheck": "turbo typecheck",
+    "format": "turbo format",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,yml,yaml}\"",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.4",
     "prettier": "^3.6.2",
     "turbo": "^2.5.5",
     "typescript": "5.7.3"
