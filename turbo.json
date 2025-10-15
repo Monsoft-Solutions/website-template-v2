@@ -10,13 +10,14 @@
         "lint": {
             "dependsOn": ["^lint"]
         },
+        "format": {
+            "dependsOn": ["^format"],
+            "outputs": [],
+            "cache": false
+        },
         "typecheck": {
             "dependsOn": ["^typecheck"],
             "outputs": ["*.tsbuildinfo"]
-        },
-        "format": {
-            "outputs": [],
-            "cache": false
         },
         "check-types": {
             "dependsOn": ["^check-types"]

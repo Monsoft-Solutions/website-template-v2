@@ -14,7 +14,7 @@
         "db:push": "drizzle-kit push",
         "db:studio": "drizzle-kit studio",
         "lint": "eslint . --max-warnings 0",
-        "format": "prettier --write \"**/*.{js,ts,json,md}\""
+        "format": "pnpm -w format"
     },
     "dependencies": {
         "drizzle-orm": "^0.38.3",

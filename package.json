@@ -8,8 +8,8 @@
         "dev": "turbo dev",
         "lint": "turbo lint",
         "typecheck": "turbo typecheck",
-        "format": "turbo format",
-        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,yml,yaml}\"",
+        "format": "prettier --cache --write .",
+        "format:check": "prettier --cache --check .",
         "prepare": "husky"
     },
     "devDependencies": {
