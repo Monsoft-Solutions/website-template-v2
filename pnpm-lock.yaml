@@ -41,6 +41,9 @@ importers:
       '@workspace/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@workspace/seo':
+        specifier: workspace:*
+        version: link:../../packages/seo
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui

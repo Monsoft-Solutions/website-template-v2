@@ -369,18 +369,18 @@ packages/
 
 **Tasks:**
 
-1. **Create SEO Package Structure**
+1. **Create SEO Package Structure** (DONE)
     - Create `packages/seo/` directory
     - Initialize `package.json` with proper exports map
     - Configure `tsconfig.json` for TypeScript compilation
     - Set up package exports for utilities, schemas, and types
 
-2. **Install Dependencies**
+2. **Install Dependencies** (DONE)
     - Add `schema-dts` for TypeScript schema.org types
     - Update `pnpm-workspace.yaml` if needed
     - Run `pnpm install` to link workspace packages
 
-3. **Create Core Configuration System**
+3. **Create Core Configuration System** (DONE)
     - Implement `packages/seo/src/config/seo.config.ts` with `SEOConfig` type
     - Create `packages/seo/src/config/schema-org.constant.ts` with schema.org URLs (use SCREAMING_SNAKE_CASE)
     - Define TypeScript types in `packages/seo/src/config/seo-config.type.ts`
@@ -439,14 +439,14 @@ packages/
 
 1. **Create URL Utilities**
     - Implement `packages/seo/src/utils/url.util.ts`
-    - Functions: `getAbsoluteUrl()`, `getCanonicalUrl()`, `buildUrl()` (camelCase)
+    - Functions: `getAbsoluteUrl()`, `getCanonicalUrl()`, `buildUrl()`
     - Handle environment-based base URL
     - Support locale and path parameter handling
     - Add JSDoc comments for all functions
 
 2. **Create Metadata Generator**
     - Implement `packages/seo/src/utils/metadata-generator.util.ts`
-    - Function: `generateSiteMetadata(overrides)` (camelCase)
+    - Function: `generateSiteMetadata(overrides)`
     - Generate Next.js 15 `Metadata` object
     - Support title templates, descriptions, Open Graph, Twitter Cards
     - Handle robots meta tags
@@ -455,7 +455,7 @@ packages/
 
 3. **Create Image Metadata Helpers**
     - Implement `packages/seo/src/utils/image.util.ts`
-    - Function: `generateImageMetadata(image)` (camelCase)
+    - Function: `generateImageMetadata(image)`
     - Handle Open Graph image generation
     - Support image alt text, dimensions, type
     - Generate secure URLs for images
@@ -463,7 +463,7 @@ packages/
 
 4. **Create Sanitization Utilities**
     - Implement `packages/seo/src/utils/sanitize.util.ts`
-    - Function: `sanitizeForJsonLd(obj)` (camelCase)
+    - Function: `sanitizeForJsonLd(obj)`
     - Prevent XSS by escaping HTML characters
     - Replace `<` with `\u003c` in JSON-LD strings
     - Handle nested objects and arrays
@@ -508,7 +508,7 @@ packages/
 1. **Create Base JSON-LD Component**
     - Implement `packages/seo/src/schemas/schema-props.type.ts` with base types
     - Use `type` instead of `interface` for all schema prop types
-    - Create helper function `renderJsonLd<T>(schema: T)` (camelCase)
+    - Create helper function `renderJsonLd<T>(schema: T)`
     - Handle sanitization automatically
     - Use `dangerouslySetInnerHTML` with sanitized content
     - Add JSDoc comments
@@ -691,7 +691,7 @@ packages/
 
 1. **Create Sitemap Generation Utility**
     - Implement `packages/seo/src/utils/sitemap-generator.util.ts`
-    - Function: `generateSitemapEntries(routes)` (camelCase)
+    - Function: `generateSitemapEntries(routes)`
     - Support priority, changeFrequency, lastModified
     - Handle dynamic routes
     - Support sitemap index for large sites
@@ -706,7 +706,7 @@ packages/
 
 3. **Create Robots.txt Generator**
     - Implement `packages/seo/src/utils/robots-generator.util.ts`
-    - Function: `generateRobots(env)` (camelCase)
+    - Function: `generateRobots(env)`
     - Support environment-based rules
     - Include sitemap URL
     - Handle staging vs production
