@@ -10,7 +10,8 @@
         "./config": "./src/config/index.ts",
         "./utils": "./src/utils/index.ts",
         "./schemas": "./src/schemas/index.ts",
-        "./types": "./src/types/index.ts"
+        "./types": "./src/types/index.ts",
+        "./react": "./src/react/index.ts"
     },
     "scripts": {
         "lint": "eslint . --ext .ts,.tsx",
