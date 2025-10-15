@@ -1,64 +1,114 @@
 /**
- * Section Type Definitions
+ * Base Section Type Definitions
  *
- * Base type definitions for reusable section components
+ * Foundational type definitions and utilities for section components.
+ * These base types provide common props and patterns used across all section components.
  */
 import type { ReactNode } from 'react'
 
+/**
+ * Base props shared by all section components
+ * Provides className and children for composition
+ */
 export interface BaseSectionProps {
-    className?: string
-    children?: ReactNode
+    /**
+     * Optional CSS classes to apply to the component
+     */
+    readonly className?: string
+
+    /**
+     * Child elements to render within the component
+     */
+    readonly children?: ReactNode
 }
 
-export interface SectionContainerProps extends BaseSectionProps {
-    id?: string
-    as?: 'section' | 'div' | 'article'
-    variant?: 'default' | 'muted' | 'accent'
+/**
+ * Common background variant options used across section components
+ */
+export type SectionBackgroundVariant = 'default' | 'muted' | 'accent'
+
+/**
+ * Common text alignment options
+ */
+export type SectionTextAlignment = 'left' | 'center' | 'right'
+
+/**
+ * Common size variants for sections
+ */
+export type SectionSize = 'sm' | 'default' | 'lg' | 'xl'
+
+/**
+ * Props for sections that support background variants
+ */
+export interface SectionWithVariant {
+    /**
+     * Background color variant
+     * @default 'default'
+     */
+    readonly variant?: SectionBackgroundVariant
 }
 
-export interface SectionHeaderProps {
-    title: string
-    description?: string
-    align?: 'left' | 'center' | 'right'
-    className?: string
+/**
+ * Props for sections that support text alignment
+ */
+export interface SectionWithAlignment {
+    /**
+     * Text alignment
+     * @default 'center'
+     */
+    readonly align?: SectionTextAlignment
 }
 
-export interface FeatureCardProps {
-    title: string
-    description: string
-    icon?: ReactNode
-    href?: string
-    className?: string
+/**
+ * Props for sections that support sizing
+ */
+export interface SectionWithSize {
+    /**
+     * Section size/padding variant
+     * @default 'default'
+     */
+    readonly size?: SectionSize
 }
 
-export interface CTASectionProps extends BaseSectionProps {
-    title: string
-    description?: string
-    primaryButton?: {
-        label: string
-        href: string
-    }
-    secondaryButton?: {
-        label: string
-        href: string
-    }
+/**
+ * Props for sections that support anchor linking
+ */
+export interface SectionWithId {
+    /**
+     * HTML ID attribute for anchor linking
+     */
+    readonly id?: string
 }
 
-export interface IconCardProps {
-    icon: ReactNode
-    title: string
-    description: string
-    className?: string
-}
+/**
+ * Re-export all section component types for convenience
+ * Import individual types from their respective files for better tree-shaking
+ */
+export type {
+    SectionContainerProps,
+    SectionBackgroundVariant as SectionContainerVariant,
+    SectionElement,
+} from './section-container.type'
 
-export interface ImageSectionProps extends BaseSectionProps {
-    imageSrc: string
-    imageAlt: string
-    title: string
-    description: string
-    imagePosition?: 'left' | 'right'
-    ctaButton?: {
-        label: string
-        href: string
-    }
-}
+export type {
+    ContentWrapperProps,
+    ContentWrapperSize,
+} from './content-wrapper.type'
+
+export type {
+    SectionHeaderProps,
+    HeadingLevel,
+    TextAlignment,
+} from './section-header.type'
+
+export type { FeatureCardProps } from './feature-card.type'
+
+export type { CTASectionProps, CTAButton } from './cta-section.type'
+
+export type { IconCardProps } from './icon-card.type'
+
+export type {
+    ImageSectionProps,
+    ImageConfig,
+    ImageSectionButton,
+} from './image-section.type'
