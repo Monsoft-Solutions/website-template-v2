@@ -3,6 +3,7 @@
  *
  * Type definitions and validation schema for contact form
  */
+import { parsePhoneNumberWithError } from 'libphonenumber-js'
 import { z } from 'zod'
 
 /**
@@ -17,11 +18,17 @@ export const contactFormSchema = z.object({
     }),
     phone: z
         .string()
-        .regex(
-            /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
-            {
-                message: 'Please enter a valid phone number.',
-            }
+        .refine(
+            (val) => {
+                if (!val) return true // Allow empty
+                try {
+                    parsePhoneNumberWithError(val).isValid()
+                    return true
+                } catch {
+                    return false
+                }
+            },
+            { message: 'Please enter a valid phone number.' }
         )
         .optional()
         .or(z.literal('')),

@@ -15,7 +15,9 @@ const socialIcons = {
     github: Github,
     twitter: X,
     linkedin: Linkedin,
-}
+} as const
+
+type SupportedPlatform = keyof typeof socialIcons
 
 export function Footer() {
     return (
@@ -100,7 +102,12 @@ export function Footer() {
                                 socialIcons[
                                     social.platform as keyof typeof socialIcons
                                 ]
-                            if (!Icon) return null
+                            if (!Icon) {
+                                console.error(
+                                    `No icon mapping for platform: ${social.platform}`
+                                )
+                                return null
+                            }
 
                             return (
                                 <a

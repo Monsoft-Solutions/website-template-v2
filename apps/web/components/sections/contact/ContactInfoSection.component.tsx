@@ -89,7 +89,6 @@ export function ContactInfoSection({
                         const Icon = item.icon
                         const isClickable = !!item.href
 
-                        const CardWrapper = isClickable ? 'div' : 'div'
                         const cardContent = (
                             <Card
                                 className={cn(
@@ -156,7 +155,7 @@ export function ContactInfoSection({
                         )
 
                         return (
-                            <CardWrapper key={`${item.title}-${index}`}>
+                            <div key={`${item.title}-${index}`}>
                                 {isClickable && item.href ? (
                                     <Link
                                         href={item.href}
@@ -170,7 +169,7 @@ export function ContactInfoSection({
                                         {cardContent}
                                     </div>
                                 )}
-                            </CardWrapper>
+                            </div>
                         )
                     })}
                 </div>

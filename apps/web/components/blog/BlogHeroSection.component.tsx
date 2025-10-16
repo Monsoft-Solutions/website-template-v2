@@ -52,9 +52,9 @@ export function BlogHeroSection({
             {/* Navigation Links */}
             {navigationLinks && navigationLinks.length > 0 && (
                 <div className='border-border/30 flex flex-wrap items-center gap-6 border-t pt-10'>
-                    {navigationLinks.map((link, index) => (
+                    {navigationLinks.map((link) => (
                         <Link
-                            key={index}
+                            key={link.href}
                             href={link.href}
                             className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:underline hover:decoration-1 hover:underline-offset-4'
                         >

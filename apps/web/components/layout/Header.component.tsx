@@ -49,6 +49,18 @@ import { brandAssets } from '@/lib/data/site-config'
  * Main site header with responsive navigation, mobile menu, and theme toggle
  */
 
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
 export function Header() {
     const pathname = usePathname()
     const { theme, setTheme } = useTheme()
@@ -63,12 +75,23 @@ export function Header() {
 
     // Handle scroll behavior for sticky header
     useEffect(() => {
+        let rafId: number | null = null
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10)
+            if (rafId) return
+
+            rafId = requestAnimationFrame(() => {
+                setIsScrolled(window.scrollY > 10)
+                rafId = null
+            })
         }
 
         window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (rafId) cancelAnimationFrame(rafId)
+        }
     }, [])
 
     const isActive = (href: string) => {
