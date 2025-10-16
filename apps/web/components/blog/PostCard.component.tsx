@@ -1,8 +1,10 @@
+'use client'
+
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { BlogPostCard } from '@/types/blog/post-card.type'
+import type { BlogPostCard } from '@/lib/types/blog/post-card.type'
 
 type PostCardProps = {
     post: BlogPostCard
