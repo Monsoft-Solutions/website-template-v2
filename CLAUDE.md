@@ -220,6 +220,12 @@ NEXT_PUBLIC_FACEBOOK_APP_ID=
 NEXT_PUBLIC_LOCALE=en-US
 NEXT_PUBLIC_ENABLE_INDEXING=false
 
+# Blog API Authentication
+BLOG_API_KEY=your-secure-api-key-here
+
+# Vercel Blob Storage (for blog featured images)
+BLOB_READ_WRITE_TOKEN=your-vercel-blob-token-here
+
 # Environment
 NODE_ENV=development
 ```
@@ -240,6 +246,11 @@ The `DATABASE_URL` is required for:
 - `NEXT_PUBLIC_FACEBOOK_APP_ID`: Facebook App ID (optional)
 - `NEXT_PUBLIC_LOCALE`: Default locale (e.g., en-US)
 - `NEXT_PUBLIC_ENABLE_INDEXING`: Enable/disable search engine indexing (defaults to true in production)
+
+**Blog API Environment Variables:**
+
+- `BLOG_API_KEY`: Secret API key for validating bearer tokens on blog creation endpoints (e.g., `/api/blog/posts/create`)
+- `BLOB_READ_WRITE_TOKEN`: Vercel Blob token for uploading blog featured images. Get from Vercel project settings → Storage → Blob
 
 ## Turbo Configuration
 

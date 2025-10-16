@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    transpilePackages: ['@workspace/ui', '@workspace/seo', '@workspace/db'],
+    transpilePackages: ['@workspace/ui', '@workspace/db', '@workspace/seo'],
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '*.public.blob.vercel-storage.com',
+            },
+        ],
+    },
 }
 
 export default nextConfig

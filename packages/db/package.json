@@ -4,27 +4,35 @@
     "private": true,
     "type": "module",
     "exports": {
-        "./client": "./src/index.ts",
+        ".": "./src/index.ts",
+        "./client": "./src/client.ts",
         "./schema": "./src/schema/index.ts",
-        "./types": "./src/types.ts"
+        "./types": "./src/types/index.ts"
     },
     "scripts": {
         "db:generate": "drizzle-kit generate",
         "db:migrate": "tsx src/migrate.ts",
         "db:push": "drizzle-kit push",
         "db:studio": "drizzle-kit studio",
+        "db:seed": "tsx src/seed/index.ts",
         "lint": "eslint . --max-warnings 0",
         "format": "pnpm -w format"
     },
     "dependencies": {
+        "@t3-oss/env-core": "^0.10.1",
         "drizzle-orm": "^0.38.3",
-        "postgres": "^3.4.5"
+        "glob": "^11.0.3",
+        "lodash": "^4.17.21",
+        "postgres": "^3.4.5",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@faker-js/faker": "^10.1.0",
+        "@types/lodash": "^4.17.20",
         "@workspace/eslint-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
-        "drizzle-kit": "^0.30.1",
         "dotenv": "^16.4.7",
+        "drizzle-kit": "^0.30.1",
         "tsx": "^4.19.2",
         "typescript": "^5.9.2"
     }
