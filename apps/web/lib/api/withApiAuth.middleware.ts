@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import crypto from 'node:crypto'
 
 import { env } from '@/env'
 
@@ -45,7 +46,30 @@ export function withApiAuth(
                 )
             }
 
-            if (token !== apiKey) {
+            // Use constant-time comparison to prevent timing attacks
+            const tokenBuffer = Buffer.from(token, 'utf8')
+            const apiKeyBuffer = Buffer.from(apiKey, 'utf8')
+
+            // Ensure buffers are the same length for timingSafeEqual
+            const maxLength = Math.max(tokenBuffer.length, apiKeyBuffer.length)
+            const paddedTokenBuffer =
+                tokenBuffer.length < maxLength
+                    ? Buffer.concat([
+                          tokenBuffer,
+                          Buffer.alloc(maxLength - tokenBuffer.length),
+                      ])
+                    : tokenBuffer
+            const paddedApiKeyBuffer =
+                apiKeyBuffer.length < maxLength
+                    ? Buffer.concat([
+                          apiKeyBuffer,
+                          Buffer.alloc(maxLength - apiKeyBuffer.length),
+                      ])
+                    : apiKeyBuffer
+
+            if (
+                !crypto.timingSafeEqual(paddedTokenBuffer, paddedApiKeyBuffer)
+            ) {
                 return NextResponse.json(
                     { error: 'Invalid API key' },
                     { status: 401 }

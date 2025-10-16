@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { type PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
+import { db } from '../client'
 import {
     author,
     blogCategory,
@@ -9,10 +9,9 @@ import {
     blogPostTag,
     blogTag,
 } from '../schema'
-import * as schema from '../schema'
 
 type RunProps = {
-    db: PostgresJsDatabase<typeof schema>
+    db: typeof db
 }
 
 export async function run({ db }: RunProps) {

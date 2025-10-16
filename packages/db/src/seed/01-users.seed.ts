@@ -1,10 +1,8 @@
-import { type LibSQLDatabase } from 'drizzle-orm/libsql'
-
-import * as schema from '../schema'
+import { db } from '../client'
 import { author } from '../schema'
 
 type RunProps = {
-    db: LibSQLDatabase<typeof schema>
+    db: typeof db
 }
 
 export async function run({ db }: RunProps) {

@@ -18,7 +18,7 @@ export const listActiveCategoriesWithCounts = cache(
                 id: blogCategory.id,
                 name: blogCategory.name,
                 slug: blogCategory.slug,
-                count: count(blogPostCategory.blogPostId),
+                count: count(blogPost.id),
             })
             .from(blogCategory)
             .leftJoin(
@@ -52,7 +52,7 @@ export const listActiveTagsWithCounts = cache(
                 id: blogTag.id,
                 name: blogTag.name,
                 slug: blogTag.slug,
-                count: count(blogPostTag.blogPostId),
+                count: count(blogPost.id),
             })
             .from(blogTag)
             .leftJoin(blogPostTag, eq(blogPostTag.tagId, blogTag.id))
