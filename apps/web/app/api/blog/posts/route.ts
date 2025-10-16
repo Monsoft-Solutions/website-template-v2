@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
 import type { BlogPostsPaginatedResponse } from '@/lib/types/blog/api-response.type'
+import { blogPostsQuerySchema } from '@/lib/types/blog/blog-posts.schema'
 
 /**
  * GET /api/blog/posts
@@ -17,34 +18,26 @@ export async function GET(request: NextRequest) {
     try {
         const { searchParams } = request.nextUrl
 
-        // Parse pageSize
-        const pageSize = Math.min(
-            Math.max(Number(searchParams.get('pageSize')) || 12, 1),
-            100
-        )
+        // Validate and parse query parameters using Zod schema
+        const validationResult = blogPostsQuerySchema.safeParse({
+            pageSize: searchParams.get('pageSize'),
+            cursor: searchParams.get('cursor'),
+            categorySlug: searchParams.get('categorySlug'),
+            tagSlug: searchParams.get('tagSlug'),
+        })
 
-        // Parse cursor
-        let cursor: { publishedAt: Date; id: string } | null = null
-        const cursorParam = searchParams.get('cursor')
-        if (cursorParam) {
-            try {
-                const decoded = JSON.parse(
-                    Buffer.from(cursorParam, 'base64').toString('utf-8')
-                )
-                cursor = {
-                    publishedAt: new Date(decoded.publishedAt),
-                    id: decoded.id,
-                }
-            } catch {
-                return NextResponse.json(
-                    { error: 'Invalid cursor format' },
-                    { status: 400 }
-                )
-            }
+        if (!validationResult.success) {
+            return NextResponse.json(
+                {
+                    error: 'Invalid query parameters',
+                    details: validationResult.error.issues,
+                },
+                { status: 400 }
+            )
         }
 
-        const categorySlug = searchParams.get('categorySlug') || undefined
-        const tagSlug = searchParams.get('tagSlug') || undefined
+        const { pageSize, cursor, categorySlug, tagSlug } =
+            validationResult.data
 
         // Fetch posts
         const { items, nextCursor } = await getPublishedPostCardsPage({

@@ -20,9 +20,7 @@ export const createResourceSchema = z.object({
     date: z.string().min(1, 'Date is required'),
     readingTime: z.string().optional(),
     content: z.string().min(1, 'Content is required'),
-    status: z
-        .enum(['draft', 'readyToPublish', 'published'])
-        .default('published'),
+    status: z.enum(['draft', 'readyToPublish', 'published']).default('draft'),
     authorId: z.string().uuid('Invalid author ID'),
     featuredImageUrl: z.string().url('Invalid featured image URL').optional(),
     featuredImage: imageDataSchema.optional(),

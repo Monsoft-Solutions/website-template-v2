@@ -24,7 +24,9 @@ export const blogCategory = pgTable(
         sortOrder: integer('sort_order').default(0),
         isActive: boolean('is_active').default(true).notNull(),
         createdAt: timestamp('created_at').defaultNow(),
-        updatedAt: timestamp('updated_at').defaultNow(),
+        updatedAt: timestamp('updated_at')
+            .defaultNow()
+            .$onUpdate(() => new Date()),
     },
     (table) => [
         {
@@ -54,10 +56,6 @@ export const blogPostCategory = pgTable(
     },
     (table) => [
         {
-            unique: uniqueIndex('unique_blog_post_category').on(
-                table.blogPostId,
-                table.categoryId
-            ),
             pk: primaryKey({ columns: [table.blogPostId, table.categoryId] }),
         },
     ]

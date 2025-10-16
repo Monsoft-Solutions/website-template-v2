@@ -43,7 +43,9 @@ export const blogPost = pgTable(
         authorId: uuid('author_id'),
         featuredImageId: uuid('featured_image_id'),
         createdAt: timestamp('created_at').defaultNow(),
-        updatedAt: timestamp('updated_at').defaultNow(),
+        updatedAt: timestamp('updated_at')
+            .defaultNow()
+            .$onUpdate(() => new Date()),
     },
     (table) => [
         {
