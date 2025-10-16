@@ -1,6 +1,19 @@
 import { WebPageSchema } from '@workspace/seo/react'
-import { Button } from '@workspace/ui/components/button'
 
+import {
+    AboutPreviewSection,
+    FeaturesSection,
+    HeroSection,
+    TestimonialsSection,
+} from '@/components/sections/home'
+import { CTASection } from '@/components/shared'
+import {
+    aboutPreviewData,
+    featuresData,
+    finalCTAData,
+    heroSectionData,
+    testimonialsData,
+} from '@/lib/data/webpages/home'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 
@@ -62,19 +75,103 @@ export const metadata = toNextMetadata(seoConfig, {
         : undefined,
 })
 
+/**
+ * Homepage Component
+ *
+ * Assembles complete homepage with multiple sections:
+ * 1. Hero Section - Main headline and CTA
+ * 2. Features Section - Service/product highlights
+ * 3. About Preview Section - Company overview
+ * 4. Testimonials Section - Customer reviews
+ * 5. Final CTA Section - End-of-page call-to-action
+ *
+ * Features:
+ * - Full SEO optimization with JSON-LD schema
+ * - Smooth scroll behavior
+ * - Mobile-responsive design
+ * - Notion-inspired minimalistic styling
+ * - Accessible ARIA labels and semantic HTML
+ */
 export default function Page() {
     return (
-        <div className='flex min-h-svh items-center justify-center'>
-            {/* JSON-LD minimal usage for homepage */}
+        <>
+            {/* JSON-LD Schema for Homepage */}
             <WebPageSchema
                 name={seoConfig.defaultMetadata.title}
                 url={seoConfig.siteUrl}
                 description={seoConfig.defaultMetadata.description}
             />
-            <div className='flex flex-col items-center justify-center gap-4'>
-                <h1 className='text-2xl font-bold'>Hello World</h1>
-                <Button size='sm'>Button</Button>
-            </div>
-        </div>
+
+            {/* Hero Section */}
+            <HeroSection
+                id='hero'
+                headline={heroSectionData.headline}
+                subheadline={heroSectionData.subheadline}
+                description={heroSectionData.description}
+                primaryButton={heroSectionData.primaryButton}
+                secondaryButton={heroSectionData.secondaryButton}
+                image={heroSectionData.image}
+                imagePosition={heroSectionData.imagePosition}
+                variant={heroSectionData.variant}
+                enableAnimations={heroSectionData.enableAnimations}
+            />
+
+            {/* Features Section */}
+            <FeaturesSection
+                id='features'
+                title='Our Services'
+                description='Discover comprehensive solutions designed to drive your business forward'
+                features={featuresData}
+                columns={3}
+                variant='muted'
+                iconVariant='primary'
+                showBorders
+            />
+
+            {/* About Preview Section */}
+            <AboutPreviewSection
+                id='about-preview'
+                badge={aboutPreviewData.badge}
+                title={aboutPreviewData.title}
+                description={aboutPreviewData.description}
+                imageSrc={aboutPreviewData.imageSrc}
+                imageAlt={aboutPreviewData.imageAlt}
+                imageWidth={aboutPreviewData.imageWidth}
+                imageHeight={aboutPreviewData.imageHeight}
+                buttonText={aboutPreviewData.buttonText}
+                buttonHref={aboutPreviewData.buttonHref}
+                imagePosition={aboutPreviewData.imagePosition}
+                variant={aboutPreviewData.variant}
+            />
+
+            {/* Testimonials Section */}
+            <TestimonialsSection
+                id='testimonials'
+                title='What Our Clients Say'
+                description="Don't just take our word for it—hear from the customers who've transformed their business with us"
+                testimonials={testimonialsData}
+                columns={3}
+                variant='default'
+                showRatings
+            />
+
+            {/* Final CTA Section */}
+            <CTASection
+                id='final-cta'
+                heading={finalCTAData.title}
+                description={finalCTAData.description}
+                primaryButton={{
+                    text: finalCTAData.primaryButton.text,
+                    href: finalCTAData.primaryButton.href,
+                }}
+                secondaryButton={{
+                    text: finalCTAData.secondaryButton.text,
+                    href: finalCTAData.secondaryButton.href,
+                }}
+                variant={finalCTAData.variant}
+                align='center'
+                size='default'
+            />
+        </>
     )
 }

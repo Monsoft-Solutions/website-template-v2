@@ -7,20 +7,32 @@ config({
 })
 config()
 
+/**
+ * Environment Variables Configuration
+ *
+ * Note: Most site/business data is centralized in `lib/data/site-config.ts`.
+ * Only environment-specific variables are defined here.
+ *
+ * NEXT_PUBLIC_SITE_URL is used by site-config.ts for environment-aware URL handling.
+ */
 export const env = createEnv({
     server: {
+        // Database & Storage (required for runtime)
         DATABASE_URL: z.string().url(),
         BLOG_API_KEY: z.string().min(1),
         BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
         VERCEL_URL: z.string().optional(),
     },
     client: {
-        NEXT_PUBLIC_SITE_URL: z.string().url(),
-        NEXT_PUBLIC_SITE_NAME: z.string().min(1),
-        NEXT_PUBLIC_SITE_DESCRIPTION: z.string().min(1),
+        // Site URL - used by site-config.ts (with fallback to VERCEL_URL)
+        NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+
+        // Other SEO variables are OPTIONAL - defaults come from site-config.ts
+        NEXT_PUBLIC_SITE_NAME: z.string().min(1).optional(),
+        NEXT_PUBLIC_SITE_DESCRIPTION: z.string().min(1).optional(),
         NEXT_PUBLIC_TWITTER_HANDLE: z.string().optional(),
         NEXT_PUBLIC_FACEBOOK_APP_ID: z.string().optional(),
-        NEXT_PUBLIC_LOCALE: z.string().default('en-US'),
+        NEXT_PUBLIC_LOCALE: z.string().optional(),
         NEXT_PUBLIC_ENABLE_INDEXING: z.enum(['true', 'false']).optional(),
     },
     runtimeEnv: {

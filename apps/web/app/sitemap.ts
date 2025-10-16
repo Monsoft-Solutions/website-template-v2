@@ -12,22 +12,14 @@ import {
 import type { SitemapRoute } from '@workspace/seo'
 import type { MetadataRoute } from 'next'
 
-import { env } from '@/env'
+import { seoDefaults } from '@/lib/data/site-config'
 
 /**
  * Get the base URL for the site
+ * Uses site config which automatically reads from NEXT_PUBLIC_SITE_URL env var
  */
 function getBaseUrl(): string {
-    // Priority order: NEXT_PUBLIC_BASE_URL -> VERCEL_URL -> localhost
-    if (env.NEXT_PUBLIC_SITE_URL) {
-        return env.NEXT_PUBLIC_SITE_URL
-    }
-
-    if (env.VERCEL_URL) {
-        return `https://${env.VERCEL_URL}`
-    }
-
-    return 'http://localhost:3000'
+    return seoDefaults.siteUrl
 }
 
 /**

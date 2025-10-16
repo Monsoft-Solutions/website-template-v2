@@ -66,9 +66,9 @@ export function InfinitePostList({
     }
 
     return (
-        <div className='space-y-12'>
+        <div className='space-y-16'>
             <div
-                className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
+                className={`grid gap-10 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
             >
                 {posts.map((post, index) => (
                     <div
@@ -86,7 +86,7 @@ export function InfinitePostList({
 
             {/* Loading skeleton for additional posts */}
             {isLoading && (
-                <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
+                <div className='grid gap-10 sm:grid-cols-2 lg:grid-cols-3'>
                     {Array.from({ length: 3 }).map((_, index) => (
                         <PostCardSkeleton key={`skeleton-${index}`} />
                     ))}

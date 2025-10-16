@@ -2,6 +2,8 @@ import { OrganizationSchema, WebSiteSchema } from '@workspace/seo/react'
 import '@workspace/ui/globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import { Footer } from '@/components/layout/Footer.component'
+import { Header } from '@/components/layout/Header.component'
 import { Providers } from '@/components/providers'
 import { WebVitals } from '@/components/web-vitals.component'
 import { seoConfig } from '@/lib/seo-config'
@@ -37,6 +39,10 @@ export default function RootLayout({
                     href='https://fonts.gstatic.com'
                     crossOrigin='anonymous'
                 />
+
+                {/* Favicon and app icons */}
+                <link rel='icon' type='image/png' href='/favicon.png' />
+                <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
             </head>
             <body
                 className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
@@ -56,7 +62,11 @@ export default function RootLayout({
                     name={seoConfig.siteName}
                     url={seoConfig.siteUrl}
                 />
-                <Providers>{children}</Providers>
+                <Providers>
+                    <Header />
+                    <main id='main-content'>{children}</main>
+                    <Footer />
+                </Providers>
             </body>
         </html>
     )

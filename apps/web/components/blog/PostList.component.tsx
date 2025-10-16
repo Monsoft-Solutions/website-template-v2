@@ -44,7 +44,7 @@ export function PostList({ posts, className = '' }: PostListProps) {
 
     return (
         <div
-            className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
+            className={`grid gap-10 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
         >
             {posts.map((post, index) => (
                 <div
