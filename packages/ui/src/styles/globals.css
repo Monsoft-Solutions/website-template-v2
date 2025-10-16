@@ -228,12 +228,12 @@
     .glass-effect {
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: hsl(var(--background) / 0.1);
+        border: 1px solid hsl(var(--border) / 0.2);
     }
 
     .dark .glass-effect {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: hsl(var(--background) / 0.2);
+        border: 1px solid hsl(var(--border) / 0.1);
     }
 }

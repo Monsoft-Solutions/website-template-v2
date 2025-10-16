@@ -17,12 +17,25 @@ import {
 import { cn } from '@workspace/ui/lib/utils'
 import { Menu, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { mainNavigation } from '@/lib/data/navigation'
 import { brandAssets } from '@/lib/data/site-config'
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
 
 /**
  * Header Component
@@ -84,10 +97,13 @@ export function Header() {
                         className='flex items-center space-x-2 transition-opacity hover:opacity-80'
                         aria-label='Home'
                     >
-                        <img
+                        <Image
                             src={brandAssets.logo}
                             alt={brandAssets.logoAlt}
                             className='h-8 w-auto'
+                            width={32}
+                            height={32}
+                            priority
                         />
                     </Link>
 
