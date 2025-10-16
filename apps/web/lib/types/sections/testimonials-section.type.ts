@@ -4,6 +4,12 @@
  * Type definitions for the TestimonialsSection component which displays
  * customer testimonials in a card-based layout.
  */
+import type {
+    CommonSectionProps,
+    SectionWithColumns,
+    SectionWithTitle,
+    SectionWithVariant,
+} from './section.type'
 
 /**
  * Individual testimonial item
@@ -12,78 +18,51 @@ export interface Testimonial {
     /**
      * Testimonial quote/content
      */
-    quote: string
+    readonly quote: string
 
     /**
      * Customer name
      */
-    name: string
+    readonly name: string
 
     /**
      * Customer role/title
      */
-    role: string
+    readonly role: string
 
     /**
      * Optional company name
      */
-    company?: string
+    readonly company?: string
 
     /**
      * Optional avatar image URL
      */
-    avatar?: string
+    readonly avatar?: string
 
     /**
      * Rating (1-5 stars)
      */
-    rating?: number
+    readonly rating?: number
 }
 
 /**
  * Props for the TestimonialsSection component
+ * Extends base props with grid layout and testimonial-specific options
  */
-export interface TestimonialsSectionProps {
-    /**
-     * Section title
-     */
-    title: string
-
-    /**
-     * Section description
-     */
-    description?: string
-
+export interface TestimonialsSectionProps
+    extends CommonSectionProps,
+        SectionWithTitle,
+        SectionWithColumns,
+        SectionWithVariant {
     /**
      * Array of testimonial items
      */
-    testimonials: Testimonial[]
-
-    /**
-     * Number of columns on desktop
-     * @default 3
-     */
-    columns?: 2 | 3 | 4
-
-    /**
-     * Background variant
-     * @default 'default'
-     */
-    variant?: 'default' | 'muted' | 'accent'
-
-    /**
-     * Additional CSS classes
-     */
-    className?: string
-
-    /**
-     * Optional id for anchor linking
-     */
-    id?: string
+    readonly testimonials: Testimonial[]
 
     /**
      * Show ratings
      * @default true
      */
-    showRatings?: boolean
+    readonly showRatings?: boolean
 }

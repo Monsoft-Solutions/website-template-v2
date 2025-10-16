@@ -6,6 +6,8 @@
  */
 import type { ReactNode } from 'react'
 
+export type { ReactNode }
+
 /**
  * Base props shared by all section components
  * Provides className and children for composition
@@ -81,6 +83,101 @@ export interface SectionWithId {
 }
 
 /**
+ * Common section metadata props (id, className)
+ * Extends BaseSectionProps to include ID support
+ */
+export interface CommonSectionProps extends BaseSectionProps, SectionWithId {}
+
+/**
+ * Props for sections with header content (badge, headline, description)
+ */
+export interface SectionWithHeader {
+    /**
+     * Optional badge/label text above the headline
+     */
+    readonly badge?: string
+
+    /**
+     * Main section headline
+     */
+    readonly headline?: string
+
+    /**
+     * Section description text
+     */
+    readonly description?: string
+}
+
+/**
+ * Props for sections with required header content
+ * Allows ReactNode for description to support rich content
+ */
+export interface SectionWithRequiredHeader {
+    /**
+     * Optional badge/label text above the headline
+     */
+    readonly badge?: string
+
+    /**
+     * Main section headline (required)
+     */
+    readonly headline: string
+
+    /**
+     * Section description text (required)
+     * Can be string or ReactNode for rich content
+     */
+    readonly description: string | ReactNode
+}
+
+/**
+ * Props for sections with animations
+ */
+export interface SectionWithAnimations {
+    /**
+     * Enable entrance animations
+     * @default true
+     */
+    readonly enableAnimations?: boolean
+}
+
+/**
+ * Props for sections with title and optional description
+ * Uses 'title' instead of 'headline' for more generic content sections
+ */
+export interface SectionWithTitle {
+    /**
+     * Section title (required)
+     */
+    readonly title: string
+
+    /**
+     * Optional section description
+     */
+    readonly description?: string | ReactNode
+}
+
+/**
+ * Props for sections with grid columns
+ */
+export interface SectionWithColumns {
+    /**
+     * Number of columns on desktop
+     * @default 3
+     */
+    readonly columns?: 2 | 3 | 4
+}
+
+/**
+ * Base props for hero sections
+ * Combines common section props with header and animation support
+ */
+export interface BaseHeroSectionProps
+    extends CommonSectionProps,
+        SectionWithRequiredHeader,
+        SectionWithAnimations {}
+
+/**
  * Re-export all section component types for convenience
  * Import individual types from their respective files for better tree-shaking
  */
@@ -112,3 +209,12 @@ export type {
     ImageConfig,
     ImageSectionButton,
 } from './image-section.type'
+
+export type { ContactHeroSectionProps } from './contact-hero-section.type'
+
+export type { ContactFormSectionProps } from './contact-form-section.type'
+
+export type {
+    ContactInfoSectionProps,
+    ContactInfoItem,
+} from './contact-info-section.type'

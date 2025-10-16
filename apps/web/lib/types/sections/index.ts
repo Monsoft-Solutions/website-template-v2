@@ -84,3 +84,15 @@ export type {
     TeamMember,
     TeamMemberSocial,
 } from './team-section.type'
+
+// ContactHeroSection types
+export type { ContactHeroSectionProps } from './contact-hero-section.type'
+
+// ContactFormSection types
+export type { ContactFormSectionProps } from './contact-form-section.type'
+
+// ContactInfoSection types
+export type {
+    ContactInfoSectionProps,
+    ContactInfoItem,
+} from './contact-info-section.type'

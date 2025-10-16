@@ -6,6 +6,13 @@
  */
 import type { LucideIcon } from 'lucide-react'
 
+import type {
+    CommonSectionProps,
+    SectionWithColumns,
+    SectionWithTitle,
+    SectionWithVariant,
+} from './section.type'
+
 /**
  * Individual feature item
  */
@@ -13,91 +20,64 @@ export interface Feature {
     /**
      * Icon component from lucide-react
      */
-    icon: LucideIcon
+    readonly icon: LucideIcon
 
     /**
      * Feature title
      */
-    title: string
+    readonly title: string
 
     /**
      * Feature description
      */
-    description: string
+    readonly description: string
 
     /**
      * Optional link URL
      */
-    href?: string
+    readonly href?: string
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 
     /**
      * Optional aria-label for accessibility
      */
-    ariaLabel?: string
+    readonly ariaLabel?: string
 }
 
 /**
  * Props for the FeaturesSection component
+ * Extends base props with grid layout and custom feature styling options
  */
-export interface FeaturesSectionProps {
-    /**
-     * Section title
-     */
-    title: string
-
-    /**
-     * Section description
-     */
-    description?: string
-
+export interface FeaturesSectionProps
+    extends CommonSectionProps,
+        SectionWithTitle,
+        SectionWithColumns,
+        SectionWithVariant {
     /**
      * Array of feature items
      */
-    features: Feature[]
-
-    /**
-     * Number of columns on desktop
-     * @default 3
-     */
-    columns?: 2 | 3 | 4
-
-    /**
-     * Background variant
-     * @default 'default'
-     */
-    variant?: 'default' | 'muted' | 'accent'
-
-    /**
-     * Additional CSS classes
-     */
-    className?: string
-
-    /**
-     * Optional id for anchor linking
-     */
-    id?: string
+    readonly features: Feature[]
 
     /**
      * Icon style variant
      * @default 'outlined'
      */
-    iconStyle?: 'outlined' | 'filled' | 'minimal'
+    readonly iconStyle?: 'outlined' | 'filled' | 'minimal'
 
     /**
      * Icon color variant
      * @default 'primary'
      */
-    iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
+    readonly iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
 
     /**
      * Show card borders
      * @default true
      */
-    showBorders?: boolean
+    readonly showBorders?: boolean
 }

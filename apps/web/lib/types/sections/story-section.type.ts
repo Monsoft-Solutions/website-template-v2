@@ -4,59 +4,45 @@
  * Type definitions for the StorySection component which displays
  * company story with image and text layout.
  */
-import type { ReactNode } from 'react'
-
-import { HeroImageConfig } from './hero-section.type'
+import type { HeroImageConfig } from './hero-section.type'
+import type {
+    CommonSectionProps,
+    ReactNode,
+    SectionWithAnimations,
+    SectionWithVariant,
+} from './section.type'
 
 /**
  * Props for the StorySection component
+ * Extends base props with story-specific image and content configuration
  */
-export interface StorySectionProps {
-    /**
-     * Section ID for linking and tracking
-     */
-    id?: string
-
+export interface StorySectionProps
+    extends CommonSectionProps,
+        SectionWithAnimations,
+        SectionWithVariant {
     /**
      * Optional badge/label above the headline
      */
-    badge?: string
+    readonly badge?: string
 
     /**
-     * Section headline
+     * Section headline (required)
      */
-    headline: string
+    readonly headline: string
 
     /**
-     * Main content/story text
+     * Main content/story text (required)
      */
-    content: string | ReactNode
+    readonly content: string | ReactNode
 
     /**
      * Image configuration
      */
-    image: HeroImageConfig
+    readonly image: HeroImageConfig
 
     /**
      * Image position relative to text
      * @default 'right'
      */
-    imagePosition?: 'left' | 'right'
-
-    /**
-     * Section background variant
-     * @default 'default'
-     */
-    variant?: 'default' | 'muted' | 'accent'
-
-    /**
-     * Enable fade-in animations
-     * @default true
-     */
-    enableAnimations?: boolean
-
-    /**
-     * Additional CSS classes
-     */
-    className?: string
+    readonly imagePosition?: 'left' | 'right'
 }

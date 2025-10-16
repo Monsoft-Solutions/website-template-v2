@@ -4,16 +4,21 @@
  * Type definitions for the TeamSection component which displays
  * team members with avatars, roles, and social links.
  */
-import type { ReactNode } from 'react'
+import type {
+    CommonSectionProps,
+    ReactNode,
+    SectionWithColumns,
+    SectionWithVariant,
+} from './section.type'
 
 /**
  * Social media links for team member
  */
 export interface TeamMemberSocial {
-    twitter?: string
-    linkedin?: string
-    github?: string
-    email?: string
+    readonly twitter?: string
+    readonly linkedin?: string
+    readonly github?: string
+    readonly email?: string
 }
 
 /**
@@ -23,72 +28,54 @@ export interface TeamMember {
     /**
      * Team member name
      */
-    name: string
+    readonly name: string
 
     /**
      * Team member role/title
      */
-    role: string
+    readonly role: string
 
     /**
      * Optional short bio
      */
-    bio?: string
+    readonly bio?: string
 
     /**
      * Avatar image URL
      */
-    avatar: string
+    readonly avatar: string
 
     /**
      * Optional social media links
      */
-    social?: TeamMemberSocial
+    readonly social?: TeamMemberSocial
 }
 
 /**
  * Props for the TeamSection component
+ * Extends base props with grid layout and team-specific fields
  */
-export interface TeamSectionProps {
-    /**
-     * Section ID for linking and tracking
-     */
-    id?: string
-
+export interface TeamSectionProps
+    extends CommonSectionProps,
+        SectionWithColumns,
+        SectionWithVariant {
     /**
      * Optional badge/label above the headline
      */
-    badge?: string
+    readonly badge?: string
 
     /**
-     * Section headline
+     * Section headline (required)
      */
-    headline: string
+    readonly headline: string
 
     /**
      * Section description
      */
-    description?: string | ReactNode
+    readonly description?: string | ReactNode
 
     /**
      * Array of team members
      */
-    members: TeamMember[]
-
-    /**
-     * Number of columns for grid layout
-     * @default 3
-     */
-    columns?: 2 | 3 | 4
-
-    /**
-     * Section background variant
-     * @default 'default'
-     */
-    variant?: 'default' | 'muted' | 'accent'
-
-    /**
-     * Additional CSS classes
-     */
-    className?: string
+    readonly members: TeamMember[]
 }
