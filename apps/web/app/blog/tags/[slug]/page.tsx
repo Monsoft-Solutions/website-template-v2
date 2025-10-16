@@ -68,40 +68,44 @@ export default async function TagDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <ContainerLayout as='main' className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-16 lg:py-20'>
             <WebPageSchema
                 name={`${tag.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/tags/${tag.slug}`}
                 description={`Explore articles tagged with ${tag.name}. Find insights and tutorials on this topic.`}
             />
 
-            <Breadcrumbs
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Blog', href: '/blog' },
-                    { label: 'Tags', href: '/blog/tags' },
-                    { label: tag.name },
-                ]}
-            />
+            <div className='mb-16'>
+                <Breadcrumbs
+                    items={[
+                        { label: 'Home', href: '/' },
+                        { label: 'Blog', href: '/blog' },
+                        { label: 'Tags', href: '/blog/tags' },
+                        { label: tag.name },
+                    ]}
+                    showBackground={false}
+                />
+            </div>
 
-            <header className='mb-12 space-y-6'>
-                <div className='space-y-4'>
-                    <div className='flex flex-wrap items-center gap-3'>
+            <header className='mb-20 space-y-10'>
+                <div className='space-y-6'>
+                    <div className='flex flex-wrap items-center gap-4'>
                         <span
-                            className='text-muted-foreground text-3xl sm:text-4xl lg:text-5xl'
+                            className='text-muted-foreground text-3xl font-medium sm:text-4xl lg:text-5xl'
                             aria-hidden='true'
                         >
                             #
                         </span>
-                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl'>
+                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight'>
                             {tag.name}
                         </h1>
-                        <span className='bg-muted text-muted-foreground inline-flex h-8 items-center rounded-full px-3 text-sm font-semibold'>
+                        <span className='bg-muted/60 text-muted-foreground inline-flex items-center rounded-full px-4 py-2 text-sm font-medium'>
                             Tag
                         </span>
                     </div>
-                    <p className='text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl'>
-                        Posts with this tag
+                    <p className='text-muted-foreground max-w-3xl text-lg leading-relaxed sm:text-xl sm:leading-relaxed'>
+                        Explore articles tagged with this topic and discover
+                        related insights, tutorials, and best practices.
                     </p>
                 </div>
             </header>

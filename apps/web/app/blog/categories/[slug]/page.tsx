@@ -68,34 +68,38 @@ export default async function CategoryDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <ContainerLayout as='main' className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-16 lg:py-20'>
             <WebPageSchema
                 name={`${category.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/categories/${category.slug}`}
                 description={`Browse all articles in the ${category.name} category. Stay updated with our latest insights and tutorials.`}
             />
 
-            <Breadcrumbs
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Blog', href: '/blog' },
-                    { label: 'Categories', href: '/blog/categories' },
-                    { label: category.name },
-                ]}
-            />
+            <div className='mb-16'>
+                <Breadcrumbs
+                    items={[
+                        { label: 'Home', href: '/' },
+                        { label: 'Blog', href: '/blog' },
+                        { label: 'Categories', href: '/blog/categories' },
+                        { label: category.name },
+                    ]}
+                    showBackground={false}
+                />
+            </div>
 
-            <header className='mb-12 space-y-6'>
-                <div className='space-y-4'>
-                    <div className='flex flex-wrap items-center gap-3'>
-                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl'>
+            <header className='mb-20 space-y-10'>
+                <div className='space-y-6'>
+                    <div className='flex flex-wrap items-center gap-4'>
+                        <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight'>
                             {category.name}
                         </h1>
-                        <span className='bg-primary/10 text-primary inline-flex h-8 items-center rounded-full px-3 text-sm font-semibold'>
+                        <span className='bg-primary/10 text-primary inline-flex items-center rounded-full px-4 py-2 text-sm font-medium'>
                             Category
                         </span>
                     </div>
-                    <p className='text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl'>
-                        Posts in this category
+                    <p className='text-muted-foreground max-w-3xl text-lg leading-relaxed sm:text-xl sm:leading-relaxed'>
+                        Browse all articles in this category and discover
+                        insights, tutorials, and best practices.
                     </p>
                 </div>
             </header>

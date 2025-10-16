@@ -23,37 +23,40 @@ export default async function TagsIndexPage() {
     const sortedTags = [...tags].sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
 
     return (
-        <ContainerLayout as='main' className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-16 lg:py-20'>
             <WebPageSchema
                 name='Blog Tags'
                 url={`${seoConfig.siteUrl}/blog/tags`}
                 description='Browse our blog posts by tag. Discover content on specific topics and technologies.'
             />
 
-            <Breadcrumbs
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Blog', href: '/blog' },
-                    { label: 'Tags' },
-                ]}
-            />
+            <div className='mb-16'>
+                <Breadcrumbs
+                    items={[
+                        { label: 'Home', href: '/' },
+                        { label: 'Blog', href: '/blog' },
+                        { label: 'Tags' },
+                    ]}
+                    showBackground={false}
+                />
+            </div>
 
-            <header className='mb-12 space-y-6'>
-                <div className='space-y-4'>
-                    <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl'>
+            <header className='mb-20 space-y-10'>
+                <div className='space-y-6'>
+                    <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight'>
                         Tags
                     </h1>
-                    <p className='text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl'>
-                        Browse articles by tag. Click on any tag to see related
-                        posts.
+                    <p className='text-muted-foreground max-w-3xl text-lg leading-relaxed sm:text-xl sm:leading-relaxed'>
+                        Explore articles by tag and discover content on specific
+                        topics and technologies that interest you.
                     </p>
                 </div>
 
                 {/* Navigation Links */}
-                <div className='flex flex-wrap items-center gap-4 pt-4'>
+                <div className='border-border/30 flex flex-wrap items-center gap-6 border-t pt-10'>
                     <Link
                         href='/blog'
-                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200'
+                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:underline hover:decoration-1 hover:underline-offset-4'
                     >
                         <svg
                             className='h-4 w-4'
@@ -72,7 +75,7 @@ export default async function TagsIndexPage() {
                     </Link>
                     <Link
                         href='/blog/categories'
-                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200'
+                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:underline hover:decoration-1 hover:underline-offset-4'
                     >
                         <svg
                             className='h-4 w-4'
@@ -92,7 +95,7 @@ export default async function TagsIndexPage() {
                 </div>
             </header>
 
-            <div className='flex flex-wrap gap-3'>
+            <div className='flex flex-wrap gap-4'>
                 {sortedTags.map((tag, index) => (
                     <Link
                         key={tag.id}
@@ -101,17 +104,17 @@ export default async function TagsIndexPage() {
                             animationDelay: `${index * 0.02}s`,
                             animationFillMode: 'backwards',
                         }}
-                        className='border-border/60 bg-card hover:border-border hover:shadow-primary/5 focus-visible:ring-ring focus-visible:ring-offset-background group animate-fade-in inline-flex items-center gap-2 rounded-full border px-4 py-2 transition-all duration-300 hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none'
+                        className='bg-card hover:bg-card/80 focus-visible:ring-ring focus-visible:ring-offset-background group animate-fade-in inline-flex items-center gap-3 rounded-full border-0 px-5 py-3 transition-all duration-200 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none'
                     >
                         <Hash
-                            className='text-muted-foreground group-hover:text-primary h-4 w-4 transition-colors duration-300'
+                            className='text-muted-foreground group-hover:text-primary h-4 w-4 transition-colors duration-200'
                             aria-hidden='true'
                         />
-                        <span className='text-foreground group-hover:text-primary font-medium transition-colors duration-300'>
+                        <span className='text-foreground group-hover:text-foreground/90 font-medium transition-colors duration-200'>
                             {tag.name}
                         </span>
                         {typeof tag.count === 'number' && (
-                            <span className='bg-muted text-muted-foreground rounded-full px-2 py-0.5 text-xs font-semibold'>
+                            <span className='bg-muted/60 text-muted-foreground rounded-full px-2.5 py-1 text-xs font-medium'>
                                 {tag.count}
                             </span>
                         )}
