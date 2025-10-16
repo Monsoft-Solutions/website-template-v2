@@ -2,10 +2,16 @@
  * Contact Page Data
  *
  * Data structures and content for the contact page sections.
- * All content is centralized here for easy maintenance and localization.
+ * Contact information is pulled from centralized site-config.
  */
 import { Mail, MapPin, Phone } from 'lucide-react'
 
+import {
+    contactInfo,
+    getEmailLink,
+    getFullAddress,
+    getPhoneLink,
+} from '@/lib/data/site-config'
 import type {
     ContactFormSectionProps,
     ContactHeroSectionProps,
@@ -35,6 +41,7 @@ export const contactFormData: Omit<ContactFormSectionProps, 'id'> = {
 
 /**
  * Contact Info Section Content
+ * Uses centralized contact information from site-config
  */
 export const contactInfoData: Omit<ContactInfoSectionProps, 'id'> = {
     badge: 'Contact Information',
@@ -45,21 +52,21 @@ export const contactInfoData: Omit<ContactInfoSectionProps, 'id'> = {
         {
             icon: Phone,
             title: 'Phone',
-            value: '+1-555-123-4567',
-            href: 'tel:+15551234567',
-            ariaLabel: 'Call us at +1 (555) 123-4567',
+            value: contactInfo.phoneDisplay || contactInfo.phone,
+            href: getPhoneLink(),
+            ariaLabel: `Call us at ${contactInfo.phoneDisplay || contactInfo.phone}`,
         },
         {
             icon: Mail,
             title: 'Email',
-            value: 'contact@example.com',
-            href: 'mailto:contact@example.com',
-            ariaLabel: 'Email us at contact@example.com',
+            value: contactInfo.email,
+            href: getEmailLink(),
+            ariaLabel: `Email us at ${contactInfo.email}`,
         },
         {
             icon: MapPin,
             title: 'Address',
-            value: '123 Main St, City, State 12345',
+            value: getFullAddress(),
             ariaLabel: 'Our address',
         },
     ],

@@ -22,6 +22,19 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { mainNavigation } from '@/lib/data/navigation'
+import { brandAssets } from '@/lib/data/site-config'
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
 
 /**
  * Header Component
@@ -102,8 +115,8 @@ export function Header() {
                         aria-label='Home'
                     >
                         <img
-                            src='/logo.png'
-                            alt='Website Template'
+                            src={brandAssets.logo}
+                            alt={brandAssets.logoAlt}
                             className='h-8 w-auto'
                         />
                     </Link>

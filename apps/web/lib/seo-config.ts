@@ -1,34 +1,86 @@
 /**
  * Site-specific SEO Configuration
  *
- * This file contains the SEO configuration for the website.
- * It uses the default configuration from @workspace/seo and can be
- * customized with site-specific settings.
+ * This file creates the SEO configuration using centralized site data.
+ * All business and SEO information is pulled from site-config.ts
  */
-import { createDefaultSEOConfig, mergeSEOConfig } from '@workspace/seo/config'
+import { mergeSEOConfig } from '@workspace/seo/config'
 import type { SEOConfig } from '@workspace/seo/config'
+
+import { siteConfig } from '@/lib/data/site-config'
 
 /**
  * Get the site's SEO configuration
  *
- * This function creates the SEO configuration by merging the default
- * configuration from environment variables with site-specific overrides.
+ * This function creates the SEO configuration using centralized site data
+ * from site-config.ts instead of environment variables.
  *
  * @returns SEO configuration for the site
  */
 export function getSEOConfig(): SEOConfig {
-    const defaultConfig = createDefaultSEOConfig()
+    const config: SEOConfig = {
+        // Site identity from centralized config
+        siteUrl: siteConfig.seo.siteUrl,
+        siteName: siteConfig.seo.siteName,
 
-    // Site-specific customizations can be added here
-    const siteConfig: Partial<SEOConfig> = {
-        organization: {
-            name: defaultConfig.siteName,
-            url: defaultConfig.siteUrl,
-            logo: `${defaultConfig.siteUrl}/logo.png`,
+        // Default metadata
+        defaultMetadata: {
+            title: siteConfig.seo.siteName,
+            description: siteConfig.seo.siteDescription,
+            keywords: siteConfig.seo.keywords,
+            author: siteConfig.business.name,
+            locale: siteConfig.seo.locale || 'en-US',
         },
+
+        // Organization information for Schema.org
+        organization: {
+            name: siteConfig.business.name,
+            legalName: siteConfig.business.legalName,
+            url: siteConfig.seo.siteUrl,
+            logo: `${siteConfig.seo.siteUrl}${siteConfig.brand.logo}`,
+            founders: siteConfig.business.founders,
+            socialProfiles: siteConfig.social.map((social) => ({
+                platform: social.platform,
+                url: social.url,
+            })),
+        },
+
+        // Open Graph configuration
+        openGraph: {
+            type: 'website',
+            siteName: siteConfig.seo.siteName,
+            locale: siteConfig.seo.locale || 'en-US',
+            images: siteConfig.brand.ogImage
+                ? [
+                      {
+                          url: `${siteConfig.seo.siteUrl}${siteConfig.brand.ogImage}`,
+                          width: 1200,
+                          height: 630,
+                          alt: `${siteConfig.business.name} - ${siteConfig.business.tagline}`,
+                      },
+                  ]
+                : undefined,
+        },
+
+        // Twitter Card configuration
+        twitter: {
+            cardType: 'summary_large_image',
+            site: siteConfig.seo.twitterHandle,
+            handle: siteConfig.seo.twitterHandle,
+            creator: siteConfig.seo.twitterHandle,
+        },
+
+        // Robots configuration
+        robots: {
+            index: siteConfig.seo.enableIndexing ?? true,
+            follow: siteConfig.seo.enableIndexing ?? true,
+        },
+
+        // Locale
+        locale: siteConfig.seo.locale || 'en-US',
     }
 
-    return mergeSEOConfig(defaultConfig, siteConfig)
+    return config
 }
 
 /**

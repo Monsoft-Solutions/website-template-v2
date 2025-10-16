@@ -9,6 +9,7 @@ import Link from 'next/link'
 
 import { copyrightText, footerSections } from '@/lib/data/footer'
 import { contactInfo, socialLinks } from '@/lib/data/navigation'
+import { businessInfo } from '@/lib/data/site-config'
 
 const socialIcons = {
     github: Github,
@@ -27,11 +28,10 @@ export function Footer() {
                             href='/'
                             className='mb-4 inline-block text-xl font-bold'
                         >
-                            YourBrand
+                            {businessInfo.name}
                         </Link>
                         <p className='text-muted-foreground mb-6 max-w-sm text-sm'>
-                            Building modern web experiences with cutting-edge
-                            technology and design excellence.
+                            {businessInfo.description}
                         </p>
                         {/* Contact Information */}
                         <div className='space-y-3'>

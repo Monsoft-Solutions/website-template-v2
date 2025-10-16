@@ -1,8 +1,10 @@
 /**
  * Footer Data
  *
- * Configuration for footer sections and links
+ * Configuration for footer sections and links.
+ * Company name is pulled from centralized site-config.
  */
+import { businessInfo } from '@/lib/data/site-config'
 import type { NavigationSection } from '@/lib/types/navigation.type'
 
 export const footerSections: NavigationSection[] = [
@@ -32,4 +34,7 @@ export const footerSections: NavigationSection[] = [
     },
 ]
 
-export const copyrightText = `© ${new Date().getFullYear()} Your Company Name. All rights reserved.`
+/**
+ * Copyright text using centralized business name
+ */
+export const copyrightText = `© ${new Date().getFullYear()} ${businessInfo.name}. All rights reserved.`
