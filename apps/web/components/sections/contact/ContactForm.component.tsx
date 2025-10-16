@@ -3,7 +3,7 @@
  *
  * A comprehensive contact form with client-side validation using react-hook-form
  * and zod schema validation. Handles form submission, loading states, and displays
- * success/error messages.
+ * success/error messages with enhanced visual design and micro-interactions.
  *
  * @example
  * ```tsx
@@ -29,7 +29,13 @@ import {
 import { Input } from '@workspace/ui/components/input'
 import { Textarea } from '@workspace/ui/components/textarea'
 import { cn } from '@workspace/ui/lib/utils'
-import { AlertCircle, CheckCircle2, Loader2, Send } from 'lucide-react'
+import {
+    AlertCircle,
+    CheckCircle2,
+    Loader2,
+    Send,
+    Sparkles,
+} from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -44,6 +50,40 @@ import {
     contactFormSchema,
 } from '@/lib/types/forms/contact-form.type'
 import type { ContactFormSectionProps } from '@/lib/types/sections/contact-form-section.type'
+
+/**
+ * ContactForm Component
+ *
+ * A comprehensive contact form with client-side validation using react-hook-form
+ * and zod schema validation. Handles form submission, loading states, and displays
+ * success/error messages with enhanced visual design and micro-interactions.
+ *
+ * @example
+ * ```tsx
+ * <ContactForm
+ *   badge="Send a Message"
+ *   headline="Get In Touch"
+ *   description="Fill out the form below..."
+ * />
+ * ```
+ */
+
+/**
+ * ContactForm Component
+ *
+ * A comprehensive contact form with client-side validation using react-hook-form
+ * and zod schema validation. Handles form submission, loading states, and displays
+ * success/error messages with enhanced visual design and micro-interactions.
+ *
+ * @example
+ * ```tsx
+ * <ContactForm
+ *   badge="Send a Message"
+ *   headline="Get In Touch"
+ *   description="Fill out the form below..."
+ * />
+ * ```
+ */
 
 /**
  * ContactForm Component
@@ -149,16 +189,20 @@ export function ContactForm({
         <SectionContainer
             variant='muted'
             id={id}
-            className={cn('py-16 md:py-24', className)}
+            className={cn('relative py-16 md:py-24', className)}
         >
-            <ContentWrapper size='md'>
+            {/* Subtle background pattern */}
+            <div className='from-primary/[0.02] to-secondary/[0.02] pointer-events-none absolute inset-0 bg-gradient-to-br via-transparent' />
+            <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.05),transparent_50%)]' />
+
+            <ContentWrapper size='md' className='relative'>
                 {/* Section Header */}
                 {(badge || headline || description) && (
                     <SectionHeader
                         badge={badge}
                         title={headline || ''}
                         description={description}
-                        className='mb-12'
+                        className='mb-16 text-center'
                     />
                 )}
 
@@ -166,182 +210,220 @@ export function ContactForm({
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className='bg-card mx-auto max-w-2xl space-y-6 rounded-lg border p-6 shadow-sm md:p-8'
+                        className='group bg-card/80 border-border/50 mx-auto max-w-2xl space-y-8 rounded-2xl border p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl md:p-10'
                     >
-                        {/* Name Field */}
-                        <FormField
-                            control={form.control}
-                            name='name'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Name{' '}
-                                        <span className='text-destructive'>
-                                            *
-                                        </span>
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder='John Doe'
-                                            {...field}
-                                            disabled={isSubmitting}
-                                            aria-label='Your name'
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        {/* Form Fields Grid */}
+                        <div className='space-y-8'>
+                            {/* Name and Email Row */}
+                            <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+                                {/* Name Field */}
+                                <FormField
+                                    control={form.control}
+                                    name='name'
+                                    render={({ field }) => (
+                                        <FormItem className='space-y-3'>
+                                            <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
+                                                Name
+                                                <span className='text-destructive text-xs'>
+                                                    *
+                                                </span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder='John Doe'
+                                                    {...field}
+                                                    disabled={isSubmitting}
+                                                    aria-label='Your name'
+                                                    className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 h-12 transition-all duration-200'
+                                                />
+                                            </FormControl>
+                                            <FormMessage className='text-xs' />
+                                        </FormItem>
+                                    )}
+                                />
 
-                        {/* Email Field */}
-                        <FormField
-                            control={form.control}
-                            name='email'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Email{' '}
-                                        <span className='text-destructive'>
-                                            *
-                                        </span>
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            type='email'
-                                            placeholder='john@example.com'
-                                            {...field}
-                                            disabled={isSubmitting}
-                                            aria-label='Your email address'
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                {/* Email Field */}
+                                <FormField
+                                    control={form.control}
+                                    name='email'
+                                    render={({ field }) => (
+                                        <FormItem className='space-y-3'>
+                                            <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
+                                                Email
+                                                <span className='text-destructive text-xs'>
+                                                    *
+                                                </span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type='email'
+                                                    placeholder='john@example.com'
+                                                    {...field}
+                                                    disabled={isSubmitting}
+                                                    aria-label='Your email address'
+                                                    className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 h-12 transition-all duration-200'
+                                                />
+                                            </FormControl>
+                                            <FormMessage className='text-xs' />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
 
-                        {/* Phone Field (Optional) */}
-                        <FormField
-                            control={form.control}
-                            name='phone'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Phone (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            type='tel'
-                                            placeholder='+1 (555) 123-4567'
-                                            {...field}
-                                            disabled={isSubmitting}
-                                            aria-label='Your phone number'
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                            {/* Phone and Subject Row */}
+                            <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+                                {/* Phone Field (Optional) */}
+                                <FormField
+                                    control={form.control}
+                                    name='phone'
+                                    render={({ field }) => (
+                                        <FormItem className='space-y-3'>
+                                            <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
+                                                Phone
+                                                <span className='text-muted-foreground text-xs'>
+                                                    (Optional)
+                                                </span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type='tel'
+                                                    placeholder='+1 (555) 123-4567'
+                                                    {...field}
+                                                    disabled={isSubmitting}
+                                                    aria-label='Your phone number'
+                                                    className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 h-12 transition-all duration-200'
+                                                />
+                                            </FormControl>
+                                            <FormMessage className='text-xs' />
+                                        </FormItem>
+                                    )}
+                                />
 
-                        {/* Subject Field */}
-                        <FormField
-                            control={form.control}
-                            name='subject'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Subject{' '}
-                                        <span className='text-destructive'>
-                                            *
-                                        </span>
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder='How can we help?'
-                                            {...field}
-                                            disabled={isSubmitting}
-                                            aria-label='Message subject'
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                {/* Subject Field */}
+                                <FormField
+                                    control={form.control}
+                                    name='subject'
+                                    render={({ field }) => (
+                                        <FormItem className='space-y-3'>
+                                            <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
+                                                Subject
+                                                <span className='text-destructive text-xs'>
+                                                    *
+                                                </span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder='How can we help?'
+                                                    {...field}
+                                                    disabled={isSubmitting}
+                                                    aria-label='Message subject'
+                                                    className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 h-12 transition-all duration-200'
+                                                />
+                                            </FormControl>
+                                            <FormMessage className='text-xs' />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
 
-                        {/* Message Field */}
-                        <FormField
-                            control={form.control}
-                            name='message'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Message{' '}
-                                        <span className='text-destructive'>
-                                            *
-                                        </span>
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder='Tell us more about your inquiry...'
-                                            className='min-h-[150px] resize-none'
-                                            {...field}
-                                            disabled={isSubmitting}
-                                            aria-label='Your message'
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                            {/* Message Field */}
+                            <FormField
+                                control={form.control}
+                                name='message'
+                                render={({ field }) => (
+                                    <FormItem className='space-y-3'>
+                                        <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
+                                            Message
+                                            <span className='text-destructive text-xs'>
+                                                *
+                                            </span>
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder='Tell us more about your inquiry...'
+                                                className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 min-h-[150px] resize-none transition-all duration-200'
+                                                {...field}
+                                                disabled={isSubmitting}
+                                                aria-label='Your message'
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='text-xs' />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
 
                         {/* Submission State Messages */}
                         {submissionState.status === 'success' && (
                             <div
-                                className='bg-success/10 text-success flex items-start gap-3 rounded-lg border border-green-500/20 p-4'
+                                className='animate-in slide-in-from-bottom-2 flex items-start gap-4 rounded-xl border border-green-200/60 bg-gradient-to-r from-green-50 to-emerald-50 p-6 text-green-700 shadow-sm duration-300 dark:border-green-800/60 dark:from-green-950/50 dark:to-emerald-950/50 dark:text-green-300'
                                 role='alert'
                                 aria-live='polite'
                             >
-                                <CheckCircle2 className='mt-0.5 size-5 flex-shrink-0' />
-                                <p className='text-sm'>
-                                    {submissionState.message}
-                                </p>
+                                <div className='rounded-full bg-green-100 p-2 dark:bg-green-900/50'>
+                                    <CheckCircle2 className='size-5 flex-shrink-0' />
+                                </div>
+                                <div className='space-y-1'>
+                                    <h4 className='text-sm font-semibold'>
+                                        Success!
+                                    </h4>
+                                    <p className='text-sm leading-relaxed'>
+                                        {submissionState.message}
+                                    </p>
+                                </div>
                             </div>
                         )}
 
                         {submissionState.status === 'error' && (
                             <div
-                                className='bg-destructive/10 text-destructive flex items-start gap-3 rounded-lg border border-red-500/20 p-4'
+                                className='animate-in slide-in-from-bottom-2 flex items-start gap-4 rounded-xl border border-red-200/60 bg-gradient-to-r from-red-50 to-rose-50 p-6 text-red-700 shadow-sm duration-300 dark:border-red-800/60 dark:from-red-950/50 dark:to-rose-950/50 dark:text-red-300'
                                 role='alert'
                                 aria-live='assertive'
                             >
-                                <AlertCircle className='mt-0.5 size-5 flex-shrink-0' />
-                                <p className='text-sm'>
-                                    {submissionState.message}
-                                </p>
+                                <div className='rounded-full bg-red-100 p-2 dark:bg-red-900/50'>
+                                    <AlertCircle className='size-5 flex-shrink-0' />
+                                </div>
+                                <div className='space-y-1'>
+                                    <h4 className='text-sm font-semibold'>
+                                        Error
+                                    </h4>
+                                    <p className='text-sm leading-relaxed'>
+                                        {submissionState.message}
+                                    </p>
+                                </div>
                             </div>
                         )}
 
                         {/* Submit Button */}
-                        <Button
-                            type='submit'
-                            size='lg'
-                            disabled={isSubmitting}
-                            className='w-full'
-                            aria-label={
-                                isSubmitting
-                                    ? 'Sending message...'
-                                    : 'Send message'
-                            }
-                        >
-                            {isSubmitting ? (
-                                <>
-                                    <Loader2 className='mr-2 size-4 animate-spin' />
-                                    Sending...
-                                </>
-                            ) : (
-                                <>
-                                    <Send className='mr-2 size-4' />
-                                    Send Message
-                                </>
-                            )}
-                        </Button>
+                        <div className='pt-4'>
+                            <Button
+                                type='submit'
+                                size='lg'
+                                disabled={isSubmitting}
+                                className='from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 group relative h-14 w-full overflow-hidden bg-gradient-to-r text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl'
+                                aria-label={
+                                    isSubmitting
+                                        ? 'Sending message...'
+                                        : 'Send message'
+                                }
+                            >
+                                {/* Button background animation */}
+                                <div className='from-primary/20 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className='mr-3 size-5 animate-spin' />
+                                        <span>Sending your message...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className='mr-3 size-5 transition-transform duration-200 group-hover:translate-x-0.5' />
+                                        <span>Send Message</span>
+                                        <Sparkles className='ml-3 size-4 opacity-60 transition-opacity duration-200 group-hover:opacity-100' />
+                                    </>
+                                )}
+                            </Button>
+                        </div>
                     </form>
                 </Form>
             </ContentWrapper>

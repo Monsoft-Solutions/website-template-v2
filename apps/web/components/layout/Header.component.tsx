@@ -41,6 +41,18 @@ import { mainNavigation } from '@/lib/data/navigation'
  * Main site header with responsive navigation, mobile menu, and theme toggle
  */
 
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
+/**
+ * Header Component
+ *
+ * Main site header with responsive navigation, mobile menu, and theme toggle
+ */
+
 export function Header() {
     const pathname = usePathname()
     const { theme, setTheme } = useTheme()
@@ -86,10 +98,14 @@ export function Header() {
                     {/* Logo / Brand */}
                     <Link
                         href='/'
-                        className='flex items-center space-x-2 text-xl font-bold transition-opacity hover:opacity-80'
+                        className='flex items-center space-x-2 transition-opacity hover:opacity-80'
                         aria-label='Home'
                     >
-                        <span>YourBrand</span>
+                        <img
+                            src='/logo.png'
+                            alt='Website Template'
+                            className='h-8 w-auto'
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}

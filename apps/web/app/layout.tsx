@@ -39,6 +39,10 @@ export default function RootLayout({
                     href='https://fonts.gstatic.com'
                     crossOrigin='anonymous'
                 />
+
+                {/* Favicon and app icons */}
+                <link rel='icon' type='image/png' href='/favicon.png' />
+                <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
             </head>
             <body
                 className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
