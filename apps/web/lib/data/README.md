@@ -122,7 +122,7 @@ Most site data comes from `site-config.ts`, but some environment-specific variab
 
 **Required:**
 
-- `DATABASE_URL` - Database connection
+- `POSTGRES_URL` - Database connection
 - `BLOG_API_KEY` - Blog API authentication
 
 **Optional:**

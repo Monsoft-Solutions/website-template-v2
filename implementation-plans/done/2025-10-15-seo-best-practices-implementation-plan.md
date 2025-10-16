@@ -2018,7 +2018,7 @@ NEXT_PUBLIC_TWITTER_HANDLE=@yourbrand
 NEXT_PUBLIC_FACEBOOK_APP_ID=
 
 # Database (for dynamic content)
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+POSTGRES_URL="postgresql://user:password@localhost:5432/dbname"
 
 # Environment
 NODE_ENV=development

@@ -41,7 +41,7 @@ cd apps/web && pnpm dlx vercel env pull --yes .env.local
 
 Required variables (see `.env.example`):
 
-- `DATABASE_URL` (server)
+- `POSTGRES_URL` (server)
 - `BLOG_API_KEY` (server)
 - `BLOB_READ_WRITE_TOKEN` (server, optional)
 - `NEXT_PUBLIC_*` (client)
@@ -55,5 +55,5 @@ console.log(env.NEXT_PUBLIC_SITE_URL)
 
 // packages/db
 import { env } from './src/env'
-console.log(env.DATABASE_URL)
+console.log(env.POSTGRES_URL)
 ```
