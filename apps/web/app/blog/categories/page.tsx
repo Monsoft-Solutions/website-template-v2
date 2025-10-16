@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { ContainerLayout } from '@/components/ContainerLayout.component'
+import { BlogHeroSection } from '@/components/blog/BlogHeroSection.component'
 import { Breadcrumbs } from '@/components/shared'
 import { listActiveCategoriesWithCounts } from '@/lib/blog/taxonomy.query'
 import { seoConfig } from '@/lib/seo-config'
@@ -38,59 +39,50 @@ export default async function CategoriesIndexPage() {
                 />
             </div>
 
-            <header className='mb-20 space-y-10'>
-                <div className='space-y-6'>
-                    <h1 className='text-foreground text-4xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight'>
-                        Categories
-                    </h1>
-                    <p className='text-muted-foreground max-w-3xl text-lg leading-relaxed sm:text-xl sm:leading-relaxed'>
-                        Browse articles by topic and discover content that
-                        interests you most.
-                    </p>
-                </div>
-
-                {/* Navigation Links */}
-                <div className='border-border/30 flex flex-wrap items-center gap-6 border-t pt-10'>
-                    <Link
-                        href='/blog'
-                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:underline hover:decoration-1 hover:underline-offset-4'
-                    >
-                        <svg
-                            className='h-4 w-4'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            stroke='currentColor'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth={2}
-                                d='M13 10V3L4 14h7v7l9-11h-7z'
-                            />
-                        </svg>
-                        View All Posts
-                    </Link>
-                    <Link
-                        href='/blog/tags'
-                        className='text-primary hover:text-primary/80 inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:underline hover:decoration-1 hover:underline-offset-4'
-                    >
-                        <svg
-                            className='h-4 w-4'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            stroke='currentColor'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth={2}
-                                d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'
-                            />
-                        </svg>
-                        Browse by Tag
-                    </Link>
-                </div>
-            </header>
+            <BlogHeroSection
+                title='Categories'
+                description='Browse articles by topic and discover content that interests you most.'
+                navigationLinks={[
+                    {
+                        href: '/blog',
+                        icon: (
+                            <svg
+                                className='h-4 w-4'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke='currentColor'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    strokeWidth={2}
+                                    d='M13 10V3L4 14h7v7l9-11h-7z'
+                                />
+                            </svg>
+                        ),
+                        text: 'View All Posts',
+                    },
+                    {
+                        href: '/blog/tags',
+                        icon: (
+                            <svg
+                                className='h-4 w-4'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke='currentColor'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    strokeWidth={2}
+                                    d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'
+                                />
+                            </svg>
+                        ),
+                        text: 'Browse by Tag',
+                    },
+                ]}
+            />
 
             <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
                 {categories.map((cat, index) => (
