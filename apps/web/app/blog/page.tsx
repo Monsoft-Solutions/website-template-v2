@@ -2,6 +2,7 @@ import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
@@ -34,7 +35,7 @@ export default async function BlogPage() {
         : undefined
 
     return (
-        <div className='container py-12 lg:py-16'>
+        <ContainerLayout className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog'
                 url={`${seoConfig.siteUrl}/blog`}
@@ -103,6 +104,6 @@ export default async function BlogPage() {
                 initialCursor={encodedCursor}
                 pageSize={pageSize}
             />
-        </div>
+        </ContainerLayout>
     )
 }

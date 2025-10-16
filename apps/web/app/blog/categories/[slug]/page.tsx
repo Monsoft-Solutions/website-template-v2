@@ -2,6 +2,7 @@ import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 
+import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
@@ -40,12 +41,12 @@ export default async function CategoryDetailPage({ params }: PageProps) {
     const category = await getCachedCategoryBySlug(slug)
     if (!category) {
         return (
-            <div className='container py-12'>
+            <ContainerLayout className='py-12'>
                 <h1 className='text-2xl font-semibold'>Category not found</h1>
                 <p className='text-muted-foreground mt-2'>
                     The category you are looking for does not exist.
                 </p>
-            </div>
+            </ContainerLayout>
         )
     }
 
@@ -67,7 +68,7 @@ export default async function CategoryDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <div className='container py-12 lg:py-16'>
+        <ContainerLayout className='py-12 lg:py-16'>
             <WebPageSchema
                 name={`${category.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/categories/${category.slug}`}
@@ -105,6 +106,6 @@ export default async function CategoryDetailPage({ params }: PageProps) {
                 pageSize={pageSize}
                 categorySlug={slug}
             />
-        </div>
+        </ContainerLayout>
     )
 }

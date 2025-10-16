@@ -3,6 +3,7 @@ import { Hash } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { listActiveTagsWithCounts } from '@/lib/blog/taxonomy.query'
 import { seoConfig } from '@/lib/seo-config'
@@ -22,7 +23,7 @@ export default async function TagsIndexPage() {
     const sortedTags = [...tags].sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
 
     return (
-        <div className='container py-12 lg:py-16'>
+        <ContainerLayout className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog Tags'
                 url={`${seoConfig.siteUrl}/blog/tags`}
@@ -117,6 +118,6 @@ export default async function TagsIndexPage() {
                     </Link>
                 ))}
             </div>
-        </div>
+        </ContainerLayout>
     )
 }

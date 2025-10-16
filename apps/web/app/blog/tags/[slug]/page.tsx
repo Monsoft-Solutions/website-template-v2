@@ -2,6 +2,7 @@ import { WebPageSchema } from '@workspace/seo/react'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 
+import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
@@ -40,12 +41,12 @@ export default async function TagDetailPage({ params }: PageProps) {
     const tag = await getCachedTagBySlug(slug)
     if (!tag) {
         return (
-            <div className='container py-12'>
+            <ContainerLayout className='py-12'>
                 <h1 className='text-2xl font-semibold'>Tag not found</h1>
                 <p className='text-muted-foreground mt-2'>
                     The tag you are looking for does not exist.
                 </p>
-            </div>
+            </ContainerLayout>
         )
     }
 
@@ -67,7 +68,7 @@ export default async function TagDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <div className='container py-12 lg:py-16'>
+        <ContainerLayout className='py-12 lg:py-16'>
             <WebPageSchema
                 name={`${tag.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/tags/${tag.slug}`}
@@ -111,6 +112,6 @@ export default async function TagDetailPage({ params }: PageProps) {
                 pageSize={pageSize}
                 tagSlug={slug}
             />
-        </div>
+        </ContainerLayout>
     )
 }

@@ -39,7 +39,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${fontSans.variable} ${fontMono.variable} container mx-auto font-sans antialiased`}
+                className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
             >
                 <WebVitals />
                 <OrganizationSchema

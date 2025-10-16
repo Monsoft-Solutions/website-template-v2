@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { Breadcrumbs } from '@/components/blog/Breadcrumbs.component'
 import { listActiveCategoriesWithCounts } from '@/lib/blog/taxonomy.query'
 import { seoConfig } from '@/lib/seo-config'
@@ -19,7 +20,7 @@ export default async function CategoriesIndexPage() {
     const categories = await listActiveCategoriesWithCounts()
 
     return (
-        <div className='container py-12 lg:py-16'>
+        <ContainerLayout className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog Categories'
                 url={`${seoConfig.siteUrl}/blog/categories`}
@@ -115,6 +116,6 @@ export default async function CategoriesIndexPage() {
                     </Link>
                 ))}
             </div>
-        </div>
+        </ContainerLayout>
     )
 }
