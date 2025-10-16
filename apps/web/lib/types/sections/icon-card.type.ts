@@ -14,65 +14,65 @@ export interface IconCardProps {
     /**
      * Lucide icon component to display
      */
-    icon: LucideIcon
+    readonly icon: LucideIcon
 
     /**
      * Card title
      */
-    title: string
+    readonly title: string
 
     /**
      * Card description
      */
-    description: string | ReactNode
+    readonly description: string | ReactNode
 
     /**
      * Optional href to make the card clickable
      */
-    href?: string
+    readonly href?: string
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Icon display style
      * @default 'outlined'
      */
-    iconStyle?: 'outlined' | 'filled' | 'minimal'
+    readonly iconStyle?: 'outlined' | 'filled' | 'minimal'
 
     /**
      * Icon color variant
      * @default 'primary'
      */
-    iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
+    readonly iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
 
     /**
      * Card layout orientation
      * @default 'vertical'
      */
-    orientation?: 'vertical' | 'horizontal'
+    readonly orientation?: 'vertical' | 'horizontal'
 
     /**
      * Whether to show a subtle border
      * @default true
      */
-    showBorder?: boolean
+    readonly showBorder?: boolean
 
     /**
      * Optional onClick handler
      */
-    onClick?: () => void
+    readonly onClick?: () => void
 
     /**
      * ARIA label for accessibility
      */
-    ariaLabel?: string
+    readonly ariaLabel?: string
 }

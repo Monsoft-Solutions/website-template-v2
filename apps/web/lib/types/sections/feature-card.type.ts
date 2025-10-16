@@ -14,65 +14,65 @@ export interface FeatureCardProps {
     /**
      * Lucide icon component to display
      */
-    icon: LucideIcon
+    readonly icon: LucideIcon
 
     /**
      * Feature title
      */
-    title: string
+    readonly title: string
 
     /**
      * Feature description
      */
-    description: string | ReactNode
+    readonly description: string | ReactNode
 
     /**
      * Optional CTA link
      */
-    href?: string
+    readonly href?: string
 
     /**
      * Optional CTA link text
      * @default 'Learn more'
      */
-    linkText?: string
+    readonly linkText?: string
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 
     /**
      * Additional CSS classes for the card
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Icon color variant (uses design system colors)
      * @default 'primary'
      */
-    iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
+    readonly iconVariant?: 'primary' | 'secondary' | 'accent' | 'muted'
 
     /**
      * Icon size
      * @default 'default'
      */
-    iconSize?: 'sm' | 'default' | 'lg'
+    readonly iconSize?: 'sm' | 'default' | 'lg'
 
     /**
      * Card hover effect style
      * @default 'lift'
      */
-    hoverEffect?: 'lift' | 'border' | 'glow' | 'none'
+    readonly hoverEffect?: 'lift' | 'border' | 'glow' | 'none'
 
     /**
      * Optional onClick handler
      */
-    onClick?: () => void
+    readonly onClick?: () => void
 
     /**
      * ARIA label for accessibility
      */
-    ariaLabel?: string
+    readonly ariaLabel?: string
 }

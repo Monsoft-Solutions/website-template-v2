@@ -369,56 +369,7 @@ return (
 
 ---
 
-### MEDIUM-3: Consider More Stable Key Generation
-
-**File**: `apps/web/components/sections/home/FeaturesSection.component.tsx:73-86`
-
-**Issue**: Key pattern `${feature.title}-${index}` can cause issues if features are reordered or titles collide.
-
-**Current Code**:
-
-```tsx
-{
-    features.map((feature, index) => (
-        <FeatureCard
-            key={`${feature.title}-${index}`} // Potential collision
-            // ...
-        />
-    ))
-}
-```
-
-**Problem**:
-
-- If two features share the same title, keys will collide
-- Reordering features changes keys and forces re-renders
-
-**Solution**: Add an `id` field to Feature type OR use only index (if static)
-
-**Fix** (if features are dynamic):
-
-```typescript
-// In feature type:
-export interface Feature {
-    readonly id: string  // Add unique identifier
-    readonly icon: LucideIcon
-    // ... rest of fields
-}
-
-// In render:
-{features.map((feature) => (
-    <FeatureCard
-        key={feature.id}  // ✅ Stable unique key
-        // ...
-    />
-))}
-```
-
-**Note**: If features are guaranteed static and titles unique, current approach is acceptable.
-
-**Guidelines**: React best practices - use stable keys for list items
-
----
+\
 
 ### MEDIUM-4: Inline SVGs Should Use Lucide Icons
 

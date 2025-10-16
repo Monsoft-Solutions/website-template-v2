@@ -23,48 +23,48 @@ export interface SectionHeaderProps {
     /**
      * Main heading text
      */
-    title: string
+    readonly title: string
 
     /**
      * Optional description/subtitle text
      */
-    description?: string | ReactNode
+    readonly description?: string | ReactNode
 
     /**
      * Heading level for semantic HTML
      * @default 'h2'
      */
-    as?: HeadingLevel
+    readonly as?: HeadingLevel
 
     /**
      * Text alignment
      * @default 'center'
      */
-    align?: TextAlignment
+    readonly align?: TextAlignment
 
     /**
      * Additional CSS classes for the container
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Additional CSS classes for the title
      */
-    titleClassName?: string
+    readonly titleClassName?: string
 
     /**
      * Additional CSS classes for the description
      */
-    descriptionClassName?: string
+    readonly descriptionClassName?: string
 
     /**
      * Optional badge or label to display above title
      */
-    badge?: string | ReactNode
+    readonly badge?: string | ReactNode
 
     /**
      * Spacing between title and description
      * @default 'default'
      */
-    spacing?: 'tight' | 'default' | 'loose'
+    readonly spacing?: 'tight' | 'default' | 'loose'
 }

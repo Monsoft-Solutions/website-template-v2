@@ -23,43 +23,43 @@ export interface SectionContainerProps {
     /**
      * Child elements to render inside the section
      */
-    children: ReactNode
+    readonly children: ReactNode
 
     /**
      * Background color variant
      * @default 'default'
      */
-    variant?: SectionBackgroundVariant
+    readonly variant?: SectionBackgroundVariant
 
     /**
      * Semantic HTML element to use
      * @default 'section'
      */
-    as?: SectionElement
+    readonly as?: SectionElement
 
     /**
      * Optional id for anchor linking
      */
-    id?: string
+    readonly id?: string
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Whether to remove default vertical padding
      * @default false
      */
-    noPadding?: boolean
+    readonly noPadding?: boolean
 
     /**
      * Custom vertical padding (overrides default py-16 md:py-24)
      */
-    paddingY?: string
+    readonly paddingY?: string
 
     /**
      * ARIA label for accessibility
      */
-    ariaLabel?: string
+    readonly ariaLabel?: string
 }

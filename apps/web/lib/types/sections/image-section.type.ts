@@ -13,24 +13,24 @@ export interface ImageSectionButton {
     /**
      * Button text
      */
-    text: string
+    readonly text: string
 
     /**
      * Button link URL
      */
-    href: string
+    readonly href: string
 
     /**
      * Button variant
      * @default 'default'
      */
-    variant?: 'default' | 'outline' | 'secondary' | 'ghost'
+    readonly variant?: 'default' | 'outline' | 'secondary' | 'ghost'
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 }
 
 /**
@@ -40,34 +40,34 @@ export interface ImageConfig {
     /**
      * Image source URL
      */
-    src: string
+    readonly src: string
 
     /**
      * Image alt text (required for accessibility)
      */
-    alt: string
+    readonly alt: string
 
     /**
      * Image width (for Next.js Image optimization)
      */
-    width?: number
+    readonly width?: number
 
     /**
      * Image height (for Next.js Image optimization)
      */
-    height?: number
+    readonly height?: number
 
     /**
      * Whether to prioritize loading this image
      * @default false
      */
-    priority?: boolean
+    readonly priority?: boolean
 
     /**
      * Image aspect ratio class
      * @default 'aspect-video'
      */
-    aspectRatio?: string
+    readonly aspectRatio?: string
 }
 
 /**
@@ -77,74 +77,74 @@ export interface ImageSectionProps {
     /**
      * Image configuration
      */
-    image: ImageConfig
+    readonly image: ImageConfig
 
     /**
      * Section title
      */
-    title: string
+    readonly title: string
 
     /**
      * Section description
      */
-    description: string | ReactNode
+    readonly description: string | ReactNode
 
     /**
      * Optional badge or label above title
      */
-    badge?: string | ReactNode
+    readonly badge?: string | ReactNode
 
     /**
      * Optional primary CTA button
      */
-    primaryButton?: ImageSectionButton
+    readonly primaryButton?: ImageSectionButton
 
     /**
      * Optional secondary CTA button
      */
-    secondaryButton?: ImageSectionButton
+    readonly secondaryButton?: ImageSectionButton
 
     /**
      * Image position
      * @default 'left'
      */
-    imagePosition?: 'left' | 'right'
+    readonly imagePosition?: 'left' | 'right'
 
     /**
      * Content vertical alignment
      * @default 'center'
      */
-    contentAlign?: 'start' | 'center' | 'end'
+    readonly contentAlign?: 'start' | 'center' | 'end'
 
     /**
      * Background variant
      * @default 'default'
      */
-    variant?: 'default' | 'muted' | 'accent'
+    readonly variant?: 'default' | 'muted' | 'accent'
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Optional id for anchor linking
      */
-    id?: string
+    readonly id?: string
 
     /**
      * Whether to reverse column order on mobile
      * @default false (image always stacks on top by default)
      */
-    reverseMobile?: boolean
+    readonly reverseMobile?: boolean
 
     /**
      * Custom image container classes
      */
-    imageContainerClassName?: string
+    readonly imageContainerClassName?: string
 
     /**
      * Custom content container classes
      */
-    contentContainerClassName?: string
+    readonly contentContainerClassName?: string
 }

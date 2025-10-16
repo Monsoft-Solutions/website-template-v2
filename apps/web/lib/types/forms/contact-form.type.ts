@@ -49,7 +49,7 @@ export type ContactFormData = z.infer<typeof contactFormSchema>
  * API response type for contact form submission
  */
 export interface ContactFormResponse {
-    success: boolean
-    message: string
-    error?: string
+    readonly success: boolean
+    readonly message: string
+    readonly error?: string
 }

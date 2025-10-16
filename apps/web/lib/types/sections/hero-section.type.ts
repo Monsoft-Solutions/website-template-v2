@@ -14,40 +14,40 @@ export interface HeroCTAButton {
     /**
      * Button text
      */
-    text: string
+    readonly text: string
 
     /**
      * Button link URL or tel: link
      */
-    href: string
+    readonly href: string
 
     /**
      * Button variant
      * @default 'default'
      */
-    variant?: 'default' | 'outline' | 'secondary' | 'ghost'
+    readonly variant?: 'default' | 'outline' | 'secondary' | 'ghost'
 
     /**
      * Optional icon to display with button
      */
-    icon?: LucideIcon
+    readonly icon?: LucideIcon
 
     /**
      * Icon position
      * @default 'left'
      */
-    iconPosition?: 'left' | 'right'
+    readonly iconPosition?: 'left' | 'right'
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 
     /**
      * Optional aria-label for accessibility
      */
-    ariaLabel?: string
+    readonly ariaLabel?: string
 }
 
 /**
@@ -57,34 +57,34 @@ export interface HeroImageConfig {
     /**
      * Image source URL
      */
-    src: string
+    readonly src: string
 
     /**
      * Image alt text (required for accessibility)
      */
-    alt: string
+    readonly alt: string
 
     /**
      * Image width (for Next.js Image optimization)
      */
-    width?: number
+    readonly width?: number
 
     /**
      * Image height (for Next.js Image optimization)
      */
-    height?: number
+    readonly height?: number
 
     /**
      * Whether to prioritize loading this image
      * @default true
      */
-    priority?: boolean
+    readonly priority?: boolean
 
     /**
      * Image aspect ratio class
      * @default 'aspect-video'
      */
-    aspectRatio?: string
+    readonly aspectRatio?: string
 }
 
 /**
@@ -94,58 +94,58 @@ export interface HeroSectionProps {
     /**
      * Main headline (H1)
      */
-    headline: string | ReactNode
+    readonly headline: string | ReactNode
 
     /**
      * Supporting subheadline
      */
-    subheadline?: string | ReactNode
+    readonly subheadline?: string | ReactNode
 
     /**
      * Detailed description paragraph
      */
-    description?: string | ReactNode
+    readonly description?: string | ReactNode
 
     /**
      * Primary CTA button (e.g., "Contact Us")
      */
-    primaryButton: HeroCTAButton
+    readonly primaryButton: HeroCTAButton
 
     /**
      * Optional secondary CTA button (e.g., "Call Us")
      */
-    secondaryButton?: HeroCTAButton
+    readonly secondaryButton?: HeroCTAButton
 
     /**
      * Hero image configuration
      */
-    image: HeroImageConfig
+    readonly image: HeroImageConfig
 
     /**
      * Image position
      * @default 'right'
      */
-    imagePosition?: 'left' | 'right'
+    readonly imagePosition?: 'left' | 'right'
 
     /**
      * Background variant
      * @default 'default'
      */
-    variant?: 'default' | 'muted' | 'accent'
+    readonly variant?: 'default' | 'muted' | 'accent'
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Optional id for anchor linking
      */
-    id?: string
+    readonly id?: string
 
     /**
      * Enable animations
      * @default true
      */
-    enableAnimations?: boolean
+    readonly enableAnimations?: boolean
 }

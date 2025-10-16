@@ -23,27 +23,27 @@ export interface ContentWrapperProps {
     /**
      * Child elements to render inside the wrapper
      */
-    children: ReactNode
+    readonly children: ReactNode
 
     /**
      * Max width size variant
      * @default 'lg'
      */
-    size?: ContentWrapperSize
+    readonly size?: ContentWrapperSize
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Whether to remove default horizontal padding
      * @default false
      */
-    noPadding?: boolean
+    readonly noPadding?: boolean
 
     /**
      * Custom horizontal padding (overrides default px-6)
      */
-    paddingX?: string
+    readonly paddingX?: string
 }

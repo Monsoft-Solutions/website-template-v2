@@ -13,40 +13,40 @@ export interface CTAButton {
     /**
      * Button text
      */
-    text: string
+    readonly text: string
 
     /**
      * Button link URL
      */
-    href: string
+    readonly href: string
 
     /**
      * Button variant
      * @default 'default'
      */
-    variant?: 'default' | 'outline' | 'secondary' | 'ghost'
+    readonly variant?: 'default' | 'outline' | 'secondary' | 'ghost'
 
     /**
      * Whether the link is external
      * @default false
      */
-    external?: boolean
+    readonly external?: boolean
 
     /**
      * Optional icon to display (Lucide icon name or React element)
      */
-    icon?: ReactNode
+    readonly icon?: ReactNode
 
     /**
      * Icon position
      * @default 'left'
      */
-    iconPosition?: 'left' | 'right'
+    readonly iconPosition?: 'left' | 'right'
 
     /**
      * Optional onClick handler (overrides href)
      */
-    onClick?: () => void
+    readonly onClick?: () => void
 }
 
 /**
@@ -56,54 +56,54 @@ export interface CTASectionProps {
     /**
      * Main heading text
      */
-    heading: string
+    readonly heading: string
 
     /**
      * Optional description text
      */
-    description?: string | ReactNode
+    readonly description?: string | ReactNode
 
     /**
      * Primary CTA button
      */
-    primaryButton: CTAButton
+    readonly primaryButton: CTAButton
 
     /**
      * Optional secondary CTA button
      */
-    secondaryButton?: CTAButton
+    readonly secondaryButton?: CTAButton
 
     /**
      * Background variant
      * @default 'accent'
      */
-    variant?: 'default' | 'muted' | 'accent' | 'primary'
+    readonly variant?: 'default' | 'muted' | 'accent' | 'primary'
 
     /**
      * Text alignment
      * @default 'center'
      */
-    align?: 'left' | 'center' | 'right'
+    readonly align?: 'left' | 'center' | 'right'
 
     /**
      * Additional CSS classes
      */
-    className?: string
+    readonly className?: string
 
     /**
      * Optional id for anchor linking
      */
-    id?: string
+    readonly id?: string
 
     /**
      * Button layout on mobile
      * @default 'stack'
      */
-    buttonLayout?: 'stack' | 'inline'
+    readonly buttonLayout?: 'stack' | 'inline'
 
     /**
      * Section size/padding variant
      * @default 'default'
      */
-    size?: 'sm' | 'default' | 'lg'
+    readonly size?: 'sm' | 'default' | 'lg'
 }

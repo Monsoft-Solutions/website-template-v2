@@ -4,7 +4,6 @@
  * This file creates the SEO configuration using centralized site data.
  * All business and SEO information is pulled from site-config.ts
  */
-import { mergeSEOConfig } from '@workspace/seo/config'
 import type { SEOConfig } from '@workspace/seo/config'
 
 import { siteConfig } from '@/lib/data/site-config'

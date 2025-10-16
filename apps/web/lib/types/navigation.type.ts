@@ -5,26 +5,26 @@
  */
 
 export interface NavigationItem {
-    label: string
-    href: string
-    external?: boolean
-    description?: string
+    readonly label: string
+    readonly href: string
+    readonly external?: boolean
+    readonly description?: string
 }
 
 export interface NavigationSection {
-    title: string
-    items: NavigationItem[]
+    readonly title: string
+    readonly items: NavigationItem[]
 }
 
 export interface SocialLink {
-    platform: string
-    url: string
-    icon?: string
-    label?: string
+    readonly platform: string
+    readonly url: string
+    readonly icon?: string
+    readonly label?: string
 }
 
 export interface ContactInfo {
-    phone: string
-    email: string
-    address?: string
+    readonly phone: string
+    readonly email: string
+    readonly address?: string
 }
