@@ -18,7 +18,7 @@ config()
 export const env = createEnv({
     server: {
         // Database & Storage (required for runtime)
-        DATABASE_URL: z.string().url(),
+        POSTGRES_URL: z.string().url(),
         BLOG_API_KEY: z.string().min(1),
         BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
         VERCEL_URL: z.string().optional(),
@@ -36,7 +36,7 @@ export const env = createEnv({
         NEXT_PUBLIC_ENABLE_INDEXING: z.enum(['true', 'false']).optional(),
     },
     runtimeEnv: {
-        DATABASE_URL: process.env.DATABASE_URL,
+        POSTGRES_URL: process.env.POSTGRES_URL,
         BLOG_API_KEY: process.env.BLOG_API_KEY,
         BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
         VERCEL_URL: process.env.VERCEL_URL,

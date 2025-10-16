@@ -42,7 +42,7 @@ This is a **Turborepo monorepo** template using **shadcn/ui** components, built 
 - Database client is exported from `@workspace/db/client`
 - Type-safe schema exports from `@workspace/db/schema`
 - Generated TypeScript types from `@workspace/db/types`
-- Requires `DATABASE_URL` environment variable in root `.env` file
+- Requires `POSTGRES_URL` environment variable in root `.env` file
 
 **SEO Package (@workspace/seo):**
 
@@ -209,7 +209,7 @@ Create a `.env` file in the repository root with:
 
 ```bash
 # Database Configuration
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+POSTGRES_URL="postgresql://user:password@localhost:5432/dbname"
 
 # SEO Configuration
 NEXT_PUBLIC_SITE_URL=https://example.com
@@ -231,7 +231,7 @@ NODE_ENV=development
 ```
 
 **Database Environment Variables:**
-The `DATABASE_URL` is required for:
+The `POSTGRES_URL` is required for:
 
 - Database migrations (`pnpm --filter @workspace/db db:migrate`)
 - Drizzle Kit commands (generate, push, studio)

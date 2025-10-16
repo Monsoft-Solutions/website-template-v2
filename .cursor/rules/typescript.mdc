@@ -67,7 +67,7 @@ Follow the pattern: `<file-name>.<file-type>.ts`
 
 **Classes, Interfaces & Types**: `PascalCase` (UserProfile, DatabaseConnection, ApiResponse, UserRole)
 
-**Constants**: `SCREAMING_SNAKE_CASE` (MAX_RETRY_ATTEMPTS, API_BASE_URL, DATABASE_URL)
+**Constants**: `SCREAMING_SNAKE_CASE` (MAX_RETRY_ATTEMPTS, API_BASE_URL, POSTGRES_URL)
 
 **Files & Directories**: `kebab-case` (user-profile.component.tsx)
 

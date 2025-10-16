@@ -70,7 +70,7 @@ Follow the pattern: `<file-name>.<file-type>.ts`
 
 - **Style**: `SCREAMING_SNAKE_CASE`
 - **Usage**: Constants and environment variables
-- **Examples**: `MAX_RETRY_ATTEMPTS`, `API_BASE_URL`, `DATABASE_URL`
+- **Examples**: `MAX_RETRY_ATTEMPTS`, `API_BASE_URL`, `POSTGRES_URL`
 
 ### Files & Directories
 

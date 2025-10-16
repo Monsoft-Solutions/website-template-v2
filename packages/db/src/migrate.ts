@@ -10,7 +10,7 @@ dotenv.config({ path: '../../.env' })
 dotenv.config()
 
 const runMigrations = async () => {
-    const databaseUrl = env.DATABASE_URL
+    const databaseUrl = env.POSTGRES_URL
 
     console.log('⏳ Running migrations...')
 

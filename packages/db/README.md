@@ -7,7 +7,7 @@ Shared database package using Drizzle ORM with PostgreSQL.
 1. Create a `.env` file in the root of the monorepo:
 
 ```bash
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+POSTGRES_URL="postgresql://user:password@localhost:5432/dbname"
 ```
 
 2. Generate migrations:
