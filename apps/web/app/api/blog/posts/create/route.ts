@@ -14,7 +14,7 @@ import type { PgTransaction } from 'drizzle-orm/pg-core'
 import type { PostgresJsQueryResultHKT } from 'drizzle-orm/postgres-js'
 import { NextRequest, NextResponse } from 'next/server'
 
-import { uploadImageToBlobFormUrl } from '@/lib/api/upload-image.util'
+import { uploadImageToBlob as uploadImageToBlobFormUrl } from '@/lib/api/upload-image.util'
 import { withApiAuth } from '@/lib/api/withApiAuth.middleware'
 
 // Type alias for Drizzle transaction
@@ -120,7 +120,7 @@ async function handleImageUpload(
 
     try {
         const filename = `blog-${data.slug}-featured-${Date.now()}.jpg`
-        const uploadedImageUrl = await uploadImageToBlobFormUrl(
+        const uploadResult = await uploadImageToBlobFormUrl(
             data.featuredImage.url,
             filename
         )
@@ -129,11 +129,11 @@ async function handleImageUpload(
         const [imageRecord] = await db
             .insert(images)
             .values({
-                url: uploadedImageUrl,
+                url: uploadResult.url,
                 alt: `Featured image for ${data.title}`,
                 title: data.title,
-                originalFilename: filename,
-                mimeType: 'image/jpeg',
+                originalFilename: uploadResult.originalFilename,
+                mimeType: uploadResult.mimeType,
             })
             .returning({ id: images.id })
 
@@ -143,7 +143,7 @@ async function handleImageUpload(
 
         return {
             imageId: imageRecord.id,
-            imageUrl: uploadedImageUrl,
+            imageUrl: uploadResult.url,
         }
     } catch (imageError) {
         console.error('Image upload failed:', imageError)
@@ -293,10 +293,20 @@ async function createCategoryAssociations(
         return
     }
 
-    const categoryAssociations = categoryIds.map((categoryId: string) => ({
-        blogPostId: postId,
-        categoryId,
-    }))
+    // Deduplicate categoryIds to avoid unique constraint violations
+    const uniqueCategoryIds = Array.from(new Set(categoryIds))
+
+    // Return early if deduplication yields empty array
+    if (uniqueCategoryIds.length === 0) {
+        return
+    }
+
+    const categoryAssociations = uniqueCategoryIds.map(
+        (categoryId: string) => ({
+            blogPostId: postId,
+            categoryId,
+        })
+    )
 
     await tx.insert(blogPostCategory).values(categoryAssociations)
 }

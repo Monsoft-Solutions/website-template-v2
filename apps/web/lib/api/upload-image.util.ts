@@ -3,16 +3,25 @@ import { put } from '@vercel/blob'
 import { env } from '@/env'
 
 /**
+ * Upload result containing URL and metadata
+ */
+export type UploadImageResult = {
+    url: string
+    mimeType: string
+    originalFilename: string
+}
+
+/**
  * Download an image from a URL and upload it to Vercel Blob
  * @param imageUrl - The URL of the image to download
  * @param filename - The filename to use in Vercel Blob
- * @returns The URL of the uploaded image in Vercel Blob
+ * @returns The URL of the uploaded image, mime type, and original filename
  * @throws Error if download or upload fails
  */
-export async function uploadImageToBlobFormUrl(
+export async function uploadImageToBlob(
     imageUrl: string,
     filename: string
-): Promise<string> {
+): Promise<UploadImageResult> {
     try {
         // Download the image
         const response = await fetch(imageUrl, {
@@ -59,7 +68,11 @@ export async function uploadImageToBlobFormUrl(
             token: blobToken,
         })
 
-        return uploadedBlob.url
+        return {
+            url: uploadedBlob.url,
+            mimeType: contentType,
+            originalFilename: filename,
+        }
     } catch (error) {
         const errorMessage =
             error instanceof Error ? error.message : String(error)

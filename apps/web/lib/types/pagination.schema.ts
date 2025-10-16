@@ -34,8 +34,15 @@ export const basePaginationSchema = z.object({
                 const decoded = JSON.parse(
                     Buffer.from(val, 'base64').toString('utf-8')
                 )
+                const publishedAtDate = new Date(decoded.publishedAt)
+
+                // Validate that the date is actually valid
+                if (isNaN(publishedAtDate.getTime())) {
+                    throw new Error('Invalid date in cursor')
+                }
+
                 return {
-                    publishedAt: new Date(decoded.publishedAt),
+                    publishedAt: publishedAtDate,
                     id: decoded.id,
                 }
             } catch {

@@ -13,9 +13,9 @@ async function seed() {
 
     try {
         const seedersDir = path.resolve(__dirname)
-        const files = await glob(`*.seed.ts`, {
+        const files = await glob(`*.seed.{js,ts}`, {
             cwd: seedersDir,
-            ignore: ['index.ts'],
+            ignore: ['index.{js,ts}'],
         })
 
         const sortedSeeders = _.sortBy(files, (file) => file)
