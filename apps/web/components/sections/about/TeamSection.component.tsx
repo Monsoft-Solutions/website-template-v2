@@ -84,7 +84,7 @@ export function TeamSection({
                         >
                             {/* Avatar */}
                             <div className='relative mb-6 overflow-hidden rounded-lg'>
-                                <div className='relative aspect-square w-full max-w-[240px]'>
+                                <div className='relative mx-auto aspect-square h-48 w-48'>
                                     <Image
                                         src={member.avatar}
                                         alt={member.name}

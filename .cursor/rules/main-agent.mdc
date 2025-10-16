@@ -47,6 +47,11 @@ This agent serves as the **registry and router** for all specialized agents in t
 - **Purpose**: Creating and maintaining technical documentation following VitePress and markdown best practices
 - **Location**: `.cursor/rules/documentation-writer.mdc`
 
+### image-creator-expert
+
+- **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in nano-banana model with proven workflow for hero images, team photos, and professional content.
+- **Location**: `.cursor/rules/image-creator-expert.mdc`
+
 ### typescript
 
 - **Purpose**: TypeScript best practices, naming conventions, and coding standards expert
@@ -78,6 +83,7 @@ Direct tasks to appropriate specialized agents:
 - **UI/UX design** → `ui-ux-designer`
 - **Database optimization** → `database-optimizer`
 - **Documentation** → `documentation-writer`
+- **Image generation and creation** → `image-creator-expert`
 - **TypeScript best practices** → `typescript`
 - **Unit Testing** → `unit-testing`
 - **PR Review Analysis** → `pr-review-analyzer`
@@ -104,5 +110,5 @@ Agents automatically apply based on file types and contexts defined in their rul
 
 ---
 
-_Last updated: 2025-10-08_  
-_Total Cursor agents: 12 (including main-agent)_
+_Last updated: 2025-10-16_
+_Total Cursor agents: 13 (including main-agent)_
