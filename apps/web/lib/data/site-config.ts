@@ -140,9 +140,9 @@ export const siteConfig: SiteConfig = {
      */
     seo: {
         siteUrl: getSiteUrl(), // Dynamically from environment
-        siteName: 'Your Company Name',
+        siteName: 'ACME',
         siteDescription:
-            'Building modern web experiences with cutting-edge technology and design excellence.',
+            'ACME is a company that builds modern web experiences with excellence.',
         keywords: [
             'web development',
             'modern web',
