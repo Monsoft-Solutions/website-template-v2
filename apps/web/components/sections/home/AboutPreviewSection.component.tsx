@@ -32,6 +32,7 @@ export function AboutPreviewSection({
     variant = 'muted',
     className,
     id,
+    aspectRatio = 'aspect-square',
 }: AboutPreviewSectionProps) {
     return (
         <ImageSection
@@ -41,7 +42,7 @@ export function AboutPreviewSection({
                 width: imageWidth,
                 height: imageHeight,
                 priority: false,
-                aspectRatio: 'aspect-square',
+                aspectRatio: aspectRatio,
             }}
             badge={badge}
             title={title}

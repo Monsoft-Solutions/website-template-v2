@@ -46,10 +46,7 @@ export function ContactHeroSection({
 
             {/* Animated background shapes */}
             <div className='bg-primary/5 absolute top-10 left-10 h-32 w-32 animate-pulse rounded-full blur-2xl' />
-            <div
-                className='bg-secondary/5 absolute right-10 bottom-10 h-40 w-40 animate-pulse rounded-full blur-2xl'
-                style={{ animationDelay: '1s' }}
-            />
+            <div className='bg-secondary/5 absolute right-10 bottom-10 h-40 w-40 animate-pulse rounded-full blur-2xl [animation-delay:1s]' />
 
             <ContentWrapper className='relative'>
                 <div className='flex flex-col items-center space-y-8 text-center'>

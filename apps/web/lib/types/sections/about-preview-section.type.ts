@@ -69,4 +69,10 @@ export interface AboutPreviewSectionProps
      * @default 'left'
      */
     readonly imagePosition?: 'left' | 'right'
+
+    /**
+     * Image aspect ratio
+     * @default 'aspect-square'
+     */
+    readonly aspectRatio?: 'aspect-square' | 'aspect-video' | 'aspect-auto'
 }
