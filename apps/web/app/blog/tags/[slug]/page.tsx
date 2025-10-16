@@ -41,7 +41,7 @@ export default async function TagDetailPage({ params }: PageProps) {
     const tag = await getCachedTagBySlug(slug)
     if (!tag) {
         return (
-            <ContainerLayout className='py-12'>
+            <ContainerLayout className='py-12 lg:py-16'>
                 <h1 className='text-2xl font-semibold'>Tag not found</h1>
                 <p className='text-muted-foreground mt-2'>
                     The tag you are looking for does not exist.
@@ -68,7 +68,7 @@ export default async function TagDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <ContainerLayout className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-12 lg:py-16'>
             <WebPageSchema
                 name={`${tag.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/tags/${tag.slug}`}

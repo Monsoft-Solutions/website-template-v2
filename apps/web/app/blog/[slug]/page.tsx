@@ -59,7 +59,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         : null
 
     return (
-        <ContainerLayout size='sm' className='py-12 lg:py-16'>
+        <ContainerLayout as='main' size='sm' className='py-12 lg:py-16'>
             <article className='prose prose-neutral dark:prose-invert'>
                 <Breadcrumbs
                     items={[

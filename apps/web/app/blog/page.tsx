@@ -35,7 +35,7 @@ export default async function BlogPage() {
         : undefined
 
     return (
-        <ContainerLayout className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog'
                 url={`${seoConfig.siteUrl}/blog`}

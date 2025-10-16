@@ -23,7 +23,7 @@ export default async function TagsIndexPage() {
     const sortedTags = [...tags].sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
 
     return (
-        <ContainerLayout className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog Tags'
                 url={`${seoConfig.siteUrl}/blog/tags`}

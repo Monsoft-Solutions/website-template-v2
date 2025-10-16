@@ -64,12 +64,7 @@ export default function RootLayout({
                 />
                 <Providers>
                     <Header />
-                    <main
-                        id='main-content'
-                        className='container mx-auto flex-1'
-                    >
-                        {children}
-                    </main>
+                    <main id='main-content'>{children}</main>
                     <Footer />
                 </Providers>
             </body>

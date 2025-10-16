@@ -20,7 +20,12 @@
  */
 import { cn } from '@workspace/ui/lib/utils'
 
-import { IconCard, SectionContainer, SectionHeader } from '@/components/shared'
+import {
+    ContentWrapper,
+    IconCard,
+    SectionContainer,
+    SectionHeader,
+} from '@/components/shared'
 import type { MissionSectionProps } from '@/lib/types/sections/mission-section.type'
 
 export function MissionSection({
@@ -38,31 +43,33 @@ export function MissionSection({
             id={id}
             className={cn('py-16 md:py-24 lg:py-32', className)}
         >
-            {/* Section Header */}
-            {(badge || headline) && (
-                <SectionHeader
-                    badge={badge}
-                    title={headline || ''}
-                    description={description}
-                    align='center'
-                    className='mb-12 md:mb-16'
-                />
-            )}
-
-            {/* Mission Items Grid */}
-            <div className='grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8'>
-                {items.map((item, index) => (
-                    <IconCard
-                        key={`mission-item-${index}`}
-                        icon={item.icon}
-                        title={item.title}
-                        description={item.description}
-                        iconStyle='filled'
-                        iconVariant='primary'
-                        ariaLabel={item.ariaLabel}
+            <ContentWrapper>
+                {/* Section Header */}
+                {(badge || headline) && (
+                    <SectionHeader
+                        badge={badge}
+                        title={headline || ''}
+                        description={description}
+                        align='center'
+                        className='mb-12 md:mb-16'
                     />
-                ))}
-            </div>
+                )}
+
+                {/* Mission Items Grid */}
+                <div className='grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8'>
+                    {items.map((item, index) => (
+                        <IconCard
+                            key={`mission-item-${index}`}
+                            icon={item.icon}
+                            title={item.title}
+                            description={item.description}
+                            iconStyle='filled'
+                            iconVariant='primary'
+                            ariaLabel={item.ariaLabel}
+                        />
+                    ))}
+                </div>
+            </ContentWrapper>
         </SectionContainer>
     )
 }

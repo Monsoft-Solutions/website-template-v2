@@ -13,7 +13,7 @@ import {
     StorySection,
     TeamSection,
 } from '@/components/sections/about'
-import { Breadcrumbs, CTASection } from '@/components/shared'
+import { Breadcrumbs, CTASection, ContentWrapper } from '@/components/shared'
 import {
     aboutCTAData,
     aboutHeroData,
@@ -93,14 +93,15 @@ export default function AboutPage() {
             {/* Main Content */}
             <main>
                 {/* Breadcrumbs Navigation */}
-                <div className='mx-auto max-w-7xl px-6 pt-8'>
-                    <Breadcrumbs
-                        items={[
-                            { label: 'Home', href: '/' },
-                            { label: 'About' },
-                        ]}
-                        className='mb-8'
-                    />
+                <div className='pt-8 pb-4'>
+                    <ContentWrapper>
+                        <Breadcrumbs
+                            items={[
+                                { label: 'Home', href: '/' },
+                                { label: 'About' },
+                            ]}
+                        />
+                    </ContentWrapper>
                 </div>
 
                 {/* About Hero Section */}

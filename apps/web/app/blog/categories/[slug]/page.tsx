@@ -41,7 +41,7 @@ export default async function CategoryDetailPage({ params }: PageProps) {
     const category = await getCachedCategoryBySlug(slug)
     if (!category) {
         return (
-            <ContainerLayout className='py-12'>
+            <ContainerLayout className='py-12 lg:py-16'>
                 <h1 className='text-2xl font-semibold'>Category not found</h1>
                 <p className='text-muted-foreground mt-2'>
                     The category you are looking for does not exist.
@@ -68,7 +68,7 @@ export default async function CategoryDetailPage({ params }: PageProps) {
         : undefined
 
     return (
-        <ContainerLayout className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-12 lg:py-16'>
             <WebPageSchema
                 name={`${category.name} Articles`}
                 url={`${seoConfig.siteUrl}/blog/categories/${category.slug}`}

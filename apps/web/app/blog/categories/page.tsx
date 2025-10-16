@@ -20,7 +20,7 @@ export default async function CategoriesIndexPage() {
     const categories = await listActiveCategoriesWithCounts()
 
     return (
-        <ContainerLayout className='py-12 lg:py-16'>
+        <ContainerLayout as='main' className='py-12 lg:py-16'>
             <WebPageSchema
                 name='Blog Categories'
                 url={`${seoConfig.siteUrl}/blog/categories`}
