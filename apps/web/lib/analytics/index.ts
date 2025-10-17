@@ -49,3 +49,22 @@ export {
 
 // Consent context
 export { ConsentProvider, useConsent } from './consent.context'
+
+// Hooks
+export { useAnalyticsEvent } from './useAnalyticsEvent.hook'
+export type {
+    UseAnalyticsEventOptions,
+    UseAnalyticsEventReturn,
+} from './useAnalyticsEvent.hook'
+export { useScrollDepth } from './useScrollDepth.hook'
+export type { UseScrollDepthOptions } from './useScrollDepth.hook'
+
+// Scroll depth utilities
+export {
+    getMaxScrollDepth,
+    getTrackedThresholds,
+    initScrollDepthTracking,
+    resetScrollDepthTracking,
+    SCROLL_THRESHOLDS,
+} from './scroll-depth.util'
+export type { ScrollDepthOptions, ScrollThreshold } from './scroll-depth.util'

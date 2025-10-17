@@ -107,6 +107,9 @@ export function trackScrollDepth(params: ScrollDepthParams): void {
             percent: params.percent,
             page_path: params.page_path ?? window.location.pathname,
         })
+        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+            console.log('Analytics: Tracked scroll depth', params)
+        }
     } catch (error) {
         if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
             console.error('Analytics: Failed to track scroll depth', error)

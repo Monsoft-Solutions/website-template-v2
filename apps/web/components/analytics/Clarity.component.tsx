@@ -20,6 +20,24 @@ import Script from 'next/script'
  * @module components/analytics
  */
 
+/**
+ * Microsoft Clarity Component
+ *
+ * Loads Microsoft Clarity tracking script.
+ * Only loads when NEXT_PUBLIC_CLARITY_PROJECT_ID is configured.
+ *
+ * @module components/analytics
+ */
+
+/**
+ * Microsoft Clarity Component
+ *
+ * Loads Microsoft Clarity tracking script.
+ * Only loads when NEXT_PUBLIC_CLARITY_PROJECT_ID is configured.
+ *
+ * @module components/analytics
+ */
+
 interface ClarityProps {
     projectId: string
 }

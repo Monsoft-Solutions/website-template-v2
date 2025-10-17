@@ -9,3 +9,5 @@
 export { Clarity } from './Clarity.component'
 export { GoogleAnalytics } from './GoogleAnalytics.component'
 export { GoogleTagManager } from './GoogleTagManager.component'
+export { PageViewTracker } from './page-view-tracker.component'
+export { ScrollDepthTracker } from './scroll-depth-tracker.component'

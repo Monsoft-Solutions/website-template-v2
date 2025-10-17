@@ -6,6 +6,8 @@ import {
     Clarity,
     GoogleAnalytics,
     GoogleTagManager,
+    PageViewTracker,
+    ScrollDepthTracker,
 } from '@/components/analytics'
 import { Footer } from '@/components/layout/Footer.component'
 import { Header } from '@/components/layout/Header.component'
@@ -72,6 +74,8 @@ export default function RootLayout({
                 )}
 
                 <WebVitals />
+                <PageViewTracker />
+                <ScrollDepthTracker />
                 <OrganizationSchema
                     name={seoConfig.siteName}
                     url={seoConfig.siteUrl}
