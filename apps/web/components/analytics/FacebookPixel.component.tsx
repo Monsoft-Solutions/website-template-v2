@@ -11,24 +11,6 @@
 
 import Script from 'next/script'
 
-/**
- * Facebook Pixel Component
- *
- * Loads Facebook Pixel tracking script.
- * Only loads when NEXT_PUBLIC_FACEBOOK_PIXEL_ID is configured.
- *
- * @module components/analytics
- */
-
-/**
- * Facebook Pixel Component
- *
- * Loads Facebook Pixel tracking script.
- * Only loads when NEXT_PUBLIC_FACEBOOK_PIXEL_ID is configured.
- *
- * @module components/analytics
- */
-
 interface FacebookPixelProps {
     pixelId: string
 }

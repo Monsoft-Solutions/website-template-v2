@@ -11,15 +11,6 @@
 
 import Script from 'next/script'
 
-/**
- * Google Analytics Component
- *
- * Loads Google Analytics 4 (GA4) gtag.js script.
- * Only loads when NEXT_PUBLIC_GA_MEASUREMENT_ID is configured.
- *
- * @module components/analytics
- */
-
 interface GoogleAnalyticsProps {
     measurementId: string
 }

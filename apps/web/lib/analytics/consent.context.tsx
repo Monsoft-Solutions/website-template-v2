@@ -31,33 +31,6 @@ import {
 } from './consent.util'
 
 /**
- * Consent Context & Provider
- *
- * React context for managing user consent preferences.
- * Provides hooks for updating and checking consent state.
- *
- * @module consent.context
- */
-
-/**
- * Consent Context & Provider
- *
- * React context for managing user consent preferences.
- * Provides hooks for updating and checking consent state.
- *
- * @module consent.context
- */
-
-/**
- * Consent Context & Provider
- *
- * React context for managing user consent preferences.
- * Provides hooks for updating and checking consent state.
- *
- * @module consent.context
- */
-
-/**
  * Consent context value
  */
 interface ConsentContextValue {

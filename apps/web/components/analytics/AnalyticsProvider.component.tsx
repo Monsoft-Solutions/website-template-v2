@@ -19,15 +19,6 @@ import { GoogleTagManager } from './GoogleTagManager.component'
 /**
  * Analytics Provider Component
  *
- * Centralized analytics provider that conditionally loads all analytics services.
- * Loads only the services configured via environment variables.
- *
- * @module components/analytics
- */
-
-/**
- * Analytics Provider Component
- *
  * Conditionally loads analytics scripts based on environment configuration.
  * Centralizes all analytics service integrations in a single component.
  *

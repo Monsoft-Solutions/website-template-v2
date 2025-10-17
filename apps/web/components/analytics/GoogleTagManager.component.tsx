@@ -24,6 +24,17 @@ import Script from 'next/script'
  * @module components/analytics
  */
 
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * @module components/analytics
+ */
+
 interface GoogleTagManagerProps {
     containerId: string
 }
