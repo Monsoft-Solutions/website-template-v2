@@ -71,7 +71,7 @@ export function CookieBanner() {
                                     essential ones.
                                 </p>
                                 {/* Dev mode: Show current state */}
-                                {env.NEXT_PUBLIC_NODE_ENV === 'development' &&
+                                {env.NODE_ENV === 'development' &&
                                     consentState && (
                                         <p className='text-muted-foreground/60 mt-1 text-xs'>
                                             Dev: Current state = {consentState}

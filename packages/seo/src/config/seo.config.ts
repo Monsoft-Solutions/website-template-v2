@@ -21,7 +21,7 @@ import type { RobotsConfig, SEOConfig } from './seo-config.type'
  * @returns Environment variable value or default value
  */
 function getEnvVar(key: string, defaultValue: string = ''): string {
-    return env.NEXT_PUBLIC_NODE_ENV === 'development'
+    return env.NODE_ENV === 'development'
         ? defaultValue
         : (env[key] ?? defaultValue)
 }
@@ -83,8 +83,8 @@ export function getFacebookAppId(): string | undefined {
  * @returns Current environment (development, staging, production)
  */
 export function getEnvironment(): 'development' | 'staging' | 'production' {
-    return env.NEXT_PUBLIC_NODE_ENV
-        ? (env.NEXT_PUBLIC_NODE_ENV as 'development' | 'staging' | 'production')
+    return env.NODE_ENV
+        ? (env.NODE_ENV as 'development' | 'staging' | 'production')
         : 'development'
 }
 

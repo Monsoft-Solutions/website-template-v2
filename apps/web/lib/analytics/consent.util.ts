@@ -67,11 +67,11 @@ export function initializeConsent(): void {
     try {
         window.gtag('consent', 'default', DEFAULT_CONSENT_CONFIG)
 
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log('Analytics: Consent mode initialized (default: denied)')
         }
     } catch (error) {
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.error('Analytics: Failed to initialize consent', error)
         }
     }
@@ -105,11 +105,11 @@ export function updateConsent(config: Partial<ConsentConfig>): void {
     try {
         window.gtag('consent', 'update', config)
 
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log('Analytics: Consent updated', config)
         }
     } catch (error) {
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.error('Analytics: Failed to update consent', error)
         }
     }
@@ -192,7 +192,7 @@ export function storeConsentState(state: ConsentState): void {
         localStorage.setItem('analytics_consent', state)
     } catch {
         // localStorage might be unavailable
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.warn('Analytics: Failed to store consent state')
         }
     }

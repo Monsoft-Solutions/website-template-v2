@@ -124,7 +124,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
         setConsentState('granted')
         setHasConsented(true)
 
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log('Analytics: User accepted all cookies')
         }
     }, [])
@@ -138,7 +138,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
         setConsentState('denied')
         setHasConsented(true)
 
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log('Analytics: User accepted essential cookies only')
         }
     }, [])
@@ -152,7 +152,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
         setConsentState(null)
         setHasConsented(false)
 
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log('Analytics: User revoked consent')
         }
     }, [])

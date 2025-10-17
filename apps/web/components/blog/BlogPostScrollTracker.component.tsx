@@ -38,7 +38,7 @@ export function BlogPostScrollTracker({
         thresholds: [25, 50, 75, 100],
         onThresholdReached: (threshold) => {
             // Optional: Log scroll milestone in development
-            if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+            if (env.NODE_ENV === 'development') {
                 console.log(
                     `Blog post "${postTitle}" scrolled ${threshold}%`,
                     `(${postSlug})`

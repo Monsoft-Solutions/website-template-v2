@@ -47,7 +47,7 @@ export function ScrollDepthTracker() {
         resetOnPathChange: true,
         onThresholdReached: (threshold) => {
             // Optional: Log scroll milestone in development
-            if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+            if (env.NODE_ENV === 'development') {
                 console.log(
                     `[Analytics] Scroll depth: ${threshold}% on ${pathname}`
                 )
@@ -59,7 +59,7 @@ export function ScrollDepthTracker() {
     useEffect(() => {
         // The useScrollDepth hook handles reset internally,
         // but this ensures the tracker is aware of path changes
-        if (env.NEXT_PUBLIC_NODE_ENV === 'development') {
+        if (env.NODE_ENV === 'development') {
             console.log(`[Analytics] Page changed to: ${pathname}`)
         }
     }, [pathname])

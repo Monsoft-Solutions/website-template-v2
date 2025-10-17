@@ -23,9 +23,6 @@ export const env = createEnv({
         BLOG_API_KEY: z.string().min(1),
         BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
         VERCEL_URL: z.string().optional(),
-        NODE_ENV: z
-            .enum(['development', 'production', 'test'])
-            .default('development'),
     },
     client: {
         // Site URL - used by site-config.ts (with fallback to VERCEL_URL)
@@ -47,10 +44,6 @@ export const env = createEnv({
         NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
         NEXT_PUBLIC_GTM_ID: z.string().optional(),
         NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().optional(),
-
-        NEXT_PUBLIC_NODE_ENV: z
-            .enum(['development', 'production', 'test'])
-            .default('development'),
     },
     shared: {
         NODE_ENV: z
@@ -74,7 +67,6 @@ export const env = createEnv({
         NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
         NEXT_PUBLIC_FACEBOOK_PIXEL_ID:
             process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
-        NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
         NODE_ENV: process.env.NODE_ENV,
     },
 
