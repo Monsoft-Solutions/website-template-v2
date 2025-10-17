@@ -63,6 +63,6 @@ export const env = createEnv({
         NEXT_PUBLIC_CLARITY_PROJECT_ID:
             process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
         NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
-        NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
+        NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
     },
 })
