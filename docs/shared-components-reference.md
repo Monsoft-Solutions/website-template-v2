@@ -11,6 +11,7 @@ import {
     Breadcrumbs,
     CTASection,
     ContentWrapper,
+    FAQ,
     FeatureCard,
     IconCard,
     ImageSection,
@@ -382,6 +383,70 @@ import {
 
 ---
 
+### FAQ
+
+**Purpose:** Displays frequently asked questions in an accordion layout with smooth animations.
+
+**When to use:** Service pages, product pages, support pages, any page requiring FAQ sections.
+
+```tsx
+<FAQ
+    faqs={[
+        {
+            question: 'How long does the project take?',
+            answer: 'Project timelines vary based on scope and complexity. Typically, we deliver most projects within 4-6 weeks from kickoff.',
+        },
+        {
+            question: 'What is included in the service?',
+            answer: 'Our comprehensive service includes initial consultation, design mockups, development, testing, deployment, and post-launch support.',
+        },
+        {
+            question: 'Do you offer ongoing support?',
+            answer: 'Yes, we provide ongoing maintenance and support packages to ensure your solution continues to perform optimally.',
+        },
+    ]}
+    title='Frequently Asked Questions'
+    description='Common questions about our services'
+    variant='muted'
+    id='faq'
+/>
+```
+
+**Props:**
+
+- `faqs`: Array of FAQ items (required)
+    - Each item: `{ question: string, answer: string }`
+- `title`: Section title - Default: `'Frequently Asked Questions'`
+- `description`: Optional section description
+- `variant`: Background variant (`'default'` | `'muted'` | `'accent'`) - Default: `'muted'`
+- `id`: Section identifier for anchor links - Default: `'faq'`
+- `className`: Additional CSS classes
+
+**Features:**
+
+- Accordion with single-item open behavior
+- Smooth expand/collapse animations
+- Keyboard navigation support
+- Proper ARIA attributes for accessibility
+- Mobile-first responsive design
+- Hover effects on items
+- Auto-hides if FAQ array is empty
+
+**FAQ Type Definition:**
+
+```tsx
+import type { FAQ } from '@/lib/types/shared'
+
+const faqs: FAQ[] = [
+    {
+        question: 'Your question here?',
+        answer: 'Your detailed answer here...',
+    },
+]
+```
+
+---
+
 ## Mobile Components
 
 ### MobileCallButton
@@ -538,6 +603,9 @@ Need a component?
 ├─ Call to action?
 │  └─ CTASection
 │
+├─ Frequently asked questions?
+│  └─ FAQ
+│
 └─ Mobile call button?
    └─ MobileCallButton
 ```
@@ -560,4 +628,4 @@ Need a component?
 ---
 
 _Last Updated: 2025-10-17_
-_Total Shared Components: 9_
+_Total Shared Components: 10_

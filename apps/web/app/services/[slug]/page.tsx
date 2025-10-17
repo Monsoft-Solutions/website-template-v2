@@ -23,9 +23,10 @@ import { notFound } from 'next/navigation'
 import { ServiceBenefits } from '@/components/services/ServiceBenefits.component'
 import { ServiceCTA } from '@/components/services/ServiceCTA.component'
 import { ServiceFeatures } from '@/components/services/ServiceFeatures.component'
+import { ServiceGallery } from '@/components/services/ServiceGallery.component'
 import { ServiceHero } from '@/components/services/ServiceHero.component'
 import { ServiceProcess } from '@/components/services/ServiceProcess.component'
-import { Breadcrumbs, ContentWrapper } from '@/components/shared'
+import { Breadcrumbs, ContentWrapper, FAQComponent } from '@/components/shared'
 import { siteConfig } from '@/lib/data/site-config'
 import {
     getPublishedServices,
@@ -234,12 +235,32 @@ export default async function ServiceDetailPage({
                         variant='default'
                     />
 
+                    {/* Service Gallery Section (Optional) */}
+                    {service.gallery && service.gallery.length > 0 && (
+                        <ServiceGallery
+                            images={service.gallery}
+                            title='Project Gallery'
+                            description='Examples of our work and capabilities'
+                            variant='muted'
+                        />
+                    )}
+
                     {/* Service Process Section (Optional) */}
                     {service.process && service.process.length > 0 && (
                         <ServiceProcess
                             steps={service.process}
                             title='Our Process'
                             description='A proven methodology that delivers exceptional results'
+                            variant='default'
+                        />
+                    )}
+
+                    {/* FAQ Section (Optional) */}
+                    {service.faqs && service.faqs.length > 0 && (
+                        <FAQComponent
+                            faqs={service.faqs}
+                            title='Frequently Asked Questions'
+                            description='Common questions about our service'
                             variant='muted'
                         />
                     )}

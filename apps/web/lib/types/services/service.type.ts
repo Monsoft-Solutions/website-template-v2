@@ -1,7 +1,10 @@
+import type { FaqItem } from '@/lib/types/shared'
+
 import type { ServiceBenefit } from './service-benefit.type'
 import type { ServiceCategory } from './service-category.type'
 import type { ServiceCTA } from './service-cta.type'
 import type { ServiceFeature } from './service-feature.type'
+import type { ServiceGalleryImage } from './service-gallery-image.type'
 import type { ServiceIcon } from './service-icon.type'
 import type { ServiceProcessStep } from './service-process-step.type'
 
@@ -95,13 +98,16 @@ export type Service = {
     readonly process?: ServiceProcessStep[]
 
     /**
-     * Optional additional images for detail page
+     * Optional gallery images for detail page
+     * 4-6 images recommended if included
      */
-    readonly images?: {
-        readonly url: string
-        readonly alt: string
-        readonly caption?: string
-    }[]
+    readonly gallery?: ServiceGalleryImage[]
+
+    /**
+     * Optional frequently asked questions
+     * 3-5 FAQs recommended if included
+     */
+    readonly faqs?: FaqItem[]
 
     /**
      * Call-to-action configuration

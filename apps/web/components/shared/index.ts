@@ -26,8 +26,10 @@ export { FeatureCard } from './FeatureCard.component'
 export { CTASection } from './CTASection.component'
 export { IconCard } from './IconCard.component'
 export { ImageSection } from './ImageSection.component'
+export { FAQComponent } from './FAQ.component'
 
 // Type Exports
+export type { FAQProps } from './FAQ.component'
 export type {
     SectionContainerProps,
     SectionBackgroundVariant,

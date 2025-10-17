@@ -16,6 +16,7 @@ export type { ServiceFeature } from './service-feature.type'
 export type { ServiceBenefit } from './service-benefit.type'
 export type { ServiceProcessStep } from './service-process-step.type'
 export type { ServiceCTA } from './service-cta.type'
+export type { ServiceGalleryImage } from './service-gallery-image.type'
 
 // Component props types
 export type { ServiceCardProps } from './service-card.type'

@@ -1870,7 +1870,122 @@ export type ServiceCategory =
 
 ---
 
-### Phase 5: SEO & Structured Data (2-3 hours)
+### Phase 5: Service Page UI/UX Enhancements (3-4 hours) (DONE)
+
+**Objective:** Add FAQ accordion and project gallery sections to enhance service detail pages
+
+**Tasks:**
+
+1. Install required shadcn components
+    - `pnpm dlx shadcn@latest add accordion -c apps/web`
+    - `pnpm dlx shadcn@latest add dialog -c apps/web`
+
+2. Create type definitions
+    - `apps/web/lib/types/services/service-faq.type.ts`
+    - `apps/web/lib/types/services/service-gallery-image.type.ts`
+    - Update `apps/web/lib/types/services/index.ts` to export new types
+    - Update Service type to include optional `faqs` and `gallery` arrays
+
+3. Create ServiceFAQ component
+    - `apps/web/components/services/ServiceFAQ.component.tsx`
+    - Use shadcn Accordion component
+    - Single item open at a time (collapsible behavior)
+    - Smooth expand/collapse animations
+    - Keyboard navigation support
+    - Mobile-first responsive design
+
+4. Create ServiceGallery component
+    - `apps/web/components/services/ServiceGallery.component.tsx`
+    - Responsive grid layout (2-3 columns)
+    - Click-to-expand lightbox using shadcn Dialog
+    - Navigation between images (prev/next)
+    - Hover overlay with caption
+    - Next.js Image optimization with lazy loading
+
+5. Update service data
+    - Add sample FAQ data to web-development service
+    - Add sample gallery images to web-development service
+    - Provide 5 comprehensive FAQ items
+    - Provide 3 gallery images (reusing existing service images)
+
+6. Integrate components into service detail page
+    - Import ServiceFAQ and ServiceGallery components
+    - Add conditional rendering for both sections
+    - Proper section ordering: Features > Benefits > Gallery > Process > FAQ > CTA
+    - Alternate section variants for visual contrast
+
+**Implementation Details:**
+
+**ServiceFAQ Component:**
+
+- Uses SectionContainer with ContentWrapper (size: 'md')
+- Accordion with type="single" and collapsible=true
+- Custom styled accordion items with borders and hover effects
+- Proper typography hierarchy for questions and answers
+- Default variant: 'muted'
+
+**ServiceGallery Component:**
+
+- Client component with useState for lightbox state
+- Grid: 1 column mobile, 2 columns tablet, 3 columns desktop
+- GalleryImageCard subcomponent with hover effects
+- Dialog lightbox with full-screen image display
+- Navigation buttons (disabled at boundaries)
+- Close button and ESC key support
+- Caption overlay at bottom of lightbox
+- Default variant: 'default'
+
+**Section Order:**
+
+1. ServiceHero
+2. ServiceFeatures (variant: muted)
+3. ServiceBenefits (variant: default)
+4. ServiceGallery (variant: muted, conditional)
+5. ServiceProcess (variant: default, conditional)
+6. ServiceFAQ (variant: muted, conditional)
+7. ServiceCTA (variant: accent)
+
+**Validation:**
+
+- ✅ FAQ accordion displays correctly
+- ✅ FAQ items expand/collapse smoothly
+- ✅ Only one FAQ open at a time
+- ✅ Gallery images display in responsive grid
+- ✅ Clicking gallery image opens lightbox
+- ✅ Lightbox displays full-size image with navigation
+- ✅ Sections conditionally render based on data
+- ✅ TypeScript has no errors
+- ✅ All sections responsive on mobile/tablet/desktop
+- ✅ Accessibility: keyboard navigation for accordion
+- ✅ Component follows project naming conventions
+
+**Edge Cases:**
+
+- Service with no FAQs (section hidden) ✅
+- Service with no gallery (section hidden) ✅
+- FAQ with very long answer text (handled by accordion) ✅
+- Gallery with only 1-2 images (grid adjusts, navigation works) ✅
+- Gallery images with different aspect ratios (object-cover handles) ✅
+
+**Files Created:**
+
+- `apps/web/lib/types/services/service-faq.type.ts`
+- `apps/web/lib/types/services/service-gallery-image.type.ts`
+- `apps/web/components/services/ServiceFAQ.component.tsx`
+- `apps/web/components/services/ServiceGallery.component.tsx`
+
+**Files Modified:**
+
+- `apps/web/lib/types/services/service.type.ts` (added faqs and gallery fields)
+- `apps/web/lib/types/services/index.ts` (exported new types)
+- `apps/web/lib/data/services/services-data.ts` (added FAQ and gallery data)
+- `apps/web/app/services/[slug]/page.tsx` (integrated new components)
+- `packages/ui/src/components/accordion.tsx` (added by shadcn)
+- `packages/ui/src/components/dialog.tsx` (added by shadcn)
+
+---
+
+### Phase 6: SEO & Structured Data (2-3 hours)
 
 **Objective:** Implement comprehensive SEO optimization
 
@@ -1919,7 +2034,7 @@ export type ServiceCategory =
 
 ---
 
-### Phase 6: Navigation & Integration (2-3 hours)
+### Phase 7: Navigation & Integration (2-3 hours)
 
 **Objective:** Integrate services into site navigation
 
@@ -1961,7 +2076,7 @@ export type ServiceCategory =
 
 ---
 
-### Phase 7: Images & Assets (2-3 hours)
+### Phase 8: Images & Assets (2-3 hours)
 
 **Objective:** Add and optimize all service images
 
@@ -2009,7 +2124,7 @@ export type ServiceCategory =
 
 ---
 
-### Phase 8: Polish & Refinement (2-3 hours)
+### Phase 9: Polish & Refinement (2-3 hours)
 
 **Objective:** Final touches and quality assurance
 
@@ -2067,7 +2182,7 @@ export type ServiceCategory =
 
 ---
 
-### Phase 9: Unit Testing (3-4 hours)
+### Phase 10: Unit Testing (3-4 hours)
 
 **Objective:** Comprehensive test coverage for all service functionality
 
@@ -2153,7 +2268,7 @@ export type ServiceCategory =
 
 ---
 
-### Phase 10: Documentation (2-3 hours)
+### Phase 11: Documentation (2-3 hours)
 
 **Objective:** Complete documentation for template users
 
@@ -2782,20 +2897,21 @@ export type ServiceCategory =
 
 ## Implementation Timeline
 
-**Total Estimated Time:** 28-36 hours
+**Total Estimated Time:** 31-40 hours
 
 **Breakdown:**
 
 - Phase 1: Type System & Data Structure (2-3 hours)
-- Phase 2: Services Listing Page (3-4 hours)
-- Phase 3: Service Detail Page Structure (3-4 hours)
-- Phase 4: Service Detail Sections (4-5 hours)
-- Phase 5: SEO & Structured Data (2-3 hours)
-- Phase 6: Navigation & Integration (2-3 hours)
-- Phase 7: Images & Assets (2-3 hours)
-- Phase 8: Polish & Refinement (2-3 hours)
-- Phase 9: Unit Testing (3-4 hours)
-- Phase 10: Documentation (2-3 hours)
+- Phase 2: Services Listing Page (3-4 hours) ✅ DONE
+- Phase 3: Service Detail Page Structure (3-4 hours) ✅ DONE
+- Phase 4: Service Detail Sections (4-5 hours) ✅ DONE
+- Phase 5: Service Page UI/UX Enhancements (3-4 hours) ✅ DONE
+- Phase 6: SEO & Structured Data (2-3 hours)
+- Phase 7: Navigation & Integration (2-3 hours)
+- Phase 8: Images & Assets (2-3 hours)
+- Phase 9: Polish & Refinement (2-3 hours)
+- Phase 10: Unit Testing (3-4 hours)
+- Phase 11: Documentation (2-3 hours)
 
 **Recommended Approach:**
 
