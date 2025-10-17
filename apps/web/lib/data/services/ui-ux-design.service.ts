@@ -17,7 +17,7 @@ export const uiUxDesignService: Service = {
     categoryLabel: 'Design',
     iconConfig: {
         cardIconPath: '/images/services/icons/palette-icon.svg',
-        heroImagePath: '/images/services/ui-ux-design.jpg',
+        heroImagePath: '/images/services/ui-ux-design-hero.jpg',
         imageAlt: 'UI/UX design workspace with sketches and digital mockups',
     },
     features: [
@@ -94,19 +94,34 @@ export const uiUxDesignService: Service = {
     ],
     gallery: [
         {
-            url: '/images/services/ui-ux-design.jpg',
-            alt: 'UI/UX design workspace with sketches and prototypes',
-            caption: 'User-centered design process',
+            url: '/images/services/ui-ux-design/design-workspace-sketches.jpg',
+            alt: 'Professional design workspace with wireframe sketches, prototypes, and design tools on wooden desk',
+            caption: 'Design process with sketches and wireframes',
         },
         {
-            url: '/images/services/web-development.jpg',
-            alt: 'Design system components and guidelines',
-            caption: 'Comprehensive design systems',
+            url: '/images/services/ui-ux-design/user-research-testing.jpg',
+            alt: 'UX researcher conducting usability testing session with participant using tablet prototype',
+            caption: 'User research and usability testing',
         },
         {
-            url: '/images/services/digital-marketing.jpg',
-            alt: 'User testing and research session',
-            caption: 'Data-driven design decisions',
+            url: '/images/services/ui-ux-design/design-system-components.jpg',
+            alt: 'Design system documentation showing UI components, color palette, and typography guidelines',
+            caption: 'Comprehensive design systems and style guides',
+        },
+        {
+            url: '/images/services/ui-ux-design/mobile-app-prototyping.jpg',
+            alt: 'Designer creating mobile app wireframes on iPad Pro with Apple Pencil',
+            caption: 'Mobile app prototyping and wireframing',
+        },
+        {
+            url: '/images/services/ui-ux-design/team-collaboration.jpg',
+            alt: 'Design team collaborating on UI project with laptops and prototypes in modern office',
+            caption: 'Collaborative design team process',
+        },
+        {
+            url: '/images/services/ui-ux-design/final-ui-designs-devices.jpg',
+            alt: 'Final polished UI designs displayed on MacBook, iPad, and iPhone showing responsive design',
+            caption: 'Final UI designs across multiple devices',
         },
     ],
     faqs: [

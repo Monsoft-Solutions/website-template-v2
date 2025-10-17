@@ -17,8 +17,9 @@ export const digitalMarketingService: Service = {
     categoryLabel: 'Marketing',
     iconConfig: {
         cardIconPath: '/images/services/icons/trending-up-icon.svg',
-        heroImagePath: '/images/services/digital-marketing.jpg',
-        imageAlt: 'Digital marketing strategy and analytics dashboard',
+        heroImagePath: '/images/services/digital-marketing-hero.jpg',
+        imageAlt:
+            'Professional digital marketing team collaborating with analytics dashboards',
     },
     features: [
         {
@@ -93,19 +94,34 @@ export const digitalMarketingService: Service = {
     ],
     gallery: [
         {
-            url: '/images/services/digital-marketing.jpg',
-            alt: 'Digital marketing analytics and campaign dashboard',
-            caption: 'Real-time campaign performance tracking',
+            url: '/images/services/digital-marketing/seo-optimization.jpg',
+            alt: 'SEO specialist optimizing website content and analyzing search performance',
+            caption: 'Search Engine Optimization & Analytics',
         },
         {
-            url: '/images/services/ui-ux-design.jpg',
-            alt: 'Social media marketing strategy',
-            caption: 'Multi-channel marketing approach',
+            url: '/images/services/digital-marketing/social-media-marketing.jpg',
+            alt: 'Creative team developing social media marketing campaigns and content',
+            caption: 'Social Media Strategy & Content Creation',
         },
         {
-            url: '/images/services/web-development.jpg',
-            alt: 'SEO and content marketing',
-            caption: 'Organic growth strategies',
+            url: '/images/services/digital-marketing/email-marketing.jpg',
+            alt: 'Email marketing campaign dashboard showing performance metrics and analytics',
+            caption: 'Email Marketing Campaigns & Automation',
+        },
+        {
+            url: '/images/services/digital-marketing/ppc-advertising.jpg',
+            alt: 'Digital marketer managing pay-per-click advertising campaigns and bid optimization',
+            caption: 'PPC Advertising & Campaign Management',
+        },
+        {
+            url: '/images/services/digital-marketing/content-marketing.jpg',
+            alt: 'Marketing team creating content strategy and editorial calendar',
+            caption: 'Content Marketing & Strategy Development',
+        },
+        {
+            url: '/images/services/digital-marketing/analytics-reporting.jpg',
+            alt: 'Marketing analytics presentation showing ROI and performance metrics',
+            caption: 'Analytics, Reporting & Performance Optimization',
         },
     ],
     faqs: [
