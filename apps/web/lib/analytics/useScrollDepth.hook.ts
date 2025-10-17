@@ -8,6 +8,7 @@
  *
  * @module lib/analytics/useScrollDepth
  */
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 import {
@@ -75,6 +76,7 @@ export function useScrollDepth(options: UseScrollDepthOptions = {}): void {
         ...trackingOptions
     } = options
 
+    const pathname = usePathname()
     // Track if we've initialized to prevent double-init
     const initializedRef = useRef(false)
 
@@ -97,5 +99,5 @@ export function useScrollDepth(options: UseScrollDepthOptions = {}): void {
             initializedRef.current = false
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [enabled, resetOnPathChange])
+    }, [enabled, resetOnPathChange, pathname])
 }
