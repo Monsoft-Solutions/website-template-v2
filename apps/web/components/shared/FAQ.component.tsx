@@ -3,6 +3,7 @@
  *
  * Displays frequently asked questions in an accordion layout.
  * Uses shadcn/ui Accordion component for smooth expand/collapse animations.
+ * Automatically includes FAQ structured data (JSON-LD schema) for SEO.
  *
  * Features:
  * - Single item open at a time (collapsible behavior)
@@ -10,6 +11,7 @@
  * - Keyboard navigation support
  * - Proper accessibility attributes
  * - Mobile-first responsive design
+ * - Automatic FAQ schema markup for rich results
  *
  * @example
  * ```tsx
@@ -20,6 +22,7 @@
  *   ]}
  *   title="Frequently Asked Questions"
  *   description="Common questions about our service"
+ *   includeSchema={true} // Default: true - enables rich results in search
  * />
  * ```
  */
@@ -30,6 +33,7 @@ import {
     AccordionTrigger,
 } from '@workspace/ui/components/accordion'
 import { cn } from '@workspace/ui/lib/utils'
+import { FAQSchema } from '@workspace/seo/react'
 
 import type { FaqItem } from '@/lib/types/shared'
 
@@ -72,6 +76,13 @@ export type FAQProps = {
      * Optional additional CSS classes
      */
     readonly className?: string
+
+    /**
+     * Whether to include FAQ structured data (JSON-LD schema)
+     * Enables rich results in search engines
+     * @default true
+     */
+    readonly includeSchema?: boolean
 }
 
 /**
@@ -87,6 +98,7 @@ export function FAQComponent({
     variant = 'muted',
     id = 'faq',
     className,
+    includeSchema = true,
 }: FAQProps) {
     // Handle empty FAQs array
     if (!faqs || faqs.length === 0) {
@@ -94,50 +106,62 @@ export function FAQComponent({
     }
 
     return (
-        <SectionContainer variant={variant} id={id} className={className}>
-            <ContentWrapper size='md'>
-                {/* Section Header */}
-                <SectionHeader
-                    title={title}
-                    description={description}
-                    align='center'
-                    className='mb-12'
+        <>
+            {/* JSON-LD Schema - Search engines will discover this anywhere in the page */}
+            {includeSchema && (
+                <FAQSchema
+                    items={faqs.map((faq) => ({
+                        question: faq.question,
+                        answer: faq.answer,
+                    }))}
                 />
+            )}
 
-                {/* FAQ Accordion */}
-                <Accordion
-                    type='single'
-                    collapsible
-                    className='w-full space-y-4'
-                >
-                    {faqs.map((faq, index) => (
-                        <AccordionItem
-                            key={`faq-${index}`}
-                            value={`item-${index}`}
-                            className={cn(
-                                'border-border bg-card rounded-lg border px-6',
-                                'hover:border-primary/50 transition-colors'
-                            )}
-                        >
-                            <AccordionTrigger
+            <SectionContainer variant={variant} id={id} className={className}>
+                <ContentWrapper size='md'>
+                    {/* Section Header */}
+                    <SectionHeader
+                        title={title}
+                        description={description}
+                        align='center'
+                        className='mb-12'
+                    />
+
+                    {/* FAQ Accordion */}
+                    <Accordion
+                        type='single'
+                        collapsible
+                        className='w-full space-y-4'
+                    >
+                        {faqs.map((faq, index) => (
+                            <AccordionItem
+                                key={`faq-${index}`}
+                                value={`item-${index}`}
                                 className={cn(
-                                    'text-foreground py-4 text-left font-semibold hover:no-underline',
-                                    'text-base md:text-lg'
+                                    'border-border bg-card rounded-lg border px-6',
+                                    'hover:border-primary/50 transition-colors'
                                 )}
                             >
-                                {faq.question}
-                            </AccordionTrigger>
-                            <AccordionContent
-                                className={cn(
-                                    'text-muted-foreground pt-2 pb-4 text-sm leading-relaxed md:text-base'
-                                )}
-                            >
-                                {faq.answer}
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </ContentWrapper>
-        </SectionContainer>
+                                <AccordionTrigger
+                                    className={cn(
+                                        'text-foreground py-4 text-left font-semibold hover:no-underline',
+                                        'text-base md:text-lg'
+                                    )}
+                                >
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent
+                                    className={cn(
+                                        'text-muted-foreground pt-2 pb-4 text-sm leading-relaxed md:text-base'
+                                    )}
+                                >
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </ContentWrapper>
+            </SectionContainer>
+        </>
     )
 }
