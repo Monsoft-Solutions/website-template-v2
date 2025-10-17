@@ -53,6 +53,11 @@ This agent serves as the **registry and router** for all specialized agents in t
 - **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in Imagen 4, FLUX Pro, and FLUX Schnell models with proven workflows for hero images, team photos, and professional content.
 - **Location**: `.cursor/rules/image-creator-expert.mdc`
 
+### image-editor-expert
+
+- **Purpose**: Expert agent for editing and modifying existing images using Vercel Blob storage and fal.ai editing models. Specializes in background removal, logo addition, style transformations, and professional image enhancement workflows.
+- **Location**: `.cursor/rules/image-editor-expert.mdc`
+
 ### typescript
 
 - **Purpose**: TypeScript best practices, naming conventions, and coding standards expert
@@ -85,6 +90,7 @@ Direct tasks to appropriate specialized agents:
 - **Database optimization** → `database-optimizer`
 - **Documentation** → `documentation-writer`
 - **Image generation and creation** → `image-creator-expert`
+- **Image editing and modification** → `image-editor-expert`
 - **TypeScript best practices** → `typescript`
 - **Unit Testing** → `unit-testing`
 - **PR Review Analysis** → `pr-review-analyzer`
@@ -112,4 +118,4 @@ Agents automatically apply based on file types and contexts defined in their rul
 ---
 
 _Last updated: 2025-10-17_
-_Total Cursor agents: 13 (including main-agent)_
+_Total Cursor agents: 14 (including main-agent)_
