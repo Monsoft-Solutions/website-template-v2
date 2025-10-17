@@ -15,7 +15,7 @@
  *
  * Route: /services
  */
-import type { Metadata } from 'next'
+import { BreadcrumbSchema, JsonLd, WebPageSchema } from '@workspace/seo/react'
 
 import { ServiceCard } from '@/components/services/ServiceCard.component'
 import {
@@ -26,11 +26,9 @@ import {
 } from '@/components/shared'
 import { siteConfig } from '@/lib/data/site-config'
 import { getPublishedServices } from '@/lib/queries/get-services.query'
-import {
-    generateServiceBreadcrumbSchema,
-    generateServicesListSchema,
-} from '@/lib/seo/service-schema.util'
-import { generateServicesListingMetadata } from '@/utils/services/generate-service-metadata.util'
+import { seoConfig } from '@/lib/seo-config'
+import { generateServicesListSchema } from '@/lib/seo/service-schema.util'
+import { toNextMetadata } from '@/lib/seo/metadata'
 
 /**
  * Generate page metadata
@@ -38,9 +36,26 @@ import { generateServicesListingMetadata } from '@/utils/services/generate-servi
  * Creates SEO-optimized metadata for the services listing page
  * including title, description, and OpenGraph tags.
  */
-export function generateMetadata(): Metadata {
-    return generateServicesListingMetadata()
-}
+export const metadata = toNextMetadata(seoConfig, {
+    title: `Our Services | ${seoConfig.siteName}`,
+    description:
+        'Explore our comprehensive range of professional services designed to help your business grow and succeed. From development to design and marketing.',
+    canonical: '/services',
+    openGraph: {
+        title: `Our Services | ${seoConfig.siteName}`,
+        description:
+            'Explore our comprehensive range of professional services designed to help your business grow and succeed.',
+        url: `${seoConfig.siteUrl}/services`,
+        type: 'website',
+        siteName: seoConfig.siteName,
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `Our Services | ${seoConfig.siteName}`,
+        description:
+            'Explore our comprehensive range of professional services designed to help your business grow and succeed.',
+    },
+})
 
 /**
  * Services Listing Page Component
@@ -55,9 +70,8 @@ export default function ServicesPage() {
     // Generate base URL for structured data
     const baseUrl = siteConfig.seo.siteUrl
 
-    // Generate structured data schemas
+    // Generate ItemList schema for services listing
     const servicesListSchema = generateServicesListSchema(services, baseUrl)
-    const breadcrumbSchema = generateServiceBreadcrumbSchema(undefined, baseUrl)
 
     // Breadcrumb items for navigation
     const breadcrumbItems = [
@@ -65,21 +79,24 @@ export default function ServicesPage() {
         { label: 'Services' }, // Current page (no href)
     ]
 
+    // Breadcrumb schema items
+    const breadcrumbSchemaItems = [
+        { name: 'Home', item: baseUrl },
+        { name: 'Services', item: `${baseUrl}/services` },
+    ]
+
     return (
         <>
-            {/* JSON-LD Structured Data */}
-            <script
-                type='application/ld+json'
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(servicesListSchema),
-                }}
+            {/* SEO Schema Components */}
+            <WebPageSchema
+                name={metadata.title as string}
+                url={`${seoConfig.siteUrl}/services`}
+                description={metadata.description as string}
             />
-            <script
-                type='application/ld+json'
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
-            />
+
+            <BreadcrumbSchema items={breadcrumbSchemaItems} />
+
+            <JsonLd data={servicesListSchema} />
 
             {/* Page Container */}
             <SectionContainer as='section' variant='default' id='services-page'>

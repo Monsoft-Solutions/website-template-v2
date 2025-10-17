@@ -2901,5 +2901,41 @@ export type ServiceCategory =
 
 **Plan Status:** Ready for Implementation
 **Created:** 2025-10-17
-**Last Updated:** 2025-10-17 (Updated file structure for queries and utils)
+**Last Updated:** 2025-10-17 (SEO Best Practices Applied)
 **Created By:** Claude Code - Senior Software Architect
+
+---
+
+## Implementation Updates
+
+### 2025-10-17: SEO Best Practices Applied
+
+**Changes Made:**
+
+- ✅ Updated `apps/web/app/services/page.tsx` to follow SEO package best practices
+- ✅ Replaced manual `<script>` tags with SEO package components (`WebPageSchema`, `BreadcrumbSchema`, `JsonLd`)
+- ✅ Changed metadata generation from function to const following `about/page.tsx` pattern
+- ✅ Updated `apps/web/lib/seo/service-schema.util.ts` with proper TypeScript types (`WithContext<ItemList>`, `WithContext<Service>`)
+- ✅ Removed deprecated `generateServiceBreadcrumbSchema` function (replaced by `BreadcrumbSchema` component)
+- ✅ Installed `schema-dts` package for proper type safety
+- ✅ Fixed `ServiceIcon` type references (use `heroImagePath` instead of `imagePath`)
+
+**Pattern Now Follows:**
+
+```tsx
+// Metadata (const instead of function)
+export const metadata = toNextMetadata(seoConfig, { ... })
+
+// Schema components (instead of manual script tags)
+<WebPageSchema name={...} url={...} description={...} />
+<BreadcrumbSchema items={breadcrumbSchemaItems} />
+<JsonLd data={customSchema} />
+```
+
+**Benefits:**
+
+- Consistent with project SEO standards
+- Better type safety with `schema-dts`
+- Uses centralized SEO utilities from `@workspace/seo/react`
+- Follows same pattern as `about/page.tsx`
+- Easier to maintain and less error-prone

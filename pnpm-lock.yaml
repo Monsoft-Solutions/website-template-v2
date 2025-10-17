@@ -50,6 +50,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.0
         version: 0.7.0(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.6.2))(prettier@3.6.2)
+      schema-dts:
+        specifier: ^1.1.5
+        version: 1.1.5
       turbo:
         specifier: ^2.5.8
         version: 2.5.8
