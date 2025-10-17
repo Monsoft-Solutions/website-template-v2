@@ -1,7 +1,6 @@
 import { WebPageSchema } from '@workspace/seo/react'
 import { BookOpen, Tag } from 'lucide-react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { BlogHeroSection } from '@/components/blog/BlogHeroSection.component'

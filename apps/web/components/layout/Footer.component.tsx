@@ -17,8 +17,6 @@ const socialIcons = {
     linkedin: Linkedin,
 } as const
 
-type SupportedPlatform = keyof typeof socialIcons
-
 export function Footer() {
     return (
         <footer className='bg-background border-t'>

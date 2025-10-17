@@ -34,3 +34,7 @@ npm-debug.log*
 # Misc
 .DS_Store
 *.pem
+.env.development
+.env.production
+packages/db/.env.development
+packages/db/.env.production

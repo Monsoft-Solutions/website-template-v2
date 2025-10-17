@@ -2,6 +2,12 @@ import { OrganizationSchema, WebSiteSchema } from '@workspace/seo/react'
 import '@workspace/ui/globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import {
+    AnalyticsProvider,
+    PageViewTracker,
+    ScrollDepthTracker,
+} from '@/components/analytics'
+import { CookieBanner } from '@/components/CookieBanner.component'
 import { Footer } from '@/components/layout/Footer.component'
 import { Header } from '@/components/layout/Header.component'
 import { Providers } from '@/components/providers'
@@ -48,6 +54,8 @@ export default function RootLayout({
                 className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
             >
                 <WebVitals />
+                <PageViewTracker />
+                <ScrollDepthTracker />
                 <OrganizationSchema
                     name={seoConfig.siteName}
                     url={seoConfig.siteUrl}
@@ -63,6 +71,10 @@ export default function RootLayout({
                     url={seoConfig.siteUrl}
                 />
                 <Providers>
+                    {/* Analytics Scripts - Load conditionally based on consent */}
+                    <AnalyticsProvider />
+                    {/* Cookie Consent Banner */}
+                    <CookieBanner />
                     <Header />
                     <main id='main-content'>{children}</main>
                     <Footer />

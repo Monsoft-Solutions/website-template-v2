@@ -4,13 +4,11 @@
  * Main configuration file for SEO settings. This file provides utilities
  * for reading environment variables and creating SEO configuration objects.
  */
+import { env } from 'process'
+
 import {
     DEFAULT_LOCALE,
     OG_TYPE_WEBSITE,
-    ROBOTS_FOLLOW,
-    ROBOTS_INDEX,
-    ROBOTS_NOFOLLOW,
-    ROBOTS_NOINDEX,
     TWITTER_CARD_SUMMARY_LARGE_IMAGE,
 } from './schema-org.constant'
 import type { RobotsConfig, SEOConfig } from './seo-config.type'
@@ -23,10 +21,9 @@ import type { RobotsConfig, SEOConfig } from './seo-config.type'
  * @returns Environment variable value or default value
  */
 function getEnvVar(key: string, defaultValue: string = ''): string {
-    if (typeof process !== 'undefined' && process.env) {
-        return process.env[key] ?? defaultValue
-    }
-    return defaultValue
+    return env.NODE_ENV === 'development'
+        ? defaultValue
+        : (env[key] ?? defaultValue)
 }
 
 /**
@@ -86,10 +83,9 @@ export function getFacebookAppId(): string | undefined {
  * @returns Current environment (development, staging, production)
  */
 export function getEnvironment(): 'development' | 'staging' | 'production' {
-    const env = getEnvVar('NODE_ENV', 'development')
-    if (env === 'production') return 'production'
-    if (env === 'staging') return 'staging'
-    return 'development'
+    return env.NODE_ENV
+        ? (env.NODE_ENV as 'development' | 'staging' | 'production')
+        : 'development'
 }
 
 /**

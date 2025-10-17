@@ -137,7 +137,7 @@ export function TestimonialsSection({
                             <CardContent className='flex flex-1 flex-col space-y-6'>
                                 {/* Testimonial Quote */}
                                 <CardDescription className='text-foreground flex-1 text-base leading-relaxed'>
-                                    "{testimonial.quote}"
+                                    &quot;{testimonial.quote}&quot;
                                 </CardDescription>
 
                                 {/* Author Info */}

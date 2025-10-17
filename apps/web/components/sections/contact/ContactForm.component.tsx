@@ -44,63 +44,13 @@ import {
     SectionContainer,
     SectionHeader,
 } from '@/components/shared'
+import { useAnalyticsEvent } from '@/lib/analytics'
 import {
     type ContactFormData,
     type ContactFormResponse,
     contactFormSchema,
 } from '@/lib/types/forms/contact-form.type'
 import type { ContactFormSectionProps } from '@/lib/types/sections/contact-form-section.type'
-
-/**
- * ContactForm Component
- *
- * A comprehensive contact form with client-side validation using react-hook-form
- * and zod schema validation. Handles form submission, loading states, and displays
- * success/error messages with enhanced visual design and micro-interactions.
- *
- * @example
- * ```tsx
- * <ContactForm
- *   badge="Send a Message"
- *   headline="Get In Touch"
- *   description="Fill out the form below..."
- * />
- * ```
- */
-
-/**
- * ContactForm Component
- *
- * A comprehensive contact form with client-side validation using react-hook-form
- * and zod schema validation. Handles form submission, loading states, and displays
- * success/error messages with enhanced visual design and micro-interactions.
- *
- * @example
- * ```tsx
- * <ContactForm
- *   badge="Send a Message"
- *   headline="Get In Touch"
- *   description="Fill out the form below..."
- * />
- * ```
- */
-
-/**
- * ContactForm Component
- *
- * A comprehensive contact form with client-side validation using react-hook-form
- * and zod schema validation. Handles form submission, loading states, and displays
- * success/error messages.
- *
- * @example
- * ```tsx
- * <ContactForm
- *   badge="Send a Message"
- *   headline="Get In Touch"
- *   description="Fill out the form below..."
- * />
- * ```
- */
 
 /**
  * Form submission state
@@ -122,6 +72,9 @@ export function ContactForm({
         message: '',
     })
 
+    // Initialize analytics event tracking
+    const { trackFormSubmit, track } = useAnalyticsEvent()
+
     // Initialize react-hook-form with zod validation
     const form = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema),
@@ -142,6 +95,12 @@ export function ContactForm({
             // Reset submission state
             setSubmissionState({ status: 'idle', message: '' })
 
+            // Track form submission start
+            track('form_start', {
+                form_name: 'contact_form',
+                has_phone: !!data.phone,
+            })
+
             // Submit to API endpoint
             const response = await fetch('/api/contact', {
                 method: 'POST',
@@ -161,6 +120,13 @@ export function ContactForm({
                         result.message ||
                         "Thank you for your message! We'll get back to you soon.",
                 })
+
+                // Track successful form submission
+                trackFormSubmit('contact_form', {
+                    status: 'success',
+                    has_phone: !!data.phone,
+                })
+
                 form.reset()
             } else {
                 // API returned error
@@ -171,6 +137,13 @@ export function ContactForm({
                         result.message ||
                         'Something went wrong. Please try again.',
                 })
+
+                // Track form submission error
+                track('form_error', {
+                    form_name: 'contact_form',
+                    error_type: 'api_error',
+                    error_message: result.error || 'unknown_error',
+                })
             }
         } catch (error) {
             // Network or other error
@@ -179,6 +152,12 @@ export function ContactForm({
                 status: 'error',
                 message:
                     'Failed to send your message. Please check your connection and try again.',
+            })
+
+            // Track network error
+            track('form_error', {
+                form_name: 'contact_form',
+                error_type: 'network_error',
             })
         }
     }

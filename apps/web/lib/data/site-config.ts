@@ -17,16 +17,15 @@ import type { SiteConfig } from '@/lib/types/site-config.type'
 
 /**
  * Get the site URL from environment variable
- * Falls back to VERCEL_URL or a default value
+ * Falls back to a default value if not set
+ *
+ * Note: VERCEL_URL is server-only and cannot be accessed here.
+ * Always set NEXT_PUBLIC_SITE_URL in your environment variables.
  */
 function getSiteUrl(): string {
-    // Priority: NEXT_PUBLIC_SITE_URL -> VERCEL_URL -> default
+    // Use NEXT_PUBLIC_SITE_URL or fallback to default
     if (env.NEXT_PUBLIC_SITE_URL) {
         return env.NEXT_PUBLIC_SITE_URL
-    }
-
-    if (env.VERCEL_URL) {
-        return `https://${env.VERCEL_URL}`
     }
 
     return 'https://example.com' // Fallback for local development
