@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 import { createEnv } from '@t3-oss/env-nextjs'
 import { config } from 'dotenv'
 import { z } from 'zod'
@@ -22,6 +23,9 @@ export const env = createEnv({
         BLOG_API_KEY: z.string().min(1),
         BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
         VERCEL_URL: z.string().optional(),
+        NODE_ENV: z
+            .enum(['development', 'production', 'test'])
+            .default('development'),
     },
     client: {
         // Site URL - used by site-config.ts (with fallback to VERCEL_URL)
@@ -34,12 +38,22 @@ export const env = createEnv({
         NEXT_PUBLIC_FACEBOOK_APP_ID: z.string().optional(),
         NEXT_PUBLIC_LOCALE: z.string().optional(),
         NEXT_PUBLIC_ENABLE_INDEXING: z.enum(['true', 'false']).optional(),
+
+        // Analytics configuration (all optional)
+        NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
+        NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
+        NEXT_PUBLIC_GTM_ID: z.string().optional(),
+
+        NEXT_PUBLIC_NODE_ENV: z
+            .enum(['development', 'production', 'test'])
+            .default('development'),
     },
     runtimeEnv: {
         POSTGRES_URL: process.env.POSTGRES_URL,
         BLOG_API_KEY: process.env.BLOG_API_KEY,
         BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
         VERCEL_URL: process.env.VERCEL_URL,
+        NODE_ENV: process.env.NODE_ENV,
         NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
         NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,
         NEXT_PUBLIC_SITE_DESCRIPTION: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
@@ -47,5 +61,11 @@ export const env = createEnv({
         NEXT_PUBLIC_FACEBOOK_APP_ID: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
         NEXT_PUBLIC_LOCALE: process.env.NEXT_PUBLIC_LOCALE,
         NEXT_PUBLIC_ENABLE_INDEXING: process.env.NEXT_PUBLIC_ENABLE_INDEXING,
+        NEXT_PUBLIC_GA_MEASUREMENT_ID:
+            process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+        NEXT_PUBLIC_CLARITY_PROJECT_ID:
+            process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
+        NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
+        NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
     },
 })

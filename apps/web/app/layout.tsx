@@ -2,10 +2,16 @@ import { OrganizationSchema, WebSiteSchema } from '@workspace/seo/react'
 import '@workspace/ui/globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import {
+    Clarity,
+    GoogleAnalytics,
+    GoogleTagManager,
+} from '@/components/analytics'
 import { Footer } from '@/components/layout/Footer.component'
 import { Header } from '@/components/layout/Header.component'
 import { Providers } from '@/components/providers'
 import { WebVitals } from '@/components/web-vitals.component'
+import { getAnalyticsConfig } from '@/lib/analytics'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 
@@ -29,6 +35,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    // Get analytics configuration from environment
+    const analyticsConfig = getAnalyticsConfig()
+
     return (
         <html lang='en' suppressHydrationWarning>
             <head>
@@ -47,6 +56,21 @@ export default function RootLayout({
             <body
                 className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
             >
+                {/* Analytics Scripts - Load conditionally based on env config */}
+                {analyticsConfig.ga?.enabled && (
+                    <GoogleAnalytics
+                        measurementId={analyticsConfig.ga.measurementId}
+                    />
+                )}
+                {analyticsConfig.clarity?.enabled && (
+                    <Clarity projectId={analyticsConfig.clarity.projectId} />
+                )}
+                {analyticsConfig.gtm?.enabled && (
+                    <GoogleTagManager
+                        containerId={analyticsConfig.gtm.containerId}
+                    />
+                )}
+
                 <WebVitals />
                 <OrganizationSchema
                     name={seoConfig.siteName}
