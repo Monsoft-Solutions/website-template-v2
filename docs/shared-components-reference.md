@@ -11,7 +11,7 @@ import {
     Breadcrumbs,
     CTASection,
     ContentWrapper,
-    FAQ,
+    FAQComponent,
     FeatureCard,
     Gallery,
     IconCard,
@@ -384,14 +384,14 @@ import {
 
 ---
 
-### FAQ
+### FAQComponent
 
 **Purpose:** Displays frequently asked questions in an accordion layout with smooth animations.
 
 **When to use:** Service pages, product pages, support pages, any page requiring FAQ sections.
 
 ```tsx
-<FAQ
+<FAQComponent
     faqs={[
         {
             question: 'How long does the project take?',
@@ -436,9 +436,9 @@ import {
 **FAQ Type Definition:**
 
 ```tsx
-import type { FAQ } from '@/lib/types/shared'
+import type { FaqItem } from '@/lib/types/shared'
 
-const faqs: FAQ[] = [
+const faqs: FaqItem[] = [
     {
         question: 'Your question here?',
         answer: 'Your detailed answer here...',

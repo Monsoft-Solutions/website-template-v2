@@ -29,4 +29,16 @@ export type ServiceCardProps = {
      * @default false (shows excerpt)
      */
     readonly showFullDescription?: boolean
+
+    /**
+     * Card layout variant
+     * @default 'vertical'
+     */
+    readonly layout?: 'horizontal' | 'vertical'
+
+    /**
+     * Image position for horizontal layout
+     * @default 'left'
+     */
+    readonly imagePosition?: 'left' | 'right'
 }

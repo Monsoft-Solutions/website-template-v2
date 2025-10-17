@@ -21,3 +21,11 @@ export type { ServiceGalleryImage } from './service-gallery-image.type'
 // Component props types
 export type { ServiceCardProps } from './service-card.type'
 export type { ServiceHeroProps } from './service-hero.type'
+
+// Services page types
+export type {
+    ServicesFAQProps,
+    ServicesTestimonialsProps,
+    ServicesGalleryProps,
+    ServicesContactProps,
+} from './services-page.type'

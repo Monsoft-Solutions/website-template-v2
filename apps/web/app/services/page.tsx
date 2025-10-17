@@ -17,15 +17,21 @@
  */
 import { BreadcrumbSchema, JsonLd, WebPageSchema } from '@workspace/seo/react'
 
-import { ServiceCard } from '@/components/services/ServiceCard.component'
+import { ServiceCardHorizontal } from '@/components/services/ServiceCardHorizontal.component'
+import { ServicesContact } from '@/components/services/ServicesContact.component'
+import { ServicesTestimonials } from '@/components/services/ServicesTestimonials.component'
 import {
     Breadcrumbs,
     ContentWrapper,
+    FAQComponent,
+    Gallery,
     SectionContainer,
     SectionHeader,
 } from '@/components/shared'
+import { servicesFAQ } from '@/lib/data/services/services-page-content'
 import { siteConfig } from '@/lib/data/site-config'
 import { getPublishedServices } from '@/lib/queries/get-services.query'
+import { getServicesGalleryImages } from '@/lib/queries/get-services-gallery.query'
 import { seoConfig } from '@/lib/seo-config'
 import { generateServicesListSchema } from '@/lib/seo/service-schema.util'
 import { toNextMetadata } from '@/lib/seo/metadata'
@@ -66,6 +72,9 @@ export const metadata = toNextMetadata(seoConfig, {
 export default function ServicesPage() {
     // Get all published services sorted by order
     const services = getPublishedServices()
+
+    // Get gallery images from services (limit to 9 images)
+    const galleryImages = getServicesGalleryImages(9)
 
     // Generate base URL for structured data
     const baseUrl = siteConfig.seo.siteUrl
@@ -120,17 +129,20 @@ export default function ServicesPage() {
                         className='mb-12'
                     />
 
-                    {/* Services Grid or Empty State */}
+                    {/* Services List with Horizontal Cards */}
                     {services.length > 0 ? (
                         <div
-                            className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'
+                            className='space-y-8'
                             role='list'
                             aria-label='Available services'
                         >
-                            {services.map((service) => (
+                            {services.map((service, index) => (
                                 <div key={service.slug} role='listitem'>
-                                    <ServiceCard
+                                    <ServiceCardHorizontal
                                         service={service}
+                                        imagePosition={
+                                            index % 2 === 0 ? 'left' : 'right'
+                                        }
                                         className='h-full'
                                     />
                                 </div>
@@ -178,6 +190,41 @@ export default function ServicesPage() {
                     )}
                 </ContentWrapper>
             </SectionContainer>
+
+            {/* Services Gallery Section */}
+            {galleryImages.length > 0 && (
+                <SectionContainer variant='muted' id='gallery'>
+                    <ContentWrapper size='lg'>
+                        <SectionHeader
+                            title='Our Work Gallery'
+                            description='Examples of our work and capabilities across different services'
+                            align='center'
+                            spacing='loose'
+                            className='mb-12'
+                        />
+                        <Gallery
+                            images={galleryImages}
+                            columns={{ mobile: 1, tablet: 2, desktop: 3 }}
+                            aspectRatio='video'
+                        />
+                    </ContentWrapper>
+                </SectionContainer>
+            )}
+
+            {/* Services Testimonials Section */}
+            <ServicesTestimonials />
+
+            {/* Services FAQ Section */}
+            <FAQComponent
+                faqs={servicesFAQ}
+                title='Frequently Asked Questions'
+                description='Common questions about our services and working with us'
+                variant='muted'
+                includeSchema={true}
+            />
+
+            {/* Services Contact Section */}
+            <ServicesContact />
         </>
     )
 }
