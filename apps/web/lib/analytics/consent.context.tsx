@@ -45,6 +45,11 @@ interface ConsentContextValue {
     hasConsented: boolean
 
     /**
+     * Whether the consent provider has finished initializing (client-side only)
+     */
+    isInitialized: boolean
+
+    /**
      * Accept all cookies
      */
     acceptAll: () => void
@@ -85,8 +90,9 @@ interface ConsentProviderProps {
 export function ConsentProvider({ children }: ConsentProviderProps) {
     const [consentState, setConsentState] = useState<ConsentState | null>(null)
     const [hasConsented, setHasConsented] = useState(false)
+    const [isInitialized, setIsInitialized] = useState(false)
 
-    // Initialize consent on mount
+    // Initialize consent on mount (client-side only)
     useEffect(() => {
         // Initialize default consent before scripts load
         initializeConsent()
@@ -104,6 +110,9 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
                 updateConsent(ESSENTIAL_CONSENT_CONFIG)
             }
         }
+
+        // Mark as initialized
+        setIsInitialized(true)
     }, [])
 
     /**
@@ -151,6 +160,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
     const value: ConsentContextValue = {
         consentState,
         hasConsented,
+        isInitialized,
         acceptAll,
         acceptEssential,
         revokeConsent,
