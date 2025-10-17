@@ -71,4 +71,11 @@ export const env = createEnv({
         NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
         NODE_ENV: process.env.NODE_ENV,
     },
+
+    // Called when server variables are accessed on the client.
+    onInvalidAccess: (variable: string) => {
+        throw new Error(
+            `❌ Attempted to access a server-side environment variable on the client: ${variable}`
+        )
+    },
 })
