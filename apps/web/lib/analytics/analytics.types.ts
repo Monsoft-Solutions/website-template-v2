@@ -2,7 +2,7 @@
  * Analytics Type Definitions
  *
  * Type-safe definitions for Google Analytics 4 (GA4), Microsoft Clarity,
- * and Consent Mode v2 integrations.
+ * Facebook Pixel, and Consent Mode v2 integrations.
  */
 
 /**
@@ -18,6 +18,15 @@ export type GtagFunction = (
  * Microsoft Clarity global function type
  */
 export type ClarityFunction = (command: string, ...args: unknown[]) => void
+
+/**
+ * Facebook Pixel global function type
+ */
+export type FacebookPixelFunction = (
+    command: 'init' | 'track' | 'trackCustom',
+    eventName?: string,
+    params?: Record<string, unknown>
+) => void
 
 /**
  * Consent Mode v2 storage types
@@ -83,6 +92,10 @@ export interface AnalyticsConfig {
         containerId: string
         enabled: boolean
     }
+    facebookPixel?: {
+        pixelId: string
+        enabled: boolean
+    }
 }
 
 /**
@@ -92,6 +105,8 @@ declare global {
     interface Window {
         gtag?: GtagFunction
         clarity?: ClarityFunction
+        fbq?: FacebookPixelFunction
+        _fbq?: FacebookPixelFunction
         dataLayer?: unknown[]
     }
 }

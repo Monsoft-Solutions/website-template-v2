@@ -27,6 +27,7 @@ export function getAnalyticsConfig(): AnalyticsConfig {
     const gaMeasurementId = env.NEXT_PUBLIC_GA_MEASUREMENT_ID
     const clarityProjectId = env.NEXT_PUBLIC_CLARITY_PROJECT_ID
     const gtmId = env.NEXT_PUBLIC_GTM_ID
+    const facebookPixelId = env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID
 
     return {
         ga: gaMeasurementId
@@ -44,6 +45,12 @@ export function getAnalyticsConfig(): AnalyticsConfig {
         gtm: gtmId
             ? {
                   containerId: gtmId,
+                  enabled: true,
+              }
+            : undefined,
+        facebookPixel: facebookPixelId
+            ? {
+                  pixelId: facebookPixelId,
                   enabled: true,
               }
             : undefined,
@@ -67,6 +74,7 @@ export function isAnalyticsEnabled(): boolean {
     return !!(
         config.ga?.enabled ||
         config.clarity?.enabled ||
-        config.gtm?.enabled
+        config.gtm?.enabled ||
+        config.facebookPixel?.enabled
     )
 }

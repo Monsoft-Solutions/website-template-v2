@@ -43,6 +43,7 @@ export const env = createEnv({
         NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
         NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
         NEXT_PUBLIC_GTM_ID: z.string().optional(),
+        NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().optional(),
 
         NEXT_PUBLIC_NODE_ENV: z
             .enum(['development', 'production', 'test'])
@@ -68,6 +69,8 @@ export const env = createEnv({
         NEXT_PUBLIC_CLARITY_PROJECT_ID:
             process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
         NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
+        NEXT_PUBLIC_FACEBOOK_PIXEL_ID:
+            process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
         NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
         NODE_ENV: process.env.NODE_ENV,
     },

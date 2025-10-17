@@ -1,0 +1,64 @@
+/**
+ * Facebook Pixel Component
+ *
+ * Loads Facebook Pixel tracking script.
+ * Only loads when NEXT_PUBLIC_FACEBOOK_PIXEL_ID is configured.
+ *
+ * @module components/analytics
+ */
+
+'use client'
+
+import Script from 'next/script'
+
+/**
+ * Facebook Pixel Component
+ *
+ * Loads Facebook Pixel tracking script.
+ * Only loads when NEXT_PUBLIC_FACEBOOK_PIXEL_ID is configured.
+ *
+ * @module components/analytics
+ */
+
+/**
+ * Facebook Pixel Component
+ *
+ * Loads Facebook Pixel tracking script.
+ * Only loads when NEXT_PUBLIC_FACEBOOK_PIXEL_ID is configured.
+ *
+ * @module components/analytics
+ */
+
+interface FacebookPixelProps {
+    pixelId: string
+}
+
+/**
+ * Facebook Pixel Script Component
+ *
+ * Loads Facebook Pixel with optimal performance settings.
+ * Provides conversion tracking and analytics.
+ *
+ * @example
+ * ```tsx
+ * <FacebookPixel pixelId="1234567890" />
+ * ```
+ */
+export function FacebookPixel({ pixelId }: FacebookPixelProps) {
+    return (
+        <Script id='facebook-pixel' strategy='afterInteractive'>
+            {`
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '${pixelId}');
+                fbq('track', 'PageView');
+            `}
+        </Script>
+    )
+}

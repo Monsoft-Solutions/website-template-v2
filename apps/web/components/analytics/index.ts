@@ -6,7 +6,9 @@
  * @module components/analytics
  */
 
+export { AnalyticsProvider } from './AnalyticsProvider.component'
 export { Clarity } from './Clarity.component'
+export { FacebookPixel } from './FacebookPixel.component'
 export { GoogleAnalytics } from './GoogleAnalytics.component'
 export { GoogleTagManager } from './GoogleTagManager.component'
 export { PageViewTracker } from './page-view-tracker.component'
