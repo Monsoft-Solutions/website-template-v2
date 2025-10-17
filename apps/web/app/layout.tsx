@@ -11,7 +11,9 @@ import { CookieBanner } from '@/components/CookieBanner.component'
 import { Footer } from '@/components/layout/Footer.component'
 import { Header } from '@/components/layout/Header.component'
 import { Providers } from '@/components/providers'
+import { MobileCallButton } from '@/components/shared'
 import { WebVitals } from '@/components/web-vitals.component'
+import { env } from '@/env'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 
@@ -35,6 +37,10 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    // Check if mobile call button should be enabled (default: true)
+    const isMobileCallButtonEnabled =
+        env.NEXT_PUBLIC_ENABLE_MOBILE_CALL_BUTTON !== 'false'
+
     return (
         <html lang='en' suppressHydrationWarning>
             <head>
@@ -78,6 +84,10 @@ export default function RootLayout({
                     <Header />
                     <main id='main-content'>{children}</main>
                     <Footer />
+                    {/* Mobile Call Button - visible on mobile devices only */}
+                    {isMobileCallButtonEnabled && (
+                        <MobileCallButton isBanner={true} />
+                    )}
                 </Providers>
             </body>
         </html>
