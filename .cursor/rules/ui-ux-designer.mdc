@@ -40,17 +40,110 @@ You have access to browser tools via Chrome MCP to analyze and improve existing 
 
 **Component Architecture:**
 
-- **Primary UI Library**: shadcn/ui components (located in `/components/ui/`)
+- **Primary UI Library**: shadcn/ui components (located in `packages/ui/src/components/`)
 - **Styling**: Tailwind CSS utility classes with project design tokens
-- **Shared Components**: Organized in `/components/<area>/` (e.g., `/components/layout/`, `/components/payments/`)
+- **Shared Components**: Reusable components in `apps/web/components/shared/`
 - **Core Elements**: Always reuse existing shadcn/ui components (Button, Table, Card, Input, etc.)
 
 **Component Usage Priority:**
 
-1. **First**: Check if shadcn/ui component exists in `/components/ui/`
-2. **Second**: Check if shared component exists in `/components/<area>/`
-3. **Third**: Install missing shadcn component: `npx shadcn@latest add [component-name]`
-4. **Last Resort**: Create new shared component in appropriate `/components/<area>/`
+1. **First**: Check if shadcn/ui component exists in `@workspace/ui/components/`
+2. **Second**: Check if shared component exists in `apps/web/components/shared/`
+3. **Third**: Install missing shadcn component: `pnpm dlx shadcn@latest add [component-name] -c apps/web`
+4. **Last Resort**: Create new shared component in `apps/web/components/shared/`
+
+**Layout Architecture:**
+
+The project provides THREE distinct layout approaches:
+
+**1. Multi-Section Pages (SectionContainer + ContentWrapper):**
+Use for complex pages with multiple sections and varied backgrounds (home, about, services, contact):
+
+```tsx
+import { ContentWrapper, SectionContainer } from '@/components/shared'
+
+;<SectionContainer variant='muted' id='features'>
+    <ContentWrapper size='lg'>{/* Section content */}</ContentWrapper>
+</SectionContainer>
+```
+
+- **SectionContainer**: Outer wrapper providing background variants, vertical spacing, and semantic HTML
+    - Variants: `default` (bg-background), `muted` (bg-muted/30), `accent` (bg-accent/30)
+    - Props: `variant`, `as`, `id`, `paddingY`, `noPadding`, `ariaLabel`, `className`
+
+- **ContentWrapper**: Inner content constraint with max-width and horizontal padding
+    - Sizes: `sm` (max-w-3xl), `md` (max-w-5xl), `lg` (max-w-7xl), `xl` (max-w-screen-2xl), `full` (max-w-full)
+    - Props: `size`, `paddingX`, `noPadding`, `className`
+
+**2. Single-Purpose Pages (ContainerLayout):**
+Use for simple content pages with consistent layout (blog posts, category pages, single-column layouts):
+
+```tsx
+import { ContainerLayout } from '@/components/ContainerLayout.component'
+
+;<ContainerLayout size='sm' as='main' className='py-12'>
+    {/* Page content */}
+</ContainerLayout>
+```
+
+- **ContainerLayout**: All-in-one container for simple pages
+    - Sizes: `default` (container mx-auto), `sm` (max-w-3xl), `md` (max-w-5xl), `lg` (max-w-6xl), `xl` (max-w-7xl), `full` (w-full)
+    - Props: `size`, `as`, `id`, `paddingX`, `noPadding`, `className`, `ariaLabel`
+
+**3. Decision Matrix:**
+
+- **Multi-section pages** with different backgrounds → SectionContainer + ContentWrapper
+- **Simple single-column pages** → ContainerLayout
+- **Pages needing consistent spacing** → ContainerLayout
+- **Pages with alternating section styles** → SectionContainer + ContentWrapper
+
+**Available Shared Components:**
+
+**Layout & Structure:**
+
+- `SectionContainer` - Outer section wrapper with background variants
+- `ContentWrapper` - Inner content constraint with max-width
+- `SectionHeader` - Section titles with badges, alignment, and descriptions
+    - Props: `title`, `description`, `badge`, `as` (h1-h6), `align` (left|center|right), `spacing`
+
+**Navigation:**
+
+- `Breadcrumbs` - Hierarchical navigation with glass effect background
+    - Props: `items` (array of {label, href}), `showBackground`, `className`
+
+**Content Components:**
+
+- `FeatureCard` - Feature showcase with icon, title, description, and optional CTA
+    - Props: `icon`, `title`, `description`, `href`, `linkText`, `iconVariant`, `iconSize`, `hoverEffect`
+    - Hover effects: `lift`, `border`, `glow`, `none`
+- `IconCard` - Lightweight card for grid layouts (2-4 columns)
+    - Props: `icon`, `title`, `description`, `href`, `iconStyle` (outlined|filled|minimal), `orientation` (vertical|horizontal)
+- `ImageSection` - Two-column layout with image and content
+    - Props: `image`, `title`, `description`, `badge`, `primaryButton`, `secondaryButton`, `imagePosition` (left|right)
+- `CTASection` - Prominent call-to-action with heading and buttons
+    - Props: `heading`, `description`, `primaryButton`, `secondaryButton`, `variant`, `align`, `size`, `buttonLayout`
+
+**Mobile:**
+
+- `MobileCallButton` - Mobile-only floating call button or banner
+    - Props: `position` (bottom-left|bottom-right|bottom-center), `style` (icon-only|text-only|icon-text), `isBanner`
+
+**Shared Component Import Pattern:**
+
+```tsx
+// Import from barrel export
+import {
+    Breadcrumbs,
+    CTASection,
+    ContentWrapper,
+    FeatureCard,
+    IconCard,
+    ImageSection,
+    MobileCallButton,
+    SectionContainer,
+    SectionHeader,
+} from '@/components/shared'
+```
 
 **Design System Integration:**
 
@@ -73,13 +166,13 @@ You have access to browser tools via Chrome MCP to analyze and improve existing 
 1. **UX Analysis**: Start by analyzing the user's needs, context, and expected behavior patterns
 2. **Current State Assessment** (when improving existing UI): Take a snapshot of the current interface to understand the baseline
 3. **Component Discovery & Inventory**:
-   - Check `/components/ui/` for existing shadcn/ui components
-   - Check `/components/<area>/` for existing shared components
-   - Verify shadcn/ui documentation for additional available components
+    - Check `/components/ui/` for existing shadcn/ui components
+    - Check `/components/<area>/` for existing shared components
+    - Verify shadcn/ui documentation for additional available components
 4. **Component Resolution**:
-   - **Reuse First**: Use existing components from `/components/ui/` or `/components/<area>/`
-   - **Install Second**: If core component missing, run `npx shadcn@latest add [component-name]`
-   - **Create Last**: Only create new shared components when absolutely necessary
+    - **Reuse First**: Use existing components from `/components/ui/` or `/components/<area>/`
+    - **Install Second**: If core component missing, run `npx shadcn@latest add [component-name]`
+    - **Create Last**: Only create new shared components when absolutely necessary
 5. **Design Token Planning**: Identify which design system tokens will be used (colors, spacing, typography, radius)
 6. **Architecture**: Break down complex interfaces into small, focused components following Notion's minimalistic principles
 7. **Implementation**: Build using design system tokens, Tailwind utilities, and shadcn/ui components

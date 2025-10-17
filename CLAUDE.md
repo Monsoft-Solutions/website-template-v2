@@ -275,9 +275,13 @@ const telLink = getPhoneLink()
 
 ## Shared UI Components
 
-**Layout Primitives (apps/web/components/shared/):**
+**Layout Primitives:**
 
-The project uses two fundamental layout components that work together:
+The project provides three layout components for different use cases:
+
+### Multi-Section Pages (SectionContainer + ContentWrapper)
+
+For complex pages with multiple sections (home, about, services):
 
 **1. SectionContainer** - Outer wrapper for page sections:
 
@@ -310,15 +314,15 @@ import { ContentWrapper } from '@/components/shared/ContentWrapper.component'
 </ContentWrapper>
 ```
 
-**Size Variants:**
+**ContentWrapper Size Variants:**
 
-- `sm`: max-w-3xl (prose content, blog posts)
+- `sm`: max-w-3xl (prose content)
 - `md`: max-w-5xl (forms, narrow content)
 - `lg`: max-w-7xl (default, general content)
 - `xl`: max-w-screen-2xl (wide layouts, dashboards)
 - `full`: max-w-full (full-width content)
 
-**Background Variants:**
+**SectionContainer Background Variants:**
 
 - `default`: bg-background (standard background)
 - `muted`: bg-muted/30 (subtle gray background)
@@ -334,6 +338,42 @@ import { ContentWrapper } from '@/components/shared/ContentWrapper.component'
     </ContentWrapper>
 </SectionContainer>
 ```
+
+### Single-Purpose Pages (ContainerLayout)
+
+For simple content pages with consistent layout (blog posts, category pages, single-column layouts):
+
+**3. ContainerLayout** - All-in-one container:
+
+```tsx
+import { ContainerLayout } from '@/components/ContainerLayout.component'
+
+;<ContainerLayout
+    size='sm' // 'default' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+    as='main' // HTML element (default: 'div')
+    id='blog-post' // Optional element ID
+    className='py-12' // Additional classes
+    noPadding={false} // Disable default padding
+    paddingX='px-4 sm:px-6 lg:px-8' // Custom horizontal padding
+    ariaLabel='Blog post content' // Accessibility label
+>
+    {/* Content */}
+</ContainerLayout>
+```
+
+**ContainerLayout Size Variants:**
+
+- `default`: container mx-auto (responsive breakpoints)
+- `sm`: max-w-3xl (blog posts, articles)
+- `md`: max-w-5xl (documentation, prose)
+- `lg`: max-w-6xl (wider content)
+- `xl`: max-w-7xl (full-width content)
+- `full`: w-full (edge-to-edge)
+
+**When to Use Each:**
+
+- **SectionContainer + ContentWrapper**: Multi-section pages with varied backgrounds (home, about, services, contact)
+- **ContainerLayout**: Simple single-purpose pages (blog posts, category listings, tag pages, single-column layouts)
 
 ## TypeScript Naming Conventions
 

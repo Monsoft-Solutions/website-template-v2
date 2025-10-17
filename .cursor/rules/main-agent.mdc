@@ -34,7 +34,8 @@ This agent serves as the **registry and router** for all specialized agents in t
 
 ### ui-ux-designer
 
-- **Purpose**: UI/UX design and frontend development with design system integration
+- **Purpose**: UI/UX design and frontend development with layout architecture, shared components, and design system integration
+- **Key Capabilities**: Layout selection (SectionContainer+ContentWrapper vs ContainerLayout), shared component usage (FeatureCard, IconCard, ImageSection, CTASection), mobile-first responsive design, shadcn/ui integration
 - **Location**: `.cursor/rules/ui-ux-designer.mdc`
 
 ### database-optimizer
@@ -110,5 +111,5 @@ Agents automatically apply based on file types and contexts defined in their rul
 
 ---
 
-_Last updated: 2025-10-16_
+_Last updated: 2025-10-17_
 _Total Cursor agents: 13 (including main-agent)_
