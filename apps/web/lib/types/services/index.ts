@@ -19,3 +19,4 @@ export type { ServiceCTA } from './service-cta.type'
 
 // Component props types
 export type { ServiceCardProps } from './service-card.type'
+export type { ServiceHeroProps } from './service-hero.type'

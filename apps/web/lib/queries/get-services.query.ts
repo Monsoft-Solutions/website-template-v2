@@ -55,6 +55,23 @@ export function getServicesByCategory(
 }
 
 /**
+ * Get a single service by slug
+ *
+ * Returns the service matching the provided slug, or undefined if not found.
+ * Only returns published services.
+ *
+ * @param slug - The service slug to search for
+ * @returns Service object or undefined if not found
+ *
+ * @example
+ * const service = getServiceBySlug('web-development')
+ * // Returns: { slug: 'web-development', title: 'Web Development', ... }
+ */
+export function getServiceBySlug(slug: string): Service | undefined {
+    return getPublishedServices().find((service) => service.slug === slug)
+}
+
+/**
  * Get all unique categories
  *
  * Returns a list of all categories that have at least one published service.
