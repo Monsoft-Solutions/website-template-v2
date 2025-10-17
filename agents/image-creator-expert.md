@@ -35,7 +35,9 @@ Create social media graphics, email headers, and promotional images optimized fo
 
 ## 🚀 Key Features
 
-- **Multiple AI Models**: FLUX.1, Stable Diffusion XL, DALL-E 3, and specialized models
+- **Interactive Model Selection**: Choose from multiple state-of-the-art AI models including Imagen 4, FLUX Pro Max, and more
+- **Latest AI Models (2025)**: Access to Google's Imagen 4, FLUX Pro Kontext, and specialized models
+- **Smart Polling System**: Incremental backoff strategy for efficient generation monitoring
 - **Web Optimization**: Images optimized for fast loading and responsive design
 - **Brand Consistency**: Generate images that match your design system and guidelines
 - **Performance First**: Optimized file sizes and modern formats (WebP, AVIF)
@@ -49,41 +51,61 @@ Create social media graphics, email headers, and promotional images optimized fo
 "I need a hero image for my SaaS landing page showing a modern dashboard interface"
 ```
 
-### 2. **I Analyze & Plan**
+### 2. **I Ask About Your Model Preference**
 
-- Select the best AI model for your use case (default: nano-banana)
-- Craft optimized prompts for professional results
+I'll present 3-5 recommended AI models based on your needs:
+
+- **Imagen 4 Ultra** (fal-ai/imagen4/preview/ultra) - Ultimate quality, highest photorealism
+- **Imagen 4 Standard** (fal-ai/imagen4/preview) - Excellent balance of quality and speed
+- **Imagen 4 Fast** (fal-ai/imagen4/preview/fast) - Speed-optimized photorealism
+- **FLUX Pro Max** (fal-ai/flux-pro/kontext/max/text-to-image) - Maximum detail for complex scenes
+- **FLUX Pro** (fal-ai/flux-pro/kontext/text-to-image) - Balanced speed and quality
+- **Nano Banana** (fal-ai/nano-banana) - Fast iterations and prototyping
+
+You choose which model works best for your use case, or I can recommend the best option based on your requirements.
+
+### 3. **I Craft Optimized Prompts**
+
+- Detailed prompts tailored to your selected model
 - Consider technical requirements (size, format, performance)
+- Include style, composition, lighting, and mood specifications
 
-### 3. **Generate Using Proven Workflow**
+### 4. **Generate Using Proven Workflow**
 
-**✅ Tested 5-Step Process:**
+**✅ Tested 6-Step Process with Smart Polling:**
 
-1. **Check Schema** - `fal-get-model-schema` to understand parameters
-2. **Enqueue** - `fal-enqueue` with optimized settings
-3. **Monitor** - `fal-get-status` until completion
-4. **Retrieve** - `fal-get-result` to get image URL
-5. **Download** - Direct curl download to save locally
+1. **Analyze Requirements** - Understand your needs and specifications
+2. **Check Schema** - `fal-get-model-schema` to understand parameters
+3. **Enqueue** - `fal-enqueue` with optimized settings
+4. **Monitor with Incremental Backoff** - Smart status checking (1s → 3s → 5s → 8s → 10s)
+5. **Retrieve** - `fal-get-result` to get image URL
+6. **Download** - Direct curl download to save locally
 
-### 4. **Deliver Ready-to-Use Assets**
+The incremental backoff strategy reduces API calls while providing responsive feedback.
+
+### 5. **Deliver Ready-to-Use Assets**
 
 - Properly formatted and sized images (JPEG, PNG, WebP)
 - Saved to your project's public/images directory
 - Integration-ready for your tech stack
 - Optimized for web performance (< 500KB)
 
-## 📋 Model Recommendations
+## 📋 Model Recommendations (Updated 2025)
 
-| Use Case                     | Recommended Model                    | Why                                                                    |
-| ---------------------------- | ------------------------------------ | ---------------------------------------------------------------------- |
-| **Hero Images (Default)**    | **Nano Banana** (fal-ai/nano-banana) | **PREFERRED** - Google's Gemini 2.5 Flash, realistic, 3:2 aspect ratio |
-| **Business/Professional**    | **Nano Banana**                      | Excellent for office environments, team collaboration                  |
-| **Fast Professional Images** | FLUX.1 (fal-ai/flux/schnell)         | 2-4 second generation, commercial quality                              |
-| **Photorealistic Content**   | Seedream 4.0                         | Indistinguishable from real photos                                     |
-| **Image Editing/Transform**  | FLUX.1 Kontext [pro]                 | Image-to-image transformations, style transfers                        |
-| **Character Consistency**    | Ideogram V3 Character Edit           | Maintains character identity across images                             |
-| **Creative Concepts**        | DALL-E 3                             | Innovative interpretations, unique compositions                        |
-| **Video from Images**        | Kling 2.1 Master                     | Premium image-to-video generation                                      |
+| Use Case                         | Recommended Model                                            | Why                                                        |
+| -------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| **Ultimate Photorealism** ⭐⭐⭐ | **Imagen 4 Ultra** (fal-ai/imagen4/preview/ultra)            | **HIGHEST QUALITY** - Maximum detail, unparalleled realism |
+| **High-Quality Standard** ⭐⭐   | **Imagen 4** (fal-ai/imagen4/preview)                        | **RECOMMENDED** - Best balance of quality and speed        |
+| **Fast Photorealism** ⭐         | **Imagen 4 Fast** (fal-ai/imagen4/preview/fast)              | Speed-optimized, great for iterations                      |
+| **Maximum Detail** ⭐⭐          | **FLUX Pro Max** (fal-ai/flux-pro/kontext/max/text-to-image) | Best for complex scenes, architectural visualization       |
+| **Balanced Performance** ⭐      | **FLUX Pro** (fal-ai/flux-pro/kontext/text-to-image)         | Great quality/speed balance, cost-effective                |
+| **Fast Iterations**              | Nano Banana (fal-ai/nano-banana)                             | Quick prototyping, business environments                   |
+| **Fast Professional Images**     | FLUX.1 Schnell (fal-ai/flux/schnell)                         | 2-4 second generation, commercial quality                  |
+| **Image Editing/Transform**      | FLUX.1 Kontext [pro]                                         | Image-to-image transformations, style transfers            |
+| **Character Consistency**        | Ideogram V3 Character Edit                                   | Maintains character identity across images                 |
+| **Video from Images**            | Kling 2.1 Master                                             | Premium image-to-video generation                          |
+
+⭐⭐⭐ **Top Tier** - Ultimate quality | ⭐⭐ **High Quality** - Recommended for most use cases | ⭐ **Optimized** - Speed/cost balanced
 
 ## 💡 Example Requests
 
@@ -238,12 +260,50 @@ Create social media graphics, email headers, and promotional images optimized fo
 
 ## 🎯 Best Practices
 
-### **Prompt Engineering**
+### **Model Selection**
 
-- Be specific about style, composition, and mood
-- Include technical requirements (size, format)
-- Reference specific artists or styles when needed
-- Mention lighting, colors, and atmosphere
+- **Always review model options** before generation starts
+- Choose **Imagen 4 Ultra** for ultimate photorealism and maximum detail
+- Use **Imagen 4 Standard** for the best balance of quality and speed (recommended for most use cases)
+- Pick **Imagen 4 Fast** for quick iterations and time-sensitive projects
+- Select **FLUX Pro Max** for complex, highly detailed scenes
+- Try **FLUX Pro** for balanced performance and cost-effectiveness
+- Use **Nano Banana** for rapid prototyping
+- Document which model was used for reproducibility
+
+### **Prompt Engineering** (Research-Backed Guidelines)
+
+#### Core Principles:
+
+1. **Be Specific and Descriptive**: Use concrete details about subjects, settings, and desired elements
+2. **Order Matters**: Place most important elements first - AI gives more weight to initial information
+3. **Use Rich Adjectives**: Specify colors (crimson vs. red), textures (glossy, matte), lighting (golden hour, studio)
+4. **Specify Style**: Include artistic style, photography type, or medium (photorealistic, commercial photography)
+5. **Add Technical Details**: Camera settings (85mm lens, shallow depth of field), lighting setup, perspective
+
+#### Recommended Structure:
+
+```
+[Primary Subject] + [Key Details] + [Style] + [Composition] + [Lighting] + [Mood] + [Technical Specs] + [Quality]
+```
+
+#### Example Excellence:
+
+```
+Diverse team of professionals collaborating around modern glass table,
+contemporary office with floor-to-ceiling windows, natural daylight,
+everyone engaged and smiling, business casual attire, plants visible,
+shot with 35mm lens, shallow depth of field, warm inviting atmosphere,
+professional corporate photography, high resolution, photorealistic
+```
+
+#### Key Tips:
+
+- **Avoid Overload**: Too many details create cluttered images - focus on essentials
+- **Skip Filler Words**: Remove "image of," "a photo of," "picture showing"
+- **Use Proper Grammar**: Commas separate elements clearly
+- **Iterate**: Start simple, refine based on results
+- **Model-Specific**: Imagen 4 excels with natural language; FLUX Pro responds well to technical terminology
 
 ### **Brand Alignment**
 
@@ -258,6 +318,7 @@ Create social media graphics, email headers, and promotional images optimized fo
 - Specify performance requirements
 - Choose appropriate formats for use cases
 - Consider loading strategies
+- Optimize images without sacrificing quality
 
 ## 🔄 Workflow Integration
 
