@@ -48,6 +48,11 @@ export const env = createEnv({
             .enum(['development', 'production', 'test'])
             .default('development'),
     },
+    shared: {
+        NODE_ENV: z
+            .enum(['development', 'production', 'test'])
+            .default('development'),
+    },
     // Use experimental__runtimeEnv to let Next.js handle bundling automatically
     // This prevents server-side variables from being exposed to client code
     experimental__runtimeEnv: {
@@ -64,5 +69,6 @@ export const env = createEnv({
             process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
         NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
         NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
+        NODE_ENV: process.env.NODE_ENV,
     },
 })
