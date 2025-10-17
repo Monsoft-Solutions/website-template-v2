@@ -47,13 +47,7 @@ export function MobileCallButton({
     const renderContent = () => {
         switch (style) {
             case 'icon-only':
-                return (
-                    <Phone
-                        className='h-5 w-5'
-                        aria-label='Call now'
-                        aria-hidden='false'
-                    />
-                )
+                return <Phone className='h-5 w-5' aria-label='Call now' />
             case 'text-only':
                 return <span>Call Now</span>
             case 'icon-text':
