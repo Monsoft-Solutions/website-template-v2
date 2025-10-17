@@ -1,27 +1,6 @@
 /**
  * Analytics Provider Component
  *
- * Centralized analytics provider that conditionally loads all analytics services.
- * Loads only the services configured via environment variables AND when user has granted consent.
- *
- * **Privacy Compliance**: This component must be mounted inside ConsentProvider boundary
- * to ensure analytics scripts only load after user grants consent.
- *
- * @module components/analytics
- */
-
-'use client'
-
-import { getAnalyticsConfig, useConsent } from '@/lib/analytics'
-
-import { Clarity } from './Clarity.component'
-import { FacebookPixel } from './FacebookPixel.component'
-import { GoogleAnalytics } from './GoogleAnalytics.component'
-import { GoogleTagManager } from './GoogleTagManager.component'
-
-/**
- * Analytics Provider Component
- *
  * Conditionally loads analytics scripts based on:
  * 1. Environment configuration (analytics services enabled)
  * 2. User consent (only loads when consent is granted)
@@ -43,6 +22,16 @@ import { GoogleTagManager } from './GoogleTagManager.component'
  * </Providers>
  * ```
  */
+
+'use client'
+
+import { getAnalyticsConfig, useConsent } from '@/lib/analytics'
+
+import { Clarity } from './Clarity.component'
+import { FacebookPixel } from './FacebookPixel.component'
+import { GoogleAnalytics } from './GoogleAnalytics.component'
+import { GoogleTagManager } from './GoogleTagManager.component'
+
 export function AnalyticsProvider() {
     const analyticsConfig = getAnalyticsConfig()
     const { consentState } = useConsent()
