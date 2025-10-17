@@ -40,7 +40,10 @@ export const env = createEnv({
         NEXT_PUBLIC_ENABLE_INDEXING: z.enum(['true', 'false']).optional(),
 
         // Analytics configuration (all optional)
-        NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
+        NEXT_PUBLIC_GA_MEASUREMENT_ID: z
+            .string()
+            .regex(/^G-[A-Z0-9]{10}$/)
+            .optional(),
         NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
         NEXT_PUBLIC_GTM_ID: z.string().optional(),
         NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().optional(),

@@ -16,16 +16,8 @@ import Script from 'next/script'
 /**
  * Google Tag Manager Component
  *
- * Loads Google Tag Manager (GTM) container.
- * Only loads when NEXT_PUBLIC_GTM_ID is configured.
- *
- * Optional alternative to direct GA4 integration.
- *
- * @module components/analytics
- */
-
-/**
- * Google Tag Manager Component
+ * Note: The noscript fallback must be placed immediately after
+ * the opening <body> tag for optimal compatibility.
  *
  * Loads Google Tag Manager (GTM) container.
  * Only loads when NEXT_PUBLIC_GTM_ID is configured.
