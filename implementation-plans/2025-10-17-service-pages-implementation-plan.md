@@ -1789,8 +1789,6 @@ export type ServiceCategory =
     - Add breadcrumb navigation
 
 3. Implement page layout
-    - Use semantic HTML (`<article>`)
-    - Add proper spacing with SectionContainer
     - Implement breadcrumb navigation
     - Add scroll-to-top behavior
 

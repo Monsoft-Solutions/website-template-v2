@@ -1,5 +1,3 @@
-import type { LucideIcon } from 'lucide-react'
-
 /**
  * Service Benefit
  *
@@ -8,16 +6,17 @@ import type { LucideIcon } from 'lucide-react'
  *
  * @example
  * const benefit: ServiceBenefit = {
- *     icon: BarChart,
+ *     iconPath: '/images/services/icons/chart-icon.png',
  *     title: 'Increased Conversions',
  *     description: 'Our optimized UX design increases conversion rates by up to 40%'
  * }
  */
 export type ServiceBenefit = {
     /**
-     * Benefit icon
+     * Benefit icon image path
+     * Recommended size: 48x48px or 64x64px
      */
-    readonly icon: LucideIcon
+    readonly iconPath: string
 
     /**
      * Benefit title

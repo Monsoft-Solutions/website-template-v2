@@ -1,5 +1,3 @@
-import type { LucideIcon } from 'lucide-react'
-
 /**
  * Service Process Step
  *
@@ -11,7 +9,7 @@ import type { LucideIcon } from 'lucide-react'
  *     step: 1,
  *     title: 'Discovery & Planning',
  *     description: 'We analyze your requirements and create a detailed project roadmap',
- *     icon: Globe
+ *     iconPath: '/images/services/icons/globe-icon.png'
  * }
  */
 export type ServiceProcessStep = {
@@ -32,7 +30,8 @@ export type ServiceProcessStep = {
     readonly description: string
 
     /**
-     * Optional icon for the step
+     * Optional icon image path for the step
+     * Recommended size: 48x48px or 64x64px
      */
-    readonly icon?: LucideIcon
+    readonly iconPath?: string
 }

@@ -1,72 +1,32 @@
-import type { LucideIcon } from 'lucide-react'
-
 /**
  * Service Icon Configuration
  *
- * Defines how a service is visually represented.
- * Uses discriminated union for type safety and accessibility.
+ * Defines how a service is visually represented using images.
+ * All services must use images for SSR compatibility.
  *
- * @example Icon only
+ * @example Card icon (small icon for service card)
  * const config: ServiceIcon = {
- *     type: 'icon',
- *     icon: Code
- * }
- *
- * @example Image only
- * const config: ServiceIcon = {
- *     type: 'image',
- *     imagePath: '/images/services/web-dev.jpg',
- *     imageAlt: 'Web development workspace'
- * }
- *
- * @example Both icon and image
- * const config: ServiceIcon = {
- *     type: 'both',
- *     icon: Code,
- *     imagePath: '/images/services/web-dev.jpg',
+ *     cardIconPath: '/images/services/icons/web-dev-icon.png',
+ *     heroImagePath: '/images/services/web-dev-hero.jpg',
  *     imageAlt: 'Web development workspace'
  * }
  */
-export type ServiceIcon =
-    | {
-          /**
-           * Icon-only display
-           */
-          readonly type: 'icon'
-          /**
-           * Lucide icon component
-           */
-          readonly icon: LucideIcon
-      }
-    | {
-          /**
-           * Image-only display
-           */
-          readonly type: 'image'
-          /**
-           * Image path relative to public directory
-           */
-          readonly imagePath: string
-          /**
-           * Required alt text for accessibility
-           */
-          readonly imageAlt: string
-      }
-    | {
-          /**
-           * Display both icon (for cards) and image (for hero)
-           */
-          readonly type: 'both'
-          /**
-           * Lucide icon component for card display
-           */
-          readonly icon: LucideIcon
-          /**
-           * Image path for hero section
-           */
-          readonly imagePath: string
-          /**
-           * Required alt text for accessibility
-           */
-          readonly imageAlt: string
-      }
+export type ServiceIcon = {
+    /**
+     * Small icon image for service cards
+     * Recommended size: 64x64px or 128x128px
+     */
+    readonly cardIconPath: string
+
+    /**
+     * Large hero image for service detail page
+     * Recommended size: 1200x800px
+     */
+    readonly heroImagePath: string
+
+    /**
+     * Alt text for accessibility
+     * Describes the image content for screen readers
+     */
+    readonly imageAlt: string
+}

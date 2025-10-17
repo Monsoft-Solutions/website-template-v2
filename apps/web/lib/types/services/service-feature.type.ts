@@ -1,5 +1,3 @@
-import type { LucideIcon } from 'lucide-react'
-
 /**
  * Service Feature
  *
@@ -8,7 +6,7 @@ import type { LucideIcon } from 'lucide-react'
  *
  * @example
  * const feature: ServiceFeature = {
- *     icon: Zap,
+ *     iconPath: '/images/services/icons/fast-icon.png',
  *     title: 'Lightning Fast',
  *     description: 'Optimized performance with sub-second load times',
  *     ariaLabel: 'Learn about our fast web development'
@@ -16,9 +14,10 @@ import type { LucideIcon } from 'lucide-react'
  */
 export type ServiceFeature = {
     /**
-     * Feature icon
+     * Feature icon image path
+     * Recommended size: 48x48px or 64x64px
      */
-    readonly icon: LucideIcon
+    readonly iconPath: string
 
     /**
      * Feature title

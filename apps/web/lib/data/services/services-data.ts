@@ -18,7 +18,8 @@
  * 2. Update all fields with new service information
  * 3. Choose a unique slug (used in URL: /services/your-slug)
  * 4. Add service images to /public/images/services/
- * 5. Save the file - no code changes needed!
+ * 5. Add service icons to /public/images/services/icons/
+ * 6. Save the file - no code changes needed!
  *
  * The service will automatically appear on:
  * - Services listing page (/services)
@@ -26,19 +27,6 @@
  * - Site navigation (if configured)
  * - Sitemap and search engines
  */
-import {
-    BarChart,
-    Code,
-    Globe,
-    Palette,
-    Shield,
-    Smartphone,
-    Sparkles,
-    Target,
-    TrendingUp,
-    Users,
-    Zap,
-} from 'lucide-react'
 
 import type { Service } from '@/lib/types/services'
 
@@ -59,27 +47,26 @@ export const services: Service[] = [
         category: 'development',
         categoryLabel: 'Development',
         iconConfig: {
-            type: 'both',
-            icon: Code,
-            imagePath: '/images/services/web-development.jpg',
+            cardIconPath: '/images/services/icons/code-icon.svg',
+            heroImagePath: '/images/services/web-development.jpg',
             imageAlt: 'Modern web development workspace with code on screens',
         },
         features: [
             {
-                icon: Zap,
+                iconPath: '/images/services/icons/zap-icon.svg',
                 title: 'Lightning Fast',
                 description: 'Optimized performance with sub-second load times',
                 ariaLabel: 'Learn about our fast web development approach',
             },
             {
-                icon: Shield,
+                iconPath: '/images/services/icons/shield-icon.svg',
                 title: 'Secure & Reliable',
                 description:
                     'Enterprise-grade security and 99.9% uptime guarantee',
                 ariaLabel: 'Learn about our secure web development practices',
             },
             {
-                icon: Smartphone,
+                iconPath: '/images/services/icons/smartphone-icon.svg',
                 title: 'Mobile-First',
                 description:
                     'Responsive design that works perfectly on all devices',
@@ -88,19 +75,19 @@ export const services: Service[] = [
         ],
         benefits: [
             {
-                icon: BarChart,
+                iconPath: '/images/services/icons/chart-icon.svg',
                 title: 'Increased Conversions',
                 description:
                     'Our optimized UX design increases conversion rates by up to 40%',
             },
             {
-                icon: Globe,
+                iconPath: '/images/services/icons/globe-icon.svg',
                 title: 'Global Reach',
                 description:
                     'Scalable infrastructure that grows with your business worldwide',
             },
             {
-                icon: Code,
+                iconPath: '/images/services/icons/code-icon.svg',
                 title: 'Clean Codebase',
                 description:
                     'Maintainable, well-documented code that makes future updates easy',
@@ -112,28 +99,28 @@ export const services: Service[] = [
                 title: 'Discovery & Planning',
                 description:
                     'We analyze your requirements and create a detailed project roadmap',
-                icon: Target,
+                iconPath: '/images/services/icons/target-icon.svg',
             },
             {
                 step: 2,
                 title: 'Design & Prototyping',
                 description:
                     'Interactive prototypes and design mockups for your approval',
-                icon: Palette,
+                iconPath: '/images/services/icons/palette-icon.svg',
             },
             {
                 step: 3,
                 title: 'Development & Testing',
                 description:
                     'Agile development with continuous testing and quality assurance',
-                icon: Code,
+                iconPath: '/images/services/icons/code-icon.svg',
             },
             {
                 step: 4,
                 title: 'Launch & Support',
                 description:
                     'Smooth deployment with ongoing maintenance and support',
-                icon: Zap,
+                iconPath: '/images/services/icons/zap-icon.svg',
             },
         ],
         cta: {
@@ -174,29 +161,28 @@ export const services: Service[] = [
         category: 'design',
         categoryLabel: 'Design',
         iconConfig: {
-            type: 'both',
-            icon: Palette,
-            imagePath: '/images/services/ui-ux-design.jpg',
+            cardIconPath: '/images/services/icons/palette-icon.svg',
+            heroImagePath: '/images/services/ui-ux-design.jpg',
             imageAlt:
                 'UI/UX design workspace with sketches and digital mockups',
         },
         features: [
             {
-                icon: Sparkles,
+                iconPath: '/images/services/icons/sparkles-icon.svg',
                 title: 'Beautiful Interfaces',
                 description:
                     'Stunning visual designs that align with your brand identity',
                 ariaLabel: 'Learn about our beautiful interface designs',
             },
             {
-                icon: Users,
+                iconPath: '/images/services/icons/users-icon.svg',
                 title: 'User-Centered',
                 description:
                     'Research-driven designs focused on user needs and behaviors',
                 ariaLabel: 'Learn about our user-centered design approach',
             },
             {
-                icon: Smartphone,
+                iconPath: '/images/services/icons/smartphone-icon.svg',
                 title: 'Responsive Design',
                 description:
                     'Seamless experiences across all devices and screen sizes',
@@ -205,19 +191,19 @@ export const services: Service[] = [
         ],
         benefits: [
             {
-                icon: TrendingUp,
+                iconPath: '/images/services/icons/trending-up-icon.svg',
                 title: 'Higher Engagement',
                 description:
                     'Intuitive designs that keep users engaged and coming back',
             },
             {
-                icon: BarChart,
+                iconPath: '/images/services/icons/chart-icon.svg',
                 title: 'Better Conversions',
                 description:
                     'Strategic design that guides users toward your business goals',
             },
             {
-                icon: Sparkles,
+                iconPath: '/images/services/icons/sparkles-icon.svg',
                 title: 'Brand Differentiation',
                 description:
                     'Stand out from competitors with unique, memorable design',
@@ -229,28 +215,28 @@ export const services: Service[] = [
                 title: 'Research & Discovery',
                 description:
                     'Understanding your users, competitors, and market landscape',
-                icon: Target,
+                iconPath: '/images/services/icons/target-icon.svg',
             },
             {
                 step: 2,
                 title: 'Wireframing & Prototyping',
                 description:
                     'Creating low and high-fidelity prototypes for validation',
-                icon: Palette,
+                iconPath: '/images/services/icons/palette-icon.svg',
             },
             {
                 step: 3,
                 title: 'Visual Design',
                 description:
                     'Crafting beautiful interfaces with your brand identity',
-                icon: Sparkles,
+                iconPath: '/images/services/icons/sparkles-icon.svg',
             },
             {
                 step: 4,
                 title: 'Testing & Iteration',
                 description:
                     'User testing and refinement based on real feedback',
-                icon: Users,
+                iconPath: '/images/services/icons/users-icon.svg',
             },
         ],
         cta: {
@@ -292,26 +278,27 @@ export const services: Service[] = [
         category: 'marketing',
         categoryLabel: 'Marketing',
         iconConfig: {
-            type: 'icon',
-            icon: TrendingUp,
+            cardIconPath: '/images/services/icons/trending-up-icon.svg',
+            heroImagePath: '/images/services/digital-marketing.jpg',
+            imageAlt: 'Digital marketing strategy and analytics dashboard',
         },
         features: [
             {
-                icon: Target,
+                iconPath: '/images/services/icons/target-icon.svg',
                 title: 'Targeted Campaigns',
                 description:
                     'Reach the right audience at the right time with precision targeting',
                 ariaLabel: 'Learn about our targeted marketing campaigns',
             },
             {
-                icon: BarChart,
+                iconPath: '/images/services/icons/chart-icon.svg',
                 title: 'Data-Driven',
                 description:
                     'Make informed decisions based on comprehensive analytics',
                 ariaLabel: 'Learn about our data-driven approach',
             },
             {
-                icon: TrendingUp,
+                iconPath: '/images/services/icons/trending-up-icon.svg',
                 title: 'Proven Results',
                 description: 'Track and optimize campaigns for maximum ROI',
                 ariaLabel: 'Learn about our proven marketing results',
@@ -319,19 +306,19 @@ export const services: Service[] = [
         ],
         benefits: [
             {
-                icon: Users,
+                iconPath: '/images/services/icons/users-icon.svg',
                 title: 'Increased Reach',
                 description:
                     'Expand your audience and connect with potential customers',
             },
             {
-                icon: BarChart,
+                iconPath: '/images/services/icons/chart-icon.svg',
                 title: 'Better ROI',
                 description:
                     'Get more value from your marketing budget with optimized campaigns',
             },
             {
-                icon: Globe,
+                iconPath: '/images/services/icons/globe-icon.svg',
                 title: 'Brand Awareness',
                 description:
                     'Build recognition and trust with consistent messaging',
