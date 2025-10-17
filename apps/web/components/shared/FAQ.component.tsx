@@ -31,7 +31,7 @@ import {
 } from '@workspace/ui/components/accordion'
 import { cn } from '@workspace/ui/lib/utils'
 
-import type { FAQ as FAQType } from '@/lib/types/shared'
+import type { FaqItem } from '@/lib/types/shared'
 
 import { ContentWrapper } from './ContentWrapper.component'
 import { SectionContainer } from './SectionContainer.component'
@@ -44,7 +44,7 @@ export type FAQProps = {
     /**
      * Array of FAQ items to display
      */
-    readonly faqs: FAQType[]
+    readonly faqs: FaqItem[]
 
     /**
      * Optional section title

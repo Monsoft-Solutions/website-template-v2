@@ -1,6 +1,9 @@
 /**
  * ServiceGalleryImage Type
  *
+ * @deprecated Use GalleryImage from '@/lib/types/shared' instead.
+ * This type is aliased to GalleryImage for backward compatibility.
+ *
  * Type definition for gallery images in service pages.
  *
  * Used in:
@@ -8,27 +11,14 @@
  * - ServiceGallery component
  */
 
+import type { GalleryImage } from '@/lib/types/shared'
+
 /**
  * Single gallery image
  *
- * Represents an image in the service gallery with optional caption.
+ * @deprecated Use GalleryImage from '@/lib/types/shared' instead.
+ *
+ * Aliased to GalleryImage for backward compatibility.
+ * Consider migrating to the shared GalleryImage type.
  */
-export type ServiceGalleryImage = {
-    /**
-     * Image URL path
-     * Should be relative to public directory (e.g., '/images/services/projects/...')
-     */
-    readonly url: string
-
-    /**
-     * Alt text for the image
-     * Used for accessibility and SEO
-     */
-    readonly alt: string
-
-    /**
-     * Optional caption displayed on hover/in lightbox
-     * Provides additional context about the image
-     */
-    readonly caption?: string
-}
+export type ServiceGalleryImage = GalleryImage

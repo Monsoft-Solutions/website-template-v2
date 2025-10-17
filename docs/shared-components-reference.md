@@ -13,6 +13,7 @@ import {
     ContentWrapper,
     FAQ,
     FeatureCard,
+    Gallery,
     IconCard,
     ImageSection,
     MobileCallButton,
@@ -447,6 +448,120 @@ const faqs: FAQ[] = [
 
 ---
 
+### Gallery
+
+**Purpose:** Reusable, mobile-first gallery component with lightbox functionality using yet-another-react-lightbox.
+
+**When to use:** Project showcases, portfolio displays, image galleries, service pages, blog image galleries.
+
+```tsx
+<Gallery
+    images={[
+        {
+            url: '/images/project-1.jpg',
+            alt: 'Project 1',
+            caption: 'E-commerce platform',
+            width: 1920,
+            height: 1080,
+        },
+        {
+            url: '/images/project-2.jpg',
+            alt: 'Project 2',
+            caption: 'Mobile app design',
+        },
+    ]}
+    columns={{ mobile: 1, tablet: 2, desktop: 3 }}
+    aspectRatio='video'
+    showCaptions={true}
+/>
+```
+
+**Props:**
+
+- `images`: Array of GalleryImage objects (required)
+    - Each item: `{ url: string, alt: string, caption?: string, width?: number, height?: number }`
+- `columns`: Grid column configuration - Default: `{ mobile: 1, tablet: 2, desktop: 3 }`
+    - `mobile`: 1 or 2 columns
+    - `tablet`: 2 or 3 columns
+    - `desktop`: 3 or 4 columns
+- `aspectRatio`: Image aspect ratio (`'square'` | `'video'` | `'portrait'`) - Default: `'video'`
+- `showCaptions`: Show captions on hover - Default: `true`
+- `className`: Additional CSS classes
+
+**Features:**
+
+- Mobile-first responsive design
+- Built-in lazy loading (via yet-another-react-lightbox)
+- Touch gesture support on mobile devices
+- Keyboard navigation (ESC, arrow keys)
+- Click-to-expand lightbox with smooth transitions
+- Configurable responsive grid columns
+- Hover overlay with captions
+- Next.js Image optimization
+- Full accessibility support (ARIA labels, keyboard navigation)
+- Swipe gestures for mobile lightbox navigation
+
+**GalleryImage Type Definition:**
+
+```tsx
+import type { GalleryImage } from '@/lib/types/shared'
+
+const images: GalleryImage[] = [
+    {
+        url: '/images/project-1.jpg',
+        alt: 'Project showcase',
+        caption: 'E-commerce platform',
+        width: 1920,
+        height: 1080,
+    },
+]
+```
+
+**Usage in Section Layout:**
+
+For service pages or sections with headers, wrap the Gallery in section components:
+
+```tsx
+<SectionContainer variant='muted' id='gallery'>
+    <ContentWrapper size='lg'>
+        <SectionHeader
+            title='Project Gallery'
+            description='Examples of our recent work'
+            align='center'
+            className='mb-12'
+        />
+        <Gallery images={images} />
+    </ContentWrapper>
+</SectionContainer>
+```
+
+**Typical Grid Configurations:**
+
+```tsx
+// Square grid for portfolio
+<Gallery
+    images={portfolioImages}
+    columns={{ mobile: 1, tablet: 2, desktop: 4 }}
+    aspectRatio='square'
+/>
+
+// Video aspect ratio for projects
+<Gallery
+    images={projectImages}
+    columns={{ mobile: 1, tablet: 2, desktop: 3 }}
+    aspectRatio='video'
+/>
+
+// Portrait for team photos
+<Gallery
+    images={teamPhotos}
+    columns={{ mobile: 2, tablet: 3, desktop: 4 }}
+    aspectRatio='portrait'
+/>
+```
+
+---
+
 ## Mobile Components
 
 ### MobileCallButton
@@ -606,6 +721,9 @@ Need a component?
 ├─ Frequently asked questions?
 │  └─ FAQ
 │
+├─ Image gallery?
+│  └─ Gallery
+│
 └─ Mobile call button?
    └─ MobileCallButton
 ```
@@ -628,4 +746,4 @@ Need a component?
 ---
 
 _Last Updated: 2025-10-17_
-_Total Shared Components: 10_
+_Total Shared Components: 11_

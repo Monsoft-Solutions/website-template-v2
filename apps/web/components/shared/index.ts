@@ -27,9 +27,11 @@ export { CTASection } from './CTASection.component'
 export { IconCard } from './IconCard.component'
 export { ImageSection } from './ImageSection.component'
 export { FAQComponent } from './FAQ.component'
+export { Gallery } from './Gallery.component'
 
 // Type Exports
 export type { FAQProps } from './FAQ.component'
+export type { GalleryProps } from './Gallery.component'
 export type {
     SectionContainerProps,
     SectionBackgroundVariant,
