@@ -48,12 +48,9 @@ export const env = createEnv({
             .enum(['development', 'production', 'test'])
             .default('development'),
     },
-    runtimeEnv: {
-        POSTGRES_URL: process.env.POSTGRES_URL,
-        BLOG_API_KEY: process.env.BLOG_API_KEY,
-        BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
-        VERCEL_URL: process.env.VERCEL_URL,
-        NODE_ENV: process.env.NODE_ENV,
+    // Use experimental__runtimeEnv to let Next.js handle bundling automatically
+    // This prevents server-side variables from being exposed to client code
+    experimental__runtimeEnv: {
         NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
         NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,
         NEXT_PUBLIC_SITE_DESCRIPTION: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
