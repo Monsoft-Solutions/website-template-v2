@@ -17,6 +17,7 @@ import type { NavigationItem } from '@/lib/types/navigation.type'
 export const mainNavigation: NavigationItem[] = [
     { label: 'Home', href: '/', external: false },
     { label: 'About', href: '/about', external: false },
+    { label: 'Services', href: '/services', external: false },
     { label: 'Blog', href: '/blog', external: false },
     { label: 'Contact', href: '/contact', external: false },
 ]

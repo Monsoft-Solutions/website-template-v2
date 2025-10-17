@@ -174,8 +174,8 @@ export const aboutCTAData = {
         href: '/contact',
     },
     secondaryButton: {
-        text: 'Schedule a Demo',
-        href: '/contact?demo=true',
+        text: 'Explore Our Services',
+        href: '/services',
     },
     variant: 'accent' as const,
 }

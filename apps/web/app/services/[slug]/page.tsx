@@ -95,7 +95,7 @@ export async function generateMetadata({
         title: `${title} | ${seoConfig.siteName}`,
         description,
         canonical: `/services/${service.slug}`,
-        keywords: service.seo.keywords?.join(', '),
+        keywords: service.seo.keywords,
         openGraph: {
             title: `${title} | ${seoConfig.siteName}`,
             description,
