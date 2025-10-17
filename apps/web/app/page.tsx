@@ -2,14 +2,13 @@ import { WebPageSchema } from '@workspace/seo/react'
 
 import {
     AboutPreviewSection,
-    FeaturesSection,
+    ServicesPreviewSection,
     HeroSection,
     TestimonialsSection,
 } from '@/components/sections/home'
 import { CTASection } from '@/components/shared'
 import {
     aboutPreviewData,
-    featuresData,
     finalCTAData,
     heroSectionData,
     testimonialsData,
@@ -116,16 +115,13 @@ export default function Page() {
                 enableAnimations={heroSectionData.enableAnimations}
             />
 
-            {/* Features Section */}
-            <FeaturesSection
-                id='features'
+            {/* Services Preview Section */}
+            <ServicesPreviewSection
+                id='services-preview'
                 title='Our Services'
-                description='Discover comprehensive solutions designed to drive your business forward'
-                features={featuresData}
-                columns={3}
+                description='Discover comprehensive solutions designed to drive your business forward and achieve your goals'
+                maxServices={3}
                 variant='muted'
-                iconVariant='primary'
-                showBorders
             />
 
             {/* About Preview Section */}
