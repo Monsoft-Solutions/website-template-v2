@@ -18,7 +18,8 @@ export const webDevelopmentService: Service = {
     iconConfig: {
         cardIconPath: '/images/services/icons/code-icon.svg',
         heroImagePath: '/images/services/web-development.jpg',
-        imageAlt: 'Modern web development workspace with code on screens',
+        imageAlt:
+            'Modern web development workspace with code editor displaying React and TypeScript',
     },
     features: [
         {
@@ -93,19 +94,34 @@ export const webDevelopmentService: Service = {
     ],
     gallery: [
         {
-            url: '/images/services/web-development.jpg',
-            alt: 'Modern web development workspace with multiple screens',
-            caption: 'Collaborative development environment',
+            url: '/images/services/web-development-workspace.jpg',
+            alt: 'Modern professional developer workspace with dual monitors',
+            caption: 'Clean, organized development environment',
         },
         {
-            url: '/images/services/ui-ux-design.jpg',
-            alt: 'Web application interface design',
-            caption: 'Responsive user interface design',
+            url: '/images/services/web-development-team.jpg',
+            alt: 'Diverse team of developers collaborating on a project',
+            caption: 'Collaborative team development process',
         },
         {
-            url: '/images/services/digital-marketing.jpg',
-            alt: 'Web analytics dashboard',
-            caption: 'Performance monitoring and analytics',
+            url: '/images/services/web-development-mobile.jpg',
+            alt: 'Developer testing responsive design on multiple devices',
+            caption: 'Mobile-first responsive development',
+        },
+        {
+            url: '/images/services/web-development-code-quality.jpg',
+            alt: 'Clean TypeScript React code with testing environment',
+            caption: 'Code quality and automated testing',
+        },
+        {
+            url: '/images/services/web-development-ui-design.jpg',
+            alt: 'UX designer creating modern web interface mockups',
+            caption: 'User interface and experience design',
+        },
+        {
+            url: '/images/services/web-development-success.jpg',
+            alt: 'Development team celebrating successful project launch',
+            caption: 'Successful project delivery and launch',
         },
     ],
     faqs: [
