@@ -60,6 +60,7 @@ I'll present 3-5 recommended AI models based on your needs:
 - **Imagen 4 Fast** (fal-ai/imagen4/preview/fast) - Speed-optimized photorealism
 - **FLUX Pro Max** (fal-ai/flux-pro/kontext/max/text-to-image) - Maximum detail for complex scenes
 - **FLUX Pro** (fal-ai/flux-pro/kontext/text-to-image) - Balanced speed and quality
+- **FLUX Schnell** (fal-ai/flux/schnell) - Fast and inexpensive high-quality generation
 - **Nano Banana** (fal-ai/nano-banana) - Fast iterations and prototyping
 
 You choose which model works best for your use case, or I can recommend the best option based on your requirements.
@@ -100,7 +101,7 @@ The incremental backoff strategy reduces API calls while providing responsive fe
 | **Maximum Detail** ⭐⭐          | **FLUX Pro Max** (fal-ai/flux-pro/kontext/max/text-to-image) | Best for complex scenes, architectural visualization       |
 | **Balanced Performance** ⭐      | **FLUX Pro** (fal-ai/flux-pro/kontext/text-to-image)         | Great quality/speed balance, cost-effective                |
 | **Fast Iterations**              | Nano Banana (fal-ai/nano-banana)                             | Quick prototyping, business environments                   |
-| **Fast Professional Images**     | FLUX.1 Schnell (fal-ai/flux/schnell)                         | 2-4 second generation, commercial quality                  |
+| **Fast & Inexpensive** ⭐        | **FLUX.1 Schnell** (fal-ai/flux/schnell)                     | **COST-EFFECTIVE** - 2-4 second generation, high quality   |
 | **Image Editing/Transform**      | FLUX.1 Kontext [pro]                                         | Image-to-image transformations, style transfers            |
 | **Character Consistency**        | Ideogram V3 Character Edit                                   | Maintains character identity across images                 |
 | **Video from Images**            | Kling 2.1 Master                                             | Premium image-to-video generation                          |
@@ -268,6 +269,7 @@ The incremental backoff strategy reduces API calls while providing responsive fe
 - Pick **Imagen 4 Fast** for quick iterations and time-sensitive projects
 - Select **FLUX Pro Max** for complex, highly detailed scenes
 - Try **FLUX Pro** for balanced performance and cost-effectiveness
+- Use **FLUX Schnell** for fast and inexpensive high-quality generation (budget-friendly option)
 - Use **Nano Banana** for rapid prototyping
 - Document which model was used for reproducibility
 

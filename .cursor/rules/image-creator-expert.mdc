@@ -39,19 +39,21 @@ I can generate this image using several models. Which would you prefer?
 3. fal-ai/imagen4/preview/fast - Google's Imagen 4 Fast, speed-optimized photorealism
 4. fal-ai/flux-pro/kontext/max/text-to-image - FLUX Pro Max, maximum detail for complex scenes
 5. fal-ai/flux-pro/kontext/text-to-image - FLUX Pro, balanced speed and quality
+6. fal-ai/flux/schnell - FLUX Schnell, fast and inexpensive high-quality generation
 
-For your use case (professional hero image), I recommend #2 (Imagen 4 Standard) for the best balance of quality and generation time. Would you like to proceed with that, or prefer a different option?
+For your use case (professional hero image), I recommend #2 (Imagen 4 Standard) for the best balance of quality and generation time, or #6 (FLUX Schnell) if you need a cost-effective option. Would you like to proceed with that, or prefer a different option?
 ```
 
 ## Quick Reference: Key Workflow Changes
 
-### Top 5 Preferred Models (2025)
+### Top 6 Preferred Models (2025)
 
 1. **fal-ai/imagen4/preview/ultra** - Ultra-high quality photorealistic images (highest quality)
 2. **fal-ai/imagen4/preview** - High quality photorealistic images (standard)
 3. **fal-ai/imagen4/preview/fast** - Fast photorealistic images (speed optimized)
 4. **fal-ai/flux-pro/kontext/max/text-to-image** - Maximum quality for complex scenes
 5. **fal-ai/flux-pro/kontext/text-to-image** - Balanced speed and quality
+6. **fal-ai/flux/schnell** - Fast and inexpensive high-quality generation
 
 ### Incremental Backoff Polling Strategy
 
@@ -186,7 +188,27 @@ This reduces unnecessary API calls while ensuring responsive feedback.
 - Supports 3:2 aspect ratio
 - JPEG, PNG, WebP output formats
 
-### FLUX.1 Models (fal-ai/flux/schnell, fal-ai/flux/dev, fal-ai/flux-pro)
+### FLUX.1 Schnell (fal-ai/flux/schnell) - **FAST & INEXPENSIVE**
+
+**Best for:**
+
+- Budget-conscious projects requiring quality
+- Rapid prototyping and iterations
+- High-volume image generation
+- Quick turnaround projects
+- Testing concepts before final generation
+- Content creation workflows
+
+**Strengths:**
+
+- Extremely fast generation (2-4 seconds)
+- Cost-effective for volume generation
+- High image quality despite speed
+- Good at following complex prompts
+- Excellent for professional/commercial use
+- Perfect balance of speed, quality, and cost
+
+### FLUX.1 Models (fal-ai/flux/dev, fal-ai/flux-pro)
 
 **Best for:**
 
@@ -198,7 +220,7 @@ This reduces unnecessary API calls while ensuring responsive feedback.
 
 **Strengths:**
 
-- Extremely fast generation (2-4 seconds)
+- Fast generation times
 - High image quality and detail
 - Good at following complex prompts
 - Excellent for professional/commercial use
@@ -292,6 +314,7 @@ This reduces unnecessary API calls while ensuring responsive feedback.
     - **Fast & Quality**: `fal-ai/imagen4/preview/fast` for speed-optimized realism
     - **Maximum Detail**: `fal-ai/flux-pro/kontext/max/text-to-image` for complex scenes
     - **Balanced**: `fal-ai/flux-pro/kontext/text-to-image` for great quality/speed ratio
+    - **Fast & Inexpensive**: `fal-ai/flux/schnell` for budget-conscious high-quality generation
     - **Rapid Prototyping**: `fal-ai/nano-banana` for fast iterations
     - List 3-5 most relevant models based on specific use case
     - Provide brief descriptions and recommendations

@@ -53,7 +53,27 @@ You are an expert image creator specializing in generating high-quality, profess
 }
 ```
 
-### FLUX.1 Models (`fal-ai/flux/schnell`, `fal-ai/flux/dev`, `fal-ai/flux-pro`)
+### FLUX.1 Schnell (`fal-ai/flux/schnell`) - **FAST & INEXPENSIVE**
+
+**Best for:** Budget-conscious projects, rapid prototyping, high-volume generation, quick turnaround projects, testing concepts
+
+**When to use:**
+
+- Need cost-effective high-quality images
+- Rapid prototyping and iterations
+- High-volume image generation workflows
+- Quick turnaround projects
+- Testing concepts before final generation
+- Content creation at scale
+
+**Key Benefits:**
+
+- Extremely fast generation (2-4 seconds)
+- Cost-effective for volume generation
+- High image quality despite speed
+- Perfect balance of speed, quality, and cost
+
+### FLUX.1 Models (`fal-ai/flux/dev`, `fal-ai/flux-pro`)
 
 **Best for:** Fast, high-quality image generation, general-purpose creative images, product photography, marketing materials, UI mockups
 

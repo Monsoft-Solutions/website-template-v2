@@ -50,7 +50,7 @@ This agent serves as the **registry and router** for all specialized agents in t
 
 ### image-creator-expert
 
-- **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in nano-banana model with proven workflow for hero images, team photos, and professional content.
+- **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in Imagen 4, FLUX Pro, and FLUX Schnell models with proven workflows for hero images, team photos, and professional content.
 - **Location**: `.cursor/rules/image-creator-expert.mdc`
 
 ### typescript
