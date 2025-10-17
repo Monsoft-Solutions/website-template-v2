@@ -24,8 +24,6 @@ export type { ServiceHeroProps } from './service-hero.type'
 
 // Services page types
 export type {
-    ServicesFAQProps,
     ServicesTestimonialsProps,
-    ServicesGalleryProps,
     ServicesContactProps,
 } from './services-page.type'

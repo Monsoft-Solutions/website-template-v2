@@ -124,6 +124,32 @@ import { useConsent } from '@/lib/analytics/consent.context'
 
 // apps/web/components/analytics/AnalyticsProvider.component.tsx
 
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
+// apps/web/components/analytics/AnalyticsProvider.component.tsx
+
 export function AnalyticsProvider() {
     const analyticsConfig = getAnalyticsConfig()
     const { hasConsent } = useConsent()
@@ -275,6 +301,188 @@ export function useScrollDepth(options: UseScrollDepthOptions = {}): void {
 'use client'
 
 import Script from 'next/script'
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
+
+// Example: GoogleTagManager.component.tsx
+/**
+ * Google Tag Manager Component
+ *
+ * Loads Google Tag Manager (GTM) container.
+ * Only loads when NEXT_PUBLIC_GTM_ID is configured.
+ *
+ * Optional alternative to direct GA4 integration.
+ *
+ * **Important**: Add the noscript fallback manually in layout.tsx
+ *
+ * @module components/analytics
+ */
 
 // Example: GoogleTagManager.component.tsx
 /**
