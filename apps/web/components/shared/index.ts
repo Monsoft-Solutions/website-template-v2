@@ -18,6 +18,9 @@ export { SectionHeader } from './SectionHeader.component'
 // Navigation Components
 export { Breadcrumbs } from './Breadcrumbs.component'
 
+// Mobile Components
+export { MobileCallButton } from './MobileCallButton.component'
+
 // Content Components
 export { FeatureCard } from './FeatureCard.component'
 export { CTASection } from './CTASection.component'
@@ -56,3 +59,9 @@ export type {
     ImageSectionButton,
     ImageConfig,
 } from '@/lib/types/sections/image-section.type'
+
+export type {
+    MobileCallButtonProps,
+    MobileCallButtonPosition,
+    MobileCallButtonStyle,
+} from '@/lib/types/mobile-call-button'

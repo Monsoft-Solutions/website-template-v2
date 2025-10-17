@@ -44,6 +44,11 @@ export const env = createEnv({
         NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
         NEXT_PUBLIC_GTM_ID: z.string().optional(),
         NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().optional(),
+
+        // Mobile call button (optional, defaults to enabled)
+        NEXT_PUBLIC_ENABLE_MOBILE_CALL_BUTTON: z
+            .enum(['true', 'false'])
+            .optional(),
     },
     shared: {
         NODE_ENV: z
@@ -67,6 +72,8 @@ export const env = createEnv({
         NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
         NEXT_PUBLIC_FACEBOOK_PIXEL_ID:
             process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
+        NEXT_PUBLIC_ENABLE_MOBILE_CALL_BUTTON:
+            process.env.NEXT_PUBLIC_ENABLE_MOBILE_CALL_BUTTON,
         NODE_ENV: process.env.NODE_ENV,
     },
 
