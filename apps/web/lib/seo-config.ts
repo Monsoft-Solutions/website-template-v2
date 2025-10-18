@@ -29,6 +29,12 @@ export function getSEOConfig(): SEOConfig {
             keywords: siteConfig.seo.keywords,
             author: siteConfig.business.name,
             locale: siteConfig.seo.locale || 'en-US',
+            image: {
+                url: `${siteConfig.seo.siteUrl}${siteConfig.brand.ogImage}`,
+                width: 1200,
+                height: 630,
+                alt: `${siteConfig.business.name} - ${siteConfig.business.tagline}`,
+            },
         },
 
         // Organization information for Schema.org

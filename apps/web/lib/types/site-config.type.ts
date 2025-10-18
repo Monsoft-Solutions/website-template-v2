@@ -81,7 +81,7 @@ export type BrandAssets = {
     /** Path to Apple touch icon */
     appleTouchIcon?: string
     /** Path to default Open Graph image */
-    ogImage?: string
+    ogImage: string
 }
 
 /**
