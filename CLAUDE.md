@@ -477,6 +477,11 @@ BLOG_API_KEY=your-secure-api-key-here
 # Vercel Blob Storage (for blog featured images)
 BLOB_READ_WRITE_TOKEN=your-vercel-blob-token-here
 
+# Email Configuration (required for contact form)
+RESEND_API_KEY=re_your_resend_api_key_here
+RESEND_FROM_EMAIL=noreply@yourdomain.com
+OWNER_EMAIL=owner@yourdomain.com
+
 # Analytics Configuration (all optional)
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
 NEXT_PUBLIC_CLARITY_PROJECT_ID=
@@ -522,6 +527,12 @@ The `POSTGRES_URL` is required for:
 **Mobile Call Button Environment Variables:**
 
 - `NEXT_PUBLIC_ENABLE_MOBILE_CALL_BUTTON`: Enable/disable the mobile call button (optional, defaults to enabled if not set). Set to `'false'` to disable, or `'true'` to explicitly enable
+
+**Email Environment Variables (required for contact form):**
+
+- `RESEND_API_KEY`: API key from Resend (get from https://resend.com/api-keys)
+- `RESEND_FROM_EMAIL`: Sender email address (must be verified domain in Resend, e.g., `noreply@yourdomain.com`)
+- `OWNER_EMAIL`: Email address to receive contact form notifications
 
 ## Turbo Configuration
 

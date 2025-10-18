@@ -23,6 +23,11 @@ export const env = createEnv({
         BLOG_API_KEY: z.string().min(1),
         BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
         VERCEL_URL: z.string().optional(),
+
+        // Email (required for contact form)
+        RESEND_API_KEY: z.string().min(1),
+        RESEND_FROM_EMAIL: z.string().email(),
+        OWNER_EMAIL: z.string().email(),
     },
     client: {
         // Site URL - used by site-config.ts (with fallback to VERCEL_URL)

@@ -20,6 +20,7 @@ import {
     type ContactFormResponse,
     contactFormSchema,
 } from '@/lib/types/forms/contact-form.type'
+import { sendContactEmails } from '@/lib/services/email.service'
 
 /**
  * Formats contact form data for console logging
@@ -38,43 +39,6 @@ Message: ${data.message}
 Submitted at: ${new Date().toISOString()}
 ===================================
     `.trim()
-}
-
-/**
- * Sends contact form email notification
- *
- * TODO: Implement email service integration (Resend, SendGrid, etc.)
- * This function should:
- * 1. Format email template with form data
- * 2. Send notification to admin email
- * 3. Optionally send confirmation email to user
- * 4. Handle email service errors gracefully
- *
- * @param data - Validated contact form data
- * @returns Promise resolving to success status
- *
- * @example
- * ```ts
- * import { Resend } from 'resend'
- * const resend = new Resend(process.env.RESEND_API_KEY)
- *
- * await resend.emails.send({
- *   from: 'Contact Form <noreply@yourdomain.com>',
- *   to: process.env.ADMIN_EMAIL,
- *   subject: `New Contact: ${data.subject}`,
- *   html: emailTemplate(data)
- * })
- * ```
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function sendContactEmail(
-    data: ContactFormData
-): Promise<{ success: boolean; error?: string }> {
-    // Currently just logs to console
-    // Replace this with actual email service implementation
-    console.log('📧 Email would be sent with data:', data)
-
-    return { success: true }
 }
 
 /**
@@ -138,17 +102,41 @@ export async function POST(
         }
 
         // Persist submission
-        await db.insert(contactSubmission).values(insertData)
+        const [submission] = await db
+            .insert(contactSubmission)
+            .values(insertData)
+            .returning()
+
+        if (!submission) {
+            throw new Error('Failed to create contact submission')
+        }
 
         // Log the submission to console with formatted output
         console.log(formatConsoleLog(validatedData))
 
-        // Return success response
+        // Send emails (notification to owner and confirmation to submitter)
+        const emailResult = await sendContactEmails(
+            validatedData,
+            submission.id
+        )
+
+        // Log email results (don't fail the request if emails fail)
+        if (emailResult.errors.length > 0) {
+            console.error('Email sending errors:', emailResult.errors)
+        }
+
+        // Determine success message based on email results
+        let message = "Thank you for contacting us! We'll get back to you soon."
+        if (emailResult.confirmationSent) {
+            message =
+                "Thank you for contacting us! We've sent you a confirmation email and will get back to you soon."
+        }
+
+        // Return success response (even if emails failed)
         return NextResponse.json<ContactFormResponse>(
             {
                 success: true,
-                message:
-                    "Thank you for contacting us! We'll get back to you soon.",
+                message,
             },
             { status: 200 }
         )
