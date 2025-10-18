@@ -23,19 +23,41 @@ import {
 import { sendContactEmails } from '@/lib/services/email.service'
 
 /**
+ * Redacts sensitive fields from contact form data for safe logging
+ *
+ * @param data - Contact form data to redact
+ * @returns Redacted data with sensitive fields masked
+ */
+function redactPII(data: ContactFormData): Record<string, unknown> {
+    return {
+        name: '[REDACTED]',
+        email: '[REDACTED]',
+        phone: data.phone ? '[REDACTED]' : 'Not provided',
+        subject: data.subject,
+        message: '[REDACTED]',
+    }
+}
+
+/**
  * Formats contact form data for console logging
  *
  * @param data - Validated contact form data
+ * @param redact - Whether to redact sensitive fields
  * @returns Formatted string for console output
  */
-function formatConsoleLog(data: ContactFormData): string {
+function formatConsoleLog(
+    data: ContactFormData | Record<string, unknown>,
+    redact: boolean = false
+): string {
+    const displayData = redact ? redactPII(data as ContactFormData) : data
+
     return `
 === New Contact Form Submission ===
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone || 'Not provided'}
-Subject: ${data.subject}
-Message: ${data.message}
+Name: ${displayData.name}
+Email: ${displayData.email}
+Phone: ${displayData.phone || 'Not provided'}
+Subject: ${displayData.subject}
+Message: ${displayData.message}
 Submitted at: ${new Date().toISOString()}
 ===================================
     `.trim()
@@ -111,8 +133,7 @@ export async function POST(
             throw new Error('Failed to create contact submission')
         }
 
-        // Log the submission to console with formatted output
-        console.log(formatConsoleLog(validatedData))
+        console.log(formatConsoleLog(validatedData, true))
 
         // Send emails (notification to owner and confirmation to submitter)
         const emailResult = await sendContactEmails(

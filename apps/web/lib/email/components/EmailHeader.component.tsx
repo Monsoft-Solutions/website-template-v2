@@ -32,7 +32,7 @@ export function EmailHeader({ title }: EmailHeaderProps) {
     const logoUrl = `${siteConfig.seo.siteUrl}${siteConfig.brand.logo}`
 
     return (
-        <Section className='border-b border-gray-200 px-10 py-5 text-center'>
+        <Section className='border-border dark:border-border border-b px-10 py-5 text-center'>
             <Img
                 src={logoUrl}
                 alt={siteConfig.brand.logoAlt}
@@ -41,7 +41,7 @@ export function EmailHeader({ title }: EmailHeaderProps) {
                 className='mx-auto block'
             />
             {title && (
-                <Heading className='m-0 mt-4 text-2xl leading-tight font-semibold text-gray-900'>
+                <Heading className='text-foreground dark:text-foreground m-0 mt-4 text-2xl leading-tight font-semibold'>
                     {title}
                 </Heading>
             )}
