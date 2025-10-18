@@ -1,7 +1,14 @@
 ---
 description: 'Expert agent for analyzing PR code reviews, determining actionable items, and creating detailed fix instructions following project guidelines'
 globs:
-  ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.md', '**/pr-reviews/**']
+    [
+        '**/*.ts',
+        '**/*.tsx',
+        '**/*.js',
+        '**/*.jsx',
+        '**/*.md',
+        '**/pr-reviews/**',
+    ]
 alwaysApply: false
 ---
 
@@ -13,7 +20,7 @@ Expert agent for analyzing GitHub PR code reviews, determining actionable items,
 
 ### PR Analysis
 
-- Fetch PR comments and review data using GitHub CLI
+- Fetch PR comments and review data using the github-npx tools
 - Analyze code changes and review feedback
 - Determine which comments require developer action
 - Categorize issues by severity and type
@@ -133,9 +140,9 @@ estimated_effort: string
 **Fix**:
 
 ```typescript
-const user = session?.user;
+const user = session?.user
 if (!user) {
-  throw new Error('User not authenticated');
+    throw new Error('User not authenticated')
 }
 ```
 ````
