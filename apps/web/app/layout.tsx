@@ -86,7 +86,11 @@ export default function RootLayout({
                     <Footer />
                     {/* Mobile Call Button - visible on mobile devices only */}
                     {isMobileCallButtonEnabled && (
-                        <MobileCallButton isBanner={true} />
+                        <MobileCallButton
+                            position='bottom-right'
+                            style='icon-only'
+                            isBanner={false}
+                        />
                     )}
                 </Providers>
             </body>
