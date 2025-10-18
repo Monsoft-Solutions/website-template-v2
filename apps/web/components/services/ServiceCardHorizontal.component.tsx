@@ -59,18 +59,20 @@ export function ServiceCardHorizontal({
     // Layout classes based on image position
     const containerClasses = cn(
         'group block transition-all duration-300',
-        'hover:-translate-y-1 hover:shadow-lg',
+        'hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10',
         className
     )
 
     const cardClasses = cn(
         'border-border/50 group-hover:border-border',
-        'relative overflow-hidden transition-all duration-300',
-        'group-hover:shadow-md',
+        'relative overflow-hidden transition-all duration-300 rounded-lg',
+        'group-hover:shadow-xl group-hover:shadow-primary/5',
+        'bg-gradient-to-br from-card via-card/95 to-muted/30',
         // Horizontal layout for desktop/tablet
         'flex flex-col md:flex-row',
         // Image position determines flex direction on desktop
-        imagePosition === 'right' && 'md:flex-row-reverse'
+        imagePosition === 'right' && 'md:flex-row-reverse',
+        'py-0'
     )
 
     return (
@@ -83,7 +85,15 @@ export function ServiceCardHorizontal({
                 {/* Image Section - 60% width on desktop */}
                 <div className='relative w-full md:w-3/5'>
                     {/* Service Hero Image */}
-                    <div className='relative aspect-[4/3] overflow-hidden md:aspect-[3/2]'>
+                    <div
+                        className={cn(
+                            'relative aspect-[4/3] overflow-hidden md:aspect-[3/2]',
+                            'rounded-t-lg md:rounded-t-none',
+                            imagePosition === 'left'
+                                ? 'md:rounded-l-lg'
+                                : 'md:rounded-r-lg'
+                        )}
+                    >
                         <Image
                             src={
                                 iconConfig.heroImagePath ||
@@ -96,8 +106,9 @@ export function ServiceCardHorizontal({
                             priority={false}
                         />
 
-                        {/* Overlay gradient for better badge visibility */}
-                        <div className='absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-transparent' />
+                        {/* Overlay gradient for better badge visibility and visual interest */}
+                        <div className='to-primary/10 absolute inset-0 bg-gradient-to-br from-black/30 via-transparent' />
+                        <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/30' />
 
                         {/* Category Badge - Positioned in top corner */}
                         <div className='absolute top-4 left-4 z-10'>
@@ -160,7 +171,7 @@ export function ServiceCardHorizontal({
                         <Button
                             variant='outline'
                             size='lg'
-                            className='group-hover:bg-primary group-hover:text-primary-foreground w-full transition-all duration-300'
+                            className='group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-primary/25 group-hover:border-primary w-full transition-all duration-300 group-hover:shadow-lg'
                             asChild
                         >
                             <span>

@@ -46,7 +46,7 @@ export function ServicesTestimonials({
 
     return (
         <SectionContainer
-            variant='default'
+            variant='muted'
             className={cn('py-16 md:py-24', className)}
         >
             <ContentWrapper size='lg'>
@@ -64,7 +64,7 @@ export function ServicesTestimonials({
                     {displayTestimonials.map((testimonial, index) => (
                         <Card
                             key={`testimonial-${index}`}
-                            className='bg-background border-border/50 relative h-full transition-all duration-300 hover:shadow-md'
+                            className='from-card via-card/95 to-muted/20 border-border/50 hover:shadow-primary/5 relative h-full bg-gradient-to-br transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'
                         >
                             <CardContent className='p-6'>
                                 {/* Star Rating */}

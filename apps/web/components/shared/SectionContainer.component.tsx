@@ -27,6 +27,10 @@ const backgroundVariants: Record<SectionBackgroundVariant, string> = {
     default: 'bg-background',
     muted: 'bg-muted/30',
     accent: 'bg-accent/30',
+    gradient: 'bg-gradient-to-br from-background via-muted/20 to-accent/10',
+    'gradient-reverse':
+        'bg-gradient-to-br from-accent/10 via-muted/20 to-background',
+    subtle: 'bg-gradient-to-b from-background to-muted/20',
 }
 
 export function SectionContainer({

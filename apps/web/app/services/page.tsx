@@ -108,7 +108,7 @@ export default function ServicesPage() {
             <JsonLd data={servicesListSchema} />
 
             {/* Page Container */}
-            <SectionContainer as='section' variant='default' id='services-page'>
+            <SectionContainer as='section' variant='subtle' id='services-page'>
                 <ContentWrapper size='lg'>
                     {/* Breadcrumbs Navigation */}
                     <div className='mb-8'>
@@ -126,13 +126,13 @@ export default function ServicesPage() {
                         as='h1'
                         align='center'
                         spacing='loose'
-                        className='mb-12'
+                        className='mb-32'
                     />
 
                     {/* Services List with Horizontal Cards */}
                     {services.length > 0 ? (
                         <div
-                            className='space-y-8'
+                            className='space-y-32'
                             role='list'
                             aria-label='Available services'
                         >
@@ -193,7 +193,7 @@ export default function ServicesPage() {
 
             {/* Services Gallery Section */}
             {galleryImages.length > 0 && (
-                <SectionContainer variant='muted' id='gallery'>
+                <SectionContainer variant='gradient' id='gallery'>
                     <ContentWrapper size='lg'>
                         <SectionHeader
                             title='Our Work Gallery'
@@ -219,7 +219,7 @@ export default function ServicesPage() {
                 faqs={servicesFAQ}
                 title='Frequently Asked Questions'
                 description='Common questions about our services and working with us'
-                variant='muted'
+                variant='gradient-reverse'
                 includeSchema={true}
             />
 

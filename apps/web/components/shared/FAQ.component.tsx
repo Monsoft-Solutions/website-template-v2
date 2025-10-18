@@ -65,7 +65,13 @@ export type FAQProps = {
      * Background variant for the section
      * @default "muted"
      */
-    readonly variant?: 'default' | 'muted' | 'accent'
+    readonly variant?:
+        | 'default'
+        | 'muted'
+        | 'accent'
+        | 'gradient'
+        | 'gradient-reverse'
+        | 'subtle'
 
     /**
      * Optional section ID for anchor links

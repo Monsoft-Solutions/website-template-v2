@@ -191,9 +191,9 @@ function GalleryImageCard({
         <button
             onClick={onClick}
             className={cn(
-                'group relative w-full overflow-hidden rounded-lg',
+                'group relative w-full overflow-hidden rounded-xl',
                 aspectRatioClasses,
-                'transition-transform hover:scale-[1.02]',
+                'hover:shadow-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl',
                 'focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:outline-none'
             )}
             aria-label={`View ${image.alt} in full size`}
