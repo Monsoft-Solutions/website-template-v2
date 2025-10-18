@@ -153,7 +153,7 @@ Each service requires these fields:
 - **`images`**: Additional images for detail page
 
     ```typescript
-    images: [
+    gallery: [
         {
             url: '/images/services/additional-1.jpg',
             alt: 'Image description',
