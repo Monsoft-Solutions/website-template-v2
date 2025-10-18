@@ -15,6 +15,13 @@
       "when": 1760783329856,
       "tag": "0001_conscious_expediter",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760784662460,
+      "tag": "0002_short_morph",
+      "breakpoints": true
     }
   ]
 }
