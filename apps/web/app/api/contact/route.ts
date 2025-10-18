@@ -9,6 +9,12 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError } from 'zod'
 
+import { db } from '@workspace/db/client'
+import {
+    contactSubmission,
+    type InsertContactSubmission,
+} from '@workspace/db/schema'
+
 import {
     type ContactFormData,
     type ContactFormResponse,
@@ -123,19 +129,19 @@ export async function POST(
         // Zod automatically sanitizes and validates the data
         const validatedData = contactFormSchema.parse(body)
 
+        const insertData: InsertContactSubmission = {
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: validatedData.phone,
+            subject: validatedData.subject,
+            message: validatedData.message,
+        }
+
+        // Persist submission
+        await db.insert(contactSubmission).values(insertData)
+
         // Log the submission to console with formatted output
         console.log(formatConsoleLog(validatedData))
-
-        // Send email notification (currently just logs)
-        // TODO: Uncomment when email service is configured
-        /*
-        const emailResult = await sendContactEmail(validatedData)
-        if (!emailResult.success) {
-            console.error('Failed to send email:', emailResult.error)
-            // Optionally still return success to user even if email fails
-            // Or return error depending on business requirements
-        }
-        */
 
         // Return success response
         return NextResponse.json<ContactFormResponse>(

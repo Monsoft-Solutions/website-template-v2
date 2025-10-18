@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
+import { getPublishedPostCardsPage } from '@/lib/queries/blog/post-list.query'
 import type { BlogPostsPaginatedResponse } from '@/lib/types/blog/api-response.type'
 import { blogPostsQuerySchema } from '@/lib/types/blog/blog-posts.schema'
 

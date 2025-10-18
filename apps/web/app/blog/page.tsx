@@ -6,7 +6,7 @@ import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { BlogHeroSection } from '@/components/blog/BlogHeroSection.component'
 import { InfinitePostList } from '@/components/blog/InfinitePostList.component'
 import { Breadcrumbs } from '@/components/shared'
-import { getPublishedPostCardsPage } from '@/lib/blog/post-list.query'
+import { getPublishedPostCardsPage } from '@/lib/queries/blog/post-list.query'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 

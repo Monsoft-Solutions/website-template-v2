@@ -34,7 +34,8 @@ This agent serves as the **registry and router** for all specialized agents in t
 
 ### ui-ux-designer
 
-- **Purpose**: UI/UX design and frontend development with design system integration
+- **Purpose**: UI/UX design and frontend development with layout architecture, shared components, and design system integration
+- **Key Capabilities**: Layout selection (SectionContainer+ContentWrapper vs ContainerLayout), shared component usage (FeatureCard, IconCard, ImageSection, CTASection), mobile-first responsive design, shadcn/ui integration
 - **Location**: `.cursor/rules/ui-ux-designer.mdc`
 
 ### database-optimizer
@@ -49,8 +50,13 @@ This agent serves as the **registry and router** for all specialized agents in t
 
 ### image-creator-expert
 
-- **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in nano-banana model with proven workflow for hero images, team photos, and professional content.
+- **Purpose**: Expert agent for creating high-quality images for websites and apps using fal.ai MCP tools. Specializes in Imagen 4, FLUX Pro, and FLUX Schnell models with proven workflows for hero images, team photos, and professional content.
 - **Location**: `.cursor/rules/image-creator-expert.mdc`
+
+### image-editor-expert
+
+- **Purpose**: Expert agent for editing and modifying existing images using Vercel Blob storage and fal.ai editing models. Specializes in background removal, logo addition, style transformations, and professional image enhancement workflows.
+- **Location**: `.cursor/rules/image-editor-expert.mdc`
 
 ### typescript
 
@@ -84,6 +90,7 @@ Direct tasks to appropriate specialized agents:
 - **Database optimization** → `database-optimizer`
 - **Documentation** → `documentation-writer`
 - **Image generation and creation** → `image-creator-expert`
+- **Image editing and modification** → `image-editor-expert`
 - **TypeScript best practices** → `typescript`
 - **Unit Testing** → `unit-testing`
 - **PR Review Analysis** → `pr-review-analyzer`
@@ -110,5 +117,5 @@ Agents automatically apply based on file types and contexts defined in their rul
 
 ---
 
-_Last updated: 2025-10-16_
-_Total Cursor agents: 13 (including main-agent)_
+_Last updated: 2025-10-17_
+_Total Cursor agents: 14 (including main-agent)_

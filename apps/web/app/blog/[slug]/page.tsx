@@ -8,7 +8,7 @@ import { cache } from 'react'
 import { ContainerLayout } from '@/components/ContainerLayout.component'
 import { PostMarkdown } from '@/components/blog/PostMarkdown.component'
 import { Breadcrumbs } from '@/components/shared'
-import { getPublishedPostBySlug } from '@/lib/blog/post-detail.query'
+import { getPublishedPostBySlug } from '@/lib/queries/blog/post-detail.query'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 

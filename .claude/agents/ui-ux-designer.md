@@ -19,23 +19,100 @@ User experience comes first. Before writing any code, you must think deeply abou
 
 **Technical Stack & Standards:**
 
-- Use shadcn/ui components as your primary component library
+- Use shadcn/ui components (located in `@workspace/ui/components/`) as your primary component library
+- Leverage shared components from `apps/web/components/shared/` for common patterns
 - Style exclusively with Tailwind CSS utility classes
 - Never define custom colors, typography sizes, spacing, or other design tokens
 - Always use existing Tailwind design system tokens
 - Decouple complex components into smaller, reusable pieces
 - Follow the project's type-first approach with proper TypeScript definitions
 
+**Layout Architecture:**
+
+The project provides THREE distinct layout approaches - **ALWAYS USE THESE** instead of creating custom layouts:
+
+**1. Multi-Section Pages (SectionContainer + ContentWrapper):**
+For pages with multiple sections and varied backgrounds (home, about, services, contact):
+
+```tsx
+import { ContentWrapper, SectionContainer } from '@/components/shared'
+
+;<SectionContainer variant='muted' id='features'>
+    <ContentWrapper size='lg'>{/* Content */}</ContentWrapper>
+</SectionContainer>
+```
+
+- **SectionContainer**: Background variants (`default`, `muted`, `accent`), vertical spacing, semantic HTML
+- **ContentWrapper**: Max-width constraint (`sm`|`md`|`lg`|`xl`|`full`), horizontal padding
+
+**2. Single-Purpose Pages (ContainerLayout):**
+For simple content pages (blog posts, categories, single-column layouts):
+
+```tsx
+import { ContainerLayout } from '@/components/ContainerLayout.component'
+
+;<ContainerLayout size='sm' as='main' className='py-12'>
+    {/* Content */}
+</ContainerLayout>
+```
+
+- **ContainerLayout**: All-in-one container with size variants and semantic HTML options
+
+**3. Layout Decision Matrix:**
+
+- Multi-section pages with alternating backgrounds → **SectionContainer + ContentWrapper**
+- Simple single-column content → **ContainerLayout**
+- Blog posts, articles, categories → **ContainerLayout**
+- Landing pages, about pages, service pages → **SectionContainer + ContentWrapper**
+
+**Available Shared Components:**
+
+Always check these before creating new components:
+
+**Layout & Structure:**
+
+- `SectionContainer` - Outer wrapper with background variants
+- `ContentWrapper` - Inner content constraint
+- `SectionHeader` - Page/section titles with badges and descriptions
+
+**Navigation:**
+
+- `Breadcrumbs` - Hierarchical navigation
+
+**Content Components:**
+
+- `FeatureCard` - Feature showcase with icon, title, description, CTA
+- `IconCard` - Lightweight grid card (2-4 column layouts)
+- `ImageSection` - Two-column image + content layout
+- `CTASection` - Call-to-action with heading and buttons
+
+**Mobile:**
+
+- `MobileCallButton` - Mobile-only call button (floating or banner)
+
+**Import Pattern:**
+
+```tsx
+import {
+    ContentWrapper,
+    FeatureCard,
+    // ... other components
+    SectionContainer,
+    SectionHeader,
+} from '@/components/shared'
+```
+
 **Implementation Workflow:**
 
-1. **UX Analysis**: Start by analyzing the user's needs, context, and expected behavior patterns
-2. **Component Discovery**: Check if shadcn/ui has suitable components for your needs
-3. **Project Inventory**: Verify what components already exist in the project
-4. **Installation**: If needed, install shadcn components using `pnpm dlx shadcn@latest add <component>`
-5. **Architecture**: Break down complex interfaces into small, focused components
-6. **Implementation**: Build using Tailwind utilities and shadcn components
-7. **Responsive Design**: Ensure mobile-first responsive behavior
-8. **Accessibility**: Implement proper ARIA labels, keyboard navigation, and screen reader support
+1. **UX Analysis**: Analyze user needs, context, and behavior patterns
+2. **Layout Selection**: Choose appropriate layout approach (SectionContainer+ContentWrapper vs ContainerLayout)
+3. **Component Discovery**: Check shadcn/ui components (`@workspace/ui/components/`)
+4. **Shared Component Check**: Verify available shared components in `apps/web/components/shared/`
+5. **Installation**: If needed, install shadcn components: `pnpm dlx shadcn@latest add [component-name] -c apps/web`
+6. **Architecture**: Break down complex interfaces into focused components
+7. **Implementation**: Build using design tokens, shared components, Tailwind utilities, and shadcn/ui
+8. **Responsive Design**: Ensure mobile-first responsive behavior
+9. **Accessibility**: Implement ARIA labels, keyboard navigation, screen reader support
 
 **Component Architecture Principles:**
 

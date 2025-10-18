@@ -62,6 +62,8 @@ export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
 
 /**
  * Features/Services Section Content
+ *
+ * Features with links to relevant service pages
  */
 export const featuresData: Feature[] = [
     {
@@ -69,14 +71,16 @@ export const featuresData: Feature[] = [
         title: 'Fast & Reliable',
         description:
             'Lightning-fast performance and 99.9% uptime guarantee. We ensure your business never skips a beat.',
-        ariaLabel: 'Learn more about our fast and reliable service',
+        href: '/services/web-development',
+        ariaLabel: 'Learn more about our web development services',
     },
     {
         icon: Shield,
         title: 'Secure & Protected',
         description:
             'Enterprise-grade security with end-to-end encryption. Your data is always safe and protected.',
-        ariaLabel: 'Learn more about our security measures',
+        href: '/services/web-development',
+        ariaLabel: 'Learn more about our secure web development',
     },
     {
         icon: Users,
@@ -90,21 +94,24 @@ export const featuresData: Feature[] = [
         title: 'Results-Driven',
         description:
             'Proven strategies that deliver measurable results. We focus on what matters most to your business.',
-        ariaLabel: 'Learn more about our results-driven approach',
+        href: '/services/digital-marketing',
+        ariaLabel: 'Learn more about our digital marketing services',
     },
     {
         icon: Globe,
         title: 'Global Reach',
         description:
             'Serving clients worldwide with local expertise. Expand your business across borders seamlessly.',
-        ariaLabel: 'Learn more about our global reach',
+        href: '/services/digital-marketing',
+        ariaLabel: 'Learn more about our global marketing reach',
     },
     {
         icon: Award,
         title: 'Award-Winning',
         description:
             'Recognized for excellence and innovation. Our track record speaks for itself.',
-        ariaLabel: 'Learn more about our awards and recognition',
+        href: '/services/ui-ux-design',
+        ariaLabel: 'Learn more about our award-winning design services',
     },
 ]
 

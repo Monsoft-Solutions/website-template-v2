@@ -93,8 +93,9 @@ export function Header() {
                             src={brandAssets.logo}
                             alt={brandAssets.logoAlt}
                             className='h-8 w-auto'
-                            width={32}
+                            width={120}
                             height={32}
+                            style={{ width: 'auto', height: '2rem' }}
                             priority
                         />
                     </Link>

@@ -8,6 +8,13 @@
       "when": 1760545377242,
       "tag": "0000_white_kronos",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760783329856,
+      "tag": "0001_conscious_expediter",
+      "breakpoints": true
     }
   ]
 }

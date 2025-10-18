@@ -9,7 +9,13 @@ import type { ReactNode } from 'react'
 /**
  * Background variant options for section containers
  */
-export type SectionBackgroundVariant = 'default' | 'muted' | 'accent'
+export type SectionBackgroundVariant =
+    | 'default'
+    | 'muted'
+    | 'accent'
+    | 'gradient'
+    | 'gradient-reverse'
+    | 'subtle'
 
 /**
  * Semantic HTML element options for section containers
