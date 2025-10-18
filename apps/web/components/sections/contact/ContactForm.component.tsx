@@ -259,9 +259,6 @@ export function ContactForm({
                                         <FormItem className='space-y-3'>
                                             <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
                                                 Phone
-                                                <span className='text-muted-foreground text-xs'>
-                                                    (Optional)
-                                                </span>
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
@@ -286,9 +283,6 @@ export function ContactForm({
                                         <FormItem className='space-y-3'>
                                             <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
                                                 Subject
-                                                <span className='text-destructive text-xs'>
-                                                    *
-                                                </span>
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
@@ -313,9 +307,6 @@ export function ContactForm({
                                     <FormItem className='space-y-3'>
                                         <FormLabel className='text-foreground/90 flex items-center gap-2 text-sm font-semibold'>
                                             Message
-                                            <span className='text-destructive text-xs'>
-                                                *
-                                            </span>
                                         </FormLabel>
                                         <FormControl>
                                             <Textarea
