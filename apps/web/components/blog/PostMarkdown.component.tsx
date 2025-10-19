@@ -1,36 +1,28 @@
-// no-op
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 import rehypeHighlight from 'rehype-highlight'
-import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import { defaultSchema } from 'rehype-sanitize'
 import rehypeSlug from 'rehype-slug'
-import rehypeStringify from 'rehype-stringify'
-import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
-import remarkRehype from 'remark-rehype'
 import 'server-only'
+
+import { getMDXComponents } from './mdx-components'
 
 type PostMarkdownProps = {
     content: string
     className?: string
 }
 
-// Create a safe schema that extends the default schema to allow syntax highlighting
+// Extend sanitize schema to allow syntax highlighting classes
 const sanitizeSchema = {
     ...defaultSchema,
     attributes: {
         ...defaultSchema.attributes,
-        // Allow className on code and pre elements for syntax highlighting
         code: [...(defaultSchema.attributes?.code || []), 'className'],
         pre: [...(defaultSchema.attributes?.pre || []), 'className'],
-        // Allow className on span elements for syntax highlighting tokens
         span: [...(defaultSchema.attributes?.span || []), 'className'],
-        // Allow className on div elements for code blocks
         div: [...(defaultSchema.attributes?.div || []), 'className'],
-        // Allow className on anchor elements for autolink headings
         a: [...(defaultSchema.attributes?.a || []), 'className', 'href', 'id'],
-        // Allow id on heading elements for slug generation
         h1: [...(defaultSchema.attributes?.h1 || []), 'id'],
         h2: [...(defaultSchema.attributes?.h2 || []), 'id'],
         h3: [...(defaultSchema.attributes?.h3 || []), 'id'],
@@ -41,34 +33,39 @@ const sanitizeSchema = {
 }
 
 /**
- * Server component that renders Markdown to HTML using remark/rehype.
- * HTML content is sanitized using rehype-sanitize to prevent XSS attacks
- * while preserving necessary attributes for syntax highlighting and navigation.
+ * Server component that renders MDX to React components using next-mdx-remote.
+ * Supports custom React components and syntax highlighting.
+ * Headings have IDs (via rehypeSlug) for navigation, but are not rendered as links.
+ * Content is sanitized using rehype-sanitize to prevent XSS attacks.
  */
 export async function PostMarkdown({
     content,
     className = '',
 }: PostMarkdownProps) {
-    const file = await remark()
-        .use(remarkGfm)
-        .use(remarkRehype, { allowDangerousHtml: true })
-        .use(rehypeRaw)
-        .use(rehypeSanitize, sanitizeSchema)
-        .use(rehypeSlug)
-        .use(rehypeAutolinkHeadings, {
-            behavior: 'wrap',
-            properties: { className: ['anchor'] },
-        })
-        .use(rehypeHighlight)
-        .use(rehypeStringify)
-        .process(content)
+    const normalizedContent = content?.trim()
 
-    const html = String(file)
+    if (!normalizedContent) {
+        return null
+    }
+
+    const mdxOptions: MDXRemoteProps['options'] = {
+        mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
+                [rehypeSanitize, sanitizeSchema],
+                rehypeSlug, // Adds IDs to headings for scroll targeting
+                rehypeHighlight,
+            ],
+        },
+    }
 
     return (
-        <div
-            className={`prose prose-neutral dark:prose-invert max-w-none ${className}`}
-            dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className={className}>
+            <MDXRemote
+                source={normalizedContent}
+                options={mdxOptions}
+                components={getMDXComponents()}
+            />
+        </div>
     )
 }

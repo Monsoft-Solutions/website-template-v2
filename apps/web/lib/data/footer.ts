@@ -4,7 +4,7 @@
  * Configuration for footer sections and links.
  * Company name is pulled from centralized site-config.
  */
-import { businessInfo } from '@/lib/data/site-config'
+import { businessInfo, siteConfig } from '@/lib/data/site-config'
 import { getPublishedServices } from '@/lib/queries/get-services.query'
 import type { NavigationSection } from '@/lib/types/navigation.type'
 
@@ -48,9 +48,13 @@ export const footerSections: NavigationSection[] = [
     {
         title: 'Resources',
         items: [
-            { label: 'Documentation', href: '/docs', external: false },
-            { label: 'Help Center', href: '/help', external: false },
-            { label: 'Community', href: '/community', external: false },
+            {
+                label: 'GitHub',
+                href:
+                    siteConfig.social.find((s) => s.platform === 'github')
+                        ?.url ?? '',
+                external: true,
+            },
         ],
     },
     {

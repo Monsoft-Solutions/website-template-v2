@@ -25,18 +25,18 @@
 import type { Service } from '@/lib/types/services'
 
 // Import individual service definitions
-import { digitalMarketingService } from './digital-marketing.service'
-import { uiUxDesignService } from './ui-ux-design.service'
-import { webDevelopmentService } from './web-development.service'
+import { seoOptimizationService } from './seo-optimization.service'
+import { websiteDesignDevelopmentService } from './website-design-development.service'
+import { websiteModernizationService } from './website-modernization.service'
 
 /**
  * All Services
  *
- * Add new services to this array by importing them above.
+ * Services aligned with Keel brand: production-ready Next.js template.
  * Services are automatically sorted by the `order` field.
  */
 export const services: Service[] = [
-    webDevelopmentService,
-    uiUxDesignService,
-    digitalMarketingService,
+    websiteDesignDevelopmentService,
+    websiteModernizationService,
+    seoOptimizationService,
 ]

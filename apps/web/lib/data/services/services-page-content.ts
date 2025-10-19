@@ -3,6 +3,8 @@
  *
  * Supporting content for the services listing page including FAQ, testimonials,
  * and general service information that applies across all services.
+ *
+ * Content aligned with Keel brand guidelines: clear, direct, production-focused.
  */
 
 /**
@@ -31,109 +33,113 @@ export type ServicesTestimonial = {
 /**
  * General Services FAQ
  *
- * Common questions about services in general (not service-specific)
+ * Common questions about Keel template and services
  */
 export const servicesFAQ: ServicesFAQItem[] = [
     {
-        question: 'How do you ensure project quality and timelines?',
-        answer: 'We follow a rigorous project management process with clear milestones, regular check-ins, and quality assurance at every stage. Our agile methodology allows for flexibility while maintaining strict quality standards. We provide regular progress updates and maintain transparent communication throughout the project lifecycle.',
+        question: "What's included in the template?",
+        answer: 'Complete website with blog system, SEO optimization, analytics integration, contact forms with email notifications, dark mode, admin features, and full documentation. Everything you need for production.',
     },
     {
-        question: 'What is your typical project timeline?',
-        answer: 'Project timelines vary based on scope and complexity. Small projects typically take 2-4 weeks, medium projects 1-3 months, and large enterprise solutions 3-6 months. We provide detailed timeline estimates during our initial consultation and break larger projects into phases for faster delivery of core functionality.',
+        question: 'How long does it take to customize?',
+        answer: 'Initial setup takes 1-2 hours. Update site-config.ts with your business info, customize colors and branding, add content. Most developers have a production-ready site within a day.',
     },
     {
-        question: 'Do you provide ongoing support after project completion?',
-        answer: 'Yes, we offer comprehensive maintenance and support packages tailored to your needs. This includes regular updates, security patches, performance monitoring, and technical support. We also provide training for your team and documentation to ensure you can manage day-to-day operations independently.',
+        question: 'Do I need React/Next.js experience?',
+        answer: 'Yes. You need basic React and Next.js knowledge to customize the template. If you can read TypeScript and use Git, you can use Keel. Full documentation guides you through everything.',
     },
     {
-        question: 'What technologies and tools do you use?',
-        answer: 'We specialize in modern, scalable technologies including React, Next.js, TypeScript, Node.js, and cloud platforms like AWS and Vercel. We choose the technology stack based on your specific requirements, ensuring optimal performance, maintainability, and future scalability.',
+        question: 'Can I use this for client projects?',
+        answer: 'Yes. Build unlimited websites for yourself or clients. No per-site licensing fees. Use the template for as many projects as you need. Attribution appreciated but not required.',
     },
     {
-        question: 'How do you handle project pricing and payments?',
-        answer: 'We offer transparent, competitive pricing with no hidden fees. Projects can be quoted as fixed-price or hourly depending on scope. We typically require a 50% deposit to begin work, with the remainder due upon completion. For larger projects, we can arrange milestone-based payments to improve cash flow.',
+        question: 'What if I have an existing website?',
+        answer: 'We can help you migrate. Move from WordPress, Wix, Squarespace, or any platform to Keel. We preserve your content, maintain SEO rankings with proper redirects, and keep your domain.',
     },
     {
-        question: 'Can you work with our existing team and systems?',
-        answer: "Absolutely! We excel at integrating with existing teams, workflows, and systems. We can work as an extension of your team, collaborate with your developers, and integrate with your existing tools and processes. We adapt our approach to complement your organization's culture and methodologies.",
+        question: 'How does the SEO system work?',
+        answer: 'Built-in technical SEO: meta tags, OpenGraph, Twitter Cards, Schema.org structured data. Automatic sitemap and robots.txt generation. Fast page loads. No plugins needed.',
     },
     {
-        question: 'What makes your services different from competitors?',
-        answer: 'Our focus on quality, communication, and long-term partnerships sets us apart. We combine technical expertise with business understanding to deliver solutions that drive real results. Our commitment to transparency, regular communication, and post-launch support ensures your success beyond project completion.',
+        question: 'Is the blog system customizable?',
+        answer: 'Yes. Full-featured blog with PostgreSQL and Drizzle ORM. Categories, tags, featured images, rich text editor. Admin interface for creating posts. Type-safe content management.',
+    },
+    {
+        question: 'What support is included?',
+        answer: 'Complete documentation for setup, deployment, and customization. Community support via GitHub discussions. Migration consulting and implementation support available for an additional fee.',
     },
 ]
 
 /**
  * Client Testimonials
  *
- * Real client feedback about our services
+ * Testimonials aligned with Keel brand voice: specific results, real use cases
  */
 export const servicesTestimonials: ServicesTestimonial[] = [
     {
-        quote: 'The team delivered an exceptional web application that exceeded our expectations. Their attention to detail and commitment to quality was evident throughout the entire project.',
+        quote: 'Saved three weeks on our last client project. The blog system and SEO features work perfectly out of the box. Type safety caught errors before deployment.',
         author: {
             name: 'Sarah Johnson',
-            title: 'CTO',
-            company: 'TechStart Inc.',
+            title: 'Lead Developer',
+            company: 'Digital Agency Co.',
             avatar: '/images/testimonials/sarah-johnson.jpg',
         },
-        service: 'Web Development',
+        service: 'Website Design & Development',
         rating: 5,
     },
     {
-        quote: 'Our new brand identity and website have transformed how customers perceive our business. The design work was creative, professional, and perfectly aligned with our vision.',
+        quote: 'Migrated from WordPress in two weeks. Performance went from 60 to 95 on Lighthouse. SEO rankings maintained with proper redirects. Site loads in under a second now.',
         author: {
             name: 'Michael Chen',
-            title: 'Marketing Director',
-            company: 'GreenLife Solutions',
+            title: 'CTO',
+            company: 'E-commerce Startup',
             avatar: '/images/testimonials/michael-chen.jpg',
         },
-        service: 'UI/UX Design',
+        service: 'Website Modernization',
         rating: 5,
     },
     {
-        quote: 'The digital marketing campaign delivered outstanding results - we saw a 300% increase in qualified leads within the first three months. Highly recommend their expertise.',
+        quote: 'Blog system is excellent. Categories, tags, and featured images work exactly as needed. Published 20 posts, organic traffic up 200% in three months.',
         author: {
             name: 'Emma Rodriguez',
-            title: 'CEO',
-            company: 'Local Fitness Co.',
+            title: 'Content Director',
+            company: 'SaaS Company',
             avatar: '/images/testimonials/emma-rodriguez.jpg',
         },
-        service: 'Digital Marketing',
+        service: 'SEO Optimization',
         rating: 5,
     },
     {
-        quote: 'Professional, responsive, and incredibly skilled. They took our complex requirements and turned them into an intuitive, powerful application that our users love.',
+        quote: 'Used Keel for five client sites. Setup takes hours, not weeks. Clients love the speed and admin interface. TypeScript catches issues early.',
         author: {
             name: 'David Park',
-            title: 'Product Manager',
-            company: 'DataFlow Systems',
+            title: 'Freelance Developer',
+            company: 'Independent',
             avatar: '/images/testimonials/david-park.jpg',
         },
-        service: 'Web Development',
+        service: 'Website Design & Development',
         rating: 5,
     },
     {
-        quote: 'Working with this team was a pleasure from start to finish. They understood our industry, our challenges, and delivered a solution that has streamlined our operations significantly.',
+        quote: 'Analytics integration saved days of work. Google Analytics, Clarity, and GTM work out of the box. Cookie consent banner handles privacy requirements.',
         author: {
             name: 'Lisa Thompson',
-            title: 'Operations Director',
-            company: 'Healthcare Plus',
+            title: 'Marketing Manager',
+            company: 'Tech Startup',
             avatar: '/images/testimonials/lisa-thompson.jpg',
         },
-        service: 'Custom Development',
+        service: 'SEO Optimization',
         rating: 5,
     },
     {
-        quote: 'The ROI on our investment has been incredible. Not only did they deliver on time and on budget, but the ongoing support has been exceptional. True partners in our success.',
+        quote: 'Documentation is clear and complete. Deployed to Vercel in minutes. Environment validation caught config issues before production. Rock solid template.',
         author: {
             name: 'James Wilson',
-            title: 'Founder',
-            company: 'E-commerce Ventures',
+            title: 'Senior Engineer',
+            company: 'Enterprise Corp',
             avatar: '/images/testimonials/james-wilson.jpg',
         },
-        service: 'E-commerce Development',
+        service: 'Website Design & Development',
         rating: 5,
     },
 ]

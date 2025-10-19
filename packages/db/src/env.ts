@@ -10,6 +10,9 @@ config()
 export const env = createEnv({
     server: {
         POSTGRES_URL: z.string().url(),
+        NODE_ENV: z
+            .enum(['development', 'production', 'test'])
+            .default('development'),
     },
     runtimeEnv: process.env,
 })

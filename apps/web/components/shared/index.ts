@@ -28,6 +28,8 @@ export { IconCard } from './IconCard.component'
 export { ImageSection } from './ImageSection.component'
 export { FAQComponent } from './FAQ.component'
 export { Gallery } from './Gallery.component'
+export { StackingCard } from './StackingCard.component'
+export { StackingFeatureCard } from './StackingFeatureCard.component'
 
 // Type Exports
 export type { FAQProps } from './FAQ.component'
@@ -69,3 +71,6 @@ export type {
     MobileCallButtonPosition,
     MobileCallButtonStyle,
 } from '@/lib/types/mobile-call-button'
+
+export type { StackingCardProps } from './StackingCard.component'
+export type { StackingFeatureCardProps } from './StackingFeatureCard.component'

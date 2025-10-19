@@ -4,12 +4,19 @@
  * Data structures and content for the about page sections.
  * All content is centralized here for easy maintenance and localization.
  */
-import { Compass, Heart, Target } from 'lucide-react'
+import {
+    Briefcase,
+    Code,
+    Compass,
+    Heart,
+    Lightbulb,
+    Target,
+} from 'lucide-react'
 
 import type {
     AboutHeroSectionProps,
+    Feature,
     MissionSectionProps,
-    StorySectionProps,
     TeamMember,
     TeamSectionProps,
 } from '@/lib/types/sections'
@@ -18,13 +25,13 @@ import type {
  * About Hero Section Content
  */
 export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
-    badge: 'Our Story',
-    headline: 'Pioneering Excellence Since 2010',
+    badge: 'Built for Real Projects',
+    headline: 'Production-Ready Code. Real-World Tested.',
     description:
-        "We're more than just a service provider - we're your strategic partner in growth. Founded with a vision to revolutionize the industry, our team brings together decades of combined experience, cutting-edge technology, and an unwavering commitment to your success.",
+        'Keel is a Next.js template for developers building client projects and business owners launching professional websites. Skip the setup. Start with production-tested code that includes blog, analytics, SEO, and contact forms. Built with Next.js 15, React 19, and TypeScript.',
     image: {
         src: '/images/about-hero.jpg',
-        alt: 'Our team collaborating in a modern workspace',
+        alt: 'Modern professional business website on multiple devices',
         width: 1200,
         height: 800,
         priority: true,
@@ -35,58 +42,75 @@ export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
 
 /**
  * Mission, Vision, and Values Section Content
+ * Focused on why Keel exists and what it stands for
  */
 export const missionData: Omit<MissionSectionProps, 'id'> = {
     items: [
         {
             icon: Target,
-            title: 'Our Mission',
+            title: 'Ship in Hours',
             description:
-                'To deliver innovative solutions that drive measurable growth and lasting value for our clients, partners, and communities.',
-            ariaLabel: 'Learn about our mission',
+                'Launch websites in hours, not weeks. Customize content, add branding, deploy. Skip weeks of setup work. Start with working features instead of empty folders.',
+            ariaLabel: 'Learn about fast website deployment',
         },
         {
             icon: Compass,
-            title: 'Our Vision',
+            title: 'Stable Technology',
             description:
-                'To be the most trusted and innovative leader in our industry, recognized for excellence, integrity, and positive impact.',
-            ariaLabel: 'Learn about our vision',
+                'Built with Next.js 15 and React 19. Stable, supported, production-ready. No experimental features. No framework churn. Just proven tools that ship reliable websites.',
+            ariaLabel: 'Learn about modern web technology',
         },
         {
             icon: Heart,
-            title: 'Our Values',
+            title: 'Everything Included',
             description:
-                'Excellence, Integrity, Innovation, Collaboration, and Customer-First approach guide everything we do.',
-            ariaLabel: 'Learn about our values',
+                'SEO, analytics, blog, contact forms. Everything included. No add-ons needed. No monthly subscriptions. One template, complete features.',
+            ariaLabel: 'Learn about business website features',
         },
     ],
 }
 
 /**
- * Company Story Section Content
+ * Our Story - Stacking Scroll Effect
+ * Visual narrative that relates to both business owners and developers
  */
-export const storyData: Omit<StorySectionProps, 'id'> = {
-    badge: 'Our Journey',
-    headline: 'How It All Started',
-    content: `In 2010, our founders recognized a significant gap in the market. They saw businesses struggling with outdated solutions that didn't meet their evolving needs. With a passion for innovation and a commitment to excellence, they founded our company with a simple mission: to create solutions that truly make a difference.
-
-Over the past decade, we've grown from a small startup to a trusted partner for hundreds of organizations worldwide. We've helped our clients achieve remarkable results, from reducing operational costs by up to 40% to increasing productivity and scaling their operations globally.
-
-Our success is built on a foundation of continuous learning, customer-centric innovation, and a talented team that's passionate about solving complex problems. We've invested heavily in research and development, building cutting-edge technology that delivers real value.
-
-Today, we're prouder than ever of what we've accomplished and the impact we've had on our clients' businesses. But we're just getting started. We're committed to pushing boundaries, embracing new technologies, and continuing to be the partner our clients can count on for their most important challenges.`,
-    image: {
-        src: '/images/about-story.jpg',
-        alt: 'Our office and team workspace',
-        width: 800,
-        height: 600,
-        aspectRatio: 'aspect-[4/3]',
+export const ourStoryData: Feature[] = [
+    {
+        icon: Lightbulb,
+        title: 'The Problem We Solved',
+        description:
+            'We built the same foundations repeatedly. Blog systems, analytics, SEO, contact forms. Every client paid for work done before. So we created Keel.',
+        imageSrc: '/images/about-story.jpg',
+        imageAlt: 'Repetitive website development process',
     },
-    imagePosition: 'right',
-}
+    {
+        icon: Briefcase,
+        title: 'For Business Owners',
+        description:
+            'Professional website in days. Blog, analytics, SEO, contact forms included. One price, no recurring fees. Deploy fast, look professional.',
+        imageSrc: '/images/services/web-development-workspace.jpg',
+        imageAlt: 'Professional business website on multiple devices',
+    },
+    {
+        icon: Code,
+        title: 'For Developers',
+        description:
+            'Production-ready code. Monorepo, TypeScript, shadcn/ui, Drizzle ORM. Ship client work faster. Learn modern patterns. Start with working features, not empty repos.',
+        imageSrc: '/images/about-developer.jpg',
+        imageAlt: 'Modern development environment with TypeScript and React',
+    },
+    {
+        icon: Target,
+        title: 'Production Tested',
+        description:
+            'Used for real client projects. Next.js 15, React 19, Drizzle ORM. Updated based on production feedback. Built for shipping, not demos.',
+        imageSrc: '/images/services/seo-optimization.jpg',
+        imageAlt: 'Production website with analytics and performance metrics',
+    },
+]
 
 /**
- * Team Members Data
+ * Team Members Data (preserved for future use)
  */
 export const teamMembers: TeamMember[] = [
     {
@@ -152,7 +176,7 @@ export const teamMembers: TeamMember[] = [
 ]
 
 /**
- * Team Section Props
+ * Team Section Props (preserved for future use)
  */
 export const teamSectionData: Omit<TeamSectionProps, 'id'> = {
     badge: 'Meet the Team',
@@ -166,16 +190,16 @@ export const teamSectionData: Omit<TeamSectionProps, 'id'> = {
  * Final CTA Section Content (for end of about page)
  */
 export const aboutCTAData = {
-    title: 'Ready to Get Started?',
+    title: 'Ready to Build?',
     description:
-        "Ready to partner with us? We'd love to discuss how we can help drive your success.",
+        'Start with production-ready code. Full documentation included. Build your first site this week.',
     primaryButton: {
-        text: 'Contact Us Today',
+        text: 'Contact Us',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'Explore Our Services',
-        href: '/services',
+        text: 'Key Features',
+        href: '/#key-features',
     },
     variant: 'accent' as const,
 }

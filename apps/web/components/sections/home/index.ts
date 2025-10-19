@@ -17,6 +17,7 @@
 
 export { HeroSection } from './HeroSection.component'
 export { FeaturesSection } from './FeaturesSection.component'
+export { StackingFeaturesSection } from './StackingFeaturesSection.component'
 export { ServicesPreviewSection } from './ServicesPreviewSection.component'
 export { AboutPreviewSection } from './AboutPreviewSection.component'
 export { TestimonialsSection } from './TestimonialsSection.component'

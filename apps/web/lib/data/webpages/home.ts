@@ -6,13 +6,12 @@
  */
 import {
     ArrowRight,
-    Award,
-    Clock,
-    Globe,
-    Phone,
+    Blocks,
+    Eye,
+    LineChart,
+    Palette,
+    Search,
     Shield,
-    Target,
-    Users,
     Zap,
 } from 'lucide-react'
 
@@ -27,29 +26,29 @@ import type {
  * Hero Section Content
  */
 export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
-    subheadline: 'Your Trusted Partner',
-    headline: 'Building the Future Together',
+    subheadline: 'Next.js 15 • React 19 • TypeScript',
+    headline: 'The foundation for production websites.',
     description:
-        'We deliver innovative solutions that drive growth and success. Our team of experts is dedicated to transforming your vision into reality with cutting-edge technology and exceptional service.',
+        'Production-ready code with Next.js 15 and React 19. Built-in blog, analytics, SEO, and shadcn/ui components. Type-safe from database to UI.',
     primaryButton: {
-        text: 'Get Started',
-        href: '/contact',
+        text: 'Start building',
+        href: '#key-features',
         variant: 'default',
         icon: ArrowRight,
         iconPosition: 'right',
-        ariaLabel: 'Get started with our services',
+        ariaLabel: 'Start building with Keel template',
     },
     secondaryButton: {
-        text: 'Call Us Now',
-        href: 'tel:+1234567890',
+        text: 'View Examples',
+        href: '/about',
         variant: 'outline',
-        icon: Phone,
+        icon: Eye,
         iconPosition: 'left',
-        ariaLabel: 'Call us at +1 (234) 567-890',
+        ariaLabel: 'View example pages and features',
     },
     image: {
         src: '/images/hero.jpg',
-        alt: 'Modern office workspace with collaborative team',
+        alt: 'Modern website template showcase with Next.js and React',
         width: 1200,
         height: 800,
         priority: true,
@@ -61,140 +60,152 @@ export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
 }
 
 /**
- * Features/Services Section Content
+ * Key Features Section Content
  *
- * Features with links to relevant service pages
+ * Highlights template capabilities and features
  */
-export const featuresData: Feature[] = [
+export const keyFeaturesData: Feature[] = [
     {
         icon: Zap,
-        title: 'Fast & Reliable',
+        title: 'Fast Development',
         description:
-            'Lightning-fast performance and 99.9% uptime guarantee. We ensure your business never skips a beat.',
-        href: '/services/web-development',
-        ariaLabel: 'Learn more about our web development services',
+            'Pre-built components and layouts. Start building immediately. No boilerplate setup.',
+        ariaLabel: 'Learn more about fast development features',
+        imageSrc: '/images/services/web-development-workspace.jpg',
+        imageAlt: 'Modern development workspace with code editor and tools',
+    },
+    {
+        icon: Blocks,
+        title: 'Complete Blog System',
+        description:
+            'Full-featured blog with PostgreSQL, categories, tags, and markdown. Vercel Blob image storage. Production-ready.',
+        ariaLabel: 'Learn more about the blog system',
+        imageSrc: '/images/services/web-development-success.jpg',
+        imageAlt: 'Successful blog implementation with content management',
     },
     {
         icon: Shield,
-        title: 'Secure & Protected',
+        title: 'Type-Safe Code',
         description:
-            'Enterprise-grade security with end-to-end encryption. Your data is always safe and protected.',
-        href: '/services/web-development',
-        ariaLabel: 'Learn more about our secure web development',
+            '100% TypeScript with strict typing. Zod validation and error handling. Built for maintainability.',
+        ariaLabel: 'Learn more about code quality',
+        imageSrc: '/images/services/web-development-code-quality.jpg',
+        imageAlt: 'High-quality TypeScript code on screen',
     },
     {
-        icon: Users,
-        title: 'Expert Support',
+        icon: LineChart,
+        title: 'Analytics Built-In',
         description:
-            '24/7 dedicated support team ready to help. Get answers from real experts, not bots.',
-        ariaLabel: 'Learn more about our expert support team',
+            'Google Analytics, Clarity, GTM, and Facebook Pixel. Type-safe event tracking hooks. Pre-integrated.',
+        ariaLabel: 'Learn more about analytics integration',
+        imageSrc: '/images/services/digital-marketing/analytics-reporting.jpg',
+        imageAlt: 'Analytics dashboard showing user metrics and reports',
     },
     {
-        icon: Target,
-        title: 'Results-Driven',
+        icon: Search,
+        title: 'SEO Optimized',
         description:
-            'Proven strategies that deliver measurable results. We focus on what matters most to your business.',
-        href: '/services/digital-marketing',
-        ariaLabel: 'Learn more about our digital marketing services',
+            'Metadata generation, schema.org data, dynamic sitemaps, and Open Graph tags. SEO package included.',
+        ariaLabel: 'Learn more about SEO optimization',
+        imageSrc: '/images/services/digital-marketing/seo-optimization.jpg',
+        imageAlt: 'SEO optimization tools and search rankings',
     },
     {
-        icon: Globe,
-        title: 'Global Reach',
+        icon: Palette,
+        title: 'Beautiful UI Components',
         description:
-            'Serving clients worldwide with local expertise. Expand your business across borders seamlessly.',
-        href: '/services/digital-marketing',
-        ariaLabel: 'Learn more about our global marketing reach',
-    },
-    {
-        icon: Award,
-        title: 'Award-Winning',
-        description:
-            'Recognized for excellence and innovation. Our track record speaks for itself.',
-        href: '/services/ui-ux-design',
-        ariaLabel: 'Learn more about our award-winning design services',
+            '13+ shadcn/ui components with Tailwind CSS 4. Dark mode support. Notion-inspired design.',
+        ariaLabel: 'Learn more about UI components',
+        imageSrc: '/images/services/web-development-ui-design.jpg',
+        imageAlt: 'Beautiful UI component design with modern aesthetics',
     },
 ]
 
 /**
- * About Preview Section Content
+ * Features/Services Section Content (Legacy - REMOVED)
+ *
+ * This legacy section contained prohibited brand voice terms and has been removed.
+ * Use keyFeaturesData instead for brand-compliant feature content.
  */
-export const aboutPreviewData: Omit<AboutPreviewSectionProps, 'id'> = {
-    badge: 'About Us',
-    title: 'Pioneering Excellence Since 2010',
+
+/**
+ * Tech Stack Section Content
+ */
+export const techStackData: Omit<AboutPreviewSectionProps, 'id'> = {
+    badge: 'Modern Technology Stack',
+    title: 'Built with tools developers trust',
     description:
-        "We're more than just a service provider - we're your strategic partner in growth. Founded with a vision to revolutionize the industry, our team brings together decades of combined experience, cutting-edge technology, and an unwavering commitment to your success. Every project we undertake is driven by innovation, integrity, and a passion for delivering exceptional results.",
+        'Next.js 15 with React Server Components. TypeScript 5.7 for type safety. Drizzle ORM for databases. Turborepo for fast monorepo builds. Every tool selected for production reliability.',
     imageSrc: '/images/about-preview.jpg',
-    imageAlt: 'Our team collaborating in a modern workspace',
+    imageAlt:
+        'Technology stack: Next.js, React, TypeScript, Tailwind, PostgreSQL',
     imageWidth: 800,
     imageHeight: 800,
-    buttonText: 'Learn Our Story',
-    buttonHref: '/about',
+    buttonText: 'View Full Tech Stack',
+    buttonHref: '/blog',
     imagePosition: 'left',
     variant: 'muted',
 }
+
+/**
+ * About Preview Section Content (Legacy - REMOVED)
+ *
+ * This legacy section contained prohibited brand voice terms ("Pioneering Excellence",
+ * "revolutionize", "cutting-edge", "unwavering commitment") and has been removed.
+ * Use techStackData instead for brand-compliant about preview content.
+ */
 
 /**
  * Testimonials Section Content
  */
 export const testimonialsData: Testimonial[] = [
     {
-        quote: 'Working with this team has been transformative for our business. Their expertise and dedication helped us achieve results we never thought possible. Highly recommended!',
-        name: 'Sarah Johnson',
-        role: 'CEO',
-        company: 'TechCorp Solutions',
+        quote: 'This template saved us weeks of setup time. The code quality is exceptional, and the built-in blog system was exactly what we needed. We shipped three client sites in the first month.',
+        name: 'Alex Thompson',
+        role: 'Founder',
+        company: 'DevStudio Agency',
         rating: 5,
         avatar: '/images/testimonials/sarah-johnson.jpg',
     },
     {
-        quote: 'The level of professionalism and attention to detail is outstanding. They truly understand our needs and consistently deliver beyond expectations. A game-changer for our organization.',
-        name: 'Michael Chen',
-        role: 'Director of Operations',
-        company: 'Global Innovations Ltd',
+        quote: "Finally, a template that doesn't cut corners. TypeScript everywhere, proper error handling, and the SEO package alone is worth it. Perfect for professional projects.",
+        name: 'Maria Garcia',
+        role: 'Senior Developer',
+        company: 'TechCraft Solutions',
         rating: 5,
         avatar: '/images/testimonials/michael-chen.jpg',
     },
     {
-        quote: "From start to finish, the experience was seamless. The team's expertise and responsiveness made the entire process smooth and stress-free. We couldn't be happier with the results.",
-        name: 'Emily Rodriguez',
-        role: 'Marketing Manager',
-        company: 'Creative Ventures',
+        quote: 'As a small business owner with limited dev experience, I was able to customize this template and launch my website in two days. The documentation made it easy.',
+        name: 'James Liu',
+        role: 'Owner',
+        company: 'Local Services Co',
         rating: 5,
         avatar: '/images/testimonials/emily-rodriguez.jpg',
     },
 ]
 
 /**
- * Additional Features for Extended Layout (Optional)
+ * Additional Features for Extended Layout (Legacy - REMOVED)
+ *
+ * This legacy section contained prohibited brand voice terms ("Cutting-Edge Technology")
+ * and generic marketing claims. Has been removed for brand compliance.
  */
-export const extendedFeaturesData: Feature[] = [
-    {
-        icon: Clock,
-        title: 'Time-Saving Solutions',
-        description:
-            'Automate repetitive tasks and focus on what really matters. Increase productivity by up to 40%.',
-    },
-    {
-        icon: Zap,
-        title: 'Cutting-Edge Technology',
-        description:
-            "Stay ahead with the latest innovations. We continuously evolve to meet tomorrow's challenges.",
-    },
-]
 
 /**
  * Final CTA Section Content (for end of home page)
  */
 export const finalCTAData = {
-    title: 'Ready to Get Started?',
+    title: 'Ready to build your website?',
     description:
-        "Join thousands of satisfied customers who have transformed their business with our solutions. Let's build something amazing together.",
+        'Start with production-ready code. Full documentation included. Build your first site this week.',
     primaryButton: {
-        text: 'Contact Us Today',
+        text: 'Start building',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'View Our Work',
-        href: '/portfolio',
+        text: 'View Documentation',
+        href: 'https://github.com/Monsoft-Solutions/website-template-v2',
     },
     variant: 'accent' as const,
 }

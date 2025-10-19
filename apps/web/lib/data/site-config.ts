@@ -41,14 +41,14 @@ export const siteConfig: SiteConfig = {
      * Business Information
      */
     business: {
-        name: 'ACME',
-        legalName: 'ACME LLC',
-        tagline: 'Building modern web experiences with excellence',
+        name: 'Keel',
+        legalName: 'Keel by MonsoftLabs',
+        tagline: 'The foundation for production websites.',
         description:
-            'ACME is a company that builds modern web experiences with excellence.',
+            'Production-ready Next.js template. Built with React 19 and TypeScript. Ready in hours, not weeks.',
         foundedYear: 2024,
-        founders: ['John Doe', 'Jane Smith'],
-        organizationType: 'Corporation',
+        founders: ['MonsoftLabs'],
+        organizationType: 'Product',
     },
 
     /**
@@ -108,17 +108,17 @@ export const siteConfig: SiteConfig = {
     social: [
         {
             platform: 'github',
-            url: 'https://github.com/example',
+            url: 'https://github.com/Monsoft-Solutions/website-template-v2',
             label: 'GitHub',
         },
         {
             platform: 'twitter',
-            url: 'https://twitter.com/example',
+            url: 'https://twitter.com/monsoft_labs',
             label: 'Twitter/X',
         },
         {
             platform: 'linkedin',
-            url: 'https://linkedin.com/company/example',
+            url: 'https://www.linkedin.com/company/monsoft-solutions/',
             label: 'LinkedIn',
         },
     ],
@@ -128,7 +128,7 @@ export const siteConfig: SiteConfig = {
      */
     brand: {
         logo: '/logo.png',
-        logoAlt: 'Your Company Name Logo',
+        logoAlt: 'Keel Logo',
         favicon: '/favicon.png',
         appleTouchIcon: '/apple-touch-icon.png',
         ogImage: '/og-image.jpg',
@@ -139,15 +139,22 @@ export const siteConfig: SiteConfig = {
      */
     seo: {
         siteUrl: getSiteUrl(), // Dynamically from environment
-        siteName: 'ACME',
+        siteName: 'Keel',
         siteDescription:
-            'ACME is a company that builds modern web experiences with excellence.',
+            'Production-ready Next.js template. Built with React 19, TypeScript, and Drizzle ORM. Blog, analytics, and SEO included. Type-safe from database to UI.',
         keywords: [
-            'web development',
-            'modern web',
-            'technology',
-            'design',
-            'software',
+            'production website template',
+            'Next.js 15 template',
+            'React 19 template',
+            'TypeScript template',
+            'Next.js blog template',
+            'shadcn/ui template',
+            'monorepo template',
+            'Drizzle ORM template',
+            'production-ready Next.js',
+            'developer website template',
+            'type-safe template',
+            'Next.js monorepo',
         ],
         locale: 'en-US',
         twitterHandle: '@example',

@@ -2,15 +2,16 @@ import { WebPageSchema } from '@workspace/seo/react'
 
 import {
     AboutPreviewSection,
-    ServicesPreviewSection,
     HeroSection,
+    StackingFeaturesSection,
     TestimonialsSection,
 } from '@/components/sections/home'
 import { CTASection } from '@/components/shared'
 import {
-    aboutPreviewData,
     finalCTAData,
     heroSectionData,
+    keyFeaturesData,
+    techStackData,
     testimonialsData,
 } from '@/lib/data/webpages/home'
 import { seoConfig } from '@/lib/seo-config'
@@ -31,13 +32,15 @@ export const metadata = toNextMetadata(seoConfig, {
     canonical: '/',
 
     // Page-specific metadata
-    title: seoConfig.defaultMetadata.title,
-    description: seoConfig.defaultMetadata.description,
+    title: 'Modern Website Template - Next.js 15 + React 19 + TypeScript',
+    description:
+        'Production-ready Next.js website template with blog, analytics, SEO, and shadcn/ui components. Ship professional websites in hours. Built for developers and agencies.',
 
     // Open Graph tags for social sharing
     openGraph: {
-        title: seoConfig.defaultMetadata.title,
-        description: seoConfig.defaultMetadata.description,
+        title: 'Modern Website Template - Next.js 15 + React 19 + TypeScript',
+        description:
+            'Production-ready Next.js website template with blog, analytics, SEO, and shadcn/ui components. Ship professional websites in hours. Built for developers and agencies.',
         url: seoConfig.siteUrl,
         type: 'website',
         siteName: seoConfig.siteName,
@@ -56,8 +59,9 @@ export const metadata = toNextMetadata(seoConfig, {
     // Twitter Card tags
     twitter: {
         card: seoConfig.twitter?.cardType ?? 'summary_large_image',
-        title: seoConfig.defaultMetadata.title,
-        description: seoConfig.defaultMetadata.description,
+        title: 'Modern Website Template - Next.js 15 + React 19 + TypeScript',
+        description:
+            'Production-ready Next.js website template with blog, analytics, SEO, and shadcn/ui components. Ship professional websites in hours. Built for developers and agencies.',
         site: seoConfig.twitter?.site,
         creator: seoConfig.twitter?.creator ?? seoConfig.twitter?.handle,
         images: seoConfig.defaultMetadata.image
@@ -96,9 +100,9 @@ export default function Page() {
         <>
             {/* JSON-LD Schema for Homepage */}
             <WebPageSchema
-                name={seoConfig.defaultMetadata.title}
+                name='Modern Website Template - Next.js 15 + React 19 + TypeScript'
                 url={seoConfig.siteUrl}
-                description={seoConfig.defaultMetadata.description}
+                description='Production-ready Next.js website template with blog, analytics, SEO, and shadcn/ui components. Ship professional websites in hours. Built for developers and agencies.'
             />
 
             {/* Hero Section */}
@@ -115,36 +119,36 @@ export default function Page() {
                 enableAnimations={heroSectionData.enableAnimations}
             />
 
-            {/* Services Preview Section */}
-            <ServicesPreviewSection
-                id='services-preview'
-                title='Our Services'
-                description='Discover comprehensive solutions designed to drive your business forward and achieve your goals'
-                maxServices={3}
+            {/* Key Features Section with Stacking Scroll Effect */}
+            <StackingFeaturesSection
+                id='key-features'
+                title='Everything You Need to Launch Fast'
+                description='A complete website template with all the features developers and businesses need—no compromises on quality or functionality'
+                features={keyFeaturesData}
                 variant='muted'
             />
 
-            {/* About Preview Section */}
+            {/* Tech Stack Section */}
             <AboutPreviewSection
-                id='about-preview'
-                badge={aboutPreviewData.badge}
-                title={aboutPreviewData.title}
-                description={aboutPreviewData.description}
-                imageSrc={aboutPreviewData.imageSrc}
-                imageAlt={aboutPreviewData.imageAlt}
-                imageWidth={aboutPreviewData.imageWidth}
-                imageHeight={aboutPreviewData.imageHeight}
-                buttonText={aboutPreviewData.buttonText}
-                buttonHref={aboutPreviewData.buttonHref}
-                imagePosition={aboutPreviewData.imagePosition}
-                variant={aboutPreviewData.variant}
+                id='tech-stack'
+                badge={techStackData.badge}
+                title={techStackData.title}
+                description={techStackData.description}
+                imageSrc={techStackData.imageSrc}
+                imageAlt={techStackData.imageAlt}
+                imageWidth={techStackData.imageWidth}
+                imageHeight={techStackData.imageHeight}
+                buttonText={techStackData.buttonText}
+                buttonHref={techStackData.buttonHref}
+                imagePosition={techStackData.imagePosition}
+                variant={techStackData.variant}
             />
 
             {/* Testimonials Section */}
             <TestimonialsSection
                 id='testimonials'
-                title='What Our Clients Say'
-                description="Don't just take our word for it—hear from the customers who've transformed their business with us"
+                title='Trusted by Developers and Agencies'
+                description='See how developers and businesses are using this template to ship professional websites faster'
                 testimonials={testimonialsData}
                 columns={3}
                 variant='default'
