@@ -1278,7 +1278,7 @@ Database: Sample blog posts in PostgreSQL
 - Common issues and troubleshooting
 - Real-world code examples (not toy code)
 - Natural keyword integration throughout
-- Keel brand voice maintained (clear, direct, confident)
+- Brand voice maintained
 
 **Post 2: "Why We Chose Drizzle ORM Over Prisma"**
 
