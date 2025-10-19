@@ -112,34 +112,50 @@ function createAppStaticRoutes(): SitemapRoute[] {
                 },
             ],
         },
-        // Add more static routes as they are created
-        // {
-        //   path: '/contact',
-        //   getEntries: () => [{
-        //     url: '/contact',
-        //     changeFrequency: 'monthly',
-        //     priority: 0.6,
-        //     lastModified: new Date().toISOString()
-        //   }]
-        // },
-        // {
-        //   path: '/privacy',
-        //   getEntries: () => [{
-        //     url: '/privacy',
-        //     changeFrequency: 'yearly',
-        //     priority: 0.3,
-        //     lastModified: new Date().toISOString()
-        //   }]
-        // },
-        // {
-        //   path: '/terms',
-        //   getEntries: () => [{
-        //     url: '/terms',
-        //     changeFrequency: 'yearly',
-        //     priority: 0.3,
-        //     lastModified: new Date().toISOString()
-        //   }]
-        // }
+        {
+            path: '/contact',
+            getEntries: () => [
+                {
+                    url: '/contact',
+                    changeFrequency: 'monthly',
+                    priority: 0.7,
+                    lastModified: new Date().toISOString(),
+                },
+            ],
+        },
+        {
+            path: '/privacy',
+            getEntries: () => [
+                {
+                    url: '/privacy',
+                    changeFrequency: 'yearly',
+                    priority: 0.3,
+                    lastModified: new Date().toISOString(),
+                },
+            ],
+        },
+        {
+            path: '/terms',
+            getEntries: () => [
+                {
+                    url: '/terms',
+                    changeFrequency: 'yearly',
+                    priority: 0.3,
+                    lastModified: new Date().toISOString(),
+                },
+            ],
+        },
+        {
+            path: '/cookies',
+            getEntries: () => [
+                {
+                    url: '/cookies',
+                    changeFrequency: 'yearly',
+                    priority: 0.3,
+                    lastModified: new Date().toISOString(),
+                },
+            ],
+        },
     ]
 }
 
