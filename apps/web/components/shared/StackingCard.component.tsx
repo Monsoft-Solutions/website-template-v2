@@ -1,16 +1,21 @@
 /**
  * StackingCard Component
  *
- * A wrapper component that creates a stacking scroll effect for cards.
+ * A wrapper component that creates an enhanced stacking scroll effect for cards.
  * Cards travel up through a vertical path and pin to the top of the viewport,
- * stacking on top of each other with subtle scaling animations.
+ * stacking on top of each other with sophisticated 3D animations, dynamic shadows,
+ * and blur effects.
  *
- * Features dynamic "push" effect where static cards start moving when
- * the incoming card is 50% overlapped.
+ * Features:
+ * - 3D perspective transforms for depth perception
+ * - Dynamic shadow and blur effects
+ * - Performance optimized with RAF throttling and Intersection Observer
+ * - Accessibility support for reduced motion preferences
+ * - Fully configurable animation intensity and variants
  *
  * @example
  * ```tsx
- * <StackingCard index={0} total={6}>
+ * <StackingCard index={0} total={6} animationIntensity="normal">
  *   <IconCard icon={Zap} title="Feature" description="Description" />
  * </StackingCard>
  * ```
@@ -21,6 +26,16 @@ import { cn } from '@workspace/ui/lib/utils'
 import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 
+import type {
+    AnimationIntensity,
+    StackingCardConfig,
+    StackingVariant,
+} from '@/lib/types/sections/stacking.type'
+import {
+    ANIMATION_PRESETS,
+    STACKING_VARIANTS,
+} from '@/lib/types/sections/stacking.type'
+
 export type StackingCardProps = {
     /** Child content to be wrapped with stacking effect */
     children: ReactNode
@@ -30,50 +45,136 @@ export type StackingCardProps = {
     total: number
     /** Additional CSS classes */
     className?: string
+    /** Animation intensity preset */
+    animationIntensity?: AnimationIntensity
+    /** Stacking variant for container heights */
+    stackingVariant?: StackingVariant
+    /** Custom configuration overrides */
+    config?: Partial<StackingCardConfig>
 }
 
 /**
- * StackingCard creates the stacking scroll effect using:
+ * StackingCard creates an enhanced stacking scroll effect using:
  * - Large container height for the "travel path"
  * - Sticky positioning to pin cards at the top
- * - Scale transforms for depth perception
+ * - 3D transforms (scale, rotate, translate) for depth perception
+ * - Dynamic shadows and blur for realism
  * - z-index layering for proper stacking order
+ * - Performance optimizations (RAF, Intersection Observer)
+ * - Accessibility (reduced motion support)
  */
 export function StackingCard({
     children,
     index,
     total,
     className,
+    animationIntensity = 'normal',
+    stackingVariant = 'default',
+    config: customConfig,
 }: StackingCardProps) {
     const cardRef = useRef<HTMLDivElement>(null)
     const [scrollProgress, setScrollProgress] = useState(0)
+    const [isVisible, setIsVisible] = useState(false)
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+    const rafRef = useRef<number | undefined>(undefined)
 
+    // Merge preset configuration with custom overrides
+    const config: StackingCardConfig = {
+        ...ANIMATION_PRESETS[animationIntensity],
+        ...customConfig,
+    }
+
+    const {
+        scaleAmount = 0.15,
+        rotationAmount = 2,
+        blurAmount = 4,
+        enableBlur = true,
+        enable3D = true,
+        offsetAmount = 10,
+        shadowIntensity = 1,
+        brightnessReduction = 0.2,
+    } = config
+
+    // Check for reduced motion preference
     useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+        setPrefersReducedMotion(mediaQuery.matches)
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            setPrefersReducedMotion(e.matches)
+        }
+
+        mediaQuery.addEventListener('change', handleChange)
+        return () => mediaQuery.removeEventListener('change', handleChange)
+    }, [])
+
+    // Intersection Observer for performance optimization
+    useEffect(() => {
+        if (!cardRef.current) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    setIsVisible(entry.isIntersecting)
+                })
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '100px 0px',
+            }
+        )
+
+        observer.observe(cardRef.current)
+
+        return () => observer.disconnect()
+    }, [])
+
+    // Scroll handler with RAF throttling
+    useEffect(() => {
+        if (!isVisible) return
+
+        let ticking = false
+
         const handleScroll = () => {
-            if (!cardRef.current) return
+            if (!ticking) {
+                rafRef.current = window.requestAnimationFrame(() => {
+                    if (!cardRef.current) {
+                        ticking = false
+                        return
+                    }
 
-            const card = cardRef.current
-            const cardRect = card.getBoundingClientRect()
-            const stickyTop = 80 // Header height
-            const cardHeight = cardRect.height
+                    const card = cardRef.current
+                    const cardRect = card.getBoundingClientRect()
+                    const stickyTop = 80 // Header height
+                    const cardHeight = cardRect.height
 
-            // Calculate how much the card has "traveled" past the sticky point
-            // When cardRect.top reaches stickyTop, it starts sticking
-            // Progress is how much of the next card is overlapping this one
-            const distanceFromSticky = stickyTop - cardRect.top
-            const progress = Math.max(
-                0,
-                Math.min(1, distanceFromSticky / (cardHeight * 0.5))
-            )
+                    // Calculate how much the card has "traveled" past the sticky point
+                    // When cardRect.top reaches stickyTop, it starts sticking
+                    // Progress is how much of the next card is overlapping this one
+                    const distanceFromSticky = stickyTop - cardRect.top
+                    const progress = Math.max(
+                        0,
+                        Math.min(1, distanceFromSticky / (cardHeight * 0.5))
+                    )
 
-            setScrollProgress(progress)
+                    setScrollProgress(progress)
+                    ticking = false
+                })
+
+                ticking = true
+            }
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true })
         handleScroll() // Initial calculation
 
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+            }
+        }
+    }, [isVisible])
 
     // Calculate sticky top position (all cards stick at same position)
     const topOffset = 80 // 80px base (header height)
@@ -81,13 +182,54 @@ export function StackingCard({
     // Calculate z-index (incoming cards stack OVER previous ones)
     const zIndex = index
 
-    // Last card needs less height to avoid excessive bottom spacing
+    // Container height based on variant and position
     const isLastCard = index === total - 1
-    const containerHeight = isLastCard ? 'min-h-[80vh]' : 'min-h-[120vh]'
+    const variantConfig = STACKING_VARIANTS[stackingVariant]
+    const containerHeight = isLastCard
+        ? variantConfig.last
+        : variantConfig.default
 
-    // Dynamic scale based on scroll progress
-    // When next card is 50% overlapped, this card starts scaling down
-    const scale = 1 - scrollProgress * 0.1 // Scale down by 10% max
+    // Calculate transform values based on scroll progress and accessibility
+    const scale = prefersReducedMotion ? 1 : 1 - scrollProgress * scaleAmount
+
+    const rotateX =
+        prefersReducedMotion || !enable3D ? 0 : scrollProgress * rotationAmount
+
+    const translateY =
+        prefersReducedMotion || !enable3D ? 0 : scrollProgress * 10
+
+    // Alternating horizontal offset for visual interest
+    const offsetX = prefersReducedMotion
+        ? 0
+        : (index % 2 === 0 ? 1 : -1) * scrollProgress * offsetAmount
+
+    // Subtle rotation for depth
+    const rotate = prefersReducedMotion
+        ? 0
+        : (index % 2 === 0 ? 1 : -1) * scrollProgress * 1
+
+    // Dynamic shadow intensity
+    const shadowSize = 20 + scrollProgress * 40 * shadowIntensity
+    const shadowOpacity = Math.round(10 + scrollProgress * 20)
+
+    // Dynamic blur and brightness
+    const blur =
+        prefersReducedMotion || !enableBlur ? 0 : scrollProgress * blurAmount
+    const brightness = prefersReducedMotion
+        ? 1
+        : 1 - scrollProgress * brightnessReduction
+
+    // Compose transform string
+    const transform = `
+        translateX(${offsetX}px)
+        translateY(${translateY}px)
+        scale(${scale})
+        ${enable3D ? `perspective(1000px) rotateX(${rotateX}deg)` : ''}
+        rotate(${rotate}deg)
+    `
+
+    // Compose filter string
+    const filter = `blur(${blur}px) brightness(${brightness})`
 
     return (
         <div
@@ -103,17 +245,26 @@ export function StackingCard({
                 ref={cardRef}
                 className={cn(
                     'sticky w-full transition-all duration-300 ease-out',
-                    'shadow-lg'
+                    'will-change-transform',
+                    !prefersReducedMotion && 'shadow-lg'
                 )}
                 style={{
                     top: `${topOffset}px`,
-                    transform: `scale(${scale})`,
+                    transform,
                     transformOrigin: 'top center',
+                    boxShadow: prefersReducedMotion
+                        ? undefined
+                        : `0 ${shadowSize}px ${shadowSize * 2}px rgba(0, 0, 0, 0.${shadowOpacity})`,
+                    filter: prefersReducedMotion ? undefined : filter,
                 }}
             >
                 <div
                     className='transition-opacity duration-300'
-                    style={{ opacity: 0.95 + scrollProgress * 0.05 }}
+                    style={{
+                        opacity: prefersReducedMotion
+                            ? 1
+                            : 0.95 + scrollProgress * 0.05,
+                    }}
                 >
                     {children}
                 </div>

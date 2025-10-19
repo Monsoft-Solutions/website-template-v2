@@ -2,12 +2,18 @@
  * StackingFeatureCard Component
  *
  * A visually rich feature card designed for the stacking scroll effect.
- * Includes an image, icon, title, and description in an elegant layout.
+ * Includes an image, title, and description in an elegant layout with
+ * enhanced hover effects, gradient overlays, and smooth transitions.
+ *
+ * Features:
+ * - Gradient glow effect on hover
+ * - Dynamic border color transitions
+ * - Smooth image scaling
+ * - Optimized for stacking animations
  *
  * @example
  * ```tsx
  * <StackingFeatureCard
- *   icon={Zap}
  *   title="Fast Development"
  *   description="Ship faster with our tools"
  *   imageSrc="/images/feature-1.jpg"
@@ -41,8 +47,19 @@ export function StackingFeatureCard({
     return (
         <div
             className={cn(
-                'group border-border/50 bg-background relative overflow-hidden rounded-2xl border shadow-2xl',
-                'transition-all duration-300',
+                'group relative overflow-hidden rounded-2xl border shadow-2xl',
+                'border-border/50 bg-background',
+                'transition-all duration-500',
+                // Gradient overlay effect
+                'before:absolute before:inset-0 before:z-10 before:rounded-2xl',
+                'before:from-primary/10 before:bg-gradient-to-br before:via-transparent before:to-transparent',
+                'before:opacity-0 before:transition-opacity before:duration-500',
+                'hover:before:opacity-100',
+                // Border glow effect
+                'hover:border-primary/30',
+                'hover:shadow-[0_0_30px_rgba(0,0,0,0.15)]',
+                // Subtle lift on hover
+                'hover:scale-[1.02]',
                 className
             )}
         >
@@ -52,22 +69,22 @@ export function StackingFeatureCard({
                     src={imageSrc}
                     alt={imageAlt}
                     fill
-                    className='object-cover transition-transform duration-500 group-hover:scale-105'
-                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    className='object-cover transition-transform duration-700 ease-out group-hover:scale-110'
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 45vw'
                 />
-                {/* Gradient Overlay */}
-                <div className='to-background/80 absolute inset-0 bg-gradient-to-b from-transparent via-transparent' />
+                {/* Gradient Overlay - Enhanced */}
+                <div className='to-background/90 group-hover:to-background/95 absolute inset-0 bg-gradient-to-b from-transparent via-transparent transition-opacity duration-500' />
             </div>
 
             {/* Content Section - Bottom Half - Centered */}
-            <div className='relative flex flex-col items-center space-y-4 p-8 text-center md:p-10'>
+            <div className='relative z-20 flex flex-col items-center space-y-4 p-8 text-center md:p-10'>
                 {/* Title */}
-                <h3 className='text-foreground text-2xl font-bold tracking-tight md:text-3xl'>
+                <h3 className='text-foreground group-hover:text-primary text-2xl font-bold tracking-tight transition-colors duration-300 md:text-3xl'>
                     {title}
                 </h3>
 
                 {/* Description */}
-                <p className='text-muted-foreground text-base leading-relaxed md:text-lg'>
+                <p className='text-muted-foreground group-hover:text-foreground text-base leading-relaxed transition-colors duration-300 md:text-lg'>
                     {description}
                 </p>
             </div>

@@ -96,3 +96,11 @@ export type {
     ContactInfoSectionProps,
     ContactInfoItem,
 } from './contact-info-section.type'
+
+// Stacking types
+export type {
+    StackingVariant,
+    AnimationIntensity,
+    StackingCardConfig,
+} from './stacking.type'
+export { ANIMATION_PRESETS, STACKING_VARIANTS } from './stacking.type'
