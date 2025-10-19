@@ -32,6 +32,14 @@ A file-based blog post seeding system that automatically discovers, imports, and
 - Automatic slug generation
 - Deterministic color assignment
 
+✅ **Smart CTA Integration**
+
+- Intelligent CTA insertion based on content structure
+- Automatic placement before `##` or `###` headings after 40% content
+- Manual placement control with `<!-- CTA -->` or `<!-- CTA:type -->` markers
+- Multiple CTA variants (default, consultation, newsletter, etc.)
+- Seamless integration with blog post rendering
+
 ✅ **Development-Friendly**
 
 - Clears and re-seeds in development mode
@@ -84,7 +92,27 @@ export const post: Omit<
     metaDescription: 'SEO description (150-160 chars)',
     metaKeywords: 'keyword1, keyword2, keyword3',
     excerpt: 'Brief excerpt',
-    content: `Full markdown content...`,
+    content: `
+# Post Title
+
+**TL;DR**
+- Key point 1
+- Key point 2
+
+## Introduction
+Content before CTA...
+
+## Implementation Details
+<!-- CTA will be automatically inserted before this heading -->
+More content...
+
+## Advanced Usage
+<!-- CTA:consultation -->
+Alternatively, use explicit CTA markers for precise control.
+
+## Conclusion
+Final thoughts...
+    `,
     readingTime: 8,
     status: 'published',
     publishedAt: new Date('2025-10-15T10:00:00Z'),
@@ -105,6 +133,26 @@ export const categories = ['Development', 'Tutorial']
 ```typescript
 export const tags = ['Next.js', 'TypeScript', 'Tutorial']
 ```
+
+### CTA Integration in Content
+
+**Automatic CTA Placement:**
+
+- System automatically inserts CTAs before the next `##` heading after 40% content
+- Falls back to `###` headings if no `##` found
+- Smart placement preserves document structure and readability
+
+**Manual CTA Control:**
+
+- Use `<!-- CTA -->` for default CTA at specific location
+- Use `<!-- CTA:consultation -->` for specific CTA variant
+- Available variants: `default`, `consultation`, `newsletter`, `contact`, `keel-product`
+
+**CTA Content Structure:**
+
+- Each CTA includes heading, description, primary button, and optional secondary button
+- Fully responsive with shadcn/ui components
+- Consistent branding across all variants
 
 ### Image File Format
 
@@ -735,6 +783,7 @@ export const imageMetadata = {
 **Primary Docs:**
 
 - Blog Writing Guidelines: `docs/blog-writing-guidelines.md`
+- CTA System Documentation: `docs/CTA-SYSTEM.md`
 - Posts README: `packages/db/src/seed/posts/README.md`
 - Implementation Plan: `implementation-plans/branding/2025-10-19-website-content-rewrite-implementation-plan.md`
 
@@ -743,6 +792,7 @@ export const imageMetadata = {
 - Keel Brand Guidelines: `docs/brand/brand-guidelines.md`
 - SEO Content Expert: `.cursor/rules/seo-content-expert.mdc`
 - Database Schema: `packages/db/src/schema/blog/`
+- Blog CTA Content: `apps/web/lib/data/blog-cta-content.ts`
 
 ---
 

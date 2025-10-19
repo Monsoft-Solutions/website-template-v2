@@ -6,13 +6,17 @@ import { notFound } from 'next/navigation'
 import { cache } from 'react'
 
 import { ContainerLayout } from '@/components/ContainerLayout.component'
+import { BlogCTA } from '@/components/blog/BlogCTA.component'
 import { PostMarkdown } from '@/components/blog/PostMarkdown.component'
+import { RelatedPosts } from '@/components/blog/RelatedPosts.component'
 import { TableOfContents } from '@/components/blog/TableOfContents.component'
 import { Breadcrumbs } from '@/components/shared'
 import { getPublishedPostBySlug } from '@/lib/queries/blog/post-detail.query'
+import { getRelatedPosts } from '@/lib/queries/blog/related-posts.query'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
 import { extractTableOfContents } from '@/lib/utils/extract-toc.util'
+import { findCTAInsertionPoint } from '@/lib/utils/inject-cta-marker.util'
 
 type PageProps = {
     params: Promise<{ slug: string }>
@@ -61,6 +65,17 @@ export default async function BlogPostPage({ params }: PageProps) {
         : null
 
     const tableOfContents = extractTableOfContents(post.content)
+
+    // Fetch related posts based on categories and tags
+    const relatedPosts = await getRelatedPosts(
+        post.id,
+        post.categories.map((c) => c.id),
+        post.tags.map((t) => t.id),
+        3
+    )
+
+    // Split content at CTA insertion point (explicit marker or automatic 40% split)
+    const { beforeCTA, afterCTA, ctaId } = findCTAInsertionPoint(post.content)
 
     return (
         <ContainerLayout as='article' size='lg' className='py-16 lg:py-20'>
@@ -150,9 +165,22 @@ export default async function BlogPostPage({ params }: PageProps) {
                         </figure>
                     )}
 
+                    {/* Main content before CTA */}
                     <div className='prose prose-neutral dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-3xl prose-h1:leading-tight prose-h2:text-2xl prose-h2:leading-snug prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:leading-snug prose-h3:mt-10 prose-h3:mb-4 prose-p:leading-relaxed prose-p:mb-6 prose-li:mb-2 prose-blockquote:border-l-4 prose-blockquote:border-primary/20 prose-blockquote:bg-muted/30 prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-pre:bg-muted prose-pre:border prose-pre:border-border/40 max-w-none'>
-                        <PostMarkdown content={post.content} />
+                        <PostMarkdown content={beforeCTA} />
                     </div>
+
+                    {/* Inline CTA - appears at marker position or auto-inserted at ~40% of content */}
+                    {beforeCTA && (
+                        <BlogCTA variant='inline' ctaId={ctaId || 'default'} />
+                    )}
+
+                    {/* Content after CTA (if any) */}
+                    {afterCTA ? (
+                        <div className='prose prose-neutral dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-3xl prose-h1:leading-tight prose-h2:text-2xl prose-h2:leading-snug prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:leading-snug prose-h3:mt-10 prose-h3:mb-4 prose-p:leading-relaxed prose-p:mb-6 prose-li:mb-2 prose-blockquote:border-l-4 prose-blockquote:border-primary/20 prose-blockquote:bg-muted/30 prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-pre:bg-muted prose-pre:border prose-pre:border-border/40 max-w-none'>
+                            <PostMarkdown content={afterCTA} />
+                        </div>
+                    ) : null}
 
                     <ArticleSchema
                         type='BlogPosting'
@@ -203,6 +231,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                             </div>
                         </footer>
                     )}
+
+                    {/* Footer CTA - prominent section */}
+                    <BlogCTA variant='footer' ctaId='consultation' />
+
+                    {/* Related Posts Section */}
+                    <RelatedPosts posts={relatedPosts} />
                 </div>
 
                 {/* Sidebar: Sticky TOC */}

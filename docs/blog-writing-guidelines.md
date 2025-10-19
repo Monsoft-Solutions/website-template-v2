@@ -156,9 +156,10 @@ Example:
 
 **7. Call-to-Action**
 
-- One clear CTA at the end
-- Non-pushy, value-focused
-- Examples: "Try Keel", "Read the docs", "See more guides"
+- **Automatic CTA insertion** - System intelligently places CTAs before next `##` or `###` heading after 40% content
+- **Manual control** - Use `<!-- CTA -->` or `<!-- CTA:type -->` markers for precise placement
+- **Multiple variants** - Available types: `default`, `consultation`, `newsletter`, `contact`, `keel-product`
+- **Non-pushy, value-focused** - Contextually relevant to surrounding content
 
 ### Post Structure Template
 
@@ -200,9 +201,127 @@ Example:
 
 [Summary and next steps]
 
-**Want to build faster?** [Clear CTA linking to relevant page]
+<!-- CTA -->
 
+````
+
+---
+
+## CTA System Guidelines
+
+### Automatic CTA Placement (Recommended)
+
+**Default Behavior:**
+- CTAs automatically insert before the next `##` heading after 40% content
+- Falls back to `###` headings if no `##` found
+- Maintains document structure and reading flow
+- No action required from content writers
+
+**Example:**
+```markdown
+# Blog Post Title
+
+## Introduction
+Content here... (< 40% of post)
+
+## Problem Analysis
+More content...
+
+## Solution Implementation
+<!-- CTA automatically placed before this heading -->
+Implementation details...
+
+## Conclusion
+Final thoughts...
+````
+
+### Manual CTA Control
+
+**When to Use Manual Placement:**
+
+- Need CTA at specific contextual moment
+- Multiple CTAs in one post
+- Special CTA variant for specific content
+
+**Default CTA Marker:**
+
+```markdown
+## Introduction
+
+Content before CTA...
+
+<!-- CTA -->
+
+## Next Section
+
+Content after CTA...
 ```
+
+**Specific CTA Type:**
+
+```markdown
+## Tutorial Steps
+
+Step-by-step content...
+
+<!-- CTA:consultation -->
+
+## Advanced Configuration
+
+Advanced content...
+```
+
+### Available CTA Types
+
+| CTA Type       | Use Case          | Primary Action      | When to Use              |
+| -------------- | ----------------- | ------------------- | ------------------------ |
+| `default`      | General inquiry   | "Get Started"       | Most blog posts          |
+| `consultation` | Book consultation | "Book Consultation" | How-to guides, tutorials |
+| `newsletter`   | Email signup      | "Subscribe"         | Informational content    |
+| `contact`      | Direct contact    | "Get In Touch"      | Problem-solving posts    |
+| `keel-product` | Product promotion | "Get Keel"          | Product announcements    |
+
+### CTA Placement Strategy
+
+**By Post Type:**
+
+- **Tutorial Posts** → `consultation` CTA (offer implementation help)
+- **Product Announcements** → `keel-product` CTA (try the product)
+- **How-To Guides** → `default` or `consultation` CTA
+- **Industry Analysis** → `newsletter` CTA (stay informed)
+- **Case Studies** → `contact` CTA (discuss similar project)
+
+**Placement Timing:**
+
+- **Early placement** (20-30%) for engagement posts
+- **Mid placement** (40-50%) for most content (automatic)
+- **Late placement** (70%+) for educational content
+- **Multiple CTAs** for long-form content (3000+ words)
+
+### CTA Content Guidelines
+
+**Effective CTA Writing:**
+
+- **Context-aware** - Relates to surrounding content
+- **Value-focused** - Clear benefit to reader
+- **Action-oriented** - Strong verbs and specific outcomes
+- **Urgency without pressure** - Encourage action respectfully
+
+**Example Integration:**
+
+```markdown
+## Implementation Challenges
+
+Common issues developers face when implementing this solution include...
+
+<!-- CTA:consultation -->
+
+## Testing Your Implementation
+
+Once you've set up the basic structure...
+```
+
+The consultation CTA here offers help with the challenges just discussed, making it contextually relevant and valuable.
 
 ---
 
@@ -211,17 +330,20 @@ Example:
 ### Keyword Strategy
 
 **Primary Keyword:**
+
 - One focus keyword per post
 - Include in: title, first paragraph, conclusion
 - Use naturally, never force
 - Density: 0.5-2% (approximately)
 
 **Secondary Keywords:**
+
 - 2-3 related terms
 - Variations of primary keyword
 - Natural language alternatives
 
 **Long-tail Keywords:**
+
 - Specific phrases users search for
 - Question-based (How to, Why, What is)
 - Include in subheadings
@@ -246,21 +368,24 @@ For every blog post:
 
 [Action verb] + [primary keyword] + [specific benefit] + [proof/result]
 
-````
+```
 
 Examples:
+
 - "Learn how to set up Drizzle ORM in Next.js 15. Type-safe queries in 15 minutes. Includes production config."
 - "Compare Drizzle vs Prisma for production apps. Real benchmarks, migration guide, and why we switched."
 
 ### Internal Linking Strategy
 
 **Link to:**
+
 - Related blog posts (2-3 per post)
 - Relevant documentation pages
 - Service pages (when naturally relevant)
 - Homepage or about page (sparingly)
 
 **Anchor text best practices:**
+
 - Use descriptive phrases, not "click here"
 - Include keywords naturally
 - Make link purpose clear from context
@@ -272,18 +397,21 @@ Examples:
 ### Minimum Requirements
 
 **Length:**
+
 - Tutorial/Guide: 1,000-2,000 words
 - How-to: 800-1,500 words
 - Announcement: 400-800 words
 - Case Study: 600-1,000 words
 
 **Readability:**
+
 - Target: Grade 10 reading level or below (technical content may be higher)
 - Average sentence length: 15-20 words
 - Mix short and long sentences for rhythm
 - Use bullet points and lists for scannability
 
 **Code Quality:**
+
 - All code examples tested and functional
 - Include package versions when relevant
 - Show imports and dependencies
@@ -291,6 +419,7 @@ Examples:
 - Follow TypeScript best practices
 
 **Visual Content:**
+
 - At least one featured image per post
 - Screenshots for UI/configuration steps
 - Code screenshots only when syntax highlighting unavailable
@@ -326,32 +455,40 @@ Before publishing:
 # How to [Specific Task] with [Technology]
 
 **TL;DR**
+
 - What you'll build
 - What you'll learn
 - Time required
 
 ## What You'll Need
+
 - Prerequisites
 - Tools/packages
 
 ## Step 1: [First Step]
+
 [Explanation + code]
 
 ## Step 2: [Second Step]
+
 [Explanation + code]
 
 ## Testing It
+
 [Verification steps]
 
 ## Common Issues
+
 [Troubleshooting]
 
 ## Next Steps
+
 [What to learn next]
 
 ## Conclusion
+
 [Summary + CTA]
-````
+```
 
 **Example Topics:**
 
@@ -954,6 +1091,8 @@ _Italic_ for emphasis (use sparingly)
 ### Internal
 
 - **Keel Brand Guidelines:** `/docs/brand/brand-guidelines.md`
+- **CTA System Documentation:** `/docs/CTA-SYSTEM.md`
+- **Blog Post Seeding System:** `/docs/BLOG-POST-SEEDING-SYSTEM.md`
 - **SEO Best Practices:** `.cursor/rules/seo-content-expert.mdc`
 - **TypeScript Standards:** `.cursor/rules/typescript.mdc`
 - **Site Config:** `apps/web/lib/data/site-config.ts`

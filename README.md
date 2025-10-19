@@ -66,6 +66,7 @@ This is a **professional website template** designed to help agencies and develo
     - Author management
     - Featured images (Vercel Blob integration)
     - Markdown/MDX support with syntax highlighting
+    - **Smart CTA insertion** - Intelligent placement before headings or manual control with markers
     - Infinite scroll pagination
     - Blog post slugs and SEO-friendly URLs
     - Related posts and category filtering
@@ -385,6 +386,9 @@ website-template-v2/
 ├── .cursor/                         # Cursor AI configuration
 │   └── rules/                      # 13 specialized AI agents
 ├── docs/                           # Documentation
+│   ├── CTA-SYSTEM.md              # Smart CTA insertion system
+│   ├── BLOG-POST-SEEDING-SYSTEM.md # Blog post seeding documentation
+│   └── blog-writing-guidelines.md  # Content creation guidelines
 ├── implementation-plans/            # Feature implementation plans
 ├── pr-reviews/                     # PR review documentation
 ├── .env                            # Environment variables

@@ -42,6 +42,12 @@ export async function PostMarkdown({
     content,
     className = '',
 }: PostMarkdownProps) {
+    const normalizedContent = content?.trim()
+
+    if (!normalizedContent) {
+        return null
+    }
+
     const mdxOptions: MDXRemoteProps['options'] = {
         mdxOptions: {
             remarkPlugins: [remarkGfm],
@@ -56,7 +62,7 @@ export async function PostMarkdown({
     return (
         <div className={className}>
             <MDXRemote
-                source={content}
+                source={normalizedContent}
                 options={mdxOptions}
                 components={getMDXComponents()}
             />
