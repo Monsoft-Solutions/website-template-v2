@@ -57,7 +57,7 @@ export function StackingFeatureCard({
                 'hover:before:opacity-100',
                 // Border glow effect
                 'hover:border-primary/30',
-                'hover:shadow-[0_0_30px_rgba(0,0,0,0.15)]',
+                'hover:shadow-xl',
                 // Subtle lift on hover
                 'hover:scale-[1.02]',
                 className

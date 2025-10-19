@@ -31,8 +31,6 @@ export type StackingCardConfig = {
     enable3D?: boolean
     /** Horizontal offset amount in pixels (default: 10) */
     offsetAmount?: number
-    /** Shadow intensity multiplier (default: 1) */
-    shadowIntensity?: number
     /** Brightness reduction amount (0-1, default: 0.2) */
     brightnessReduction?: number
 }
@@ -47,7 +45,6 @@ export const ANIMATION_PRESETS: Record<AnimationIntensity, StackingCardConfig> =
             rotationAmount: 1,
             blurAmount: 2,
             offsetAmount: 5,
-            shadowIntensity: 0.5,
             brightnessReduction: 0.1,
         },
         normal: {
@@ -55,7 +52,6 @@ export const ANIMATION_PRESETS: Record<AnimationIntensity, StackingCardConfig> =
             rotationAmount: 2,
             blurAmount: 4,
             offsetAmount: 10,
-            shadowIntensity: 1,
             brightnessReduction: 0.2,
         },
         dramatic: {
@@ -63,7 +59,6 @@ export const ANIMATION_PRESETS: Record<AnimationIntensity, StackingCardConfig> =
             rotationAmount: 4,
             blurAmount: 6,
             offsetAmount: 20,
-            shadowIntensity: 1.5,
             brightnessReduction: 0.3,
         },
     }

@@ -91,7 +91,6 @@ export function StackingCard({
         enableBlur = true,
         enable3D = true,
         offsetAmount = 10,
-        shadowIntensity = 1,
         brightnessReduction = 0.2,
     } = config
 
@@ -208,10 +207,6 @@ export function StackingCard({
         ? 0
         : (index % 2 === 0 ? 1 : -1) * scrollProgress * 1
 
-    // Dynamic shadow intensity
-    const shadowSize = 20 + scrollProgress * 40 * shadowIntensity
-    const shadowOpacity = Math.round(10 + scrollProgress * 20)
-
     // Dynamic blur and brightness
     const blur =
         prefersReducedMotion || !enableBlur ? 0 : scrollProgress * blurAmount
@@ -244,17 +239,18 @@ export function StackingCard({
             <div
                 ref={cardRef}
                 className={cn(
-                    'sticky w-full transition-all duration-300 ease-out',
-                    'will-change-transform',
-                    !prefersReducedMotion && 'shadow-lg'
+                    'sticky w-full transition-all duration-300 ease-out will-change-transform',
+                    !prefersReducedMotion &&
+                        (scrollProgress < 0.33
+                            ? 'shadow-md'
+                            : scrollProgress < 0.66
+                              ? 'shadow-lg'
+                              : 'shadow-xl')
                 )}
                 style={{
                     top: `${topOffset}px`,
                     transform,
                     transformOrigin: 'top center',
-                    boxShadow: prefersReducedMotion
-                        ? undefined
-                        : `0 ${shadowSize}px ${shadowSize * 2}px rgba(0, 0, 0, 0.${shadowOpacity})`,
                     filter: prefersReducedMotion ? undefined : filter,
                 }}
             >
