@@ -126,7 +126,7 @@ export const websiteModernizationService: Service = {
         {
             url: '/images/services/web-development-workspace.jpg',
             alt: 'Content migration process from WordPress to Next.js',
-            caption: 'Seamless content migration process',
+            caption: 'Complete content migration process',
         },
         {
             url: '/images/services/web-development-team.jpg',

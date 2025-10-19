@@ -11,7 +11,7 @@ export const seoOptimizationService: Service = {
     slug: 'seo-optimization',
     title: 'SEO Optimization',
     excerpt:
-        'Complete SEO optimization built into every Keel website. Technical SEO, structured data, blog system, and analytics. Everything you need to rank higher on Google.',
+        'Complete SEO optimization built into every Keel website. Technical SEO, structured data, blog system, analytics. Rank higher on Google.',
     description:
         'Keel includes enterprise-level SEO features out of the box. Technical SEO best practices, Schema.org structured data, automatic sitemaps, and a complete blog system for content marketing. Analytics integration tracks your success. No plugins or add-ons needed.',
     category: 'marketing',

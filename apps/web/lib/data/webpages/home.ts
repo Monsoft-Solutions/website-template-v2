@@ -6,17 +6,12 @@
  */
 import {
     ArrowRight,
-    Award,
     Blocks,
-    Clock,
     Eye,
-    Globe,
     LineChart,
     Palette,
     Search,
     Shield,
-    Target,
-    Users,
     Zap,
 } from 'lucide-react'
 
@@ -36,7 +31,7 @@ export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
     description:
         'Production-ready code with Next.js 15 and React 19. Built-in blog, analytics, SEO, and shadcn/ui components. Type-safe from database to UI.',
     primaryButton: {
-        text: 'Start Building',
+        text: 'Start building',
         href: '#key-features',
         variant: 'default',
         icon: ArrowRight,
@@ -127,59 +122,11 @@ export const keyFeaturesData: Feature[] = [
 ]
 
 /**
- * Features/Services Section Content (Legacy - kept for reference)
+ * Features/Services Section Content (Legacy - REMOVED)
  *
- * Features with links to relevant service pages
+ * This legacy section contained prohibited brand voice terms and has been removed.
+ * Use keyFeaturesData instead for brand-compliant feature content.
  */
-export const featuresData: Feature[] = [
-    {
-        icon: Zap,
-        title: 'Fast & Reliable',
-        description:
-            'Lightning-fast performance and 99.9% uptime guarantee. We ensure your business never skips a beat.',
-        href: '/services/web-development',
-        ariaLabel: 'Learn more about our web development services',
-    },
-    {
-        icon: Shield,
-        title: 'Secure & Protected',
-        description:
-            'Enterprise-grade security with end-to-end encryption. Your data is always safe and protected.',
-        href: '/services/web-development',
-        ariaLabel: 'Learn more about our secure web development',
-    },
-    {
-        icon: Users,
-        title: 'Expert Support',
-        description:
-            '24/7 dedicated support team ready to help. Get answers from real experts, not bots.',
-        ariaLabel: 'Learn more about our expert support team',
-    },
-    {
-        icon: Target,
-        title: 'Results-Driven',
-        description:
-            'Proven strategies that deliver measurable results. We focus on what matters most to your business.',
-        href: '/services/digital-marketing',
-        ariaLabel: 'Learn more about our digital marketing services',
-    },
-    {
-        icon: Globe,
-        title: 'Global Reach',
-        description:
-            'Serving clients worldwide with local expertise. Expand your business across borders seamlessly.',
-        href: '/services/digital-marketing',
-        ariaLabel: 'Learn more about our global marketing reach',
-    },
-    {
-        icon: Award,
-        title: 'Award-Winning',
-        description:
-            'Recognized for excellence and innovation. Our track record speaks for itself.',
-        href: '/services/ui-ux-design',
-        ariaLabel: 'Learn more about our award-winning design services',
-    },
-]
 
 /**
  * Tech Stack Section Content
@@ -201,22 +148,12 @@ export const techStackData: Omit<AboutPreviewSectionProps, 'id'> = {
 }
 
 /**
- * About Preview Section Content (Legacy - kept for reference)
+ * About Preview Section Content (Legacy - REMOVED)
+ *
+ * This legacy section contained prohibited brand voice terms ("Pioneering Excellence",
+ * "revolutionize", "cutting-edge", "unwavering commitment") and has been removed.
+ * Use techStackData instead for brand-compliant about preview content.
  */
-export const aboutPreviewData: Omit<AboutPreviewSectionProps, 'id'> = {
-    badge: 'About Us',
-    title: 'Pioneering Excellence Since 2010',
-    description:
-        "We're more than just a service provider - we're your strategic partner in growth. Founded with a vision to revolutionize the industry, our team brings together decades of combined experience, cutting-edge technology, and an unwavering commitment to your success. Every project we undertake is driven by innovation, integrity, and a passion for delivering exceptional results.",
-    imageSrc: '/images/about-preview.jpg',
-    imageAlt: 'Our team collaborating in a modern workspace',
-    imageWidth: 800,
-    imageHeight: 800,
-    buttonText: 'Learn Our Story',
-    buttonHref: '/about',
-    imagePosition: 'left',
-    variant: 'muted',
-}
 
 /**
  * Testimonials Section Content
@@ -249,22 +186,11 @@ export const testimonialsData: Testimonial[] = [
 ]
 
 /**
- * Additional Features for Extended Layout (Optional)
+ * Additional Features for Extended Layout (Legacy - REMOVED)
+ *
+ * This legacy section contained prohibited brand voice terms ("Cutting-Edge Technology")
+ * and generic marketing claims. Has been removed for brand compliance.
  */
-export const extendedFeaturesData: Feature[] = [
-    {
-        icon: Clock,
-        title: 'Time-Saving Solutions',
-        description:
-            'Automate repetitive tasks and focus on what really matters. Increase productivity by up to 40%.',
-    },
-    {
-        icon: Zap,
-        title: 'Cutting-Edge Technology',
-        description:
-            "Stay ahead with the latest innovations. We continuously evolve to meet tomorrow's challenges.",
-    },
-]
 
 /**
  * Final CTA Section Content (for end of home page)
@@ -274,7 +200,7 @@ export const finalCTAData = {
     description:
         'Start with production-ready code. Full documentation included. Build your first site this week.',
     primaryButton: {
-        text: 'Start Building',
+        text: 'Start building',
         href: '/contact',
     },
     secondaryButton: {
