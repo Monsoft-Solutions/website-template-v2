@@ -7,19 +7,14 @@
 import { OrganizationSchema, WebPageSchema } from '@workspace/seo/react'
 import { ArrowRight } from 'lucide-react'
 
-import {
-    AboutHeroSection,
-    MissionSection,
-    StorySection,
-    TeamSection,
-} from '@/components/sections/about'
+import { AboutHeroSection, MissionSection } from '@/components/sections/about'
+import { StackingFeaturesSection } from '@/components/sections/home'
 import { Breadcrumbs, CTASection, ContentWrapper } from '@/components/shared'
 import {
     aboutCTAData,
     aboutHeroData,
     missionData,
-    storyData,
-    teamSectionData,
+    ourStoryData,
 } from '@/lib/data/webpages/about'
 import { seoConfig } from '@/lib/seo-config'
 import { toNextMetadata } from '@/lib/seo/metadata'
@@ -28,8 +23,8 @@ import { toNextMetadata } from '@/lib/seo/metadata'
  * About Page Metadata
  *
  * Implements SEO best practices for the About page including:
- * - Unique, descriptive title
- * - Compelling meta description
+ * - Unique, descriptive title targeting business owners
+ * - Compelling meta description with primary keywords
  * - Open Graph tags for social sharing
  * - Twitter Card configuration
  * - Canonical URL
@@ -38,16 +33,16 @@ export const metadata = toNextMetadata(seoConfig, {
     // Canonical URL for about page
     canonical: '/about',
 
-    // Page-specific metadata
-    title: 'About Us - Learn Our Story & Values',
+    // Page-specific metadata optimized for business owners
+    title: 'About Us - Professional Website Solutions for Your Business',
     description:
-        'Discover our company story, mission, and the talented team behind our success. Learn about our values and commitment to excellence.',
+        'Learn how we help business owners launch modern, professional websites in days. Built with Next.js, includes SEO, analytics, blog system, and everything your business needs to succeed online.',
 
     // Open Graph tags for social sharing
     openGraph: {
-        title: 'About Us - Our Mission & Team',
+        title: 'Professional Website Development for Business Owners',
         description:
-            'Learn about our company story, mission, vision, and the talented team driving innovation.',
+            'Fast, modern websites for businesses. Built with Next.js 15, includes blog, analytics, SEO optimization, and business-ready features. Launch in days, not months.',
         url: `${seoConfig.siteUrl}/about`,
         type: 'website',
         siteName: seoConfig.siteName,
@@ -56,7 +51,7 @@ export const metadata = toNextMetadata(seoConfig, {
                 url: `${seoConfig.siteUrl}/og-about.jpg`,
                 width: 1200,
                 height: 630,
-                alt: 'About us - our team and office',
+                alt: 'Modern professional website solutions for businesses',
             },
         ],
     },
@@ -64,9 +59,9 @@ export const metadata = toNextMetadata(seoConfig, {
     // Twitter Card configuration
     twitter: {
         card: 'summary_large_image',
-        title: 'About Us - Learn Our Story & Values',
+        title: 'Professional Website Solutions for Your Business',
         description:
-            'Discover our company story, mission, and the talented team behind our success.',
+            'Launch your business website in days with modern technology, built-in SEO, analytics, and everything you need to succeed online.',
         images: [`${seoConfig.siteUrl}/og-about.jpg`],
     },
 })
@@ -110,11 +105,16 @@ export default function AboutPage() {
                 {/* Mission/Vision/Values Section */}
                 <MissionSection id='mission-values' {...missionData} />
 
-                {/* Company Story Section */}
-                <StorySection id='company-story' {...storyData} />
-
-                {/* Team Section */}
-                <TeamSection id='team' {...teamSectionData} />
+                {/* Our Story - Stacking Scroll Effect */}
+                <StackingFeaturesSection
+                    id='our-story'
+                    title='Our Story'
+                    description='How we built a template that works for everyone'
+                    features={ourStoryData}
+                    variant='muted'
+                    animationIntensity='subtle'
+                    stackingVariant='compact'
+                />
 
                 {/* Final CTA Section */}
                 <CTASection
@@ -135,6 +135,7 @@ export default function AboutPage() {
                     }}
                     variant={aboutCTAData.variant}
                     align='center'
+                    className='h-dvh items-center'
                 />
             </main>
         </>

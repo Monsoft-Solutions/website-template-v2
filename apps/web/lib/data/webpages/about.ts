@@ -4,12 +4,19 @@
  * Data structures and content for the about page sections.
  * All content is centralized here for easy maintenance and localization.
  */
-import { Compass, Heart, Target } from 'lucide-react'
+import {
+    Briefcase,
+    Code,
+    Compass,
+    Heart,
+    Lightbulb,
+    Target,
+} from 'lucide-react'
 
 import type {
     AboutHeroSectionProps,
+    Feature,
     MissionSectionProps,
-    StorySectionProps,
     TeamMember,
     TeamSectionProps,
 } from '@/lib/types/sections'
@@ -18,13 +25,13 @@ import type {
  * About Hero Section Content
  */
 export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
-    badge: 'Our Story',
-    headline: 'Pioneering Excellence Since 2010',
+    badge: 'Professional Website Solutions',
+    headline: 'Launch Your Business Website in Days, Not Months',
     description:
-        "We're more than just a service provider - we're your strategic partner in growth. Founded with a vision to revolutionize the industry, our team brings together decades of combined experience, cutting-edge technology, and an unwavering commitment to your success.",
+        'Your business deserves a modern, professional website that works as hard as you do. We help business owners get online fast with websites that look great, perform flawlessly, and include everything you need—from built-in analytics and SEO optimization to a full-featured blog system.',
     image: {
         src: '/images/about-hero.jpg',
-        alt: 'Our team collaborating in a modern workspace',
+        alt: 'Modern professional business website on multiple devices',
         width: 1200,
         height: 800,
         priority: true,
@@ -35,58 +42,75 @@ export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
 
 /**
  * Mission, Vision, and Values Section Content
+ * Now focused on benefits for business owners
  */
 export const missionData: Omit<MissionSectionProps, 'id'> = {
     items: [
         {
             icon: Target,
-            title: 'Our Mission',
+            title: 'Fast Deployment',
             description:
-                'To deliver innovative solutions that drive measurable growth and lasting value for our clients, partners, and communities.',
-            ariaLabel: 'Learn about our mission',
+                'Get your business online in days, not months. Our proven template means no starting from scratch—just customize your content, add your branding, and launch. Time is money, and we help you save both.',
+            ariaLabel: 'Learn about fast website deployment',
         },
         {
             icon: Compass,
-            title: 'Our Vision',
+            title: 'Modern Technology',
             description:
-                'To be the most trusted and innovative leader in our industry, recognized for excellence, integrity, and positive impact.',
-            ariaLabel: 'Learn about our vision',
+                "Built with Next.js 15 and React 19, your website stays future-proof and lightning-fast. We handle the technical complexity so you can focus on running your business. Updates and improvements come built-in—you're never stuck with outdated tech.",
+            ariaLabel: 'Learn about modern web technology',
         },
         {
             icon: Heart,
-            title: 'Our Values',
+            title: 'Business-Ready Features',
             description:
-                'Excellence, Integrity, Innovation, Collaboration, and Customer-First approach guide everything we do.',
-            ariaLabel: 'Learn about our values',
+                'Everything your business needs is already included: SEO optimization to help customers find you, built-in analytics to track your success, a professional blog to share your expertise, and contact forms that actually work. No extra plugins or monthly subscriptions.',
+            ariaLabel: 'Learn about business website features',
         },
     ],
 }
 
 /**
- * Company Story Section Content
+ * Our Story - Stacking Scroll Effect
+ * Visual narrative that relates to both business owners and developers
  */
-export const storyData: Omit<StorySectionProps, 'id'> = {
-    badge: 'Our Journey',
-    headline: 'How It All Started',
-    content: `In 2010, our founders recognized a significant gap in the market. They saw businesses struggling with outdated solutions that didn't meet their evolving needs. With a passion for innovation and a commitment to excellence, they founded our company with a simple mission: to create solutions that truly make a difference.
-
-Over the past decade, we've grown from a small startup to a trusted partner for hundreds of organizations worldwide. We've helped our clients achieve remarkable results, from reducing operational costs by up to 40% to increasing productivity and scaling their operations globally.
-
-Our success is built on a foundation of continuous learning, customer-centric innovation, and a talented team that's passionate about solving complex problems. We've invested heavily in research and development, building cutting-edge technology that delivers real value.
-
-Today, we're prouder than ever of what we've accomplished and the impact we've had on our clients' businesses. But we're just getting started. We're committed to pushing boundaries, embracing new technologies, and continuing to be the partner our clients can count on for their most important challenges.`,
-    image: {
-        src: '/images/about-story.jpg',
-        alt: 'Our office and team workspace',
-        width: 800,
-        height: 600,
-        aspectRatio: 'aspect-[4/3]',
+export const ourStoryData: Feature[] = [
+    {
+        icon: Lightbulb,
+        title: 'The Problem We Solved',
+        description:
+            'We were building the same website foundations repeatedly. Every client project meant recreating the blog system, analytics setup, SEO structure, and contact forms from scratch. It was time-consuming and expensive.',
+        imageSrc: '/images/about-story.jpg',
+        imageAlt: 'Repetitive website development process',
     },
-    imagePosition: 'right',
-}
+    {
+        icon: Briefcase,
+        title: 'For Business Owners',
+        description:
+            "Get your business online in days with a professional website that includes everything: blog, analytics, SEO, contact forms. No compromise on quality, no paying for work that's been done before.",
+        imageSrc: '/images/services/web-development-workspace.jpg',
+        imageAlt: 'Professional business website on multiple devices',
+    },
+    {
+        icon: Code,
+        title: 'For Developers',
+        description:
+            'Start with production-ready code following best practices. Monorepo architecture, TypeScript everywhere, shadcn/ui components, and comprehensive documentation. Build client projects faster or learn modern web development patterns.',
+        imageSrc: '/images/about-developer.jpg',
+        imageAlt: 'Modern development environment with TypeScript and React',
+    },
+    {
+        icon: Target,
+        title: 'Built for Real Projects',
+        description:
+            "This isn't a side project—it's production-tested code we use for client work. Next.js 15, React 19, Drizzle ORM, and modern tooling that delivers fast, reliable websites. Constantly improved based on real-world feedback.",
+        imageSrc: '/images/services/seo-optimization.jpg',
+        imageAlt: 'Production website with analytics and performance metrics',
+    },
+]
 
 /**
- * Team Members Data
+ * Team Members Data (preserved for future use)
  */
 export const teamMembers: TeamMember[] = [
     {
@@ -152,7 +176,7 @@ export const teamMembers: TeamMember[] = [
 ]
 
 /**
- * Team Section Props
+ * Team Section Props (preserved for future use)
  */
 export const teamSectionData: Omit<TeamSectionProps, 'id'> = {
     badge: 'Meet the Team',
@@ -166,16 +190,16 @@ export const teamSectionData: Omit<TeamSectionProps, 'id'> = {
  * Final CTA Section Content (for end of about page)
  */
 export const aboutCTAData = {
-    title: 'Ready to Get Started?',
+    title: 'Ready to Launch Your Website?',
     description:
-        "Ready to partner with us? We'd love to discuss how we can help drive your success.",
+        "Let's get your business online with a professional website that performs. Reach out today and we'll show you how fast we can get you up and running.",
     primaryButton: {
-        text: 'Contact Us Today',
+        text: 'Start Your Project',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'Explore Our Services',
-        href: '/services',
+        text: 'View Features',
+        href: '/#features',
     },
     variant: 'accent' as const,
 }

@@ -25,6 +25,8 @@ import type { CTASectionProps } from '@/lib/types/sections/cta-section.type'
 import { ContentWrapper } from './ContentWrapper.component'
 import { SectionContainer } from './SectionContainer.component'
 
+const containerStyles = 'flex items-center'
+
 /**
  * Maps variant to background classes
  */
@@ -40,7 +42,7 @@ const variantStyles = {
  */
 const alignmentStyles = {
     left: 'text-left items-start',
-    center: 'text-center items-center',
+    center: 'text-center items-center flex flex-col justify-center',
     right: 'text-right items-end',
 }
 
@@ -72,7 +74,12 @@ export function CTASection({
             id={id}
             variant={variant === 'primary' ? 'default' : variant}
             noPadding
-            className={cn(variantStyles[variant], sizeStyles[size], className)}
+            className={cn(
+                variantStyles[variant],
+                sizeStyles[size],
+                containerStyles,
+                className
+            )}
         >
             <ContentWrapper size='md'>
                 <div
