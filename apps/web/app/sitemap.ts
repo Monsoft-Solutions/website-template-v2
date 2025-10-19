@@ -13,6 +13,11 @@ import type { SitemapRoute } from '@workspace/seo'
 import type { MetadataRoute } from 'next'
 
 import { seoDefaults } from '@/lib/data/site-config'
+import {
+    getActiveCategorySlugs,
+    getActiveTagSlugs,
+    getPublishedPostSlugs,
+} from '@/lib/queries/blog/sitemap.query'
 import { getPublishedServices } from '@/lib/queries/get-services.query'
 
 /**
@@ -25,38 +30,86 @@ function getBaseUrl(): string {
 
 /**
  * Create dynamic route configurations
- * TODO: Expand this as more dynamic routes are added (blog posts, products, etc.)
  */
 async function createDynamicRoutes(): Promise<SitemapRoute[]> {
     const dynamicRoutes: SitemapRoute[] = []
 
-    // Example: Blog posts route (uncomment when blog is implemented)
-    // dynamicRoutes.push({
-    //   path: '/blog',
-    //   getEntries: async () => {
-    //     const posts = await getBlogPosts() // Implement this function
-    //     return posts.map(post => ({
-    //       url: `/blog/${post.slug}`,
-    //       lastModified: post.updatedAt,
-    //       changeFrequency: 'weekly' as const,
-    //       priority: 0.7
-    //     }))
-    //   }
-    // })
+    // Blog main listing page
+    dynamicRoutes.push({
+        path: '/blog',
+        getEntries: async () => {
+            return [
+                {
+                    url: '/blog',
+                    lastModified: new Date().toISOString(),
+                    changeFrequency: 'daily',
+                    priority: 0.9,
+                },
+            ]
+        },
+    })
 
-    // Example: Product pages route (uncomment when products are implemented)
-    // dynamicRoutes.push({
-    //   path: '/products',
-    //   getEntries: async () => {
-    //     const products = await getProducts() // Implement this function
-    //     return products.map(product => ({
-    //       url: `/products/${product.slug}`,
-    //       lastModified: product.updatedAt,
-    //       changeFrequency: 'daily' as const,
-    //       priority: 0.8
-    //     }))
-    //   }
-    // })
+    // Blog post detail pages
+    dynamicRoutes.push({
+        path: '/blog/posts',
+        getEntries: async () => {
+            const posts = await getPublishedPostSlugs()
+            return posts.map((post) => ({
+                url: `/blog/${post.slug}`,
+                lastModified: post.updatedAt.toISOString(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.7,
+            }))
+        },
+    })
+
+    // Blog categories listing and detail pages
+    dynamicRoutes.push({
+        path: '/blog/categories',
+        getEntries: async () => {
+            const categories = await getActiveCategorySlugs()
+            const now = new Date().toISOString()
+
+            return [
+                {
+                    url: '/blog/categories',
+                    lastModified: now,
+                    changeFrequency: 'weekly',
+                    priority: 0.8,
+                },
+                ...categories.map((slug) => ({
+                    url: `/blog/categories/${slug}`,
+                    lastModified: now,
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.7,
+                })),
+            ]
+        },
+    })
+
+    // Blog tags listing and detail pages
+    dynamicRoutes.push({
+        path: '/blog/tags',
+        getEntries: async () => {
+            const tags = await getActiveTagSlugs()
+            const now = new Date().toISOString()
+
+            return [
+                {
+                    url: '/blog/tags',
+                    lastModified: now,
+                    changeFrequency: 'weekly',
+                    priority: 0.8,
+                },
+                ...tags.map((slug) => ({
+                    url: `/blog/tags/${slug}`,
+                    lastModified: now,
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.6,
+                })),
+            ]
+        },
+    })
 
     // Services listing and detail pages
     dynamicRoutes.push({
