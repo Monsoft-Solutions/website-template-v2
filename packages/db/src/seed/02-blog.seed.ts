@@ -2,6 +2,8 @@ import { glob } from 'glob'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { eq } from 'drizzle-orm'
+
 import { db } from '../client'
 import { env } from '../env'
 import {
@@ -129,32 +131,48 @@ export async function run({ db }: RunProps) {
         postModule.tags.forEach((tag) => allTags.add(tag))
     }
 
-    // Insert images first (they need to exist before posts can reference them)
+    // Process images first - always populate imageMap regardless of insert/conflict
     const imageMap = new Map<string, string>() // Maps base filename to image ID
 
-    if (
-        imageFiles.length > 0 &&
-        (shouldClearData || (await db.select().from(images)).length === 0)
-    ) {
+    if (imageFiles.length > 0) {
+        console.log('🖼️  Processing images and populating imageMap...')
+
         for (const file of imageFiles) {
             const imageModule = (await import(
                 path.resolve(postsDir, file)
             )) as ImageModule
 
-            const [insertedImage] = await db
+            // Always attempt to insert the image with conflict handling
+            // This ensures the image exists in the database
+            await db
                 .insert(images)
                 .values(imageModule.image)
-                .returning()
+                .onConflictDoNothing()
 
-            if (insertedImage) {
+            // Always query the database to get the image ID by URL
+            // This ensures imageMap is populated whether the insert was new or conflicted
+            const [existingImage] = await db
+                .select()
+                .from(images)
+                .where(eq(images.url, imageModule.image.url))
+
+            if (existingImage) {
                 // Extract base filename (e.g., "01-setting-up-nextjs-15-with-typescript")
                 const baseFilename = file
                     .replace('.image.ts', '')
                     .replace('.image.js', '')
-                imageMap.set(baseFilename, insertedImage.id)
-                console.log(`✅ Inserted image: ${insertedImage.title}`)
+                imageMap.set(baseFilename, existingImage.id)
+                console.log(
+                    `✅ Processed image: ${existingImage.title} (${baseFilename})`
+                )
+            } else {
+                console.warn(
+                    `⚠️  Image not found in database after insert: ${file}`
+                )
             }
         }
+
+        console.log(`✅ ImageMap populated with ${imageMap.size} entries`)
     }
 
     // Insert categories

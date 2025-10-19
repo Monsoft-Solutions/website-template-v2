@@ -1,6 +1,8 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 @import 'tw-animate-css';
+@import 'highlight.js/styles/github.css';
+
+@plugin '@tailwindcss/typography';
 
 @source '../../../apps/**/*.{ts,tsx}';
 @source '../../../components/**/*.{ts,tsx}';
@@ -164,9 +166,6 @@
         @apply bg-background text-foreground;
     }
 }
-
-/* Import highlight.js GitHub theme - only loads in light mode */
-@import 'highlight.js/styles/github.css';
 
 /* Override with dark theme colors when in dark mode */
 .dark .hljs {

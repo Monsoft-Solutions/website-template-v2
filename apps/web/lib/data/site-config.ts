@@ -108,17 +108,17 @@ export const siteConfig: SiteConfig = {
     social: [
         {
             platform: 'github',
-            url: 'https://github.com/example',
+            url: 'https://github.com/Monsoft-Solutions/website-template-v2',
             label: 'GitHub',
         },
         {
             platform: 'twitter',
-            url: 'https://twitter.com/example',
+            url: 'https://twitter.com/monsoft_labs',
             label: 'Twitter/X',
         },
         {
             platform: 'linkedin',
-            url: 'https://linkedin.com/company/example',
+            url: 'https://www.linkedin.com/company/monsoft-solutions/',
             label: 'LinkedIn',
         },
     ],

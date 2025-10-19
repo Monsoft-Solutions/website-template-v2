@@ -205,7 +205,7 @@ export const finalCTAData = {
     },
     secondaryButton: {
         text: 'View Documentation',
-        href: 'https://github.com/your-repo',
+        href: 'https://github.com/Monsoft-Solutions/website-template-v2',
     },
     variant: 'accent' as const,
 }
