@@ -7,9 +7,13 @@
 import {
     ArrowRight,
     Award,
+    Blocks,
     Clock,
+    Eye,
     Globe,
-    Phone,
+    LineChart,
+    Palette,
+    Search,
     Shield,
     Target,
     Users,
@@ -27,29 +31,29 @@ import type {
  * Hero Section Content
  */
 export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
-    subheadline: 'Your Trusted Partner',
-    headline: 'Building the Future Together',
+    subheadline: 'Next.js 15 • React 19 • TypeScript',
+    headline: 'Ship Professional Websites in Hours, Not Weeks',
     description:
-        'We deliver innovative solutions that drive growth and success. Our team of experts is dedicated to transforming your vision into reality with cutting-edge technology and exceptional service.',
+        'Production-ready website template with everything you need: built-in blog, analytics, SEO optimization, shadcn/ui components, and full TypeScript support. Perfect for developers and agencies.',
     primaryButton: {
-        text: 'Get Started',
-        href: '/contact',
+        text: 'View Documentation',
+        href: '#key-features',
         variant: 'default',
         icon: ArrowRight,
         iconPosition: 'right',
-        ariaLabel: 'Get started with our services',
+        ariaLabel: 'View template documentation and features',
     },
     secondaryButton: {
-        text: 'Call Us Now',
-        href: 'tel:+1234567890',
+        text: 'See Demo',
+        href: '/about',
         variant: 'outline',
-        icon: Phone,
+        icon: Eye,
         iconPosition: 'left',
-        ariaLabel: 'Call us at +1 (234) 567-890',
+        ariaLabel: 'See template demo pages',
     },
     image: {
         src: '/images/hero.jpg',
-        alt: 'Modern office workspace with collaborative team',
+        alt: 'Modern website template showcase with Next.js and React',
         width: 1200,
         height: 800,
         priority: true,
@@ -61,7 +65,57 @@ export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
 }
 
 /**
- * Features/Services Section Content
+ * Key Features Section Content
+ *
+ * Highlights template capabilities and features
+ */
+export const keyFeaturesData: Feature[] = [
+    {
+        icon: Zap,
+        title: 'Lightning Fast Development',
+        description:
+            'Start building immediately with pre-built components, layouts, and sections. No boilerplate setup—just customize and deploy.',
+        ariaLabel: 'Learn more about fast development features',
+    },
+    {
+        icon: Blocks,
+        title: 'Complete Blog System',
+        description:
+            'Full-featured blog with PostgreSQL, categories, tags, markdown support, and Vercel Blob image storage. Production-ready out of the box.',
+        ariaLabel: 'Learn more about the blog system',
+    },
+    {
+        icon: Shield,
+        title: 'Enterprise-Grade Code',
+        description:
+            '100% TypeScript with strict typing, Zod validation, error handling, and comprehensive naming conventions. Built for maintainability.',
+        ariaLabel: 'Learn more about code quality',
+    },
+    {
+        icon: LineChart,
+        title: 'Analytics Built-In',
+        description:
+            'Pre-integrated Google Analytics, Microsoft Clarity, GTM, and Facebook Pixel with type-safe event tracking hooks.',
+        ariaLabel: 'Learn more about analytics integration',
+    },
+    {
+        icon: Search,
+        title: 'SEO Optimized',
+        description:
+            'Dedicated SEO package with metadata generation, schema.org structured data, dynamic sitemaps, and Open Graph tags.',
+        ariaLabel: 'Learn more about SEO optimization',
+    },
+    {
+        icon: Palette,
+        title: 'Beautiful UI Components',
+        description:
+            '13+ shadcn/ui components with Tailwind CSS 4. Dark mode support, responsive design, and Notion-inspired aesthetics.',
+        ariaLabel: 'Learn more about UI components',
+    },
+]
+
+/**
+ * Features/Services Section Content (Legacy - kept for reference)
  *
  * Features with links to relevant service pages
  */
@@ -116,7 +170,26 @@ export const featuresData: Feature[] = [
 ]
 
 /**
- * About Preview Section Content
+ * Tech Stack Section Content
+ */
+export const techStackData: Omit<AboutPreviewSectionProps, 'id'> = {
+    badge: 'Modern Technology Stack',
+    title: 'Built With The Best Tools Developers Love',
+    description:
+        'We chose proven, cutting-edge technologies that developers trust. Next.js 15 with React Server Components, TypeScript 5.7 for type safety, Drizzle ORM for database management, and Turborepo for blazing-fast monorepo builds. Every tool was selected for production reliability and developer experience.',
+    imageSrc: '/images/about-preview.jpg',
+    imageAlt:
+        'Technology stack: Next.js, React, TypeScript, Tailwind, PostgreSQL',
+    imageWidth: 800,
+    imageHeight: 800,
+    buttonText: 'View Full Tech Stack',
+    buttonHref: '/blog',
+    imagePosition: 'left',
+    variant: 'muted',
+}
+
+/**
+ * About Preview Section Content (Legacy - kept for reference)
  */
 export const aboutPreviewData: Omit<AboutPreviewSectionProps, 'id'> = {
     badge: 'About Us',
@@ -138,26 +211,26 @@ export const aboutPreviewData: Omit<AboutPreviewSectionProps, 'id'> = {
  */
 export const testimonialsData: Testimonial[] = [
     {
-        quote: 'Working with this team has been transformative for our business. Their expertise and dedication helped us achieve results we never thought possible. Highly recommended!',
-        name: 'Sarah Johnson',
-        role: 'CEO',
-        company: 'TechCorp Solutions',
+        quote: 'This template saved us weeks of setup time. The code quality is exceptional, and the built-in blog system was exactly what we needed. We shipped three client sites in the first month.',
+        name: 'Alex Thompson',
+        role: 'Founder',
+        company: 'DevStudio Agency',
         rating: 5,
         avatar: '/images/testimonials/sarah-johnson.jpg',
     },
     {
-        quote: 'The level of professionalism and attention to detail is outstanding. They truly understand our needs and consistently deliver beyond expectations. A game-changer for our organization.',
-        name: 'Michael Chen',
-        role: 'Director of Operations',
-        company: 'Global Innovations Ltd',
+        quote: "Finally, a template that doesn't cut corners. TypeScript everywhere, proper error handling, and the SEO package alone is worth it. Perfect for professional projects.",
+        name: 'Maria Garcia',
+        role: 'Senior Developer',
+        company: 'TechCraft Solutions',
         rating: 5,
         avatar: '/images/testimonials/michael-chen.jpg',
     },
     {
-        quote: "From start to finish, the experience was seamless. The team's expertise and responsiveness made the entire process smooth and stress-free. We couldn't be happier with the results.",
-        name: 'Emily Rodriguez',
-        role: 'Marketing Manager',
-        company: 'Creative Ventures',
+        quote: 'As a small business owner with limited dev experience, I was able to customize this template and launch my website in two days. The documentation made it easy.',
+        name: 'James Liu',
+        role: 'Owner',
+        company: 'Local Services Co',
         rating: 5,
         avatar: '/images/testimonials/emily-rodriguez.jpg',
     },
@@ -185,16 +258,16 @@ export const extendedFeaturesData: Feature[] = [
  * Final CTA Section Content (for end of home page)
  */
 export const finalCTAData = {
-    title: 'Ready to Get Started?',
+    title: 'Ready to Build Your Website?',
     description:
-        "Join thousands of satisfied customers who have transformed their business with our solutions. Let's build something amazing together.",
+        'Join developers and agencies using this template to ship professional websites faster. Get started in minutes with comprehensive documentation and support.',
     primaryButton: {
-        text: 'Contact Us Today',
+        text: 'Get Started Now',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'View Our Work',
-        href: '/portfolio',
+        text: 'View on GitHub',
+        href: 'https://github.com/your-repo',
     },
     variant: 'accent' as const,
 }

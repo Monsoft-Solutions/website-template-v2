@@ -41,14 +41,14 @@ export const siteConfig: SiteConfig = {
      * Business Information
      */
     business: {
-        name: 'ACME',
-        legalName: 'ACME LLC',
-        tagline: 'Building modern web experiences with excellence',
+        name: 'Monsoft Labs',
+        legalName: 'Modern Website Template',
+        tagline: 'Production-Ready Next.js Template for Professional Websites',
         description:
-            'ACME is a company that builds modern web experiences with excellence.',
+            'A comprehensive Next.js 15 website template with built-in blog, analytics, SEO optimization, and modern UI components. Perfect for developers and agencies who need to launch professional websites quickly.',
         foundedYear: 2024,
-        founders: ['John Doe', 'Jane Smith'],
-        organizationType: 'Corporation',
+        founders: ['Your Name'],
+        organizationType: 'Product',
     },
 
     /**
@@ -139,15 +139,20 @@ export const siteConfig: SiteConfig = {
      */
     seo: {
         siteUrl: getSiteUrl(), // Dynamically from environment
-        siteName: 'ACME',
+        siteName: 'Monsoft Labs',
         siteDescription:
-            'ACME is a company that builds modern web experiences with excellence.',
+            'Production-ready Next.js 15 template with React 19, TypeScript, Tailwind CSS, shadcn/ui, blog system, analytics, and SEO optimization. Build professional websites in hours, not weeks.',
         keywords: [
-            'web development',
-            'modern web',
-            'technology',
-            'design',
-            'software',
+            'website template',
+            'Next.js template',
+            'React template',
+            'TypeScript template',
+            'shadcn/ui template',
+            'blog template',
+            'SEO optimized template',
+            'production ready template',
+            'monorepo template',
+            'developer template',
         ],
         locale: 'en-US',
         twitterHandle: '@example',
