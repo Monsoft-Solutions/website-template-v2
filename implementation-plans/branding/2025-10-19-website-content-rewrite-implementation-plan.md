@@ -640,19 +640,19 @@ All About page sections successfully rewritten to align with Keel brand guidelin
 
 **Objectives:**
 
-- Rewrite all three service files with brand voice
+- Rewrite three service files aligned with Keel's actual offerings
 - Create benefit-driven, specific service descriptions
 - Optimize for service-related keyword searches
 - Align FAQ sections with common user questions
 
-**Files to Update:**
+**Files to Create/Update:**
 
 ```
 apps/web/lib/data/services/
-├── services-page-content.ts    # Services listing page content
-├── web-development.service.ts
-├── ui-ux-design.service.ts
-└── digital-marketing.service.ts
+├── services-page-content.ts           # Services listing page content
+├── website-design-development.service.ts  # NEW: Website creation service
+├── website-modernization.service.ts   # NEW: Template-based updates
+└── seo-optimization.service.ts        # NEW: SEO & blog features
 ```
 
 **Content Rewrite Strategy:**
@@ -664,10 +664,10 @@ apps/web/lib/data/services/
 **Content Elements:**
 
 1. **Page Introduction:**
-    - Badge: "Our Services"
-    - Title: "What We Build"
+    - Badge: "What We Offer"
+    - Title: "Built for Production"
     - Description: 40-50 words
-    - Example: "Production websites built with modern tools. We handle the complexity so you can focus on your business. Type-safe code, tested patterns, ready to ship."
+    - Example: "Three ways to use Keel. Build a new website from scratch. Modernize your existing site with our template. Or optimize for search engines with built-in SEO tools and blog system."
 
 2. **FAQ Section (6-8 Questions):**
 
@@ -676,9 +676,11 @@ Common questions to address:
 - "What's included in the template?"
 - "How long does it take to customize?"
 - "Do I need React/Next.js experience?"
-- "What if I need custom features?"
-- "Is support included?"
 - "Can I use this for client projects?"
+- "What if I have an existing website?"
+- "How does the SEO system work?"
+- "Is the blog system customizable?"
+- "What support is included?"
 
 **FAQ Writing Guidelines:**
 
@@ -694,108 +696,270 @@ Common questions to address:
 
 Each service file contains:
 
-- **Slug:** URL identifier (keep current)
-- **Title:** Service name (may refine)
+- **Slug:** URL identifier
+- **Title:** Service name
 - **Excerpt:** 120-160 character description (SEO-optimized)
 - **Description:** 50-80 words full service explanation
 - **Features (4-6):** Title + description each
 - **Benefits (3-4):** Title + description each
-- **Process Steps (3-6):** Title + description each
-- **FAQ (3-5):** Service-specific questions
+- **Process Steps (3-5):** Title + description each
+- **FAQ (4-5):** Service-specific questions
 
-**Service A: Web Development**
+---
 
-**Current Issues:**
+**Service 1: Website Design & Development**
 
-- Title could be more specific
-- Description has some generic phrases
-- Features are good but can be tighter
-- Process is clear but verbose
+**Slug:** `website-design-development`
+
+**Focus:** Building new production websites using the Keel template
+
+**Target Keywords:** "website design development," "Next.js website," "production ready website," "custom website development"
 
 **Rewrite Focus:**
 
 1. **Excerpt (SEO Meta Description):**
-    - Keywords: "custom web development," "Next.js," "React"
-    - Example: "Custom web development with Next.js 15 and React 19. Type-safe, production-ready websites. Built for speed and reliability."
+    - Example: "Professional website design and development with Next.js 15. Production-ready template with blog, SEO, analytics, and contact forms. Launch in hours, not weeks."
 
 2. **Description:**
-    - Remove generic benefits
-    - Focus on technical specifics + business outcome
-    - Example: "We build production-ready websites with Next.js, React, and TypeScript. Every project includes SEO optimization, analytics integration, and a modern blog system. Type-safe from database to UI."
+    - Focus: What you get with the template
+    - Example: "Build production websites using our Next.js template. Includes everything you need: responsive design, blog system, SEO optimization, analytics integration, contact forms, and admin dashboard. Type-safe from database to UI. Deploy to Vercel in minutes."
 
-3. **Features (4-6 items):**
+3. **Features (5-6 items):**
 
-Each feature:
+**Example Features:**
 
-- Title: 3-5 words, technical or benefit-focused
-- Description: 25-35 words, specific capability
+1. **Modern Tech Stack**
+    - Description: "Built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4. PostgreSQL database with Drizzle ORM. Type-safe across the entire stack."
 
-**Example Feature Rewrites:**
+2. **Complete Blog System**
+    - Description: "Full-featured blog with categories, tags, featured images, and rich text editor. Optimized for SEO with automatic sitemap and RSS feed generation."
 
-❌ **Current:** "Responsive Design - Your website looks perfect on all devices..."  
-✅ **Rewrite:** "Mobile-First Design - Responsive across all devices. Built with Tailwind CSS. Tested on iOS and Android."
+3. **SEO Ready**
+    - Description: "Meta tags, OpenGraph, Twitter Cards, Schema.org structured data. Automatic sitemap generation. Robots.txt configuration. Built-in SEO utilities."
 
-❌ **Current:** "Custom Functionality - We build exactly what you need..."  
-✅ **Rewrite:** "Custom Features - Server actions, API routes, database queries. Built with Drizzle ORM and PostgreSQL."
+4. **Analytics Integration**
+    - Description: "Google Analytics, Microsoft Clarity, Google Tag Manager, Facebook Pixel. Privacy-focused cookie consent banner. Track conversions and user behavior."
 
-4. **Benefits (3-4 items):**
+5. **Contact System**
+    - Description: "Working contact forms with email notifications via Resend. Form validation, spam protection, and customizable email templates included."
 
-Focus on outcomes:
+6. **Production Ready**
+    - Description: "Environment validation, error handling, logging, monitoring. Optimized for Vercel deployment. Documentation included for all features."
 
-- Faster launch times
-- Lower maintenance costs
-- Better SEO performance
-- Type-safe code quality
+7. **Benefits (4 items):**
 
-Each benefit:
+8. **Launch in Hours**
+    - Description: "Skip months of development. Clone, customize, deploy. Working website ready for production in hours. Full documentation guides you through setup."
 
-- Title: Clear outcome
-- Description: Why it matters + proof point
+9. **Lower Development Costs**
+    - Description: "No need to build from scratch. Save 100+ hours of development time. One-time purchase, no recurring template fees. Use for unlimited projects."
 
-5. **Process Steps (3-6 steps):**
+10. **Built-in Best Practices**
+    - Description: "SEO optimization, performance tuning, accessibility standards, and security best practices built in. No need to research and implement each feature."
 
-Make concrete and specific:
+11. **Type-Safe Code**
+    - Description: "TypeScript everywhere. Catch errors at compile time, not runtime. Better IDE support, refactoring confidence, and maintainable codebase."
 
-1. "Requirements - 30-minute call. Define scope and timeline."
-2. "Development - 2-4 weeks. Weekly updates. Staging environment access."
-3. "Launch - Deploy to production. DNS setup. Monitoring enabled."
-4. "Support - 30-day bug fixes. Documentation provided."
+12. **Process Steps (4 steps):**
 
-5. **FAQ (3-5 questions):**
+13. **Clone & Setup**
+    - Description: "Clone the repository. Install dependencies with pnpm. Configure environment variables. Database setup takes 5 minutes."
 
-- "What technologies do you use?"
-- "How long does a typical project take?"
-- "Can you integrate with existing systems?"
-- "What's included in support?"
-- "Do you offer maintenance plans?"
+14. **Customize Content**
+    - Description: "Update site-config.ts with your business information. Customize colors and branding. Add your content and images. All data is centralized."
 
-**Service B: UI/UX Design**
+15. **Test Locally**
+    - Description: "Run development server. Test all features: blog, contact forms, analytics. Verify SEO metadata and structured data. Use included testing tools."
 
-**Rewrite Pattern:** Same structure as Web Development
+16. **Deploy to Production**
+    - Description: "Deploy to Vercel with one command. Configure custom domain. Set up production database. Enable monitoring and analytics."
 
-**Focus Keywords:** "UI/UX design," "user experience design," "interface design," "shadcn/ui"
+17. **FAQ (5 questions):**
 
-**Unique Selling Points:**
+18. **"What technologies does the template use?"**
+    - Answer: "Next.js 15, React 19, TypeScript, Tailwind CSS v4, shadcn/ui components, PostgreSQL with Drizzle ORM, and Vercel Blob for image storage."
 
-- shadcn/ui component expertise
-- Tailwind CSS mastery
-- Accessibility (WCAG 2.1 AA)
-- Dark mode implementation
-- Figma to code
+19. **"Do I need to be a developer to use this?"**
+    - Answer: "You need basic React/Next.js knowledge to customize the template. If you can read TypeScript and use Git, you can use Keel. Full documentation provided."
 
-**Service C: Digital Marketing**
+20. **"Can I use this for client projects?"**
+    - Answer: "Yes. Build unlimited websites for yourself or clients. No per-site licensing fees. Attribution appreciated but not required."
 
-**Rewrite Pattern:** Same structure
+21. **"What's included with the template?"**
+    - Answer: "Complete website with blog, SEO tools, analytics, contact forms, email system, dark mode, and admin features. Plus documentation and setup guides."
 
-**Focus Keywords:** "digital marketing," "SEO services," "analytics setup," "content marketing"
+22. **"How long does setup take?"**
+    - Answer: "Initial setup takes 1-2 hours. Content customization depends on your needs. Most developers have a production-ready site within a day."
 
-**Unique Selling Points:**
+---
 
-- Technical SEO (structured data, sitemaps)
-- Analytics implementation (GA, Clarity, GTM)
-- Content strategy
-- Performance tracking
-- Keyword research
+**Service 2: Website Modernization**
+
+**Slug:** `website-modernization`
+
+**Focus:** Updating existing websites by migrating to Keel template
+
+**Target Keywords:** "website modernization," "website redesign," "update old website," "website migration," "website refresh"
+
+**Rewrite Focus:**
+
+1. **Excerpt (SEO Meta Description):**
+    - Example: "Modernize your outdated website with our Next.js template. Migrate your content to a fast, SEO-optimized, mobile-responsive platform. Keep your domain and branding."
+
+2. **Description:**
+    - Focus: Transform old site into modern template
+    - Example: "Transform your outdated website using Keel. We help you migrate existing content, preserve SEO rankings, and modernize your tech stack. Move from WordPress, static HTML, or old frameworks to Next.js. Keep your domain, improve your speed, enhance your SEO."
+
+3. **Features (5 items):**
+
+4. **Content Migration**
+    - Description: "Transfer all your existing content: pages, blog posts, images, and files. Preserve URLs to maintain SEO rankings. Structured data migration from any CMS."
+
+5. **Modern Performance**
+    - Description: "Next.js 15 App Router with server-side rendering. Automatic image optimization. 90+ Lighthouse scores. Faster page loads improve conversions and SEO."
+
+6. **SEO Preservation**
+    - Description: "Maintain existing rankings with proper redirects. Improved structured data and meta tags. Better mobile experience boosts search visibility."
+
+7. **Responsive Design**
+    - Description: "Mobile-first responsive design works on all devices. Tailwind CSS v4 styling. Dark mode support. Accessible components meet WCAG standards."
+
+8. **Easy Content Management**
+    - Description: "Type-safe content management in TypeScript files. No database bloat. Version controlled with Git. Easy to update and maintain."
+
+9. **Benefits (4 items):**
+
+10. **Better Performance**
+    - Description: "Modern Next.js performance beats WordPress and old frameworks. Faster loading improves user experience, conversions, and search rankings. See results immediately."
+
+11. **Improved SEO**
+    - Description: "Better Core Web Vitals, structured data, and mobile experience. Automatic sitemap generation. Built-in blog system helps content marketing. Rank higher on Google."
+
+12. **Lower Maintenance**
+    - Description: "No WordPress updates, plugin conflicts, or security patches. Simpler tech stack means less can break. Static generation reduces server costs."
+
+13. **Keep Your Content**
+    - Description: "All existing content migrates over. URLs preserved with redirects. SEO authority maintained. Your domain stays the same."
+
+14. **Process Steps (5 steps):**
+
+15. **Content Audit**
+    - Description: "We analyze your current site. Identify all pages, posts, and assets. Map URL structure for redirect planning. Assess SEO rankings to preserve."
+
+16. **Migration Planning**
+    - Description: "Create migration strategy. Plan URL redirects. Map old content to new template structure. Identify customization needs."
+
+17. **Content Transfer**
+    - Description: "Migrate all content to Keel template. Transfer images and files to Vercel Blob. Implement redirects for SEO preservation. Test all internal links."
+
+18. **Customization**
+    - Description: "Apply your branding: colors, fonts, logo. Customize template sections to match your needs. Add any additional features required."
+
+19. **Launch & Redirect**
+    - Description: "Deploy new site. Configure domain DNS. Enable redirect rules. Monitor for issues. Verify SEO rankings maintained."
+
+20. **FAQ (5 questions):**
+
+21. **"Will I lose my search engine rankings?"**
+    - Answer: "No. We implement proper 301 redirects from old URLs to new ones. This preserves your SEO authority and rankings. Google recognizes the redirects."
+
+22. **"How long does migration take?"**
+    - Answer: "Depends on site size. A 10-20 page site with blog takes 1-2 weeks. Larger sites take longer. We provide timeline after content audit."
+
+23. **"Can you migrate from WordPress?"**
+    - Answer: "Yes. We can migrate from WordPress, Wix, Squarespace, static HTML sites, or custom platforms. We export your content and rebuild in Keel."
+
+24. **"What happens to my domain?"**
+    - Answer: "Your domain stays the same. We update DNS settings to point to the new site. No disruption to email or other services on your domain."
+
+25. **"Do you provide migration support?"**
+    - Answer: "Yes. We offer migration consulting and implementation. We can do the full migration or guide your team through the process. Support options available."
+
+---
+
+**Service 3: SEO Optimization**
+
+**Slug:** `seo-optimization`
+
+**Focus:** Highlighting built-in SEO features and blog system
+
+**Target Keywords:** "SEO optimization," "website SEO," "technical SEO," "blog system," "content marketing"
+
+**Rewrite Focus:**
+
+1. **Excerpt (SEO Meta Description):**
+    - Example: "Complete SEO optimization built into every Keel website. Technical SEO, structured data, blog system, and analytics. Everything you need to rank higher on Google."
+
+2. **Description:**
+    - Focus: SEO features that come with the template
+    - Example: "Keel includes enterprise-level SEO features out of the box. Technical SEO best practices, Schema.org structured data, automatic sitemaps, and a complete blog system for content marketing. Analytics integration tracks your success. No plugins or add-ons needed."
+
+3. **Features (6 items):**
+
+4. **Technical SEO Built-In**
+    - Description: "Meta tags, OpenGraph, Twitter Cards, canonical URLs. Automatic sitemap.xml and robots.txt. Fast page loads and Core Web Vitals optimization. Mobile-first responsive design."
+
+5. **Schema.org Structured Data**
+    - Description: "JSON-LD structured data for Organization, WebSite, WebPage, BlogPosting, and BreadcrumbList. Helps search engines understand your content. Rich results in search."
+
+6. **Complete Blog System**
+    - Description: "Full-featured blog with categories, tags, and featured images. SEO-optimized post pages with automatic meta tags. RSS feed generation. Author information and publish dates."
+
+7. **Content Management**
+    - Description: "Type-safe content system with Drizzle ORM and PostgreSQL. Blog admin interface for creating and editing posts. Rich text editor with markdown support."
+
+8. **Analytics Integration**
+    - Description: "Google Analytics 4, Microsoft Clarity, Google Tag Manager, and Facebook Pixel ready. Track page views, conversions, and user behavior. Privacy-focused cookie consent."
+
+9. **SEO Utilities**
+    - Description: "Built-in SEO utility functions for meta tags, OpenGraph images, structured data generation. Centralized SEO configuration. Easy to customize per page."
+
+10. **Benefits (4 items):**
+
+11. **Rank Higher on Google**
+    - Description: "Technical SEO best practices improve your search rankings. Structured data helps Google understand your site. Fast performance boosts Core Web Vitals scores."
+
+12. **Content Marketing Ready**
+    - Description: "Built-in blog system supports your content strategy. Categories and tags organize content. RSS feed for subscribers. Social sharing optimized with OpenGraph."
+
+13. **Track Your Success**
+    - Description: "Multiple analytics platforms track traffic and conversions. See which content performs best. Understand user behavior. Make data-driven improvements."
+
+14. **No SEO Plugins Needed**
+    - Description: "Everything built into the template. No WordPress SEO plugins. No third-party dependencies. Full control over your SEO implementation."
+
+15. **Process Steps (4 steps):**
+
+16. **SEO Configuration**
+    - Description: "Configure site-wide SEO settings in site-config.ts. Set site name, description, social media handles. Add Google Analytics and other tracking IDs."
+
+17. **Content Optimization**
+    - Description: "Write SEO-friendly content using built-in guidelines. Optimize page titles and meta descriptions. Use heading hierarchy. Add alt text to images."
+
+18. **Blog Publishing**
+    - Description: "Create blog posts through admin interface. Add categories and tags. Upload featured images. Schedule or publish immediately. Automatic sitemap updates."
+
+19. **Monitor & Improve**
+    - Description: "Track performance with Google Analytics and Search Console. Monitor rankings. Analyze user behavior. Refine content strategy based on data."
+
+20. **FAQ (5 questions):**
+
+21. **"What SEO features are included?"**
+    - Answer: "Meta tags, OpenGraph, Twitter Cards, Schema.org structured data, automatic sitemaps, robots.txt, RSS feeds, fast page loads, mobile optimization, and analytics integration."
+
+22. **"Do I need SEO plugins?"**
+    - Answer: "No. All SEO features are built into the template code. No WordPress-style plugins needed. You have full control over all SEO elements."
+
+23. **"How does the blog system help SEO?"**
+    - Answer: "Regular blog content helps you rank for more keywords. Categories and tags create topic clusters. Internal linking improves site architecture. Fresh content signals active site."
+
+24. **"Can I customize SEO for each page?"**
+    - Answer: "Yes. Each page can have unique title, description, OpenGraph image, and structured data. Centralized defaults with per-page overrides available."
+
+25. **"What analytics tools are supported?"**
+    - Answer: "Google Analytics 4, Microsoft Clarity, Google Tag Manager, and Facebook Pixel. Easy setup via environment variables. Privacy-focused cookie consent included."
+
+---
 
 #### 5.3 Services Gallery Content
 
@@ -803,7 +967,36 @@ Make concrete and specific:
 
 - Descriptive but concise
 - Include relevant keywords
-- Example: "Modern web development workspace with TypeScript code"
+- Examples:
+    - "Modern website dashboard showing Next.js development environment"
+    - "Website modernization process from old design to modern interface"
+    - "SEO optimization dashboard with analytics and ranking data"
+
+#### 5.4 Services Data Configuration
+
+**Update:** `apps/web/lib/data/services-data.ts`
+
+**Service Array:**
+
+```typescript
+export const services = [
+    {
+        slug: 'website-design-development',
+        featured: true,
+        icon: 'Code', // Lucide icon name
+    },
+    {
+        slug: 'website-modernization',
+        featured: true,
+        icon: 'RefreshCw',
+    },
+    {
+        slug: 'seo-optimization',
+        featured: true,
+        icon: 'TrendingUp',
+    },
+]
+```
 
 **Validation Criteria:**
 
@@ -815,6 +1008,8 @@ Make concrete and specific:
 - [ ] Keywords naturally integrated
 - [ ] Readability: Grade 8 or below
 - [ ] AI detection: <30% probability
+- [ ] Services reflect actual Keel offerings
+- [ ] Technical details accurate
 
 **Estimated Effort:** 12-16 hours
 
