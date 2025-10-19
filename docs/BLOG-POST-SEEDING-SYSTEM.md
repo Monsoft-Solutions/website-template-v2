@@ -14,13 +14,13 @@ A file-based blog post seeding system that automatically discovers, imports, and
 
 ✅ **Automatic Discovery**
 
-- Scans for `*.post.ts` files in posts directory
+- Scans for `*.post.ts` and `*.image.ts` files in posts directory
 - No manual registration required
 - Add a file, run seed, done
 
 ✅ **Type-Safe**
 
-- TypeScript definitions for all post data
+- TypeScript definitions for all post data and images
 - Compile-time validation
 - IntelliSense support
 
@@ -28,6 +28,7 @@ A file-based blog post seeding system that automatically discovers, imports, and
 
 - Categories created from post metadata
 - Tags created from post metadata
+- Images linked to posts via foreign key
 - Automatic slug generation
 - Deterministic color assignment
 
@@ -55,19 +56,22 @@ A file-based blog post seeding system that automatically discovers, imports, and
 packages/db/src/seed/
 ├── index.ts                    # Main seed orchestrator
 ├── 01-users.seed.ts            # Author seed (runs first)
-├── 02-blog.seed.ts             # Blog post seed (updated)
+├── 02-blog.seed.ts             # Blog post seed (with image support)
 └── posts/
     ├── README.md               # Documentation
     ├── 01-setting-up-nextjs-15-with-typescript.post.ts
-    ├── 02-drizzle-vs-prisma.post.ts (future)
-    └── 03-shipping-in-3-days.post.ts (future)
+    ├── 01-setting-up-nextjs-15-with-typescript.image.ts   # Featured image
+    ├── 02-small-business-website-pain-points.post.ts
+    ├── 02-small-business-website-pain-points.image.ts     # Featured image
+    ├── 03-drizzle-vs-prisma.post.ts (future)
+    └── 03-drizzle-vs-prisma.image.ts (future)
 ```
 
 ### Post File Format
 
 Each post file exports three items:
 
-**1. Post Data**
+**1. Post Data** (`*.post.ts`)
 
 ```typescript
 export const post: Omit<
@@ -86,6 +90,7 @@ export const post: Omit<
     publishedAt: new Date('2025-10-15T10:00:00Z'),
     isFeatured: true,
     allowComments: true,
+    // Note: featuredImageId is auto-linked during seeding
 }
 ```
 
@@ -101,25 +106,57 @@ export const categories = ['Development', 'Tutorial']
 export const tags = ['Next.js', 'TypeScript', 'Tutorial']
 ```
 
+### Image File Format
+
+Each image file exports image metadata (`*.image.ts`):
+
+```typescript
+export const image: Omit<InsertImage, 'id' | 'createdAt' | 'updatedAt'> = {
+    url: 'https://example.blob.vercel-storage.com/post/slug/featured-image.jpg',
+    alt: 'Descriptive alt text for accessibility',
+    title: 'Image Title',
+    description: 'Detailed description of the image content',
+    width: 1392,
+    height: 752,
+    fileSize: 203085, // bytes
+    mimeType: 'image/jpeg',
+    originalFilename: '01-post-slug.jpg',
+}
+```
+
+**Image Requirements:**
+
+- Must be uploaded to Vercel Blob storage (or CDN)
+- Filename must match post filename (e.g., `01-slug.post.ts` → `01-slug.image.ts`)
+- Recommended dimensions: 1392x752 (16:9 aspect ratio)
+- Format: JPEG or PNG
+- Include descriptive alt text for SEO and accessibility
+
 ### Seeding Flow
 
 ```
-1. Scan posts/ directory for *.post.ts files
+1. Scan posts/ directory for *.post.ts and *.image.ts files
    ↓
-2. Import each post module dynamically
+2. Import each post and image module dynamically
    ↓
 3. Collect unique categories and tags
    ↓
-4. Insert categories (with auto slugs/colors)
+4. Insert images FIRST (posts reference them via FK)
    ↓
-5. Insert tags (with auto slugs/colors)
+5. Build imageMap (filename → image ID)
    ↓
-6. Insert each post with author
+6. Insert categories (with auto slugs/colors)
    ↓
-7. Link post to categories
+7. Insert tags (with auto slugs/colors)
    ↓
-8. Link post to tags
+8. Insert each post with author + featuredImageId
+   ↓
+9. Link post to categories
+   ↓
+10. Link post to tags
 ```
+
+**Key Detail:** Images must be inserted before posts because posts reference images via a foreign key (`featuredImageId`).
 
 ---
 
@@ -151,7 +188,32 @@ const postModule = await import(path.resolve(postsDir, file))
 - Hot-reloading during development
 - No manual registration needed
 
-### 3. Category & Tag Collection
+### 3. Image Import & Insertion
+
+Images are discovered and inserted before posts:
+
+```typescript
+// Discover image files
+const imageFiles = await glob('*.image.{js,ts}', { cwd: postsDir })
+
+// Build image map for post linking
+const imageMap = new Map<string, string>() // filename → image ID
+
+// Insert each image
+for (const file of imageFiles) {
+    const imageModule = await import(path.resolve(postsDir, file))
+    const [insertedImage] = await db
+        .insert(images)
+        .values(imageModule.image)
+        .returning()
+
+    // Map filename to image ID
+    const baseFilename = file.replace('.image.ts', '')
+    imageMap.set(baseFilename, insertedImage.id)
+}
+```
+
+### 4. Category & Tag Collection
 
 Unique categories and tags are collected:
 
@@ -165,7 +227,7 @@ for (const module of postModules) {
 }
 ```
 
-### 4. Slug Generation
+### 5. Slug Generation
 
 Categories and tags get URL-friendly slugs:
 
@@ -186,7 +248,7 @@ function slugify(text: string): string {
 - `"UI/UX Design"` → `"ui-ux-design"`
 - `"Case Study"` → `"case-study"`
 
-### 5. Color Generation
+### 6. Color Generation
 
 Deterministic color assignment based on name hash:
 
@@ -203,19 +265,30 @@ function generateColor(str: string): string {
 
 **Result:** Same name always gets same color across environments
 
-### 6. Database Operations
+### 7. Database Operations
 
 ```typescript
+// Insert images (FIRST - required by FK constraint)
+const [insertedImage] = await db.insert(images).values(imageData).returning()
+
 // Insert categories
 await db.insert(blogCategory).values(categoriesData)
 
 // Insert tags
 await db.insert(blogTag).values(tagsData)
 
-// Insert post with author
+// Insert post with author and linked image
+const postFile = '01-my-post.post.ts'
+const baseFilename = postFile.replace('.post.ts', '')
+const featuredImageId = imageMap.get(baseFilename)
+
 const [insertedPost] = await db
     .insert(blogPost)
-    .values({ ...postData, authorId })
+    .values({
+        ...postData,
+        authorId,
+        featuredImageId, // Links to image via FK
+    })
     .returning()
 
 // Link relationships
@@ -245,14 +318,14 @@ pnpm db:seed
 
 ### Adding a New Post
 
-**Step 1: Create the file**
+**Step 1: Create the post file**
 
 ```bash
 cd packages/db/src/seed/posts
-touch 02-my-new-post.post.ts
+touch 03-my-new-post.post.ts
 ```
 
-**Step 2: Write the content**
+**Step 2: Write the post content**
 
 ```typescript
 import type { InsertBlogPost } from '../../schema/blog/blog-post.table'
@@ -281,13 +354,39 @@ export const categories = ['Development']
 export const tags = ['TypeScript', 'Tutorial']
 ```
 
-**Step 3: Run the seed**
+**Step 3: Create the image file (optional)**
+
+```bash
+touch 03-my-new-post.image.ts
+```
+
+**Step 4: Add image metadata**
+
+```typescript
+import type { InsertImage } from '../../schema/blog/image.table'
+
+export const image: Omit<InsertImage, 'id' | 'createdAt' | 'updatedAt'> = {
+    url: 'https://your-cdn.com/post/my-new-post/featured-image.jpg',
+    alt: 'Descriptive alt text for the featured image',
+    title: 'Featured Image Title',
+    description: 'Detailed description of what the image shows',
+    width: 1392,
+    height: 752,
+    fileSize: 250000,
+    mimeType: 'image/jpeg',
+    originalFilename: '03-my-new-post.jpg',
+}
+```
+
+**Step 5: Run the seed**
 
 ```bash
 pnpm --filter @workspace/db db:seed
 ```
 
-**Result:** Post automatically discovered and inserted! 🎉
+**Result:** Post and image automatically discovered and inserted! 🎉
+
+**Note:** The image file must have the same base filename as the post file (e.g., `03-my-new-post.post.ts` → `03-my-new-post.image.ts`) for automatic linking.
 
 ### Development vs Production
 
@@ -468,6 +567,7 @@ pnpm --filter @workspace/db db:seed
 **Tables Used:**
 
 - `author` - Post authors
+- `images` - Featured images and media
 - `blog_post` - Blog posts
 - `blog_category` - Post categories
 - `blog_tag` - Post tags
@@ -478,7 +578,13 @@ pnpm --filter @workspace/db db:seed
 
 - Post slug must be unique
 - Author must exist before posts
+- Images must be inserted before posts (FK constraint)
 - Categories and tags auto-created if needed
+
+**Foreign Key Relationships:**
+
+- `blog_post.authorId` → `author.id` (ON DELETE SET NULL)
+- `blog_post.featuredImageId` → `images.id` (ON DELETE SET NULL)
 
 ### Type Definitions
 
@@ -489,7 +595,12 @@ type PostModule = {
     tags: string[]
 }
 
+type ImageModule = {
+    image: Omit<InsertImage, 'id' | 'createdAt' | 'updatedAt'>
+}
+
 type InsertBlogPost = typeof blogPost.$inferInsert
+type InsertImage = typeof images.$inferInsert
 ```
 
 ---
@@ -507,9 +618,13 @@ Authors seeded successfully!
 🌱 Running seeder: 02-blog.seed.ts
 Seeding blog posts, categories, and tags...
 🗑️  Clearing existing blog data (development mode)...
-📝 Found 1 blog post(s)
-✅ Inserted 1 categories
-✅ Inserted 3 tags
+📝 Found 2 blog post(s)
+🖼️  Found 2 image(s)
+✅ Inserted image: Small Business Owner Working on Website
+✅ Inserted image: Next.js 15 TypeScript Development Environment
+✅ Inserted 2 categories
+✅ Inserted 6 tags
+✅ Inserted post: Your Small Business Needs a Website. Here's Why Most Solutions Fail.
 ✅ Inserted post: Setting Up a Next.js 15 Project with TypeScript
 ✅ Blog posts, categories, and tags seeded successfully!
 
@@ -545,6 +660,22 @@ slug: 'unique-slug-here'
 // slug, title, metaDescription, content, status
 ```
 
+### "Image filename doesn't match post"
+
+**Problem:** Post can't find corresponding image for linking
+
+**Solution:**
+
+```bash
+# Ensure matching filenames
+01-my-post.post.ts
+01-my-post.image.ts  # Same base filename
+
+# Not this:
+01-my-post.post.ts
+02-different-name.image.ts  # Won't be linked!
+```
+
 ### "Module not found"
 
 **Problem:** TypeScript import issue
@@ -567,13 +698,15 @@ pnpm install
 
 ### Planned Features
 
-- **Featured Images:** Auto-upload and link images
+- ✅ **Featured Images:** Auto-upload and link images (COMPLETED)
 - **Author Selection:** Specify author per post
 - **Draft Previews:** Preview unpublished posts
 - **Markdown Validation:** Check markdown syntax
 - **SEO Scoring:** Automated SEO analysis
 - **Reading Time Calculation:** Auto-calculate from content
 - **Related Posts:** Auto-suggest related content
+- **Image Optimization:** Auto-generate blur data URLs
+- **Multiple Images:** Support for content images beyond featured image
 
 ### Extensibility
 
@@ -582,9 +715,16 @@ The system is designed to be extended:
 ```typescript
 // Add custom fields to post files
 export const customData = {
-    featuredImageUrl: 'https://...',
     customAuthorId: 'uuid-here',
     relatedPosts: ['slug-1', 'slug-2'],
+    videoUrl: 'https://youtube.com/watch?v=...',
+}
+
+// Add custom fields to image files
+export const imageMetadata = {
+    photographer: 'John Doe',
+    license: 'CC BY 4.0',
+    source: 'Unsplash',
 }
 ```
 
@@ -665,11 +805,13 @@ The blog post seeding system provides a developer-friendly way to manage blog co
 - ✅ File-based content management
 - ✅ Type-safe from file to database
 - ✅ Automatic category and tag creation
+- ✅ Automatic image linking via filename matching
 - ✅ Development and production modes
 - ✅ Version-controlled content
 - ✅ Zero manual database work
+- ✅ Foreign key integrity maintained
 
-**Ready to add more posts?** Create a new `.post.ts` file and run `pnpm db:seed`!
+**Ready to add more posts?** Create a new `.post.ts` file (and optional `.image.ts` file) and run `pnpm db:seed`!
 
 ---
 

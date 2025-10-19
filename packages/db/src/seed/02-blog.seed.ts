@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { db } from '../client'
+import { env } from '../env'
 import {
     author,
     blogCategory,
@@ -10,6 +11,7 @@ import {
     blogPostCategory,
     blogPostTag,
     blogTag,
+    images,
 } from '../schema'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -26,6 +28,10 @@ type PostModule = {
     >
     categories: string[]
     tags: string[]
+}
+
+type ImageModule = {
+    image: Omit<typeof images.$inferInsert, 'id' | 'createdAt' | 'updatedAt'>
 }
 
 /**
@@ -72,7 +78,7 @@ export async function run({ db }: RunProps) {
         return
     }
 
-    const isDevelopment = process.env.NODE_ENV === 'development'
+    const isDevelopment = env.NODE_ENV === 'development'
     const shouldClearData = isDevelopment
 
     // Check if blog posts exist
@@ -85,6 +91,7 @@ export async function run({ db }: RunProps) {
         await db.delete(blogPost)
         await db.delete(blogCategory)
         await db.delete(blogTag)
+        await db.delete(images)
     }
 
     // Load blog post files from the posts directory
@@ -100,6 +107,13 @@ export async function run({ db }: RunProps) {
 
     console.log(`📝 Found ${postFiles.length} blog post(s)`)
 
+    // Load image files from the posts directory
+    const imageFiles = await glob('*.image.{js,ts}', {
+        cwd: postsDir,
+    })
+
+    console.log(`🖼️  Found ${imageFiles.length} image(s)`)
+
     // Collect all unique categories and tags from posts
     const allCategories = new Set<string>()
     const allTags = new Set<string>()
@@ -113,6 +127,34 @@ export async function run({ db }: RunProps) {
 
         postModule.categories.forEach((cat) => allCategories.add(cat))
         postModule.tags.forEach((tag) => allTags.add(tag))
+    }
+
+    // Insert images first (they need to exist before posts can reference them)
+    const imageMap = new Map<string, string>() // Maps base filename to image ID
+
+    if (
+        imageFiles.length > 0 &&
+        (shouldClearData || (await db.select().from(images)).length === 0)
+    ) {
+        for (const file of imageFiles) {
+            const imageModule = (await import(
+                path.resolve(postsDir, file)
+            )) as ImageModule
+
+            const [insertedImage] = await db
+                .insert(images)
+                .values(imageModule.image)
+                .returning()
+
+            if (insertedImage) {
+                // Extract base filename (e.g., "01-setting-up-nextjs-15-with-typescript")
+                const baseFilename = file
+                    .replace('.image.ts', '')
+                    .replace('.image.js', '')
+                imageMap.set(baseFilename, insertedImage.id)
+                console.log(`✅ Inserted image: ${insertedImage.title}`)
+            }
+        }
     }
 
     // Insert categories
@@ -162,12 +204,24 @@ export async function run({ db }: RunProps) {
         }
 
         // Insert each post
-        for (const postModule of postModules) {
+        for (let i = 0; i < postModules.length; i++) {
+            const postModule = postModules[i]
+            if (!postModule) continue
+
             const {
                 post: postData,
                 categories: postCategories,
                 tags: postTags,
             } = postModule
+
+            // Find the corresponding image ID based on filename pattern
+            const postFile = postFiles[i]
+            const baseFilename = postFile
+                ?.replace('.post.ts', '')
+                .replace('.post.js', '')
+            const featuredImageId = baseFilename
+                ? imageMap.get(baseFilename)
+                : undefined
 
             // Insert the blog post
             const [insertedPost] = await db
@@ -175,6 +229,7 @@ export async function run({ db }: RunProps) {
                 .values({
                     ...postData,
                     authorId: randomAuthor.id,
+                    featuredImageId,
                 })
                 .returning()
 
