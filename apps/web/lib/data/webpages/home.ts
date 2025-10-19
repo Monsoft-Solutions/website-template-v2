@@ -76,6 +76,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             'Start building immediately with pre-built components, layouts, and sections. No boilerplate setup—just customize and deploy.',
         ariaLabel: 'Learn more about fast development features',
+        imageSrc: '/images/services/web-development-workspace.jpg',
+        imageAlt: 'Modern development workspace with code editor and tools',
     },
     {
         icon: Blocks,
@@ -83,6 +85,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             'Full-featured blog with PostgreSQL, categories, tags, markdown support, and Vercel Blob image storage. Production-ready out of the box.',
         ariaLabel: 'Learn more about the blog system',
+        imageSrc: '/images/services/web-development-success.jpg',
+        imageAlt: 'Successful blog implementation with content management',
     },
     {
         icon: Shield,
@@ -90,6 +94,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             '100% TypeScript with strict typing, Zod validation, error handling, and comprehensive naming conventions. Built for maintainability.',
         ariaLabel: 'Learn more about code quality',
+        imageSrc: '/images/services/web-development-code-quality.jpg',
+        imageAlt: 'High-quality TypeScript code on screen',
     },
     {
         icon: LineChart,
@@ -97,6 +103,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             'Pre-integrated Google Analytics, Microsoft Clarity, GTM, and Facebook Pixel with type-safe event tracking hooks.',
         ariaLabel: 'Learn more about analytics integration',
+        imageSrc: '/images/services/digital-marketing/analytics-reporting.jpg',
+        imageAlt: 'Analytics dashboard showing user metrics and reports',
     },
     {
         icon: Search,
@@ -104,6 +112,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             'Dedicated SEO package with metadata generation, schema.org structured data, dynamic sitemaps, and Open Graph tags.',
         ariaLabel: 'Learn more about SEO optimization',
+        imageSrc: '/images/services/digital-marketing/seo-optimization.jpg',
+        imageAlt: 'SEO optimization tools and search rankings',
     },
     {
         icon: Palette,
@@ -111,6 +121,8 @@ export const keyFeaturesData: Feature[] = [
         description:
             '13+ shadcn/ui components with Tailwind CSS 4. Dark mode support, responsive design, and Notion-inspired aesthetics.',
         ariaLabel: 'Learn more about UI components',
+        imageSrc: '/images/services/web-development-ui-design.jpg',
+        imageAlt: 'Beautiful UI component design with modern aesthetics',
     },
 ]
 

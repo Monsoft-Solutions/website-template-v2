@@ -2,8 +2,8 @@ import { WebPageSchema } from '@workspace/seo/react'
 
 import {
     AboutPreviewSection,
-    FeaturesSection,
     HeroSection,
+    StackingFeaturesSection,
     TestimonialsSection,
 } from '@/components/sections/home'
 import { CTASection } from '@/components/shared'
@@ -119,16 +119,13 @@ export default function Page() {
                 enableAnimations={heroSectionData.enableAnimations}
             />
 
-            {/* Key Features Section */}
-            <FeaturesSection
+            {/* Key Features Section with Stacking Scroll Effect */}
+            <StackingFeaturesSection
                 id='key-features'
                 title='Everything You Need to Launch Fast'
                 description='A complete website template with all the features developers and businesses need—no compromises on quality or functionality'
                 features={keyFeaturesData}
-                columns={3}
                 variant='muted'
-                iconStyle='outlined'
-                iconVariant='primary'
             />
 
             {/* Tech Stack Section */}

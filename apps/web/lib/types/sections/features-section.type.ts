@@ -47,6 +47,16 @@ export interface Feature {
      * Optional aria-label for accessibility
      */
     readonly ariaLabel?: string
+
+    /**
+     * Optional image source for visual cards
+     */
+    readonly imageSrc?: string
+
+    /**
+     * Optional image alt text
+     */
+    readonly imageAlt?: string
 }
 
 /**
