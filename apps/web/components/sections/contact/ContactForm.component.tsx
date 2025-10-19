@@ -118,7 +118,7 @@ export function ContactForm({
                     status: 'success',
                     message:
                         result.message ||
-                        "Thank you for your message! We'll get back to you soon.",
+                        'Message sent. We respond within 24 hours.',
                 })
 
                 // Track successful form submission
@@ -135,7 +135,7 @@ export function ContactForm({
                     message:
                         result.error ||
                         result.message ||
-                        'Something went wrong. Please try again.',
+                        'Failed to send. Try again.',
                 })
 
                 // Track form submission error
@@ -150,8 +150,7 @@ export function ContactForm({
             console.error('Contact form submission error:', error)
             setSubmissionState({
                 status: 'error',
-                message:
-                    'Failed to send your message. Please check your connection and try again.',
+                message: 'Network error. Check your connection and try again.',
             })
 
             // Track network error
@@ -286,7 +285,7 @@ export function ContactForm({
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder='How can we help?'
+                                                    placeholder='Project inquiry'
                                                     {...field}
                                                     disabled={isSubmitting}
                                                     aria-label='Message subject'
@@ -310,7 +309,7 @@ export function ContactForm({
                                         </FormLabel>
                                         <FormControl>
                                             <Textarea
-                                                placeholder='Tell us more about your inquiry...'
+                                                placeholder='Describe your project or question...'
                                                 className='border-border/60 focus:border-primary/60 focus:ring-primary/20 hover:border-border/80 min-h-[150px] resize-none transition-all duration-200'
                                                 {...field}
                                                 disabled={isSubmitting}
@@ -383,7 +382,7 @@ export function ContactForm({
                                 {isSubmitting ? (
                                     <>
                                         <Loader2 className='mr-3 size-5 animate-spin' />
-                                        <span>Sending your message...</span>
+                                        <span>Sending...</span>
                                     </>
                                 ) : (
                                     <>

@@ -49,8 +49,12 @@ export const footerSections: NavigationSection[] = [
         title: 'Resources',
         items: [
             { label: 'Documentation', href: '/docs', external: false },
-            { label: 'Help Center', href: '/help', external: false },
-            { label: 'Community', href: '/community', external: false },
+            { label: 'Support', href: '/support', external: false },
+            {
+                label: 'GitHub',
+                href: 'https://github.com/example',
+                external: true,
+            },
         ],
     },
     {

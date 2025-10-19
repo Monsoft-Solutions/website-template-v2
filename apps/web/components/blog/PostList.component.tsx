@@ -33,8 +33,7 @@ export function PostList({ posts, className = '' }: PostListProps) {
                             No posts found
                         </h2>
                         <p className='text-muted-foreground mx-auto max-w-md text-sm'>
-                            Check back later for new content, or try adjusting
-                            your filters.
+                            Try adjusting your filters or check back later.
                         </p>
                     </div>
                 </div>

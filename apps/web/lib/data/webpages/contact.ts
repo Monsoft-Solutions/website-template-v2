@@ -23,9 +23,9 @@ import type {
  */
 export const contactHeroData: Omit<ContactHeroSectionProps, 'id'> = {
     badge: 'Get In Touch',
-    headline: "Let's Start a Conversation",
+    headline: "Let's build your website.",
     description:
-        "Have a question or want to work together? We'd love to hear from you. Fill out the form below or reach out directly, and our team will get back to you as soon as possible.",
+        'Questions about Keel? Need a quote? Send us a message. We respond within 24 hours.',
     enableAnimations: true,
 }
 
@@ -36,7 +36,7 @@ export const contactFormData: Omit<ContactFormSectionProps, 'id'> = {
     badge: 'Send a Message',
     headline: 'Get In Touch',
     description:
-        "Fill out the form below and we'll get back to you within 24 hours.",
+        'Fill out the form. We respond within 24 hours on business days.',
 }
 
 /**
@@ -47,7 +47,7 @@ export const contactInfoData: Omit<ContactInfoSectionProps, 'id'> = {
     badge: 'Contact Information',
     headline: 'Other Ways to Reach Us',
     description:
-        'Prefer to reach out directly? Here are other ways to get in touch with our team.',
+        'Prefer phone or email? Contact us directly using the information below.',
     contactItems: [
         {
             icon: Phone,
@@ -76,16 +76,16 @@ export const contactInfoData: Omit<ContactInfoSectionProps, 'id'> = {
  * Final CTA Section Content (for end of contact page)
  */
 export const contactCTAData = {
-    title: 'Prefer a Different Approach?',
+    title: 'Ready to Start Building?',
     description:
-        'Schedule a call with our team to discuss your needs in detail, or check out our FAQ section for quick answers.',
+        'Get Keel documentation. View pricing and features. Or schedule a call to discuss your project.',
     primaryButton: {
-        text: 'Schedule a Call',
-        href: '/contact?schedule=true',
+        text: 'View Documentation',
+        href: '/docs',
     },
     secondaryButton: {
-        text: 'View FAQ',
-        href: '/faq',
+        text: 'See Features',
+        href: '/#features',
     },
     variant: 'accent' as const,
 }
