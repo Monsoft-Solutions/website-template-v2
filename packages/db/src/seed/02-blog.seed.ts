@@ -1,4 +1,6 @@
-import { faker } from '@faker-js/faker'
+import { glob } from 'glob'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { db } from '../client'
 import {
@@ -10,8 +12,55 @@ import {
     blogTag,
 } from '../schema'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 type RunProps = {
     db: typeof db
+}
+
+type PostModule = {
+    post: Omit<
+        typeof blogPost.$inferInsert,
+        'id' | 'authorId' | 'createdAt' | 'updatedAt'
+    >
+    categories: string[]
+    tags: string[]
+}
+
+/**
+ * Converts a string to a URL-friendly slug
+ */
+function slugify(text: string): string {
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim()
+}
+
+/**
+ * Generates a color based on the string hash (deterministic)
+ */
+function generateColor(str: string): string {
+    const colors = [
+        '#3B82F6', // Blue
+        '#10B981', // Green
+        '#F59E0B', // Amber
+        '#EF4444', // Red
+        '#8B5CF6', // Purple
+        '#EC4899', // Pink
+        '#14B8A6', // Teal
+        '#F97316', // Orange
+        '#6366F1', // Indigo
+        '#84CC16', // Lime
+    ]
+    let hash = 0
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    return colors[Math.abs(hash) % colors.length]!
 }
 
 export async function run({ db }: RunProps) {
@@ -38,90 +87,124 @@ export async function run({ db }: RunProps) {
         await db.delete(blogTag)
     }
 
-    const categoriesData = [
-        { name: 'Technology', slug: 'technology', color: '#3B82F6' },
-        { name: 'Productivity', slug: 'productivity', color: '#10B981' },
-        { name: 'Lifestyle', slug: 'lifestyle', color: '#F59E0B' },
-    ]
+    // Load blog post files from the posts directory
+    const postsDir = path.resolve(__dirname, 'posts')
+    const postFiles = await glob('*.post.{js,ts}', {
+        cwd: postsDir,
+    })
 
-    // Only insert categories if table is empty or we're in development
+    if (postFiles.length === 0) {
+        console.log('ℹ️  No blog post files found in posts directory')
+        return
+    }
+
+    console.log(`📝 Found ${postFiles.length} blog post(s)`)
+
+    // Collect all unique categories and tags from posts
+    const allCategories = new Set<string>()
+    const allTags = new Set<string>()
+    const postModules: PostModule[] = []
+
+    for (const file of postFiles) {
+        const postModule = (await import(
+            path.resolve(postsDir, file)
+        )) as PostModule
+        postModules.push(postModule)
+
+        postModule.categories.forEach((cat) => allCategories.add(cat))
+        postModule.tags.forEach((tag) => allTags.add(tag))
+    }
+
+    // Insert categories
     if (
         shouldClearData ||
         (await db.select().from(blogCategory)).length === 0
     ) {
-        await db
-            .insert(blogCategory)
-            .values(categoriesData)
-            .onConflictDoNothing()
+        const categoriesData = Array.from(allCategories).map((name) => ({
+            name,
+            slug: slugify(name),
+            color: generateColor(name),
+        }))
+
+        if (categoriesData.length > 0) {
+            await db
+                .insert(blogCategory)
+                .values(categoriesData)
+                .onConflictDoNothing()
+            console.log(`✅ Inserted ${categoriesData.length} categories`)
+        }
     }
     const categories = await db.select().from(blogCategory)
 
-    const tagsData = [
-        { name: 'Next.js', slug: 'next-js', color: '#000000' },
-        { name: 'Drizzle ORM', slug: 'drizzle-orm', color: '#84CC16' },
-        { name: 'TypeScript', slug: 'typescript', color: '#3178C6' },
-        { name: 'Developer', slug: 'developer', color: '#6B7280' },
-        { name: 'Personal Growth', slug: 'personal-growth', color: '#EF4444' },
-    ]
-
-    // Only insert tags if table is empty or we're in development
+    // Insert tags
     if (shouldClearData || (await db.select().from(blogTag)).length === 0) {
-        await db.insert(blogTag).values(tagsData).onConflictDoNothing()
+        const tagsData = Array.from(allTags).map((name) => ({
+            name,
+            slug: slugify(name),
+            color: generateColor(name),
+        }))
+
+        if (tagsData.length > 0) {
+            await db.insert(blogTag).values(tagsData).onConflictDoNothing()
+            console.log(`✅ Inserted ${tagsData.length} tags`)
+        }
     }
     const tags = await db.select().from(blogTag)
 
     // Only insert posts if table is empty or we're in development
     if (shouldClearData || existingPosts.length === 0) {
-        const postsData = Array.from({ length: 30 }, (_, i) => {
-            // Stagger publication dates for better ordering test
-            const publishedDate = new Date()
-            publishedDate.setDate(publishedDate.getDate() - i)
+        // Get a random author for posts
+        const randomAuthor = authors[Math.floor(Math.random() * authors.length)]
 
-            return {
-                title: faker.lorem.sentence(5),
-                slug: `${faker.lorem.slug()}-${i}`,
-                excerpt: faker.lorem.sentences(2),
-                metaDescription: faker.lorem.sentence(20),
-                content: faker.lorem.paragraphs(5),
-                readingTime: Math.floor(Math.random() * 10) + 3, // 3-12 minutes
-                authorId:
-                    authors.length > 0
-                        ? authors[Math.floor(Math.random() * authors.length)]!
-                              .id
-                        : null,
-                publishedAt: publishedDate,
-                status: 'published' as const,
-            }
-        })
+        if (!randomAuthor) {
+            console.error('❌ No author available for posts')
+            return
+        }
 
-        await db.insert(blogPost).values(postsData)
-        const posts = await db.select().from(blogPost)
+        // Insert each post
+        for (const postModule of postModules) {
+            const {
+                post: postData,
+                categories: postCategories,
+                tags: postTags,
+            } = postModule
 
-        for (const post of posts) {
-            // Assign a random category
-            const randomCategory =
-                categories[Math.floor(Math.random() * categories.length)]
-            if (randomCategory) {
-                await db.insert(blogPostCategory).values({
-                    blogPostId: post.id,
-                    categoryId: randomCategory.id,
+            // Insert the blog post
+            const [insertedPost] = await db
+                .insert(blogPost)
+                .values({
+                    ...postData,
+                    authorId: randomAuthor.id,
                 })
-            } else {
-                console.warn(
-                    `No category found to assign to post with id ${post.id}`
-                )
+                .returning()
+
+            if (!insertedPost) {
+                console.error(`❌ Failed to insert post: ${postData.title}`)
+                continue
             }
 
-            // Assign 2 random tags
-            const randomTags =
-                tags.length >= 2
-                    ? tags.sort(() => 0.5 - Math.random()).slice(0, 2)
-                    : tags
-            for (const tag of randomTags) {
-                await db.insert(blogPostTag).values({
-                    blogPostId: post.id,
-                    tagId: tag.id,
-                })
+            console.log(`✅ Inserted post: ${insertedPost.title}`)
+
+            // Link categories
+            for (const categoryName of postCategories) {
+                const category = categories.find((c) => c.name === categoryName)
+                if (category) {
+                    await db.insert(blogPostCategory).values({
+                        blogPostId: insertedPost.id,
+                        categoryId: category.id,
+                    })
+                }
+            }
+
+            // Link tags
+            for (const tagName of postTags) {
+                const tag = tags.find((t) => t.name === tagName)
+                if (tag) {
+                    await db.insert(blogPostTag).values({
+                        blogPostId: insertedPost.id,
+                        tagId: tag.id,
+                    })
+                }
             }
         }
 
