@@ -66,9 +66,6 @@ export async function PostMarkdown({
     const html = String(file)
 
     return (
-        <div
-            className={`prose prose-neutral dark:prose-invert max-w-none ${className}`}
-            dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
     )
 }
