@@ -84,6 +84,12 @@ This agent serves as the **registry and router** for all specialized agents in t
 - **Key Capabilities**: SEO optimization, audience psychology, natural language writing, keyword integration, conversion copywriting, narrative flow, business context analysis
 - **Location**: `.cursor/rules/seo-content-expert.mdc`
 
+### blog-post-creator-expert
+
+- **Purpose**: Expert agent for creating complete blog posts with SEO-optimized content and AI-generated featured images. Automates the entire workflow from topic selection to database seeding
+- **Key Capabilities**: Topic ideation, SEO content creation, AI image generation, Vercel Blob integration, file-based seed generation, brand voice alignment, workflow automation
+- **Location**: `.cursor/rules/blog-post-creator-expert.mdc`
+
 ## Routing Guidelines
 
 Direct tasks to appropriate specialized agents:
@@ -102,6 +108,7 @@ Direct tasks to appropriate specialized agents:
 - **PR Review Analysis** → `pr-review-analyzer`
 - **API routes, hooks, server actions** → `api-request-expert`
 - **SEO content writing, copywriting** → `seo-content-expert`
+- **Blog post creation with images** → `blog-post-creator-expert`
 
 ## Registry Maintenance
 
@@ -125,4 +132,4 @@ Agents automatically apply based on file types and contexts defined in their rul
 ---
 
 _Last updated: 2025-10-19_
-_Total Cursor agents: 15 (including main-agent)_
+_Total Cursor agents: 16 (including main-agent)_
