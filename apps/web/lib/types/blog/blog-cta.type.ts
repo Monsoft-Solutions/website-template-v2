@@ -5,6 +5,8 @@
  * multiple content variants and extensible configurations.
  */
 
+export type CTAColorScheme = 'blue' | 'green' | 'orange' | 'default'
+
 export type BlogCTAContent = {
     /**
      * Unique identifier for this CTA content
@@ -22,12 +24,19 @@ export type BlogCTAContent = {
     readonly description: string
 
     /**
+     * Color scheme for the entire CTA component
+     * Affects background, border, and button colors
+     */
+    readonly colorScheme?: CTAColorScheme
+
+    /**
      * Primary call-to-action button
      */
     readonly primaryButton: {
         readonly text: string
         readonly href: string
         readonly iconName?: string
+        readonly variant?: 'cta-blue' | 'cta-green' | 'cta-orange'
     }
 
     /**
@@ -59,4 +68,10 @@ export type BlogCTAProps = {
      * Used if content prop is not provided
      */
     readonly ctaId?: string
+
+    /**
+     * Color scheme for the CTA component
+     * Overrides the colorScheme from content if provided
+     */
+    readonly colorScheme?: CTAColorScheme
 }

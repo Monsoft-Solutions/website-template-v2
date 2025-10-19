@@ -44,15 +44,11 @@ export const blogCTAContents: readonly BlogCTAContent[] = [
         heading: 'Need Help Getting Started?',
         description:
             'Our team is here to help you implement these solutions for your business. Get in touch for a free consultation.',
+        colorScheme: 'blue',
         primaryButton: {
             text: 'Get Started',
             href: '/contact',
             iconName: 'arrow-right',
-        },
-        secondaryButton: {
-            text: 'View Services',
-            href: '/services',
-            variant: 'outline',
         },
     },
     {
@@ -60,6 +56,7 @@ export const blogCTAContents: readonly BlogCTAContent[] = [
         heading: 'Ready to Take the Next Step?',
         description:
             'Schedule a free consultation to discuss your specific needs and how we can help you achieve your goals.',
+        colorScheme: 'blue',
         primaryButton: {
             text: 'Book Consultation',
             href: '/contact',
@@ -76,6 +73,7 @@ export const blogCTAContents: readonly BlogCTAContent[] = [
         heading: 'Build Your Production Website Today',
         description:
             'Keel gives you everything you need to launch a professional website in hours, not weeks. Type-safe, production-ready, and fully customizable.',
+        colorScheme: 'blue',
         primaryButton: {
             text: 'Get Keel',
             href: '/#features',
@@ -92,6 +90,7 @@ export const blogCTAContents: readonly BlogCTAContent[] = [
         heading: 'Want More Tips Like This?',
         description:
             'Subscribe to our newsletter for weekly insights, tutorials, and best practices delivered straight to your inbox.',
+        colorScheme: 'blue',
         primaryButton: {
             text: 'Subscribe Now',
             href: '/contact',
@@ -103,6 +102,7 @@ export const blogCTAContents: readonly BlogCTAContent[] = [
         heading: 'Questions About Implementation?',
         description:
             'Our experts are ready to answer your questions and guide you through the implementation process.',
+        colorScheme: 'blue',
         primaryButton: {
             text: 'Contact Us',
             href: '/contact',

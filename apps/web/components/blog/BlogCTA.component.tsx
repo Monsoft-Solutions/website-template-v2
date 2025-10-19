@@ -30,6 +30,7 @@
 'use client'
 
 import { Button } from '@workspace/ui/components/button'
+import { cn } from '@workspace/ui/lib/utils'
 import { ArrowRight, Mail, MessageCircle, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
@@ -37,7 +38,10 @@ import {
     defaultCTAContent,
     getCTAContentById,
 } from '@/lib/data/blog-cta-content'
-import type { BlogCTAProps } from '@/lib/types/blog/blog-cta.type'
+import type {
+    BlogCTAProps,
+    CTAColorScheme,
+} from '@/lib/types/blog/blog-cta.type'
 
 /**
  * Map icon names to lucide-react components
@@ -61,7 +65,85 @@ function getIcon(iconName?: string) {
     }
 }
 
-export function BlogCTA({ variant, content, ctaId }: BlogCTAProps) {
+/**
+ * Get background and border classes for color scheme
+ */
+function getColorSchemeClasses(
+    colorScheme: CTAColorScheme,
+    variant: 'inline' | 'footer'
+) {
+    const baseClasses = {
+        inline: 'my-12 rounded-lg border px-8 py-16',
+        footer: 'mt-20 rounded-lg border px-12 py-16',
+    }
+
+    const colorClasses = {
+        blue: {
+            bg: 'bg-cta-blue-bg',
+            border: 'border-cta-blue-border',
+        },
+        green: {
+            bg: 'bg-cta-green-bg',
+            border: 'border-cta-green-border',
+        },
+        orange: {
+            bg: 'bg-cta-orange-bg',
+            border: 'border-cta-orange-border',
+        },
+        default: {
+            bg: variant === 'inline' ? 'bg-accent/30' : 'bg-primary/5',
+            border:
+                variant === 'inline' ? 'border-accent/40' : 'border-border/30',
+        },
+    }
+
+    const colors = colorClasses[colorScheme]
+    return cn(baseClasses[variant], colors.bg, colors.border)
+}
+
+/**
+ * Get text color classes based on color scheme
+ * Returns white text for colored schemes, default theme colors for 'default' scheme
+ */
+function getTextColorClasses(colorScheme: CTAColorScheme) {
+    if (colorScheme === 'default') {
+        return {
+            heading: 'text-foreground',
+            description: 'text-muted-foreground',
+        }
+    }
+
+    // For colored schemes (blue, green, orange), use white text
+    return {
+        heading: 'text-white',
+        description: 'text-white/90',
+    }
+}
+
+/**
+ * Get button variant based on color scheme
+ */
+function getButtonVariant(
+    colorScheme: CTAColorScheme
+): 'cta-blue' | 'cta-green' | 'cta-orange' | 'default' {
+    switch (colorScheme) {
+        case 'blue':
+            return 'cta-blue'
+        case 'green':
+            return 'cta-green'
+        case 'orange':
+            return 'cta-orange'
+        default:
+            return 'default'
+    }
+}
+
+export function BlogCTA({
+    variant,
+    content,
+    ctaId,
+    colorScheme: propColorScheme,
+}: BlogCTAProps) {
     // Determine which content to use (priority: content prop > ctaId > default)
     const ctaContent =
         content ?? (ctaId ? getCTAContentById(ctaId) : defaultCTAContent)
@@ -74,22 +156,39 @@ export function BlogCTA({ variant, content, ctaId }: BlogCTAProps) {
         return null
     }
 
+    // Determine color scheme (priority: prop > content.colorScheme > 'blue' default)
+    const colorScheme: CTAColorScheme =
+        propColorScheme ?? ctaContent.colorScheme ?? 'blue'
+
     const primaryIcon = getIcon(ctaContent.primaryButton.iconName)
+    const buttonVariant =
+        ctaContent.primaryButton.variant ?? getButtonVariant(colorScheme)
+    const textColors = getTextColorClasses(colorScheme)
 
     if (variant === 'inline') {
         return (
-            <aside className='bg-accent/30 border-accent/40 my-12 rounded-lg border p-8'>
+            <aside className={getColorSchemeClasses(colorScheme, 'inline')}>
                 <div className='flex flex-col gap-6'>
                     <div>
-                        <h3 className='text-foreground mb-2 text-xl font-semibold'>
+                        <h3
+                            className={cn(
+                                'mb-2 text-3xl font-semibold',
+                                textColors.heading
+                            )}
+                        >
                             {ctaContent.heading}
                         </h3>
-                        <p className='text-muted-foreground text-base leading-relaxed'>
+                        <p
+                            className={cn(
+                                'text-lg leading-relaxed',
+                                textColors.description
+                            )}
+                        >
                             {ctaContent.description}
                         </p>
                     </div>
                     <div className='flex flex-col gap-3 sm:flex-row'>
-                        <Button asChild size='lg'>
+                        <Button asChild size='lg' variant={buttonVariant}>
                             <Link href={ctaContent.primaryButton.href}>
                                 {ctaContent.primaryButton.text}
                                 {primaryIcon}
@@ -117,16 +216,26 @@ export function BlogCTA({ variant, content, ctaId }: BlogCTAProps) {
 
     // Footer variant
     return (
-        <section className='bg-primary/5 border-border/30 mt-20 rounded-lg border p-12'>
+        <section className={getColorSchemeClasses(colorScheme, 'footer')}>
             <div className='mx-auto max-w-3xl text-center'>
-                <h2 className='text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl'>
+                <h2
+                    className={cn(
+                        'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
+                        textColors.heading
+                    )}
+                >
                     {ctaContent.heading}
                 </h2>
-                <p className='text-muted-foreground mb-8 text-lg leading-relaxed'>
+                <p
+                    className={cn(
+                        'mb-8 text-lg leading-relaxed',
+                        textColors.description
+                    )}
+                >
                     {ctaContent.description}
                 </p>
                 <div className='flex flex-col justify-center gap-4 sm:flex-row'>
-                    <Button asChild size='lg'>
+                    <Button asChild size='lg' variant={buttonVariant}>
                         <Link href={ctaContent.primaryButton.href}>
                             {ctaContent.primaryButton.text}
                             {primaryIcon}
