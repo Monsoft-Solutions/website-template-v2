@@ -78,6 +78,12 @@ This agent serves as the **registry and router** for all specialized agents in t
 - **Purpose**: Expert for building type-safe API requests, client hooks, server actions, and API handlers with validation and permissions
 - **Location**: `.cursor/rules/api-request-expert.mdc`
 
+### seo-content-expert
+
+- **Purpose**: Expert agent for writing SEO-optimized, audience-focused website content with psychological resonance. Creates natural, human-sounding content that ranks well and converts
+- **Key Capabilities**: SEO optimization, audience psychology, natural language writing, keyword integration, conversion copywriting, narrative flow, business context analysis
+- **Location**: `.cursor/rules/seo-content-expert.mdc`
+
 ## Routing Guidelines
 
 Direct tasks to appropriate specialized agents:
@@ -95,6 +101,7 @@ Direct tasks to appropriate specialized agents:
 - **Unit Testing** → `unit-testing`
 - **PR Review Analysis** → `pr-review-analyzer`
 - **API routes, hooks, server actions** → `api-request-expert`
+- **SEO content writing, copywriting** → `seo-content-expert`
 
 ## Registry Maintenance
 
@@ -117,5 +124,5 @@ Agents automatically apply based on file types and contexts defined in their rul
 
 ---
 
-_Last updated: 2025-10-17_
-_Total Cursor agents: 14 (including main-agent)_
+_Last updated: 2025-10-19_
+_Total Cursor agents: 15 (including main-agent)_
