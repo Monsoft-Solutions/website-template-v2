@@ -25,10 +25,10 @@ import type {
  * About Hero Section Content
  */
 export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
-    badge: 'Professional Website Solutions',
-    headline: 'Launch Your Business Website in Days, Not Months',
+    badge: 'Built for Real Projects',
+    headline: 'Production-Ready Code. Real-World Tested.',
     description:
-        'Your business deserves a modern, professional website that works as hard as you do. We help business owners get online fast with websites that look great, perform flawlessly, and include everything you need—from built-in analytics and SEO optimization to a full-featured blog system.',
+        'Keel is a Next.js template for developers building client projects and business owners launching professional websites. Skip the setup. Start with production-tested code that includes blog, analytics, SEO, and contact forms. Built with Next.js 15, React 19, and TypeScript.',
     image: {
         src: '/images/about-hero.jpg',
         alt: 'Modern professional business website on multiple devices',
@@ -42,29 +42,29 @@ export const aboutHeroData: Omit<AboutHeroSectionProps, 'id'> = {
 
 /**
  * Mission, Vision, and Values Section Content
- * Now focused on benefits for business owners
+ * Focused on why Keel exists and what it stands for
  */
 export const missionData: Omit<MissionSectionProps, 'id'> = {
     items: [
         {
             icon: Target,
-            title: 'Fast Deployment',
+            title: 'Ship in Hours',
             description:
-                'Get your business online in days, not months. Our proven template means no starting from scratch—just customize your content, add your branding, and launch. Time is money, and we help you save both.',
+                'Launch websites in hours, not weeks. Customize content, add branding, deploy. Skip weeks of setup work. Start with working features instead of empty folders.',
             ariaLabel: 'Learn about fast website deployment',
         },
         {
             icon: Compass,
-            title: 'Modern Technology',
+            title: 'Stable Technology',
             description:
-                "Built with Next.js 15 and React 19, your website stays future-proof and lightning-fast. We handle the technical complexity so you can focus on running your business. Updates and improvements come built-in—you're never stuck with outdated tech.",
+                'Built with Next.js 15 and React 19. Stable, supported, production-ready. No experimental features. No framework churn. Just proven tools that ship reliable websites.',
             ariaLabel: 'Learn about modern web technology',
         },
         {
             icon: Heart,
-            title: 'Business-Ready Features',
+            title: 'Everything Included',
             description:
-                'Everything your business needs is already included: SEO optimization to help customers find you, built-in analytics to track your success, a professional blog to share your expertise, and contact forms that actually work. No extra plugins or monthly subscriptions.',
+                'SEO, analytics, blog, contact forms. Everything included. No add-ons needed. No monthly subscriptions. One template, complete features.',
             ariaLabel: 'Learn about business website features',
         },
     ],
@@ -79,7 +79,7 @@ export const ourStoryData: Feature[] = [
         icon: Lightbulb,
         title: 'The Problem We Solved',
         description:
-            'We were building the same website foundations repeatedly. Every client project meant recreating the blog system, analytics setup, SEO structure, and contact forms from scratch. It was time-consuming and expensive.',
+            'We built the same foundations repeatedly. Blog systems, analytics, SEO, contact forms. Every client paid for work done before. So we created Keel.',
         imageSrc: '/images/about-story.jpg',
         imageAlt: 'Repetitive website development process',
     },
@@ -87,7 +87,7 @@ export const ourStoryData: Feature[] = [
         icon: Briefcase,
         title: 'For Business Owners',
         description:
-            "Get your business online in days with a professional website that includes everything: blog, analytics, SEO, contact forms. No compromise on quality, no paying for work that's been done before.",
+            'Professional website in days. Blog, analytics, SEO, contact forms included. One price, no recurring fees. Deploy fast, look professional.',
         imageSrc: '/images/services/web-development-workspace.jpg',
         imageAlt: 'Professional business website on multiple devices',
     },
@@ -95,15 +95,15 @@ export const ourStoryData: Feature[] = [
         icon: Code,
         title: 'For Developers',
         description:
-            'Start with production-ready code following best practices. Monorepo architecture, TypeScript everywhere, shadcn/ui components, and comprehensive documentation. Build client projects faster or learn modern web development patterns.',
+            'Production-ready code. Monorepo, TypeScript, shadcn/ui, Drizzle ORM. Ship client work faster. Learn modern patterns. Start with working features, not empty repos.',
         imageSrc: '/images/about-developer.jpg',
         imageAlt: 'Modern development environment with TypeScript and React',
     },
     {
         icon: Target,
-        title: 'Built for Real Projects',
+        title: 'Production Tested',
         description:
-            "This isn't a side project—it's production-tested code we use for client work. Next.js 15, React 19, Drizzle ORM, and modern tooling that delivers fast, reliable websites. Constantly improved based on real-world feedback.",
+            'Used for real client projects. Next.js 15, React 19, Drizzle ORM. Updated based on production feedback. Built for shipping, not demos.',
         imageSrc: '/images/services/seo-optimization.jpg',
         imageAlt: 'Production website with analytics and performance metrics',
     },
@@ -190,16 +190,16 @@ export const teamSectionData: Omit<TeamSectionProps, 'id'> = {
  * Final CTA Section Content (for end of about page)
  */
 export const aboutCTAData = {
-    title: 'Ready to Launch Your Website?',
+    title: 'Ready to Build?',
     description:
-        "Let's get your business online with a professional website that performs. Reach out today and we'll show you how fast we can get you up and running.",
+        'Start with production-ready code. Full documentation included. Build your first site this week.',
     primaryButton: {
-        text: 'Start Your Project',
+        text: 'Contact Us',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'View Features',
-        href: '/#features',
+        text: 'Key Features',
+        href: '/#key-features',
     },
     variant: 'accent' as const,
 }

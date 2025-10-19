@@ -32,24 +32,24 @@ import type {
  */
 export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
     subheadline: 'Next.js 15 • React 19 • TypeScript',
-    headline: 'Ship Professional Websites in Hours, Not Weeks',
+    headline: 'The foundation for production websites.',
     description:
-        'Production-ready website template with everything you need: built-in blog, analytics, SEO optimization, shadcn/ui components, and full TypeScript support. Perfect for developers and agencies.',
+        'Production-ready code with Next.js 15 and React 19. Built-in blog, analytics, SEO, and shadcn/ui components. Type-safe from database to UI.',
     primaryButton: {
-        text: 'View Documentation',
+        text: 'Start Building',
         href: '#key-features',
         variant: 'default',
         icon: ArrowRight,
         iconPosition: 'right',
-        ariaLabel: 'View template documentation and features',
+        ariaLabel: 'Start building with Keel template',
     },
     secondaryButton: {
-        text: 'See Demo',
+        text: 'View Examples',
         href: '/about',
         variant: 'outline',
         icon: Eye,
         iconPosition: 'left',
-        ariaLabel: 'See template demo pages',
+        ariaLabel: 'View example pages and features',
     },
     image: {
         src: '/images/hero.jpg',
@@ -72,9 +72,9 @@ export const heroSectionData: Omit<HeroSectionProps, 'id'> = {
 export const keyFeaturesData: Feature[] = [
     {
         icon: Zap,
-        title: 'Lightning Fast Development',
+        title: 'Fast Development',
         description:
-            'Start building immediately with pre-built components, layouts, and sections. No boilerplate setup—just customize and deploy.',
+            'Pre-built components and layouts. Start building immediately. No boilerplate setup.',
         ariaLabel: 'Learn more about fast development features',
         imageSrc: '/images/services/web-development-workspace.jpg',
         imageAlt: 'Modern development workspace with code editor and tools',
@@ -83,16 +83,16 @@ export const keyFeaturesData: Feature[] = [
         icon: Blocks,
         title: 'Complete Blog System',
         description:
-            'Full-featured blog with PostgreSQL, categories, tags, markdown support, and Vercel Blob image storage. Production-ready out of the box.',
+            'Full-featured blog with PostgreSQL, categories, tags, and markdown. Vercel Blob image storage. Production-ready.',
         ariaLabel: 'Learn more about the blog system',
         imageSrc: '/images/services/web-development-success.jpg',
         imageAlt: 'Successful blog implementation with content management',
     },
     {
         icon: Shield,
-        title: 'Enterprise-Grade Code',
+        title: 'Type-Safe Code',
         description:
-            '100% TypeScript with strict typing, Zod validation, error handling, and comprehensive naming conventions. Built for maintainability.',
+            '100% TypeScript with strict typing. Zod validation and error handling. Built for maintainability.',
         ariaLabel: 'Learn more about code quality',
         imageSrc: '/images/services/web-development-code-quality.jpg',
         imageAlt: 'High-quality TypeScript code on screen',
@@ -101,7 +101,7 @@ export const keyFeaturesData: Feature[] = [
         icon: LineChart,
         title: 'Analytics Built-In',
         description:
-            'Pre-integrated Google Analytics, Microsoft Clarity, GTM, and Facebook Pixel with type-safe event tracking hooks.',
+            'Google Analytics, Clarity, GTM, and Facebook Pixel. Type-safe event tracking hooks. Pre-integrated.',
         ariaLabel: 'Learn more about analytics integration',
         imageSrc: '/images/services/digital-marketing/analytics-reporting.jpg',
         imageAlt: 'Analytics dashboard showing user metrics and reports',
@@ -110,7 +110,7 @@ export const keyFeaturesData: Feature[] = [
         icon: Search,
         title: 'SEO Optimized',
         description:
-            'Dedicated SEO package with metadata generation, schema.org structured data, dynamic sitemaps, and Open Graph tags.',
+            'Metadata generation, schema.org data, dynamic sitemaps, and Open Graph tags. SEO package included.',
         ariaLabel: 'Learn more about SEO optimization',
         imageSrc: '/images/services/digital-marketing/seo-optimization.jpg',
         imageAlt: 'SEO optimization tools and search rankings',
@@ -119,7 +119,7 @@ export const keyFeaturesData: Feature[] = [
         icon: Palette,
         title: 'Beautiful UI Components',
         description:
-            '13+ shadcn/ui components with Tailwind CSS 4. Dark mode support, responsive design, and Notion-inspired aesthetics.',
+            '13+ shadcn/ui components with Tailwind CSS 4. Dark mode support. Notion-inspired design.',
         ariaLabel: 'Learn more about UI components',
         imageSrc: '/images/services/web-development-ui-design.jpg',
         imageAlt: 'Beautiful UI component design with modern aesthetics',
@@ -186,9 +186,9 @@ export const featuresData: Feature[] = [
  */
 export const techStackData: Omit<AboutPreviewSectionProps, 'id'> = {
     badge: 'Modern Technology Stack',
-    title: 'Built With The Best Tools Developers Love',
+    title: 'Built with tools developers trust',
     description:
-        'We chose proven, cutting-edge technologies that developers trust. Next.js 15 with React Server Components, TypeScript 5.7 for type safety, Drizzle ORM for database management, and Turborepo for blazing-fast monorepo builds. Every tool was selected for production reliability and developer experience.',
+        'Next.js 15 with React Server Components. TypeScript 5.7 for type safety. Drizzle ORM for databases. Turborepo for fast monorepo builds. Every tool selected for production reliability.',
     imageSrc: '/images/about-preview.jpg',
     imageAlt:
         'Technology stack: Next.js, React, TypeScript, Tailwind, PostgreSQL',
@@ -270,15 +270,15 @@ export const extendedFeaturesData: Feature[] = [
  * Final CTA Section Content (for end of home page)
  */
 export const finalCTAData = {
-    title: 'Ready to Build Your Website?',
+    title: 'Ready to build your website?',
     description:
-        'Join developers and agencies using this template to ship professional websites faster. Get started in minutes with comprehensive documentation and support.',
+        'Start with production-ready code. Full documentation included. Build your first site this week.',
     primaryButton: {
-        text: 'Get Started Now',
+        text: 'Start Building',
         href: '/contact',
     },
     secondaryButton: {
-        text: 'View on GitHub',
+        text: 'View Documentation',
         href: 'https://github.com/your-repo',
     },
     variant: 'accent' as const,

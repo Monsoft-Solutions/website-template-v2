@@ -41,13 +41,13 @@ export const siteConfig: SiteConfig = {
      * Business Information
      */
     business: {
-        name: 'Monsoft Labs',
-        legalName: 'Modern Website Template',
-        tagline: 'Production-Ready Next.js Template for Professional Websites',
+        name: 'Keel',
+        legalName: 'Keel by MonsoftLabs',
+        tagline: 'The foundation for production websites.',
         description:
-            'A comprehensive Next.js 15 website template with built-in blog, analytics, SEO optimization, and modern UI components. Perfect for developers and agencies who need to launch professional websites quickly.',
+            'Production-ready Next.js template. Built with React 19 and TypeScript. Ready in hours, not weeks.',
         foundedYear: 2024,
-        founders: ['Your Name'],
+        founders: ['MonsoftLabs'],
         organizationType: 'Product',
     },
 
@@ -128,7 +128,7 @@ export const siteConfig: SiteConfig = {
      */
     brand: {
         logo: '/logo.png',
-        logoAlt: 'Your Company Name Logo',
+        logoAlt: 'Keel Logo',
         favicon: '/favicon.png',
         appleTouchIcon: '/apple-touch-icon.png',
         ogImage: '/og-image.jpg',
@@ -139,20 +139,22 @@ export const siteConfig: SiteConfig = {
      */
     seo: {
         siteUrl: getSiteUrl(), // Dynamically from environment
-        siteName: 'Monsoft Labs',
+        siteName: 'Keel',
         siteDescription:
-            'Production-ready Next.js 15 template with React 19, TypeScript, Tailwind CSS, shadcn/ui, blog system, analytics, and SEO optimization. Build professional websites in hours, not weeks.',
+            'Production-ready Next.js template. Built with React 19, TypeScript, and Drizzle ORM. Blog, analytics, and SEO included. Type-safe from database to UI.',
         keywords: [
-            'website template',
-            'Next.js template',
-            'React template',
+            'production website template',
+            'Next.js 15 template',
+            'React 19 template',
             'TypeScript template',
+            'Next.js blog template',
             'shadcn/ui template',
-            'blog template',
-            'SEO optimized template',
-            'production ready template',
             'monorepo template',
-            'developer template',
+            'Drizzle ORM template',
+            'production-ready Next.js',
+            'developer website template',
+            'type-safe template',
+            'Next.js monorepo',
         ],
         locale: 'en-US',
         twitterHandle: '@example',
