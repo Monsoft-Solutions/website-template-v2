@@ -210,6 +210,17 @@
 }
 
 @layer utilities {
+    /* Hide scrollbar for Chrome, Safari, Edge, and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
     @keyframes shimmer {
         0% {
             transform: translateX(-100%);
